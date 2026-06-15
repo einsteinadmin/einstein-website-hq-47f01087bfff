@@ -22,6 +22,12 @@
   .feature p { font-size:.92rem; color:var(--gray); max-width:720px; margin-bottom:16px; }
   .feature a.cta { display:inline-block; font-size:.86rem; font-weight:700; color:#fff; background:var(--blue); padding:11px 20px; border-radius:100px; text-decoration:none; transition:background .15s; }
   .feature a.cta:hover { background:#065E9A; }
+  /* how-to-review block for KP reviewers */
+  .review-note { margin-top:24px; background:#EBF4FB; border:1px solid #C3DFEF; border-radius:12px; padding:18px 22px 18px 24px; font-size:.9rem; color:var(--ink); }
+  .review-note .rn-head { font-weight:900; color:var(--navy); margin-bottom:8px; }
+  .review-note ol { margin:0; padding-left:20px; }
+  .review-note li { margin-bottom:6px; }
+  .review-note li:last-child { margin-bottom:0; }
   .phases { margin-top:36px; display:flex; flex-direction:column; gap:0; position:relative; }
   .phase { display:grid; grid-template-columns:64px 1fr; gap:22px; padding:26px 0; border-bottom:1px solid var(--line); }
   .ph-num { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--orange); line-height:1; padding-top:2px; }
@@ -55,6 +61,16 @@
   <h1>Website Redesign HQ</h1>
   <p class="lede">The shared home for the redesign — design system, inspiration, concept directions, and full-fidelity homepage mockups. Every link is live; open any mockup on desktop and on your phone (they're responsive).</p>
   <p class="meta">Einstein × Kickpoint · Updated 6/15/2026 · <span class="internal-only">Items tagged <span class="local-note">internal</span> are hidden automatically on the hosted (KP) copy.</span></p>
+
+  <!-- HOW TO REVIEW — shown to everyone (KP reviewers) -->
+  <div class="review-note">
+    <div class="rn-head">Reviewing with us? Three steps.</div>
+    <ol>
+      <li><b>Start with the Component Set</b> (below) — it's the system every page is built from, so you'll recognize the pieces when you see the homepages.</li>
+      <li><b>Open each of the five homepages</b> (in "Full-Fidelity Homepages") on your computer <i>and</i> your phone — they're responsive, and the Mover Journey has its own mobile version worth seeing.</li>
+      <li><b>Leave feedback right on the page:</b> click the ♥ pins to react to a specific spot, then hit <b>Export</b> (bottom-left) to send your notes back. Tell us what lands and what doesn't — there are no wrong reactions.</li>
+    </ol>
+  </div>
 
   <!-- FEATURED: the design system / component set -->
   <div class="feature">
