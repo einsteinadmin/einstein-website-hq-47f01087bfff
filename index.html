@@ -27,10 +27,12 @@
   .ph-num { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--orange); line-height:1; padding-top:2px; }
   .phase.done .ph-num { color:var(--teal); }
   .phase.now .ph-num { color:var(--blue); }
+  .phase.internal-only .ph-num { color:var(--gray); }
   .ph-status { display:inline-block; font-size:.62rem; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; padding:3px 10px; border-radius:100px; margin-left:10px; vertical-align:middle; }
   .done .ph-status { background:#E0F2EF; color:var(--teal); }
   .now .ph-status { background:#E3EFFA; color:var(--blue); }
   .next .ph-status { background:#EFECE6; color:var(--gray); }
+  .int .ph-status { background:#F3E8D6; color:#9a6a1e; }
   .phase h2 { font-size:1.2rem; font-weight:900; color:var(--navy); margin-bottom:6px; }
   .phase p { font-size:.9rem; color:var(--gray); max-width:680px; margin-bottom:12px; }
   .links { display:flex; gap:8px; flex-wrap:wrap; }
@@ -40,6 +42,10 @@
   .links a.star { border-color:rgba(239,139,34,.5); }
   .links span.soon { font-size:.8rem; color:#aaa; padding:8px 6px; }
   .foot { margin-top:36px; font-size:.8rem; color:#999; }
+  /* internal-only: shown in Cameron's local copy, auto-hidden when served from github.io (KP) */
+  body.public .internal-only { display:none !important; }
+  .local-note { display:inline-block; font-size:.7rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9a6a1e; background:#F3E8D6; border-radius:100px; padding:2px 9px; margin-left:8px; vertical-align:middle; }
+  body.public .local-note { display:none; }
   @media (max-width:640px){ .wrap{padding:36px 20px 70px;} .phase{grid-template-columns:44px 1fr; gap:14px;} h1{font-size:2.4rem;} }
 </style>
 </head>
@@ -47,15 +53,15 @@
 <div class="wrap">
   <div class="eyebrow">Q2 2026 · Einstein Moving Company × Kickpoint</div>
   <h1>Website Redesign HQ</h1>
-  <p class="lede">The shared home for the redesign — design system, inspiration, concept directions, and full-fidelity homepage mockups, all in one place. Every link is live; open any mockup on desktop and on your phone (they're responsive).</p>
-  <p class="meta">Einstein × Kickpoint · Updated 6/15/2026</p>
+  <p class="lede">The shared home for the redesign — design system, inspiration, concept directions, and full-fidelity homepage mockups. Every link is live; open any mockup on desktop and on your phone (they're responsive).</p>
+  <p class="meta">Einstein × Kickpoint · Updated 6/15/2026 · <span class="internal-only">Items tagged <span class="local-note">internal</span> are hidden automatically on the hosted (KP) copy.</span></p>
 
   <!-- FEATURED: the design system / component set -->
   <div class="feature">
     <div class="ft-eyebrow">⭐ Start here — the design system</div>
     <h2>The Component Set — built from the quote form</h2>
     <p>The redesigned quote form is the locked design direction; this sheet extracts its settled language into a reusable system — every component, color, type rule, and spacing rule the mockups are built from (Emma's adopted refinements baked in). The homepages below are this system applied.</p>
-    <a class="cta" href="design-system.html">Open the Component Set →</a>
+    <a class="cta" href="research/settled-components.html">Open the Component Set →</a>
   </div>
 
   <div class="phases">
@@ -89,8 +95,8 @@
         <h2>Full-Fidelity Homepages <span class="ph-status">For review</span></h2>
         <p>Five homepage concepts as real pages with real copy, all built on the component set above and Emma's design-system refinements (tonal ramps + WCAG pairings, Navy-500 text, orange-text ban, 20px Size 1–6 type with Lora banners, 4px spacing). Each page has ♥ reaction pins + an Export button for feedback. <b>The Mover Journey also ships a mobile peekaboo</b>: on phones the crew descends per-floor "window" scenes between the cards (desktop keeps the scroll "Camera Stage"). Open it on your phone to see it. The journey's movers are placeholder art — final motion would be commissioned illustration.</p>
         <div class="links">
-          <a class="star" href="fidelity/brand-story.html">⭐ The Brand Story (customer as hero)</a>
           <a href="fidelity/mover-journey.html">The Mover Journey (desktop + mobile)</a>
+          <a class="star" href="fidelity/brand-story.html">The Brand Story (customer as hero)</a>
           <a href="fidelity/hometown-proof.html">Hometown Proof (location template)</a>
           <a href="fidelity/front-door.html">Front Door 2.0</a>
           <a href="fidelity/kit-classic.html">Kit Classic</a>
@@ -116,9 +122,33 @@
       </div>
     </div>
 
+    <!-- DEEP DIVE — internal working materials. Hidden automatically on the hosted (KP) copy. -->
+    <div class="phase int internal-only">
+      <div class="ph-num">00</div>
+      <div>
+        <h2>Deep Dive — research &amp; working notes <span class="ph-status">Internal</span><span class="local-note">internal</span></h2>
+        <p>The thinking behind the work — kept in your bookmark, never shown to KP. (These auto-hide on the hosted copy.)</p>
+        <div class="links">
+          <a href="planning-packet.html">Planning packet + interview</a>
+          <a href="research/live-site-copy.md">Live-site copy pull</a>
+          <a href="research/inspiration-sweep.md">Design-awards sweep</a>
+          <a href="research/scroll-journey-examples.md">Scroll-journey research</a>
+          <a href="research/llm-readability-geo.md">LLM/GEO research</a>
+          <a href="council/2026-06-11-design-council-synthesis.md">Design-council critique</a>
+          <a href="research/settled-components.md">Component spec (narrative)</a>
+          <a href="../einstein-brand-kit/handoff.md">Einstein Brand Kit — handoff</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <p class="foot">Reference: the project <a href="planning-packet.html" style="color:var(--blue);">planning packet</a>. Foundation, always: the redesigned <b>quote form is the design direction</b>, captured in the <b>Component Set</b> above — the rest of the site catches up to it.</p>
+  <p class="foot">Foundation, always: the redesigned <b>quote form is the design direction</b>, captured in the <b>Component Set</b> above — the rest of the site catches up to it.</p>
 </div>
+<script>
+  /* Single-source hub: this exact file is Cameron's local bookmark AND the hosted KP copy.
+     On github.io, hide everything tagged internal-only so KP sees the curated deliverables. */
+  if (location.hostname.endsWith('github.io')) document.body.classList.add('public');
+</script>
 </body>
 </html>
