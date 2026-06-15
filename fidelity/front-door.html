@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Einstein Moving Company — The Smart Move | FRONT DOOR 2.0 Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   EINSTEIN BRAND KIT — colors_and_type.css (INLINED VERBATIM)
+   Source: einstein-brand-kit/agent/visual/colors_and_type.css
+   KP design-system refinements edition (adopted 6/11/2026) —
+   full tonal ramps, Navy-500 text, Size 1–6 scale, Lora banner.
+   (The @import of bundled fonts is commented out — this mockup
+   loads Roboto + Lora from Google Fonts to stay self-contained.)
+   ============================================================ */
+
+/* ============================================================
+   Einstein Brand Kit — colors_and_type.css
+   Drop-in CSS custom properties + type scale.
+   This is the implementation standard for web/app UI.
+   Pair with tokens/tokens.json (same values as data) and
+   motion/motion.css (timing + easing).
+   Fonts are bundled — fonts/fonts.css declares @font-face for Roboto,
+   Bebas Neue, Thirsty Script, and Lora, so the kit renders offline.
+   ============================================================ */
+
+/* @import url('fonts/fonts.css'); — bundled fonts not available here; Roboto + Lora load from Google Fonts above */
+
+:root {
+
+  /* ============================================================
+     COLOUR SCALE
+     Full families — 7 stops each. Use scale variables in components;
+     use role aliases (bottom of this section) for semantic intent.
+     Do not invent values outside this scale.
+     ============================================================ */
+
+  /* ---- Orange ---- */
+  --color-orange-50:  #FEF6EC;   /* page backgrounds, warm tinted surfaces */
+  --color-orange-100: #FDE3C2;   /* subtle fills, hover states on light backgrounds */
+  --color-orange-200: #FABD84;   /* decorative elements, illustrations */
+  --color-orange-300: #F5A054;   /* decorative only — do not use for text */
+  --color-orange-500: #EF8B22;   /* brand colour — CTAs, icons, accents (Pantone 144 C) */
+  --color-orange-700: #D96B10;   /* hover state for orange elements */
+  --color-orange-900: #CC5500;   /* deep burnt orange — large text, UI borders, badges */
+
+  /* ---- Navy ---- */
+  --color-navy-50:  #EEF1F4;     /* page backgrounds, card fills */
+  --color-navy-100: #CDD5DA;     /* borders, dividers */
+  --color-navy-200: #9AADB7;     /* muted icons, secondary borders */
+  --color-navy-400: #507080;     /* secondary text — large text only (≥18px or ≥14px bold) */
+  --color-navy-500: #27343D;     /* brand colour — primary text, headings (Pantone 432 CP) */
+  --color-navy-700: #1A2329;     /* footer backgrounds */
+  --color-navy-900: #0B1014;     /* near-black, maximum contrast */
+
+  /* ---- Blue ---- */
+  --color-blue-50:  #EBF4FB;     /* info tints, callout block backgrounds */
+  --color-blue-100: #C3DFEF;     /* subtle info fills */
+  --color-blue-200: #88C0E4;     /* decorative, illustrations */
+  --color-blue-300: #46A2D5;     /* decorative, large text only */
+  --color-blue-500: #0979C3;     /* brand colour — links, interactive buttons, focus states (Pantone 3005 CP) */
+  --color-blue-700: #065E9A;     /* hover state for blue interactive elements */
+  --color-blue-900: #023B63;     /* deep blue — high-emphasis text, dark blue backgrounds */
+
+  /* ---- Grey ---- */
+  --color-grey-50:  #F4F5F5;     /* neutral page backgrounds */
+  --color-grey-100: #E2E3E4;     /* card fills, input backgrounds */
+  --color-grey-200: #C0C2C4;     /* borders, dividers, horizontal rules */
+  --color-grey-400: #787C7F;     /* placeholder text — large text only (≥18px or ≥14px bold) */
+  --color-grey-500: #53575A;     /* brand colour — secondary body text (Pantone 425 C) */
+  --color-grey-700: #363839;     /* primary body text on light backgrounds */
+  --color-grey-900: #191A1B;     /* near-black, maximum contrast */
+
+  /* ---- Brand name aliases (map to scale) ---- */
+  --einstein-orange: var(--color-orange-500);
+  --einstein-gray:   var(--color-grey-500);
+  --einstein-blue:   var(--color-blue-500);
+  --einstein-dark:   var(--color-navy-500);
+  --einstein-light:  #F6F6F6;    /* Cool Gray 1 C — page backgrounds, input fills */
+  --white:           #FFFFFF;
+
+  /* ---- Semantic ---- */
+  --success:    #69995D;   /* checkmarks, confirmations */
+  --error:      #CC0100;   /* errors, competitor hidden fees in red */
+  --email-link: #0A81D1;   /* links in email context only */
+
+  /* ---- Role aliases — prefer these in components ---- */
+  --color-text:        var(--color-grey-500);    /* secondary/body text */
+  --color-heading:     var(--color-navy-500);    /* headings — navy */
+  --color-bg:          var(--white);
+  --color-bg-muted:    var(--einstein-light);
+  --color-bg-dark:     var(--color-navy-500);
+  --color-action:      var(--color-blue-500);    /* where people click, in content */
+  --color-accent:      var(--color-orange-500);  /* personality: emphasis, nav CTA, selection */
+  --color-on-dark:     var(--white);
+
+  /*
+   * Section Background Hierarchy
+   * Use this order — Navy-500 or darker is not approved as a full section
+   * background except the footer.
+   *
+   * 1. White (#FFFFFF)              — default
+   * 2. Orange 50 (#FEF6EC)          — warm / featured sections
+   * 3. Grey 50 (#F4F5F5)            — subtle alternation
+   * 4. Navy 50 (#EEF1F4)            — lightest tint of contrast
+   * 5. Navy 700 (#1A2329)           — footer only
+   */
+
+  /*
+   * WCAG 2.1 AA — Approved pairings (verified contrast ratios)
+   *
+   * Normal text (< 18px regular / < 14px bold): 4.5:1 minimum
+   * Large text / UI (≥ 18px regular / ≥ 14px bold): 3:1 minimum
+   *
+   * Background  →  Foreground         Ratio   Approved for
+   * #EF8B22     →  #27343D            5.4:1   Buttons, badges
+   * #EF8B22     →  #0B1014            6.5:1   High-contrast on orange
+   * #CC5500     →  #FFFFFF            4.3:1   Large text + UI only (not body copy)
+   * #27343D     →  #FFFFFF           12.8:1   Any text size
+   * #27343D     →  #EF8B22            5.4:1   Icons, callouts on dark
+   * #1A2329     →  #EF8B22            6.5:1   Dark overlay use only
+   * #0979C3     →  #FFFFFF            4.8:1   Buttons, links
+   * #065E9A     →  #FFFFFF            6.8:1   Hover states
+   * #FFFFFF     →  #0979C3            4.8:1   Link text
+   * #FFFFFF     →  #27343D           12.8:1   Primary body text
+   * #FFFFFF     →  #53575A            7.3:1   Secondary body text
+   * #EBF4FB     →  #0979C3            4.4:1   Info cards — large text only
+   * #EBF4FB     →  #27343D           11.6:1   Info cards with dark text
+   * #FEF6EC     →  #27343D           11.9:1   Warm tinted cards
+   * #023B63     →  #FFFFFF           11.6:1   Deep blue sections
+   *
+   * Do NOT use Orange-500 as text colour on white — fails contrast for text.
+   * Navy-400 and Grey-400 pass at 3:1 — large text and UI only.
+   */
+
+  /* ============================================================
+     TYPE FAMILIES
+     ============================================================ */
+
+  --font-sans:          'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-script:        'Thirsty Script', cursive;  /* SPARINGLY — "Smart Move" flourishes only */
+  --font-display:       'Bebas Neue', sans-serif;   /* hero headlines */
+  --font-display-serif: 'Lora', serif;              /* Size 1 / banner display only */
+
+  /* ---- Type weights ---- */
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+
+  /* ============================================================
+     TYPE SCALE
+     Base: html { font-size: 20px } — 1rem = 20px throughout.
+
+     Size 1–6 name the visual hierarchy tier, not the HTML element.
+     Heading markup (h1–h6) is independent of visual size:
+       • h1 is typically set at Size 5 or Size 6 visually.
+       • h2 is typically set at Size 2.
+     Any heading level can use any size token — choose by visual
+     hierarchy, then write the correct semantic markup separately.
+
+     Body: use P (--fs-body) for long-form prose. Use Small P
+     (--fs-sm-p) for cards and compact UI. Tiny P for legal only.
+     ============================================================ */
+
+  /* ---- Display & Heading ---- */
+  --fs-size-1: 4rem;    /* 80px  — banner display; use --font-display-serif (Lora) */
+  --lh-size-1: 1.2;
+  --fs-size-2: 2rem;    /* 40px  — major section headings (most often h2) */
+  --lh-size-2: 1.2;
+  --fs-size-3: 1.6rem;  /* 32px */
+  --lh-size-3: 1.25;
+  --fs-size-4: 1.2rem;  /* 24px */
+  --lh-size-4: 1.6;
+  --fs-size-5: 1rem;    /* 20px — typical h1 visual size */
+  --lh-size-5: 1.5;
+  --fs-size-6: 0.9rem;  /* 18px */
+  --lh-size-6: 1.3;
+
+  /* ---- Legacy px aliases (backward-compatible) ---- */
+  --fs-hero:   59px;  --lh-hero:   77px;   /* hero headlines — Bebas Neue */
+  --fs-h1:     24px;  --lh-h1:     36px;
+  --fs-h2:     40px;  --lh-h2:     44px;
+  --fs-h3:     32px;  --lh-h3:     40px;
+  --fs-h4:     24px;  --lh-h4:     32px;
+  --fs-h5:     20px;  --lh-h5:     30px;
+  --fs-h6:     18px;  --lh-h6:     24px;
+
+  /* ---- Body text ---- */
+  --fs-lg-p:   1.2rem;  /* 24px — introductory paragraphs, pull quotes, emphasized copy */
+  --lh-lg-p:   1.5;
+  --fs-body:   1rem;    /* 20px — default long-form body copy (editorial sections) */
+  --lh-body:   1.5;
+  --fs-sm-p:   0.8rem;  /* 16px — card copy, captions, labels, supporting/secondary text */
+  --lh-sm-p:   1.5;
+  --fs-tiny-p: 0.6rem;  /* 12px — legal text, metadata, fine print only */
+  --lh-tiny-p: 1.6;
+
+  /* ---- Radius & shadow ---- */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(39, 52, 61, 0.08);
+  --shadow-md: 0 4px 12px rgba(39, 52, 61, 0.10);
+  --shadow-lg: 0 12px 32px rgba(39, 52, 61, 0.14);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+html {
+  font-size: 20px; /* 1rem = 20px */
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-regular);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   Base typography
+   ============================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-bold);
+  color: var(--color-heading);
+  margin: 0 0 0.5em;
+}
+
+h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); }
+h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); }
+h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); }
+h4 { font-size: var(--fs-h4); line-height: var(--lh-h4); }
+h5 { font-size: var(--fs-h5); line-height: var(--lh-h5); }
+h6 { font-size: var(--fs-h6); line-height: var(--lh-h6); }
+
+.hero-headline  { font-family: var(--font-display); font-size: var(--fs-hero); line-height: var(--lh-hero); font-weight: var(--weight-bold); }
+.display-banner { font-family: var(--font-display-serif); font-size: var(--fs-size-1); line-height: var(--lh-size-1); font-weight: var(--weight-bold); }
+.lead           { font-size: var(--fs-lg-p); line-height: var(--lh-lg-p); }
+.small-text     { font-size: var(--fs-sm-p); line-height: var(--lh-sm-p); }
+.fine-print     { font-size: var(--fs-tiny-p); line-height: var(--lh-tiny-p); }
+
+a { color: var(--color-action); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* "Smart Move" script flourish — use ONLY for that phrase, never body text */
+.script-accent { font-family: var(--font-script); color: var(--color-accent); }
+
+/* ============================================================
+   Typography rules
+   - Avoid long ALL CAPS strings in body text. Reserve caps for short labels.
+   - Thirsty Script: sparingly, never body copy (the "Smart Move" mark only).
+   - Bebas Neue: hero headlines only — not a wholesale body replacement.
+   - Lora: Size 1 / banner display only.
+   - Orange is accent/nav-CTA only. In-content buttons + links use blue.
+   - P (--fs-body) for long-form prose; Small P (--fs-sm-p) for cards + compact UI.
+   - Tiny P (--fs-tiny-p) for legal/metadata only — never for readable content.
+   ============================================================ */
+
+/* Mobile-first: scale hero and large headings down on small screens */
+@media (max-width: 640px) {
+  :root {
+    --fs-hero:   38px;   --lh-hero:   46px;
+    --fs-h2:     30px;   --lh-h2:     36px;
+    --fs-h3:     26px;   --lh-h3:     32px;
+    --fs-lg-p:   20px;   --lh-lg-p:   30px;
+    --fs-size-1: 2.5rem;
+    --fs-size-2: 1.6rem;
+    --fs-size-3: 1.4rem;
+  }
+}
+
+</style>
+
+<style>
+/* ============================================================
+   FRONT DOOR 2.0 — re-skinned to the quote form's SETTLED
+   design language (research/settled-components.md, the 10 Rules),
+   then retrofitted to the KP design-system refinements (6/11):
+   Navy-500 headings · Grey-500 body · Navy-100 hairlines · Size 1–6
+   type ratios · 4px spacing · Lora banner H1 · orange-text ban.
+   ============================================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-size:1rem;line-height:1.5; /* P — 20px/150% per Size 1–6 scale */
+  padding-bottom:96px; /* room for the settled sticky bar */
+}
+img{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:80px 0} /* sub-section rhythm per 4px system (112/80/64) */
+section.band{background:var(--color-grey-50)} /* hierarchy: grey-50 alternation */
+.eyebrow{
+  /* orange-text ban: label restyled as navy-on-Orange-50 chip */
+  display:inline-block;font-size:13px;font-weight:700;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--color-navy-500);background:var(--color-orange-50);
+  border-radius:var(--radius-pill);padding:4px 12px;margin-bottom:12px;
+}
+.sec-h2{font-size:2rem;line-height:1.2;font-weight:700;color:var(--color-heading);margin-bottom:12px} /* Size 2 */
+.sec-sub{font-size:1rem;line-height:1.5;color:var(--color-text);max-width:680px;margin:0 0 36px}
+.center{text-align:center}
+.center .sec-sub{margin-left:auto;margin-right:auto}
+.nudge{
+  /* orange-text ban: wink microcopy = navy text on Orange-50 chip */
+  display:inline-block;font-style:italic;color:var(--color-navy-500);font-size:14px;
+  background:var(--color-orange-50);border-radius:var(--radius-pill);padding:4px 12px;
+}
+
+/* ---------- Buttons: blue acts, orange navigates (Rule 2) ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);
+  font-weight:700;font-size:16px;border-radius:8px;
+  padding:16px 32px;cursor:pointer;border:0;
+  transition:transform 120ms cubic-bezier(.2,0,0,1), box-shadow 120ms cubic-bezier(.2,0,0,1);
+  text-decoration:none !important;
+}
+.btn-blue{background:var(--einstein-blue);color:var(--white)}
+.btn-blue:hover{background:var(--color-blue-700);transform:translateY(-1px);box-shadow:0 4px 12px rgba(9,121,195,.3)}
+.btn-blue:active{transform:scale(.98)}
+.btn-ghost{background:var(--white);color:var(--color-text);border:1px solid var(--color-navy-100)}
+.btn-ghost:hover{border-color:var(--einstein-orange);transform:translateY(-1px)}
+.btn-nav{
+  background:var(--einstein-orange);color:var(--color-navy-500);font-size:14px;
+  text-transform:uppercase;letter-spacing:.5px;padding:12px 24px;
+}
+.btn-nav:hover{background:var(--color-orange-700);transform:translateY(-1px)}
+.microproof{margin-top:12px;font-size:14px;color:var(--color-text)}
+.microproof .check{color:var(--success);font-weight:700}
+
+/* ---------- Dev corner link ---------- */
+.hq-link{
+  position:fixed;bottom:14px;left:14px;z-index:300;font-size:12.5px;font-weight:500;
+  background:rgba(39,52,61,.82);color:#fff !important;padding:5px 12px;border-radius:var(--radius-pill);
+  text-decoration:none !important;opacity:.75;
+}
+.hq-link:hover{opacity:1}
+
+/* ---------- Nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:200;background:rgba(255,255,255,.97);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--color-navy-100);
+}
+.nav-inner{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:32px}
+.logo{font-weight:700;font-size:21px;color:var(--color-navy-500);text-decoration:none !important;line-height:1.2}
+.logo b{color:var(--color-orange-900)} /* ≥18px display accent — Orange-900, never Orange-500 text */
+.nav-links{display:flex;gap:32px;margin-left:auto;align-items:center}
+.nav-links a{color:var(--color-text);font-weight:500;font-size:16px;text-decoration:none !important}
+.nav-links a:hover{color:var(--einstein-dark)}
+@media(max-width:840px){.nav-links a:not(.btn-nav){display:none}}
+
+/* ---------- Hero — the form's step-header lockup, scaled up (Rule 4) ---------- */
+.hero{background:var(--color-orange-50);padding:64px 0 56px;text-align:center} /* warm/featured surface */
+.hero-lockup{max-width:780px;margin:0 auto}
+.hero h1{
+  /* Lora = default banner face per KP refinements; sized between Size 2 and
+     Size 1 (long-sentence H1 options), line-height from the scale */
+  font-family:var(--font-display-serif);
+  font-size:48px;line-height:1.2;font-weight:700;color:var(--color-navy-500);
+  margin:20px 0 16px;min-height:2.3em;
+}
+.hero h1 .accent{color:var(--color-orange-900)} /* large display accent — Orange-900 */
+.hero-sub{font-size:1rem;line-height:1.5;color:var(--color-text);max-width:620px;margin:0 auto 28px}
+.hero-cta-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center}
+.hero .microproof{margin-top:14px}
+
+/* Spot-illustration placeholder (labeled frame — kit pictogram goes here) */
+.spot-frame{
+  width:96px;height:96px;margin:0 auto;border:2px dashed #C9CDD0;border-radius:var(--radius-md);
+  background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:2px;font-size:9.5px;font-weight:700;letter-spacing:.6px;color:var(--color-grey-500);text-transform:uppercase;
+  text-align:center;padding:8px;
+}
+.spot-frame .spot-emoji{font-size:30px;line-height:1}
+
+/* Headline workshop widget (mockup tool — kept as-is functionally) */
+.hl-widget{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--white);border:1px dashed #C9CDD0;
+  border-radius:var(--radius-pill);padding:6px 8px 6px 16px;font-size:13px;
+  color:var(--einstein-gray);letter-spacing:.4px;margin-top:20px;
+}
+.hl-widget .tag{font-weight:700;text-transform:uppercase;font-size:11px;letter-spacing:1.5px;color:var(--color-navy-500)} /* orange-text ban */
+.hl-widget button{
+  background:var(--einstein-light);border:1px solid #E5E5E5;color:var(--einstein-gray);font-family:var(--font-sans);
+  font-size:13px;font-weight:700;border-radius:var(--radius-pill);padding:5px 13px;cursor:pointer;
+  transition:border-color 180ms cubic-bezier(.2,0,0,1);
+}
+.hl-widget button:hover{border-color:var(--einstein-orange)}
+
+/* ---------- Condensed trust strip — ambient, under the hero (Rule 5) ---------- */
+.trust-bar{
+  /* DEV NOTE: emoji serve as icons here in the mockup only — production swaps
+     to the kit SVG icon set (orange fill → blue hover) per iconography rules */
+  display:flex;justify-content:center;gap:32px;padding:12px 24px;
+  border-top:1px solid var(--color-navy-100);border-bottom:1px solid var(--color-navy-100);flex-wrap:wrap;background:var(--white);
+}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--color-text);font-weight:500}
+
+/* ---------- Front desk — settled 4-up trust badge card + count-up ---------- */
+.frontdesk{padding:64px 0}
+.trust-card{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:32px;background:var(--white);
+  border:1px solid var(--color-navy-100);border-radius:var(--radius-md);padding:40px;text-align:center;
+  margin-top:8px;
+}
+.fd-cell{
+  opacity:0;transform:translateY(10px);
+  transition:opacity 260ms cubic-bezier(.2,0,0,1), transform 260ms cubic-bezier(.2,0,0,1);
+}
+.fd-cell.settled{opacity:1;transform:translateY(0)}
+.fd-num{font-size:2rem;line-height:1.2;font-weight:700;color:var(--color-navy-500);font-variant-numeric:tabular-nums} /* Size 2 */
+.fd-num .unit{color:var(--color-orange-900)} /* big stat highlight — Orange-900 */
+.fd-name{font-weight:700;font-size:14px;color:var(--color-navy-500);margin-top:4px}
+.fd-sub{font-size:12px;color:var(--color-text);margin-top:2px;line-height:1.6}
+.no-anim .fd-cell{opacity:1;transform:none;transition:none}
+.fd-lines{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:24px}
+.fd-line{font-size:0.8rem;line-height:1.5;color:var(--color-text)} /* Small P */
+
+/* ---------- The worry list — settled NIGHTMARES ACCORDION (Rule 9) ---------- */
+.nightmare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+/* DEV NOTE: accordion emoji are mockup-only icons — production swaps to kit SVG set */
+.nm-card{background:var(--white);border:1px solid var(--color-navy-100);border-radius:var(--radius-md);overflow:hidden}
+.nm-q{margin:0;font-size:inherit;line-height:inherit}
+.nm-btn{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;min-height:44px;
+  background:var(--white);border:0;padding:16px 20px;cursor:pointer;text-align:left;
+  font-family:var(--font-sans);font-size:0.8rem;font-weight:700;color:var(--color-navy-500);
+}
+.nm-btn .plus{color:var(--color-orange-900);font-size:22px;line-height:1;flex:none;font-weight:700} /* ≥18px accent — Orange-900 */
+.nm-a{padding:0 20px 16px;font-size:0.8rem;line-height:1.5;color:var(--color-text)} /* Small P */
+.nm-a b{color:var(--color-navy-500)}
+.nm-a[hidden]{display:none}
+.nm-link{display:inline-block;margin-top:10px;font-weight:700;font-size:14.5px}
+
+/* ---------- The Receipt — MOVING BILL REALITY CHECK typewriter receipts (Rule 7) ---------- */
+.receipt-headline{
+  font-size:1.6rem;line-height:1.25;font-weight:700;color:var(--color-navy-500); /* Size 3 */
+  text-align:center;max-width:720px;margin:36px auto 8px;
+}
+.receipt-headline .smart{color:var(--color-orange-900)} /* anchor-line phrase — Orange-900 */
+.receipt-note{text-align:center;font-size:13.5px;color:var(--color-grey-500);max-width:560px;margin:0 auto}
+.receipt-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:760px;margin:32px auto 0}
+.receipt{
+  font-family:"Courier New",Courier,monospace;background:var(--white);
+  border:1px solid var(--color-navy-100);box-shadow:var(--shadow-sm);padding:24px 20px;
+  font-size:13px;line-height:1.6;color:var(--einstein-dark);
+}
+.receipt.einstein{border:1.5px solid var(--einstein-blue)}
+.receipt h3{font-family:inherit;text-align:center;font-size:13.5px;letter-spacing:1px;margin:0 0 12px;text-transform:uppercase;color:var(--einstein-dark)}
+.receipt .rline{display:flex;justify-content:space-between;gap:8px;padding:2px 0}
+.receipt .rline .dots{flex:1;border-bottom:1px dotted #B9BCBE;transform:translateY(-4px)}
+.receipt .red{color:var(--error);font-weight:700;white-space:nowrap}
+.receipt .blue{color:var(--einstein-blue);font-weight:700;white-space:nowrap}
+.receipt .rnote{font-size:11px;color:var(--color-grey-500)}
+.receipt .rcenter{text-align:center;font-size:12px;padding-top:6px}
+.receipt .rtotal{text-align:center;margin-top:12px;font-weight:700;font-size:14px;border-top:1px dashed #B9BCBE;padding-top:10px}
+.receipt .rtotal.red{color:var(--error)}
+.receipt .rtotal .big{font-size:17px;color:var(--einstein-dark)} /* price big + dark gray, not orange */
+.r-stamp{
+  margin:14px auto 0;width:max-content;border:2.5px solid var(--success);color:var(--success);
+  font-weight:700;letter-spacing:1.5px;font-size:13px;
+  padding:4px 14px;border-radius:6px;transform:rotate(-3deg);
+}
+.receipt-foot{text-align:center;font-size:13px;color:var(--color-grey-500);max-width:620px;margin:18px auto 0}
+.receipt-cta{text-align:center;margin-top:30px}
+
+/* ---------- 3-step plan — white cards + numbered orange badges ---------- */
+.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:32px} /* card-to-card = gutter */
+.plan-step{
+  background:var(--white);border:1px solid var(--color-navy-100);border-radius:var(--radius-md);
+  padding:40px; /* sp-10 card padding */
+}
+.plan-num{
+  display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;
+  background:var(--einstein-orange);color:var(--color-navy-500);border-radius:50%; /* dark-on-orange per WCAG pairing */
+  font-weight:700;font-size:14px;margin-bottom:12px;
+}
+.plan-step h3{font-size:0.9rem;line-height:1.3;font-weight:700;color:var(--color-navy-500);margin-bottom:8px} /* Size 6 */
+.plan-step p{font-size:0.8rem;line-height:1.5} /* Small P */
+
+/* ---------- Story band ---------- */
+.story-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
+.story-card{padding:0}
+.story p{font-size:0.8rem;line-height:1.5;margin-bottom:16px;max-width:560px}
+.story p b{color:var(--color-navy-500)}
+.story-link{font-weight:700;font-size:16px}
+/* Light media placeholder frame (designed, never a broken img) */
+.media-frame{
+  border:2px dashed #C9CDD0;border-radius:var(--radius-md);background:var(--white);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  text-align:center;padding:26px;min-height:280px;
+}
+.media-frame .play{
+  width:64px;height:64px;border-radius:50%;background:var(--einstein-light);
+  border:1px solid #C9CDD0;display:flex;align-items:center;justify-content:center;
+}
+.media-frame .play::after{content:"";border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent var(--einstein-gray);margin-left:4px}
+.media-frame .frame-label{font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--color-grey-500)}
+.media-frame .frame-cap{font-size:13px;color:var(--color-grey-400);max-width:300px;line-height:1.5}
+
+/* ---------- Crew band — white cards, hairline, one idea per card ---------- */
+.crew-reel{max-width:760px;margin:0 auto 38px}
+.crew-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin:32px 0 24px}
+.crew-card{
+  background:var(--white);border:1px solid var(--color-navy-100);border-radius:var(--radius-md);overflow:hidden;
+}
+.crew-photo{
+  height:208px;border-bottom:1px solid var(--color-navy-100);background:var(--color-grey-50);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  text-align:center;padding:16px;
+}
+.crew-photo .frame-label{font-size:11.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--color-grey-500)}
+.crew-photo .frame-cap{font-size:12px;color:var(--color-grey-400);line-height:1.5}
+.crew-meta{padding:24px} /* mobile-tier card padding for compact cards */
+.crew-name{font-weight:700;font-size:0.9rem;color:var(--color-navy-500)} /* Size 6 */
+.crew-tenure{
+  /* wink chip: navy text on Orange-50 (orange-text ban) */
+  display:inline-block;background:var(--color-orange-50);border:1px solid var(--color-orange-200);color:var(--color-navy-500);
+  font-weight:700;font-size:12px;border-radius:var(--radius-pill);padding:4px 12px;margin:8px 0 8px;
+}
+.crew-bio{font-size:0.8rem;line-height:1.5} /* Small P */
+
+/* Orange feature panel — the ONE saturated-orange surface on the page (Rule 2 / #21) */
+.orange-panel{
+  /* WCAG pairing: Orange-500 surface takes Navy-500 text (white failed contrast) */
+  background:var(--einstein-orange);border-radius:var(--radius-lg);color:var(--color-navy-500);
+  text-align:center;padding:40px;
+}
+.orange-panel h3{color:var(--color-navy-500);font-size:1.6rem;line-height:1.25;font-weight:700;margin-bottom:8px} /* Size 3 */
+.orange-panel p{font-size:0.8rem;line-height:1.5;max-width:580px;margin:0 auto}
+.orange-panel p b{color:var(--color-navy-900)}
+.crew-cta{text-align:center;margin-top:24px}
+
+/* ---------- Quote invitation — light lockup, blue CTA ---------- */
+.invite{background:var(--color-orange-50);text-align:center;padding:80px 0} /* warm/featured surface */
+.invite h2{font-size:2rem;line-height:1.2;font-weight:700;color:var(--color-heading);margin:16px 0 12px} /* Size 2 */
+.invite .lead-line{font-size:1rem;line-height:1.5;color:var(--color-text);max-width:600px;margin:0 auto 24px}
+.invite .nudge{display:inline-block;margin-top:16px;background:var(--white)}
+
+/* ---------- FAQ — settled gray-fill accordion rows on a white section ---------- */
+.faq-list{max-width:760px;margin:30px auto 0;display:flex;flex-direction:column;gap:12px}
+.faq-q{margin:0;font-size:inherit;line-height:inherit}
+.faq-btn{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;min-height:44px;
+  border:none;border-radius:var(--radius-md);padding:16px 20px;background:var(--color-grey-50);
+  cursor:pointer;font-family:var(--font-sans);font-size:0.9rem;font-weight:500;color:var(--color-navy-500);text-align:left;
+}
+.faq-toggle{color:var(--color-orange-900);font-weight:700;font-size:22px;line-height:1;flex:none} /* ≥18px accent — Orange-900 */
+.faq-answer{padding:8px 20px 16px;color:var(--color-text);font-size:0.8rem;line-height:1.5}
+.faq-answer p + p{margin-top:8px}
+.faq-answer[hidden]{display:none}
+.text-us{text-align:center;font-size:14px;color:var(--einstein-gray);margin-top:30px}
+
+/* ---------- Footer (dark band is sanctioned for footers only) ---------- */
+footer{background:var(--color-navy-700);color:rgba(255,255,255,.78);padding:56px 0 40px;font-size:0.8rem} /* Navy-700: the one sanctioned dark section */
+footer .proof{font-weight:700;font-size:16px;letter-spacing:.4px;color:#fff;margin-bottom:24px}
+footer .proof .accent{color:var(--color-orange-200)} /* orange-text ban: Orange-200 passes AA on Navy-700 (Orange-900 fails on dark) */
+.foot-grid{display:grid;grid-template-columns:1.2fr 2fr;gap:44px;margin-bottom:36px}
+.branches{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 26px}
+.branches a{color:rgba(255,255,255,.78);font-size:15px}
+.branches a:hover{color:#fff}
+.foot-h{font-weight:700;color:#fff;font-size:13px;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:14px}
+footer p{line-height:1.7}
+.regulatory{border-top:1px solid rgba(255,255,255,.14);padding-top:22px;font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.7}
+
+/* ---------- Settled sticky pricing/CTA bar (trust checks + blue CTA) ---------- */
+.sticky-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:250;
+  background:var(--white);border-top:1px solid var(--color-navy-100);box-shadow:0 -4px 20px rgba(0,0,0,.1);
+  padding:13px 24px calc(13px + env(safe-area-inset-bottom));
+  transform:translateY(110%);transition:transform 240ms cubic-bezier(.2,0,0,1);
+}
+.sticky-cta.show{transform:translateY(0)}
+.sticky-content{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.sticky-trust{font-size:13.5px;color:var(--einstein-gray);display:flex;gap:16px;flex-wrap:wrap}
+.sticky-trust .check{color:var(--success);font-weight:700}
+.sticky-cta .btn{padding:12px 26px;font-size:15px}
+.sticky-cta .btn small{font-weight:400;font-size:12.5px;opacity:.85}
+
+/* ---------- Responsive ---------- */
+@media(max-width:980px){
+  .story-grid{grid-template-columns:1fr}
+  .trust-card{grid-template-columns:repeat(2,1fr)}
+  .fd-lines{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  section{padding:64px 0} /* mobile section rhythm */
+  .sec-h2{font-size:1.6rem} /* Size 2 mobile (32px) */
+  .plan-step{padding:24px} /* card padding mobile tier */
+  .trust-card{padding:24px;gap:24px}
+  .hero{padding:48px 0 48px}
+  .hero h1{font-size:32px;min-height:0}
+  .nightmare-grid,.plan-grid,.crew-grid,.receipt-grid{grid-template-columns:1fr}
+  .trust-card{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .invite h2{font-size:27px}
+  .sticky-trust{display:none}
+  .sticky-cta .btn{width:100%;justify-content:center}
+}
+/* Reduced motion: render final state, no animation (Rule 10) */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .fd-cell{opacity:1;transform:none;transition:none}
+  .btn,.hl-widget button{transition:none}
+  .sticky-cta{transition:none}
+}
+</style>
+</head>
+<body>
+
+<a class="hq-link" href="../index.html">&larr; Redesign HQ</a>
+
+<!-- ════════ NAV ════════ -->
+<nav class="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a class="logo" href="#" title="Home — where the smart moves live">Einstein <b>Moving Co.</b></a>
+    <div class="nav-links">
+      <a href="#worries">Services</a>
+      <a href="#receipt">Pricing</a>
+      <a href="#locations">Locations</a>
+      <a href="#frontdesk">Reviews</a>
+      <a class="btn btn-nav" href="#quote" title="No deposit. No phone call. No regrets.">See My Price</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════ HERO — step-header lockup on a light band ════════ -->
+<header class="hero" id="top">
+  <div class="wrap hero-lockup">
+    <div class="spot-frame" role="img" aria-label="Placeholder: Einstein mascot spot illustration from the brand kit">
+      <span class="spot-emoji" aria-hidden="true">🧠</span>
+      <span>Kit spot illo<br>mascot head</span>
+    </div>
+    <h1 id="heroH1">Moving is awful. We&rsquo;ve spent over a decade making sure <span class="accent">ours isn&rsquo;t.</span></h1>
+    <p class="hero-sub">Local moving across Texas and Tampa, FL — background-checked W-2 crews, one all-inclusive hourly rate.</p>
+    <div class="hero-cta-row">
+      <a class="btn btn-blue" href="#quote" title="Takes about 47 seconds. The elves are warmed up.">See my price &rarr;</a>
+      <a class="btn btn-ghost" href="#crew" title="Real crews. Real couches. Zero stock footage.">Watch us work</a>
+    </div>
+    <p class="microproof"><b>4.9 stars from 8,100+ reviews</b> &middot; No deposit &middot; Free cancellation</p>
+    <div class="hl-widget" role="group" aria-label="Headline workshop — mockup tool">
+      <span class="tag">Workshop</span>
+      <span id="hlCount">Headline 1/3</span>
+      <button id="hlNext" type="button" aria-label="Show next headline option">&#9656;</button>
+    </div>
+  </div>
+</header>
+
+<!-- ════════ CONDENSED TRUST STRIP — ambient, every page ════════ -->
+<div class="trust-bar" aria-label="Trust highlights">
+  <div class="trust-item">🏆 Multi-award winning</div>
+  <div class="trust-item">⭐ 4.9/5 Stars &middot; 8,100+ reviews</div>
+  <div class="trust-item">🛡️ $2,000 Coverage Included</div>
+  <div class="trust-item">🔍 No Hidden Fees</div>
+</div>
+
+<!-- ════════ FRONT DESK — settled 4-up trust badge card + count-up ════════ -->
+<section class="frontdesk band" id="frontdesk" aria-label="The front desk — proof at a glance">
+  <div class="wrap">
+    <span class="eyebrow">The front desk</span>
+    <h2 class="sec-h2">Everything you&rsquo;d ask at the counter, answered before you ask.</h2>
+    <div class="trust-card" id="fdGrid">
+      <div class="fd-cell">
+        <div class="fd-num"><span class="count" data-target="4.9" data-decimals="1">0.0</span><span class="unit">★</span></div>
+        <div class="fd-name">4.9/5 Stars</div>
+        <div class="fd-sub">8,100+ reviews &middot; company-wide</div>
+      </div>
+      <div class="fd-cell">
+        <div class="fd-num"><span class="unit">$</span><span class="count" data-target="0">0</span></div>
+        <div class="fd-name">Hidden fees &middot; ever</div>
+        <div class="fd-sub">Seriously, none</div>
+      </div>
+      <div class="fd-cell">
+        <div class="fd-num"><span class="count" data-target="55">0</span><span class="unit">+</span></div>
+        <div class="fd-name">Awards won</div>
+        <div class="fd-sub">And counting!</div>
+      </div>
+      <div class="fd-cell">
+        <div class="fd-num"><span class="count" data-target="10">0</span></div>
+        <div class="fd-name">Branches</div>
+        <div class="fd-sub">9 TX + Tampa FL</div>
+      </div>
+    </div>
+    <div class="fd-lines">
+      <p class="fd-line">Real people, real moves, a decade-plus of receipts. We read every single one (the nice ones twice).</p>
+      <p class="fd-line">One all-inclusive hourly rate. Truck, gas, pads, wrap, taxes, coverage — it&rsquo;s all in the number. <a href="#receipt">Here&rsquo;s the math.</a></p>
+      <p class="fd-line">From Dallas to Tampa, the same crews, the same rate logic, the same promise. <a href="#locations">Find yours.</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ THE WORRY LIST — settled nightmares accordion ════════ -->
+<section class="worry" id="worries" aria-label="The worry list">
+  <div class="wrap">
+    <span class="eyebrow">The worry list</span>
+    <h2 class="sec-h2">The four things you&rsquo;re actually worried about. With receipts.</h2>
+    <p class="sec-sub">Everyone hiring movers is quietly asking the same four questions. Here they are out loud — with the answers. <span class="nudge">(So you can sleep easy.)</span></p>
+    <div class="nightmare-grid" id="nightmares">
+      <div class="nm-card">
+        <h3 class="nm-q"><button class="nm-btn" aria-expanded="false"><span>🤑 &ldquo;Am I going to get ripped off?&rdquo;</span><span class="plus" aria-hidden="true">+</span></button></h3>
+        <div class="nm-a" hidden>
+          <p>Our rate is the whole cost. Theirs is just where it starts. One all-inclusive hourly rate — no fuel surcharge, no stair fee, no credit-card fee, no &ldquo;wait, what&rsquo;s this line?&rdquo; at the end. <b>What we quote is what you pay.</b></p>
+          <a class="nm-link" href="#receipt" title="We brought the actual line items.">See the full pricing breakdown &rarr;</a>
+        </div>
+      </div>
+      <div class="nm-card">
+        <h3 class="nm-q"><button class="nm-btn" aria-expanded="false"><span>🧍 &ldquo;Who&rsquo;s showing up at my door?&rdquo;</span><span class="plus" aria-hidden="true">+</span></button></h3>
+        <div class="nm-a" hidden>
+          <p>Not strangers. Every Einstein mover is a <b>background-checked, W-2 employee</b> — zero subcontractors. Days before your move, we send your crew&rsquo;s names, photos, and bios. You&rsquo;ll recognize them before they ring the bell.</p>
+          <a class="nm-link" href="#crew">Meet some of the crew &rarr;</a>
+        </div>
+      </div>
+      <div class="nm-card">
+        <h3 class="nm-q"><button class="nm-btn" aria-expanded="false"><span>⏰ &ldquo;Will they show up on time?&rdquo;</span><span class="plus" aria-hidden="true">+</span></button></h3>
+        <div class="nm-a" hidden>
+          <p>That&rsquo;s what our <b>On-Time Guarantee</b> is for: either we arrive on time, or your move is instantly discounted — and the later we are, the bigger the discount grows. It&rsquo;s only fair. (We rarely need it. We&rsquo;d like to keep it that way.)</p>
+          <a class="nm-link" href="#faq">How the guarantee works &rarr;</a>
+        </div>
+      </div>
+      <div class="nm-card">
+        <h3 class="nm-q"><button class="nm-btn" aria-expanded="false"><span>💔 &ldquo;What if they break my stuff?&rdquo;</span><span class="plus" aria-hidden="true">+</span></button></h3>
+        <div class="nm-a" hidden>
+          <p>Most movers cover your stuff at $0.60 per pound — so your 50lb flatscreen (the one that cost $1,200) gets a $30 check. Our <b>$2,000 No Worries Damage Coverage</b> is built into your rate: based on actual value, not weight. No deductible. No upgrade required.</p>
+          <a class="nm-link" href="#faq">What&rsquo;s covered &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ THE RECEIPT — Moving Bill Reality Check (typewriter receipts) ════════ -->
+<section class="band" id="receipt" aria-label="The receipt — pricing comparison">
+  <div class="wrap center">
+    <span class="eyebrow">The receipt</span>
+    <h2 class="sec-h2">How does a &ldquo;cheaper&rdquo; mover end up costing more?</h2>
+    <p class="sec-sub">A lot of movers advertise a low hourly rate&hellip; then treat the rest like add-ons. That &ldquo;lower rate&rdquo; is just the starting line — like a hotel advertising $199 a night, then hitting you with a $75 resort fee at checkout. We do it the boring, honest way: one number. Everything&rsquo;s in it.</p>
+
+    <div class="receipt-grid">
+      <div class="receipt" role="table" aria-label="Typical competitor receipt with hidden fees">
+        <h3>Typical Moving Company</h3>
+        <div class="rline"><span>BASE HOURLY RATE</span><span class="dots"></span><span class="red">$170/hr</span></div>
+        <div class="rline"><span>Trip fee</span><span class="dots"></span><span class="red">+$150</span></div>
+        <div class="rline"><span>Fuel surcharge</span><span class="dots"></span><span class="red">+$89</span></div>
+        <div class="rline"><span>Credit card fee</span><span class="dots"></span><span class="red">+3.5%</span></div>
+        <div class="rline"><span>Damage coverage upgrade</span><span class="dots"></span><span class="red">+$250</span></div>
+        <div class="rline"><span>TV boxes (&times;2)</span><span class="dots"></span><span class="red">+$70</span></div>
+        <div class="rline"><span>Shrink wrap &amp; tape</span><span class="dots"></span><span class="red">+$65</span></div>
+        <div class="rline"><span>Booking deposit</span><span class="dots"></span><span class="red">+$100</span></div>
+        <div class="rtotal red">Actual hourly rate &iquest;? 🤷</div>
+      </div>
+      <div class="receipt einstein" role="table" aria-label="Einstein Moving Company receipt — everything included">
+        <h3>🧠 Einstein Moving Company</h3>
+        <div class="rline"><span>ALL-INCLUSIVE HOURLY RATE</span><span class="dots"></span><span>$200/hr</span></div>
+        <div class="rline"><span>Trip fee</span><span class="dots"></span><span class="blue">$0</span></div>
+        <div class="rline"><span>Fuel surcharge</span><span class="dots"></span><span class="blue">$0</span></div>
+        <div class="rline"><span>Credit card fee</span><span class="dots"></span><span class="blue">$0</span></div>
+        <div class="rline"><span>Damage coverage <span class="rnote">($2,000 included)</span></span><span class="dots"></span><span class="blue">$0</span></div>
+        <div class="rline"><span>TV boxes (&times;2)</span><span class="dots"></span><span class="blue">$0</span></div>
+        <div class="rline"><span>Shrink wrap &amp; tape</span><span class="dots"></span><span class="blue">$0</span></div>
+        <div class="rline"><span>Booking deposit</span><span class="dots"></span><span class="blue">$0</span></div>
+        <div class="rcenter">No Surprises. No Hidden Fees. No Nonsense.</div>
+        <div class="rtotal">Actual hourly rate <span class="big">$200/hr</span></div>
+        <div class="r-stamp">NO SURPRISES</div>
+      </div>
+    </div>
+
+    <p class="receipt-headline">Quote $1,840. Invoice <span class="smart">$1,840.</span> Our favorite sentence in the whole company.</p>
+    <p class="receipt-note">Example move, real line items from our pricing page. Your numbers will differ; the matching trick won&rsquo;t.</p>
+    <p class="receipt-foot">Free service area: 10–15 miles of each branch. Outside it, any trip fee is disclosed before you book — never after.</p>
+    <div class="receipt-cta">
+      <a class="btn btn-blue" href="#quote" title="The elves do tabular numerals.">Get my exact number &rarr;</a>
+      <p class="microproof">No deposit &middot; Free cancellation &middot; No hidden fees</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ 3-STEP PLAN — numbered orange badges on white cards ════════ -->
+<section class="plan" aria-label="The plan — three steps">
+  <div class="wrap">
+    <span class="eyebrow">The plan</span>
+    <h2 class="sec-h2">Three steps. That&rsquo;s the whole system.</h2>
+    <div class="plan-grid">
+      <div class="plan-step">
+        <span class="plan-num" aria-hidden="true">1</span>
+        <h3>Tell us about your move</h3>
+        <p>About 47 seconds online. Zero phone calls (unless you want one — we&rsquo;re delightful).</p>
+      </div>
+      <div class="plan-step">
+        <span class="plan-num" aria-hidden="true">2</span>
+        <h3>Meet your crew</h3>
+        <p>Names, photos, and bios land in your inbox days before move day. No strangers at the door.</p>
+      </div>
+      <div class="plan-step">
+        <span class="plan-num" aria-hidden="true">3</span>
+        <h3>Pay exactly what we quoted</h3>
+        <p>One all-inclusive hourly rate. The clock starts when we pick up your first box — not when we leave the warehouse.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ STORY BAND ════════ -->
+<section class="story band" aria-label="Our story">
+  <div class="wrap story-grid">
+    <div class="media-frame" role="img" aria-label="Placeholder: archive photo of founders Cameron and Paul">
+      <span class="frame-label">Archive photo &middot; Cameron + Paul</span>
+      <span class="frame-cap">The actual kindergarten-era goods, or the earliest truck photo we can dig up. Real archive only.</span>
+    </div>
+    <div>
+      <span class="eyebrow">Since 2012</span>
+      <h2 class="sec-h2">A long time ago, in a sandbox not so far away&hellip;</h2>
+      <p>Our story is your standard &ldquo;two best friends meet in kindergarten, grow up together, and decide to start a moving company.&rdquo; Oh, you&rsquo;ve never heard that one before? Well, it&rsquo;s a classic around here.</p>
+      <p>That was 2012. Since then: <b>100,000+ moves, 55+ awards</b>, ten branches across Texas and Tampa — and four trees planted for every single move.</p>
+      <a class="story-link" href="#" title="It involves a famous physicist. Sort of.">Why the name Einstein? &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ CREW BAND ════════ -->
+<section id="crew" aria-label="Meet the movers">
+  <div class="wrap">
+    <span class="eyebrow">Smart movers</span>
+    <h2 class="sec-h2">You&rsquo;ll know their names before they know your address.</h2>
+    <p class="sec-sub">Days before your move, we send your crew&rsquo;s photos and bios. Here&rsquo;s the kind of people you&rsquo;ll be meeting.</p>
+
+    <div class="media-frame crew-reel" role="img" aria-label="Placeholder: existing crew hero reel video, 47 seconds">
+      <div class="play" aria-hidden="true"></div>
+      <span class="frame-label">Existing crew hero reel (0:47)</span>
+      <span class="frame-cap">Real crews, real trucks, real drone footage. Never stock — that&rsquo;s a brand law, not a budget line.</span>
+    </div>
+
+    <div class="crew-grid">
+      <article class="crew-card">
+        <div class="crew-photo">
+          <span class="frame-label">Crew photo &middot; Marcus</span>
+          <span class="frame-cap">Real mover headshot — same format as the meet-your-movers email.</span>
+        </div>
+        <div class="crew-meta">
+          <span class="crew-name">Marcus</span><br>
+          <span class="crew-tenure">3 years with Einstein</span>
+          <p class="crew-bio">Can carry a sleeper sofa up three flights and still ask how your day&rsquo;s going. Both are genuine.</p>
+        </div>
+      </article>
+      <article class="crew-card">
+        <div class="crew-photo">
+          <span class="frame-label">Crew photo &middot; Devon</span>
+          <span class="frame-cap">Real mover headshot — same format as the meet-your-movers email.</span>
+        </div>
+        <div class="crew-meta">
+          <span class="crew-name">Devon</span><br>
+          <span class="crew-tenure">5 years with Einstein</span>
+          <p class="crew-bio">Has wrapped more dining tables than most furniture stores have sold. Treats yours like the first.</p>
+        </div>
+      </article>
+      <article class="crew-card">
+        <div class="crew-photo">
+          <span class="frame-label">Crew photo &middot; Sarah</span>
+          <span class="frame-cap">Real mover headshot — same format as the meet-your-movers email.</span>
+        </div>
+        <div class="crew-meta">
+          <span class="crew-name">Sarah</span><br>
+          <span class="crew-tenure">8 years with Einstein</span>
+          <p class="crew-bio">Eight years in, she&rsquo;s trained half the crews in her branch. The clipboard fears her.</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- The ONE orange feature panel on the page — the loudest claim gets the loudest surface -->
+    <div class="orange-panel">
+      <h3>Less than 1% of mover applicants are hired.</h3>
+      <p>Background checks, real training, and a bar most applicants don&rsquo;t clear. <b>The ones who do are the ones at your door.</b></p>
+    </div>
+    <div class="crew-cta">
+      <a class="btn btn-blue" href="#quote" title="They're nicer than the stat makes them sound.">Book this kind of crew &rarr;</a>
+      <p class="microproof"><span class="check">✓</span> No deposit&nbsp;&nbsp;<span class="check">✓</span> Free cancellation&nbsp;&nbsp;<span class="check">✓</span> $2,000 coverage</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ QUOTE INVITATION — lockup on a light band ════════ -->
+<section class="invite" id="quote" aria-label="Get your quote">
+  <div class="wrap">
+    <div class="spot-frame" role="img" aria-label="Placeholder: hand truck spot illustration from the brand kit">
+      <span class="spot-emoji" aria-hidden="true">📦</span>
+      <span>Kit spot illo<br>hand truck</span>
+    </div>
+    <h2>Now that you know us — let&rsquo;s do the math.</h2>
+    <p class="lead-line">Your accurate online quote takes about 47 seconds. It&rsquo;s fun, no pressure, and requires exactly zero phone calls.</p>
+    <a class="btn btn-blue" href="#" title="The tiny math elves behind this button can't wait to get to work.">See my price &rarr;</a>
+    <p class="microproof">No deposit required &middot; Free cancellation &middot; $2,000 damage coverage included</p>
+    <span class="nudge">The team of tiny math elves behind this button can&rsquo;t wait to get to work.</span>
+  </div>
+</section>
+
+<!-- ════════ FAQ CLOSER — settled gray-fill accordion ════════ -->
+<section class="faq" id="faq" aria-label="Frequently asked questions">
+  <div class="wrap">
+    <span class="eyebrow">Fine print, large type</span>
+    <h2 class="sec-h2 center" style="text-align:left">The questions everyone asks at 11pm.</h2>
+    <div class="faq-list" id="faqList">
+      <div>
+        <h3 class="faq-q"><button class="faq-btn" aria-expanded="false"><span>How do I pay — and do you need a deposit?</span><span class="faq-toggle" aria-hidden="true">+</span></button></h3>
+        <div class="faq-answer" hidden>
+          <p>We accept all major credit cards, and there&rsquo;s no deposit to book — plus free cancellation if plans change. In Texas we&rsquo;re cards-only (no cash or checks); companies paying by check for an office move can contact us ahead of time to confirm.</p>
+        </div>
+      </div>
+      <div>
+        <h3 class="faq-q"><button class="faq-btn" aria-expanded="false"><span>How far in advance should I book?</span><span class="faq-toggle" aria-hidden="true">+</span></button></h3>
+        <div class="faq-answer" hidden>
+          <p>Sooner is better, especially in summer and at month-end — those dates go first. For long-distance moves within Texas we recommend 2–4 weeks out. But since there&rsquo;s no deposit and cancellation is free, the smart move is to grab your date now and adjust later if life happens.</p>
+        </div>
+      </div>
+      <div>
+        <h3 class="faq-q"><button class="faq-btn" aria-expanded="false"><span>What&rsquo;s actually included in the hourly rate?</span><span class="faq-toggle" aria-hidden="true">+</span></button></h3>
+        <div class="faq-answer" hidden>
+          <p>Everything. A fully equipped truck (and gas, inside the free service area), 2+ trained and vetted movers, loading and unloading, standard furniture disassembly and reassembly, wraps and pads, taxes and standard insurance, and $2,000 No Worries Damage Coverage. No stair fees, no weekend upcharges, no fuel surcharges, no credit-card fees.</p>
+          <p>One tip from the inside: ask any mover when their clock starts. Some charge &ldquo;portal to portal&rdquo; — you pay for their commute and their gas-station stop. Ours starts when we pick up your first piece of furniture.</p>
+        </div>
+      </div>
+      <div>
+        <h3 class="faq-q"><button class="faq-btn" aria-expanded="false"><span>How does the online quote work?</span><span class="faq-toggle" aria-hidden="true">+</span></button></h3>
+        <div class="faq-answer" hidden>
+          <p>Answer a few questions about your move — about 47 seconds, no phone call required — and you get an accurate quote with one all-inclusive hourly rate. Check dates, book instantly, ask us anything (yes, even your fears). What we quote is what you pay.</p>
+        </div>
+      </div>
+    </div>
+    <p class="text-us">Questions? Text us: <a href="#">+1 (737) 252-7165</a></p>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer id="locations">
+  <div class="wrap">
+    <p class="proof">4.9★ from 8,100+ reviews &middot; 55+ awards &middot; <span class="accent">100,000+ moves</span> &middot; 4 trees planted per move</p>
+    <div class="foot-grid">
+      <div>
+        <p class="foot-h">Einstein Moving Company</p>
+        <p>Founded 2012. Professional, reliable moving across Texas and Tampa, Florida — trusted service, transparent pricing, and friendly expertise for every box, every home, every customer.</p>
+        <p style="margin-top:14px"><a href="#quote" style="color:var(--color-blue-200);font-weight:700">Get your 47-second quote &rarr;</a></p>
+      </div>
+      <div>
+        <p class="foot-h">Our 10 branches</p>
+        <div class="branches">
+          <a href="#" title="North Austin movers">North Austin, TX</a>
+          <a href="#" title="South Austin movers">South Austin, TX</a>
+          <a href="#" title="Leander movers">Leander, TX</a>
+          <a href="#" title="San Antonio movers">San Antonio, TX</a>
+          <a href="#" title="Houston movers">Houston, TX</a>
+          <a href="#" title="Dallas movers">Dallas, TX</a>
+          <a href="#" title="Fort Worth movers">Fort Worth, TX</a>
+          <a href="#" title="Garland movers">Garland, TX</a>
+          <a href="#" title="McKinney movers">McKinney, TX</a>
+          <a href="#" title="Tampa movers">Tampa, FL</a>
+        </div>
+      </div>
+    </div>
+    <div class="regulatory">
+      Texas: TxDMV #006604158C &middot; US DOT #2193963 &nbsp;|&nbsp; Florida: Mover Reg. No. IM3621 &middot; US DOT #3882313<br>
+      © 2026 Einstein Moving Company. Mockup — FRONT DOOR 2.0 concept, not a live page.
+    </div>
+  </div>
+</footer>
+
+<!-- ════════ SETTLED STICKY PRICING/CTA BAR ════════ -->
+<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+  <div class="sticky-content">
+    <div class="sticky-trust">
+      <span><span class="check">✓</span> No deposit</span>
+      <span><span class="check">✓</span> Free cancellation</span>
+      <span><span class="check">✓</span> $2,000 coverage</span>
+    </div>
+    <a class="btn btn-blue" href="#quote">See my price &nbsp;<small>&middot; ~47 sec</small></a>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- 1. Headline workshop widget (mockup tool, kept) ---------- */
+  var headlines = [
+    'Moving is awful. We’ve spent over a decade making sure <span class="accent">ours isn’t.</span>',
+    'Moving doesn’t have to <span class="accent">suck.</span>',
+    'Local moving across Texas + Tampa. Smart, insured, <span class="accent">actually on time.</span>'
+  ];
+  var hlIdx = 0;
+  var h1 = document.getElementById('heroH1');
+  var hlCount = document.getElementById('hlCount');
+  var hlBtn = document.getElementById('hlNext');
+  if (hlBtn) {
+    hlBtn.addEventListener('click', function(){
+      hlIdx = (hlIdx + 1) % headlines.length;
+      h1.innerHTML = headlines[hlIdx];
+      hlCount.textContent = 'Headline ' + (hlIdx + 1) + '/3';
+    });
+  }
+
+  /* ---------- 2. Front desk: count-up + stagger-settle (the ONE signature
+     motion). Calm per Rule 10: 260ms standard-ease settles, 120ms stagger,
+     ease-out count; reduced-motion renders final state instantly. ---------- */
+  var fdGrid = document.getElementById('fdGrid');
+  var cells = fdGrid ? Array.prototype.slice.call(fdGrid.querySelectorAll('.fd-cell')) : [];
+  var counted = false;
+
+  function settleCells(){
+    cells.forEach(function(cell, i){
+      setTimeout(function(){ cell.classList.add('settled'); }, i * 120);
+    });
+  }
+
+  function runCountUps(){
+    if (counted) return;
+    counted = true;
+    var counters = fdGrid.querySelectorAll('.count');
+    counters.forEach(function(el){
+      var target = parseFloat(el.getAttribute('data-target'));
+      var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      if (target === 0) { el.textContent = (0).toFixed(decimals); return; }
+      var dur = 900;
+      var start = null;
+      function step(ts){
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3); /* easeOutCubic — calm, no bounce */
+        el.textContent = (target * eased).toFixed(decimals);
+        if (p < 1) { requestAnimationFrame(step); }
+        else { el.textContent = target.toFixed(decimals); }
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  if (reduceMotion) {
+    document.body.classList.add('no-anim');
+    cells.forEach(function(c){ c.classList.add('settled'); });
+    if (fdGrid) {
+      fdGrid.querySelectorAll('.count').forEach(function(el){
+        var d = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        el.textContent = parseFloat(el.getAttribute('data-target')).toFixed(d);
+      });
+    }
+  } else if (fdGrid && 'IntersectionObserver' in window) {
+    var fdSeen = false;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting && !fdSeen) {
+          fdSeen = true;
+          settleCells();
+          runCountUps();
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+    io.observe(fdGrid);
+  } else {
+    cells.forEach(function(c){ c.classList.add('settled'); });
+    if (fdGrid) runCountUps();
+  }
+
+  /* ---------- 3. Settled accordions (nightmares + FAQ): orange +/–,
+     expand in place, aria-expanded. ---------- */
+  function wireAccordion(rootId, btnSel, toggleSel){
+    var root = document.getElementById(rootId);
+    if (!root) return;
+    root.addEventListener('click', function(e){
+      var btn = e.target.closest(btnSel);
+      if (!btn) return;
+      var ans = btn.parentElement.nextElementSibling;
+      if (!ans) return;
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      ans.hidden = open;
+      var t = btn.querySelector(toggleSel);
+      if (t) t.textContent = open ? '+' : '–';
+    });
+  }
+  wireAccordion('nightmares', '.nm-btn', '.plus');
+  wireAccordion('faqList', '.faq-btn', '.faq-toggle');
+
+  /* ---------- 4. Sticky CTA bar: appears once the hero scrolls away ---------- */
+  var hero = document.querySelector('.hero');
+  var sticky = document.getElementById('stickyCta');
+  if (hero && sticky && 'IntersectionObserver' in window) {
+    var heroIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var past = !entry.isIntersecting && entry.boundingClientRect.bottom < 0;
+        sticky.classList.toggle('show', past);
+        sticky.setAttribute('aria-hidden', past ? 'false' : 'true');
+      });
+    }, { threshold: 0 });
+    heroIo.observe(hero);
+  }
+})();
+</script>
+
+<!-- ════════════════════════════════════════════════════════════
+  DEV NOTE — Council fixes applied (2026-06-11 synthesis):
+  #1  "Quote $1,840. Invoice $1,840." grafted into The Receipt as the
+      headline moment (receipt-copy block).
+  #3  CTA system: direct CTA = "See my price" everywhere in content;
+      nav CTA stays orange ("See My Price"); mobile sticky bottom bar
+      ("See my price · ~47 sec") fires after the hero exits viewport.
+  #4  Hard numbers restored: crew tenure faces (Marcus 3 / Devon 5 /
+      Sarah 8 yrs); 4th worry card added ("What if they break my
+      stuff?" — Smart Protection, $30-check-for-$1,200-TV line);
+      worry answers carry real receipts + link to the pricing block.
+      NOTE: "99.4% on-time" and "$1.66/hr damages" were NOT used —
+      they're on the council's unverified-stat list (#9). Only
+      canonical facts appear on this page.
+  #5  One trust band, scope-labeled: front-desk stats carry explicit
+      scope labels ("8,100+ reviews · company-wide", "9 TX + Tampa FL").
+  #7  Signature motion = front-desk count-up + badge stagger-settle,
+      ONCE on viewport entry; nothing else on the page animates.
+      prefers-reduced-motion renders final state with zero animation.
+  #8  FAQ closer specced: payment (TX cards-only resolved per pricing
+      page), availability/lead time (Q5 — previously uncovered),
+      what's included, how the quote works. Question-phrased H3s.
+      (FAQPage JSON-LD intentionally omitted from a noindex mockup.)
+  #9  Canonical facts only: 4.9★/8,100+ · 55+ awards · 100K+ moves ·
+      $2,000 coverage · <1% hire rate · 2012 · 10 branches · 4 trees ·
+      one all-inclusive hourly rate (never "flat-rate").
+  Salvage: v1-01's "Now that you know us — let's do the math"
+      transition → quote invitation; Miller's 3-step plan band above
+      the quote invitation; tiny math elves retained.
+  Hero: headline workshop widget (3 options, in-place swap) — the
+      subhead always carries the literal what/where answer so the
+      LLM first-paint rule holds regardless of which H1 is showing.
+  Re-skinned to settled quote-form language per settled-components.md
+      (2026-06-11): light lockup hero (dark hero removed), Bebas →
+      bold Roboto gray headings, ambient trust strip + 4-up trust
+      badge card w/ count-up, worry list → nightmares accordion,
+      receipt → typewriter Reality Check receipts (fees red, $0s blue,
+      Einstein blue border), plan → white cards + numbered orange
+      badges, hire-line → the page's ONE orange feature panel, invite →
+      light lockup w/ blue CTA + elves as orange italic nudge, FAQ →
+      gray-fill accordion rows, sticky bar → settled trust-checks +
+      blue-CTA bar (all widths), brand-kit colors_and_type.css inlined
+      verbatim (fonts @import swapped for Google Fonts), motion calmed
+      to 120/260ms cubic-bezier(.2,0,0,1). Crew reel placeholder moved
+      from the hero into the crew band ("Watch us work" target).
+  Retrofitted to KP design-system refinements (Emma, 6/11): ramps/WCAG,
+      Navy-500 text, orange-text ban resolutions, Size 1-6 type, 4px
+      spacing, Lora banner.
+═════════════════════════════════════════════════════════════ -->
+<script>
+/* Reaction layer (workshop chrome, not part of the mock) */
+(function () {
+  var KEY = 'einstein-rxn-front-door';
+  var PAGE = 'Front Door 2.0';
+  var css = document.createElement('style');
+  css.textContent = [
+    '.rxn-pin{position:absolute;top:10px;right:10px;z-index:240;width:34px;height:34px;border-radius:50%;border:1px solid #E5E5E5;background:rgba(255,255,255,.92);color:#bbb;font-size:15px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:all .15s}',
+    '.rxn-pin:hover{border-color:#EF8B22;color:#EF8B22}',
+    '.rxn-pin.on{background:#EF8B22;border-color:#EF8B22;color:#fff}',
+    '.rxn-note{display:none;position:absolute;top:50px;right:10px;z-index:240;width:min(320px,70vw);background:#fff;border:1px solid #EF8B22;border-radius:10px;padding:10px 12px;font:13px/1.45 Roboto,sans-serif;color:#333;box-shadow:0 8px 28px rgba(0,0,0,.14);resize:vertical;min-height:56px}',
+    '.rxn-note.show{display:block}',
+    '.rxn-bar{position:fixed;left:14px;bottom:64px;z-index:260;display:flex;gap:8px;align-items:center;background:#1f1f1f;border-radius:100px;padding:7px 9px;box-shadow:0 10px 30px rgba(0,0,0,.35)}',
+    '.rxn-bar .c{font:12px/1 Roboto,sans-serif;color:#ddd;padding:0 5px 0 9px;white-space:nowrap}.rxn-bar .c b{color:#EF8B22}',
+    '.rxn-bar button{font:700 12px/1 Roboto,sans-serif;border:none;border-radius:100px;padding:9px 14px;cursor:pointer;background:#EF8B22;color:#111}',
+    '@media print{.rxn-pin,.rxn-note,.rxn-bar{display:none!important}}'
+  ].join('');
+  document.head.appendChild(css);
+
+  var state = { notes: {}, likes: {} };
+  try {
+    var l = JSON.parse(localStorage.getItem(KEY) || '{}');
+    if (l && typeof l === 'object') { if (l.notes) state.notes = l.notes; if (l.likes) state.likes = l.likes; }
+  } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  var sections = Array.prototype.filter.call(document.querySelectorAll('section, header.hero, [data-rxn]'), function (s) {
+    return s.offsetHeight > 180 && !s.querySelector('.rxn-pin');
+  });
+
+  function labelOf(sec, i) {
+    var h = sec.querySelector('h1,h2,h3');
+    var t = h ? h.textContent.trim().replace(/\s+/g, ' ').slice(0, 70) : (sec.id || 'section ' + (i + 1));
+    return t;
+  }
+
+  var bar = document.createElement('div');
+  bar.className = 'rxn-bar';
+  bar.innerHTML = '<span class="c"><b id="rxnCount">0</b> reactions</span><button id="rxnExport" type="button">📋 Export</button>';
+  document.body.appendChild(bar);
+
+  function renderCount() {
+    var n = 0;
+    Object.keys(state.likes).forEach(function (k) { if (state.likes[k]) n++; });
+    Object.keys(state.notes).forEach(function (k) { if ((state.notes[k] || '').trim() && !state.likes[k]) n++; });
+    document.getElementById('rxnCount').textContent = n;
+  }
+
+  sections.forEach(function (sec, i) {
+    var id = 's' + i;
+    if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
+    var pin = document.createElement('button');
+    pin.className = 'rxn-pin';
+    pin.type = 'button';
+    pin.textContent = '♥';
+    pin.title = 'React to: ' + labelOf(sec, i);
+    var note = document.createElement('textarea');
+    note.className = 'rxn-note';
+    note.placeholder = 'Your take on this section… (saves automatically)';
+    note.value = state.notes[id] || '';
+    function sync() {
+      pin.classList.toggle('on', !!state.likes[id] || !!(state.notes[id] || '').trim());
+    }
+    pin.addEventListener('click', function () {
+      var showing = note.classList.toggle('show');
+      if (showing) { state.likes[id] = true; note.focus(); }
+      else if (!(state.notes[id] || '').trim()) { delete state.likes[id]; }
+      save(); sync(); renderCount();
+    });
+    note.addEventListener('input', function () {
+      state.notes[id] = note.value;
+      save(); sync(); renderCount();
+    });
+    sec.appendChild(pin);
+    sec.appendChild(note);
+    sync();
+  });
+
+  document.getElementById('rxnExport').addEventListener('click', function () {
+    var lines = ['# ' + PAGE + ' — Cameron’s Reactions — ' + new Date().toLocaleDateString(), ''];
+    var any = false;
+    sections.forEach(function (sec, i) {
+      var id = 's' + i;
+      var liked = !!state.likes[id];
+      var note = (state.notes[id] || '').trim();
+      if (!liked && !note) return;
+      any = true;
+      lines.push('## ' + (liked ? '♥ ' : '') + labelOf(sec, i));
+      if (note) note.split('\n').forEach(function (ln) { lines.push('> ' + ln); });
+      lines.push('');
+    });
+    if (!any) lines.push('_No reactions yet — tap a ♥ pin on any section._');
+    var md = lines.join('\n');
+    var blob = new Blob([md], { type: 'text/markdown' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'front-door-reactions.md';
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(md).catch(function () {});
+    var btn = document.getElementById('rxnExport');
+    btn.textContent = '✓ Exported';
+    setTimeout(function () { btn.textContent = '📋 Export'; }, 1500);
+  });
+
+  renderCount();
+})();
+
+</script>
+</body>
+</html>

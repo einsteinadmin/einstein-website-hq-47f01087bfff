@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Einstein Moving Company — The Smart Move | Kit Classic</title>
+<!--
+  KIT CLASSIC — full-fidelity homepage contender #4.
+  Seed: einstein-brand-kit/agent/visual/artifacts/web/landing-sample.html (the Brand Kit
+  validation artifact) evolved into a complete homepage. Built almost exclusively from
+  the 38 settled components in research/settled-components.md + the 10 Rules.
+  Copy adapted from research/live-site-copy.md (real production copy, never lorem).
+-->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   EINSTEIN BRAND KIT — colors_and_type.css (INLINED VERBATIM)
+   Source: einstein-brand-kit/agent/visual/colors_and_type.css
+   KP design-system refinements edition (adopted 6/11/2026) —
+   full tonal ramps, Navy-500 text, Size 1–6 scale, Lora banner.
+   (The @import of bundled fonts is commented out — this mockup
+   loads Roboto + Lora from Google Fonts to stay self-contained.)
+   ============================================================ */
+
+/* ============================================================
+   Einstein Brand Kit — colors_and_type.css
+   Drop-in CSS custom properties + type scale.
+   This is the implementation standard for web/app UI.
+   Pair with tokens/tokens.json (same values as data) and
+   motion/motion.css (timing + easing).
+   Fonts are bundled — fonts/fonts.css declares @font-face for Roboto,
+   Bebas Neue, Thirsty Script, and Lora, so the kit renders offline.
+   ============================================================ */
+
+/* @import url('fonts/fonts.css'); — bundled fonts not available here; Roboto + Lora load from Google Fonts above */
+
+:root {
+
+  /* ============================================================
+     COLOUR SCALE
+     Full families — 7 stops each. Use scale variables in components;
+     use role aliases (bottom of this section) for semantic intent.
+     Do not invent values outside this scale.
+     ============================================================ */
+
+  /* ---- Orange ---- */
+  --color-orange-50:  #FEF6EC;   /* page backgrounds, warm tinted surfaces */
+  --color-orange-100: #FDE3C2;   /* subtle fills, hover states on light backgrounds */
+  --color-orange-200: #FABD84;   /* decorative elements, illustrations */
+  --color-orange-300: #F5A054;   /* decorative only — do not use for text */
+  --color-orange-500: #EF8B22;   /* brand colour — CTAs, icons, accents (Pantone 144 C) */
+  --color-orange-700: #D96B10;   /* hover state for orange elements */
+  --color-orange-900: #CC5500;   /* deep burnt orange — large text, UI borders, badges */
+
+  /* ---- Navy ---- */
+  --color-navy-50:  #EEF1F4;     /* page backgrounds, card fills */
+  --color-navy-100: #CDD5DA;     /* borders, dividers */
+  --color-navy-200: #9AADB7;     /* muted icons, secondary borders */
+  --color-navy-400: #507080;     /* secondary text — large text only (≥18px or ≥14px bold) */
+  --color-navy-500: #27343D;     /* brand colour — primary text, headings (Pantone 432 CP) */
+  --color-navy-700: #1A2329;     /* footer backgrounds */
+  --color-navy-900: #0B1014;     /* near-black, maximum contrast */
+
+  /* ---- Blue ---- */
+  --color-blue-50:  #EBF4FB;     /* info tints, callout block backgrounds */
+  --color-blue-100: #C3DFEF;     /* subtle info fills */
+  --color-blue-200: #88C0E4;     /* decorative, illustrations */
+  --color-blue-300: #46A2D5;     /* decorative, large text only */
+  --color-blue-500: #0979C3;     /* brand colour — links, interactive buttons, focus states (Pantone 3005 CP) */
+  --color-blue-700: #065E9A;     /* hover state for blue interactive elements */
+  --color-blue-900: #023B63;     /* deep blue — high-emphasis text, dark blue backgrounds */
+
+  /* ---- Grey ---- */
+  --color-grey-50:  #F4F5F5;     /* neutral page backgrounds */
+  --color-grey-100: #E2E3E4;     /* card fills, input backgrounds */
+  --color-grey-200: #C0C2C4;     /* borders, dividers, horizontal rules */
+  --color-grey-400: #787C7F;     /* placeholder text — large text only (≥18px or ≥14px bold) */
+  --color-grey-500: #53575A;     /* brand colour — secondary body text (Pantone 425 C) */
+  --color-grey-700: #363839;     /* primary body text on light backgrounds */
+  --color-grey-900: #191A1B;     /* near-black, maximum contrast */
+
+  /* ---- Brand name aliases (map to scale) ---- */
+  --einstein-orange: var(--color-orange-500);
+  --einstein-gray:   var(--color-grey-500);
+  --einstein-blue:   var(--color-blue-500);
+  --einstein-dark:   var(--color-navy-500);
+  --einstein-light:  #F6F6F6;    /* Cool Gray 1 C — page backgrounds, input fills */
+  --white:           #FFFFFF;
+
+  /* ---- Semantic ---- */
+  --success:    #69995D;   /* checkmarks, confirmations */
+  --error:      #CC0100;   /* errors, competitor hidden fees in red */
+  --email-link: #0A81D1;   /* links in email context only */
+
+  /* ---- Role aliases — prefer these in components ---- */
+  --color-text:        var(--color-grey-500);    /* secondary/body text */
+  --color-heading:     var(--color-navy-500);    /* headings — navy */
+  --color-bg:          var(--white);
+  --color-bg-muted:    var(--einstein-light);
+  --color-bg-dark:     var(--color-navy-500);
+  --color-action:      var(--color-blue-500);    /* where people click, in content */
+  --color-accent:      var(--color-orange-500);  /* personality: emphasis, nav CTA, selection */
+  --color-on-dark:     var(--white);
+
+  /*
+   * Section Background Hierarchy
+   * Use this order — Navy-500 or darker is not approved as a full section
+   * background except the footer.
+   *
+   * 1. White (#FFFFFF)              — default
+   * 2. Orange 50 (#FEF6EC)          — warm / featured sections
+   * 3. Grey 50 (#F4F5F5)            — subtle alternation
+   * 4. Navy 50 (#EEF1F4)            — lightest tint of contrast
+   * 5. Navy 700 (#1A2329)           — footer only
+   */
+
+  /*
+   * WCAG 2.1 AA — Approved pairings (verified contrast ratios)
+   *
+   * Normal text (< 18px regular / < 14px bold): 4.5:1 minimum
+   * Large text / UI (≥ 18px regular / ≥ 14px bold): 3:1 minimum
+   *
+   * Background  →  Foreground         Ratio   Approved for
+   * #EF8B22     →  #27343D            5.4:1   Buttons, badges
+   * #EF8B22     →  #0B1014            6.5:1   High-contrast on orange
+   * #CC5500     →  #FFFFFF            4.3:1   Large text + UI only (not body copy)
+   * #27343D     →  #FFFFFF           12.8:1   Any text size
+   * #27343D     →  #EF8B22            5.4:1   Icons, callouts on dark
+   * #1A2329     →  #EF8B22            6.5:1   Dark overlay use only
+   * #0979C3     →  #FFFFFF            4.8:1   Buttons, links
+   * #065E9A     →  #FFFFFF            6.8:1   Hover states
+   * #FFFFFF     →  #0979C3            4.8:1   Link text
+   * #FFFFFF     →  #27343D           12.8:1   Primary body text
+   * #FFFFFF     →  #53575A            7.3:1   Secondary body text
+   * #EBF4FB     →  #0979C3            4.4:1   Info cards — large text only
+   * #EBF4FB     →  #27343D           11.6:1   Info cards with dark text
+   * #FEF6EC     →  #27343D           11.9:1   Warm tinted cards
+   * #023B63     →  #FFFFFF           11.6:1   Deep blue sections
+   *
+   * Do NOT use Orange-500 as text colour on white — fails contrast for text.
+   * Navy-400 and Grey-400 pass at 3:1 — large text and UI only.
+   */
+
+  /* ============================================================
+     TYPE FAMILIES
+     ============================================================ */
+
+  --font-sans:          'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-script:        'Thirsty Script', cursive;  /* SPARINGLY — "Smart Move" flourishes only */
+  --font-display:       'Bebas Neue', sans-serif;   /* hero headlines */
+  --font-display-serif: 'Lora', serif;              /* Size 1 / banner display only */
+
+  /* ---- Type weights ---- */
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+
+  /* ============================================================
+     TYPE SCALE
+     Base: html { font-size: 20px } — 1rem = 20px throughout.
+
+     Size 1–6 name the visual hierarchy tier, not the HTML element.
+     Heading markup (h1–h6) is independent of visual size:
+       • h1 is typically set at Size 5 or Size 6 visually.
+       • h2 is typically set at Size 2.
+     Any heading level can use any size token — choose by visual
+     hierarchy, then write the correct semantic markup separately.
+
+     Body: use P (--fs-body) for long-form prose. Use Small P
+     (--fs-sm-p) for cards and compact UI. Tiny P for legal only.
+     ============================================================ */
+
+  /* ---- Display & Heading ---- */
+  --fs-size-1: 4rem;    /* 80px  — banner display; use --font-display-serif (Lora) */
+  --lh-size-1: 1.2;
+  --fs-size-2: 2rem;    /* 40px  — major section headings (most often h2) */
+  --lh-size-2: 1.2;
+  --fs-size-3: 1.6rem;  /* 32px */
+  --lh-size-3: 1.25;
+  --fs-size-4: 1.2rem;  /* 24px */
+  --lh-size-4: 1.6;
+  --fs-size-5: 1rem;    /* 20px — typical h1 visual size */
+  --lh-size-5: 1.5;
+  --fs-size-6: 0.9rem;  /* 18px */
+  --lh-size-6: 1.3;
+
+  /* ---- Legacy px aliases (backward-compatible) ---- */
+  --fs-hero:   59px;  --lh-hero:   77px;   /* hero headlines — Bebas Neue */
+  --fs-h1:     24px;  --lh-h1:     36px;
+  --fs-h2:     40px;  --lh-h2:     44px;
+  --fs-h3:     32px;  --lh-h3:     40px;
+  --fs-h4:     24px;  --lh-h4:     32px;
+  --fs-h5:     20px;  --lh-h5:     30px;
+  --fs-h6:     18px;  --lh-h6:     24px;
+
+  /* ---- Body text ---- */
+  --fs-lg-p:   1.2rem;  /* 24px — introductory paragraphs, pull quotes, emphasized copy */
+  --lh-lg-p:   1.5;
+  --fs-body:   1rem;    /* 20px — default long-form body copy (editorial sections) */
+  --lh-body:   1.5;
+  --fs-sm-p:   0.8rem;  /* 16px — card copy, captions, labels, supporting/secondary text */
+  --lh-sm-p:   1.5;
+  --fs-tiny-p: 0.6rem;  /* 12px — legal text, metadata, fine print only */
+  --lh-tiny-p: 1.6;
+
+  /* ---- Radius & shadow ---- */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(39, 52, 61, 0.08);
+  --shadow-md: 0 4px 12px rgba(39, 52, 61, 0.10);
+  --shadow-lg: 0 12px 32px rgba(39, 52, 61, 0.14);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+html {
+  font-size: 20px; /* 1rem = 20px */
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-regular);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   Base typography
+   ============================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-bold);
+  color: var(--color-heading);
+  margin: 0 0 0.5em;
+}
+
+h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); }
+h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); }
+h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); }
+h4 { font-size: var(--fs-h4); line-height: var(--lh-h4); }
+h5 { font-size: var(--fs-h5); line-height: var(--lh-h5); }
+h6 { font-size: var(--fs-h6); line-height: var(--lh-h6); }
+
+.hero-headline  { font-family: var(--font-display); font-size: var(--fs-hero); line-height: var(--lh-hero); font-weight: var(--weight-bold); }
+.display-banner { font-family: var(--font-display-serif); font-size: var(--fs-size-1); line-height: var(--lh-size-1); font-weight: var(--weight-bold); }
+.lead           { font-size: var(--fs-lg-p); line-height: var(--lh-lg-p); }
+.small-text     { font-size: var(--fs-sm-p); line-height: var(--lh-sm-p); }
+.fine-print     { font-size: var(--fs-tiny-p); line-height: var(--lh-tiny-p); }
+
+a { color: var(--color-action); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* "Smart Move" script flourish — use ONLY for that phrase, never body text */
+.script-accent { font-family: var(--font-script); color: var(--color-accent); }
+
+/* ============================================================
+   Typography rules
+   - Avoid long ALL CAPS strings in body text. Reserve caps for short labels.
+   - Thirsty Script: sparingly, never body copy (the "Smart Move" mark only).
+   - Bebas Neue: hero headlines only — not a wholesale body replacement.
+   - Lora: Size 1 / banner display only.
+   - Orange is accent/nav-CTA only. In-content buttons + links use blue.
+   - P (--fs-body) for long-form prose; Small P (--fs-sm-p) for cards + compact UI.
+   - Tiny P (--fs-tiny-p) for legal/metadata only — never for readable content.
+   ============================================================ */
+
+/* Mobile-first: scale hero and large headings down on small screens */
+@media (max-width: 640px) {
+  :root {
+    --fs-hero:   38px;   --lh-hero:   46px;
+    --fs-h2:     30px;   --lh-h2:     36px;
+    --fs-h3:     26px;   --lh-h3:     32px;
+    --fs-lg-p:   20px;   --lh-lg-p:   30px;
+    --fs-size-1: 2.5rem;
+    --fs-size-2: 1.6rem;
+    --fs-size-3: 1.4rem;
+  }
+}
+
+</style>
+
+<style>
+/* ============================================================
+   KIT CLASSIC page styles — landing-sample.html idiom, extended.
+   Motion: calm only — 120/180/240ms, cubic-bezier(.2,0,0,1).
+   ============================================================ */
+* { box-sizing: border-box; }
+body { margin:0; padding-bottom:88px; }
+.wrap { max-width:1120px; margin:0 auto; padding:0 24px; }
+:root { --hairline: 1px solid var(--color-navy-100); --ease-standard: cubic-bezier(.2,0,0,1); } /* borders = Navy-100 */
+
+/* nav (seed idiom + real links) */
+nav { display:flex; justify-content:space-between; align-items:center; padding:18px 24px; max-width:1120px; margin:0 auto; gap:16px; flex-wrap:wrap; }
+.logo { font-weight:700; font-size:22px; color:var(--color-navy-500); white-space:nowrap; }
+.logo .head { color:var(--color-orange-900); } /* emoji glyph; Orange-900 accent per orange-text ban */
+.nav-links { display:flex; gap:32px; align-items:center; } /* nav item gap = sp-8 */
+.nav-links a { color:var(--color-text); font-size:16px; font-weight:500; }
+.nav-links a:hover { color:var(--einstein-blue); text-decoration:none; }
+.btn-nav { display:inline-block; background:var(--einstein-orange); color:var(--color-navy-500); padding:12px 24px; border-radius:8px; font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:.5px; border:none; cursor:pointer; text-decoration:none; } /* dark-on-orange WCAG pairing */
+.btn-nav:hover { text-decoration:none; background:var(--color-orange-700); }
+
+/* hero — exactly the landing-sample treatment */
+.hero { background:var(--color-orange-50); padding:72px 0 64px; text-align:center; } /* warm/featured surface */
+.hero h1 { font-size:var(--fs-hero); line-height:1.2; color:var(--color-navy-500); margin:0 0 8px; }
+.hero h1.serif { font-family:var(--font-display-serif); } /* Lora banner variant (workshop toggle) */
+.rotator { color:var(--color-orange-900); border-right:3px solid var(--color-orange-900); padding-right:4px; } /* rotator word ≥18px — Orange-900 */
+.hero .lead { max-width:640px; margin:16px auto 8px; color:var(--color-text); }
+.sub-lead { max-width:640px; margin:0 auto 28px; font-size:0.8rem; line-height:1.5; color:var(--color-text); } /* Small P */
+.btn-primary { display:inline-block; background:var(--einstein-blue); color:#fff; padding:16px 32px; border-radius:8px; font-weight:700; font-size:16px; border:none; cursor:pointer; text-decoration:none; transition:transform 120ms var(--ease-standard), box-shadow 120ms var(--ease-standard), background 120ms var(--ease-standard); }
+.btn-primary:hover { background:var(--color-blue-700); transform:translateY(-1px); box-shadow:0 4px 12px rgba(9,121,195,.3); text-decoration:none; }
+.btn-primary:active { transform:scale(.98); }
+.microproof { margin-top:12px; font-size:14px; line-height:22px; color:var(--color-text); }
+/* hero typeface workshop widget (mockup tool — mirrors front-door's headline widget) */
+.face-widget { display:inline-flex; align-items:center; gap:8px; background:var(--white); border:1px dashed #C9CDD0; border-radius:var(--radius-pill); padding:6px 8px 6px 16px; font-size:13px; color:var(--color-text); letter-spacing:.4px; margin-top:20px; }
+.face-widget .tag { font-weight:700; text-transform:uppercase; font-size:11px; letter-spacing:1.5px; color:var(--color-navy-500); }
+.face-widget button { background:var(--color-grey-50); border:1px solid var(--color-navy-100); color:var(--color-text); font-family:var(--font-sans); font-size:13px; font-weight:700; border-radius:var(--radius-pill); padding:5px 13px; cursor:pointer; transition:border-color 180ms var(--ease-standard); }
+.face-widget button:hover { border-color:var(--einstein-orange); }
+
+/* condensed trust strip (settled #2)
+   DEV NOTE: emoji serve as icons in the mockup only — production swaps to
+   the kit SVG icon set (orange fill → blue hover) per iconography rules */
+.trust-bar { display:flex; justify-content:center; gap:32px; padding:12px 24px; border-bottom:var(--hairline); flex-wrap:wrap; }
+.trust-item { display:flex; align-items:center; gap:8px; font-size:14px; line-height:22px; color:var(--color-text); font-weight:500; }
+
+/* sections — 80px sub-section rhythm (4px system: 112/80/64) */
+section.block { padding:80px 0; }
+section.block h2 { text-align:center; font-size:var(--fs-size-2); line-height:var(--lh-size-2); color:var(--color-heading); } /* Size 2 */
+section.block .sub { text-align:center; color:var(--color-text); max-width:680px; margin:8px auto 40px; font-size:1rem; line-height:1.5; } /* P */
+.nudge { /* orange-text ban: wink microcopy = navy text on Orange-50 chip */
+  width:fit-content; margin:12px auto 0; text-align:center; font-style:italic;
+  color:var(--color-navy-500); background:var(--color-orange-50); border-radius:var(--radius-pill);
+  padding:4px 14px; font-size:14px; line-height:22px; }
+
+/* receipts — Moving Bill Reality Check (settled #19, form-fidelity treatment) */
+.receipt-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:32px; max-width:880px; margin:0 auto; } /* card-to-card = gutter */
+.receipt { background:#fff; border:var(--hairline); border-radius:4px 4px 0 0; padding:28px 24px 20px; font-family:'Courier New', Courier, monospace; font-size:14px; line-height:24px; color:var(--color-text); box-shadow:var(--shadow-sm); position:relative; }
+.receipt::after { content:""; position:absolute; left:0; right:0; bottom:-8px; height:8px;
+  background:linear-gradient(-45deg, transparent 5px, #fff 5px) 0 0 / 12px 8px repeat-x; filter:drop-shadow(0 1px 1px rgba(39,52,61,.08)); }
+.receipt.einstein { border:2px solid var(--einstein-blue); }
+.receipt h3 { font-family:inherit; font-size:15px; text-align:center; margin:0 0 4px; letter-spacing:1px; }
+.receipt .base { text-align:center; margin:0 0 16px; border-bottom:1px dashed #C9C9C9; padding-bottom:12px; }
+.receipt ul { list-style:none; padding:0; margin:0 0 14px; }
+.receipt li { display:flex; align-items:baseline; padding:5px 0; }
+.receipt li .item { flex-shrink:0; }
+.receipt li .dots { flex:1; border-bottom:1px dotted #B5B5B5; margin:0 6px; transform:translateY(-4px); }
+.fee-red { color:var(--error); font-weight:700; white-space:nowrap; }
+.fee-blue { color:var(--einstein-blue); font-weight:700; white-space:nowrap; }
+.receipt .total { text-align:center; border-top:1px dashed #C9C9C9; padding-top:12px; margin:0; font-size:16px; font-weight:700; }
+.total-red { color:var(--error); }
+.total-blue { color:var(--einstein-blue); }
+.anchor-line { text-align:center; font-size:var(--fs-size-4); line-height:1.35; font-weight:700; color:var(--color-navy-500); max-width:720px; margin:48px auto 0; } /* Size 4 */
+.anchor-line .smart { color:var(--color-orange-900); } /* anchor-line phrase ≥18px — Orange-900 */
+.proof-line { text-align:center; font-size:0.8rem; line-height:1.5; color:var(--color-text); margin:12px auto 0; }
+.proof-line b { color:var(--einstein-blue); }
+
+/* benefit tile grid (settled #20) — carries the 6 Reasons */
+.tile-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; } /* card-to-card = gutter */
+.tile { background:#fff; border:var(--hairline); border-radius:var(--radius-md); padding:40px; text-align:center; } /* sp-10 card padding */
+.tile .pictogram { width:56px; height:56px; margin:0 auto 16px; border:1.5px dashed var(--einstein-orange); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font-size:9px; line-height:13px; color:var(--color-grey-500); text-transform:uppercase; letter-spacing:.4px; padding:4px; } /* 56px = default icon size; orange border stays (fill/border legal) */
+.tile h3 { font-size:var(--fs-size-6); line-height:var(--lh-size-6); margin:0 0 8px; } /* Size 6 */
+.tile p { font-size:0.8rem; line-height:1.5; margin:0; color:var(--color-text); } /* Small P */
+
+/* crew cards — Meet Your Movers (settled #33 card idiom + live-site team intro) */
+.crew-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; max-width:880px; margin:0 auto; }
+.crew-card { background:#fff; border:var(--hairline); border-radius:var(--radius-md); padding:24px; text-align:center; } /* compact card — mobile-tier padding */
+.crew-photo { width:96px; height:96px; margin:0 auto 16px; border-radius:50%; background:var(--color-grey-50); border:1.5px dashed var(--einstein-orange); display:flex; align-items:center; justify-content:center; font-size:9px; line-height:13px; color:var(--color-grey-500); text-transform:uppercase; letter-spacing:.4px; padding:6px; }
+.crew-card h3 { font-size:var(--fs-size-6); line-height:var(--lh-size-6); margin:0 0 2px; } /* Size 6 */
+.crew-card .tenure { font-size:14px; line-height:22px; color:var(--einstein-blue); font-weight:700; margin:0 0 8px; }
+.crew-card p { font-size:0.8rem; line-height:1.5; margin:0; color:var(--color-text); } /* Small P */
+.crew-proof { text-align:center; font-size:0.8rem; line-height:1.5; font-weight:500; color:var(--color-text); margin:32px auto 4px; }
+.crew-proof b { color:var(--color-orange-900); } /* 16px bold = large-text tier — Orange-900 */
+
+/* story band — new element, form-styled: one white card, front not center */
+.story-card { background:#fff; border:var(--hairline); border-radius:var(--radius-md); box-shadow:var(--shadow-sm); padding:40px; display:grid; grid-template-columns:240px 1fr; gap:32px; align-items:center; max-width:880px; margin:0 auto; } /* sp-10 padding */
+.story-photo { height:180px; border-radius:var(--radius-sm); background:var(--color-grey-50); border:1.5px dashed var(--einstein-orange); display:flex; align-items:center; justify-content:center; text-align:center; font-size:10px; line-height:15px; color:var(--color-grey-500); text-transform:uppercase; letter-spacing:.4px; padding:12px; }
+.story-card h3 { font-size:var(--fs-size-4); line-height:1.35; margin:0 0 12px; } /* Size 4 */
+.story-card p { font-size:0.8rem; line-height:1.5; margin:0 0 12px; } /* Small P */
+.story-card .story-link { font-weight:700; font-size:16px; }
+
+/* nightmares accordion (settled #22 — emotional, emoji'd) */
+.nightmare-list { max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
+.nightmare-item { display:flex; justify-content:space-between; align-items:center; gap:12px; width:100%; min-height:44px; border:var(--hairline); border-radius:var(--radius-md); padding:16px 20px; background:#fff; cursor:pointer; font-family:var(--font-sans); font-size:0.9rem; line-height:1.3; font-weight:500; color:var(--color-navy-500); text-align:left; } /* Size 6; emoji = mockup icons, kit SVGs in production */
+.acc-toggle { color:var(--color-orange-900); font-weight:700; font-size:22px; flex-shrink:0; } /* ≥18px accent — Orange-900 */
+.acc-answer { padding:4px 20px 16px; color:var(--color-text); font-size:0.8rem; line-height:1.5; } /* Small P */
+.acc-answer[hidden] { display:none; }
+.acc-answer p { margin:8px 0 0; }
+
+/* locations — branch text-link cards (settled #33) */
+.branch-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
+.branch-card { background:#fff; border:var(--hairline); border-radius:var(--radius-md); padding:18px 12px; text-align:center; display:block; transition:border-color 180ms var(--ease-standard); }
+.branch-card:hover { border-color:var(--einstein-orange); text-decoration:none; }
+.branch-card .city { font-weight:700; font-size:16px; line-height:22px; color:var(--color-navy-500); }
+.branch-card .state { font-size:12px; line-height:18px; color:var(--color-text); }
+.branch-card .link { font-size:14px; color:var(--einstein-blue); font-weight:500; }
+.areas-line { text-align:center; font-size:0.8rem; line-height:1.5; color:var(--color-text); margin:28px auto 0; max-width:720px; }
+
+/* FAQ accordion (settled #23 — gray-filled rows on white section) */
+.faq-list { max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
+.faq-item { display:flex; justify-content:space-between; align-items:center; gap:12px; width:100%; min-height:44px; border:none; border-radius:var(--radius-md); padding:16px 20px; background:var(--color-grey-50); cursor:pointer; font-family:var(--font-sans); font-size:0.9rem; line-height:1.3; font-weight:500; color:var(--color-navy-500); text-align:left; } /* Size 6 */
+
+/* exit-ramp panel (settled #25 + #32 human handoff) */
+.exit-ramp { background:var(--color-orange-50); border:1px solid var(--einstein-orange); border-radius:var(--radius-md); padding:40px; text-align:center; max-width:880px; margin:0 auto; } /* hierarchy: Orange-50 featured surface (gradient was off-palette) */
+.exit-ramp h2 { font-size:var(--fs-size-3); line-height:var(--lh-size-3); margin:0 0 8px; } /* Size 3 */
+.exit-ramp p { font-size:0.8rem; line-height:1.5; margin:0 auto 20px; max-width:560px; }
+.exit-actions { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+.btn-secondary { display:inline-block; background:var(--einstein-blue); color:#fff; padding:13px 26px; border-radius:8px; font-weight:700; font-size:15px; border:none; cursor:pointer; text-decoration:none; transition:transform 120ms var(--ease-standard), box-shadow 120ms var(--ease-standard), background 120ms var(--ease-standard); }
+.btn-secondary:hover { background:var(--color-blue-700); transform:translateY(-1px); box-shadow:0 4px 12px rgba(9,121,195,.3); text-decoration:none; }
+
+/* footer */
+footer { background:var(--color-navy-700); color:#fff; padding:48px 0 32px; margin-top:64px; } /* Navy-700: the one sanctioned dark section */
+footer .canon { text-align:center; font-size:18px; line-height:28px; font-weight:700; margin:0 0 24px; }
+footer .canon .smart { color:var(--color-orange-200); } /* orange-text ban: Orange-200 passes AA on Navy-700 */
+.footer-links { display:flex; justify-content:center; gap:10px 20px; flex-wrap:wrap; margin:0 0 24px; padding:0 24px; }
+.footer-links a { color:var(--color-navy-100); font-size:14px; line-height:22px; }
+.footer-links a:hover { color:#fff; }
+footer .desc { text-align:center; font-size:13px; line-height:21px; color:var(--color-navy-200); max-width:680px; margin:0 auto 18px; padding:0 24px; }
+footer .reg { text-align:center; font-size:12px; line-height:20px; color:var(--color-navy-200); padding:0 24px; }
+footer .textus { text-align:center; font-size:13px; line-height:21px; color:var(--color-navy-100); margin-top:14px; }
+footer .textus a { color:var(--color-blue-200); text-decoration:underline; }
+
+/* sticky pricing/CTA bar (settled #26) */
+.sticky-bar { position:fixed; bottom:0; left:0; right:0; background:#fff; box-shadow:0 -4px 20px rgba(0,0,0,.1); border-top:var(--hairline); padding:14px 24px; z-index:100; }
+.sticky-content { max-width:1120px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+.sticky-trust { font-size:14px; line-height:22px; color:var(--einstein-gray); display:flex; gap:16px; flex-wrap:wrap; }
+.sticky-trust .ok { color:var(--success); font-weight:700; }
+
+/* Redesign HQ chip */
+.hq-chip { position:fixed; bottom:88px; left:16px; z-index:110; background:#fff; border:var(--hairline); border-radius:var(--radius-pill); padding:8px 16px; font-size:13px; font-weight:500; color:var(--einstein-gray); box-shadow:var(--shadow-md); text-decoration:none; }
+.hq-chip:hover { border-color:var(--einstein-orange); text-decoration:none; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition:none !important; }
+}
+
+@media (max-width: 900px) {
+  .tile-grid { grid-template-columns:repeat(2,1fr); }
+  .tile { padding:32px; } /* tablet card padding */
+  .crew-grid { grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  .branch-grid { grid-template-columns:repeat(3,1fr); }
+  section.block { padding:64px 0; } /* tablet section rhythm */
+}
+@media (max-width: 640px) {
+  .nav-links { display:none; }
+  section.block { padding:64px 0; } /* mobile section rhythm */
+  .tile, .story-card { padding:24px; } /* mobile card padding */
+  .receipt-grid { grid-template-columns:1fr; }
+  .tile-grid { grid-template-columns:1fr; }
+  .crew-grid { grid-template-columns:1fr; max-width:360px; }
+  .branch-grid { grid-template-columns:repeat(2,1fr); }
+  .story-card { grid-template-columns:1fr; }
+  .trust-bar { gap:16px; }
+  .sticky-trust { display:none; }
+  .hq-chip { bottom:78px; }
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What forms of payment do you accept?",
+      "acceptedAnswer": { "@type": "Answer", "text": "We accept all major credit cards — with no credit card processing fees, ever. We don't accept cash or checks in Texas (Florida accepts cards and cash). Companies paying by check for an office move can contact us ahead of time to confirm." }
+    },
+    {
+      "@type": "Question",
+      "name": "How far in advance should I book my move?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For local moves, a week or two of notice is usually plenty. For long distance moves within Texas, we recommend booking 2–4 weeks out, especially during summer and end-of-month dates. There's no deposit and cancellation is free, so booking early costs you nothing." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I cancel or change my move after booking?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes — free cancellation, and no deposit is required to book. Plans change, we get it. Just give us as much notice as you can." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you disassemble and reassemble furniture?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Beds, dresser mirrors, table legs — everything we take apart gets put back together at the other end. Our movers bring fully stocked tool bags, and it's all included in the hourly rate." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+  <!-- ============ NAV (settled #28: the one orange button) ============ -->
+  <nav>
+    <div class="logo"><span class="head">🧠</span> Einstein Moving Co.</div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#locations">Locations</a>
+      <a href="#reviews">Reviews</a>
+    </div>
+    <a class="btn-nav" href="#book">Book Your Move</a>
+  </nav>
+
+  <!-- ============ HERO (settled #36 — the landing-sample idiom, untouched) ============ -->
+  <header class="hero">
+    <div class="wrap">
+      <h1 id="heroH1" class="serif">Moving, but <span class="rotator" id="rotator">Easy</span></h1>
+      <p class="lead">We'll bring the brains <em>and</em> the brawn. Background-checked W-2 crews, a price that's the whole cost, and $2,000 of coverage already in it.</p>
+      <p class="sub-lead">Local moving across Texas and Tampa, FL — background-checked W-2 crews, one all-inclusive hourly rate.</p>
+      <a class="btn-primary" href="#book">Get My Free Quote</a>
+      <div class="microproof">No deposit · Free cancellation · No hidden fees</div>
+      <div class="face-widget" role="group" aria-label="Hero typeface workshop — mockup tool">
+        <span class="tag">Workshop</span>
+        <span id="faceLabel">Banner face: Lora</span>
+        <button id="faceToggle" type="button" aria-label="Toggle hero headline typeface">&#8644;</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ CONDENSED TRUST STRIP (settled #2) ============ -->
+  <div class="trust-bar">
+    <div class="trust-item">🏆 55+ Awards</div>
+    <div class="trust-item">⭐ 4.9/5 Stars · 8,100+ reviews</div>
+    <div class="trust-item">🛡️ $2,000 Coverage Included</div>
+    <div class="trust-item">📦 100,000+ Moves Completed</div>
+  </div>
+
+  <!-- ============ MOVING BILL REALITY CHECK (settled #19 — receipt treatment) ============ -->
+  <section class="block" id="pricing">
+    <div class="wrap">
+      <h2>Am I going to get ripped off?</h2>
+      <p class="sub">Fair question — you've been burned before. Hidden fees can add <b>25–50%</b> to your final moving bill. Here's the honest math, receipt vs. receipt.</p>
+      <div class="receipt-grid">
+        <div class="receipt competitor" aria-label="Typical moving company receipt with hidden fees">
+          <h3>TYPICAL MOVING COMPANY</h3>
+          <p class="base">BASE HOURLY RATE&nbsp;&nbsp;$170</p>
+          <ul>
+            <li><span class="item">Trip fee</span><span class="dots"></span><span class="fee-red">+$150</span></li>
+            <li><span class="item">Fuel surcharge</span><span class="dots"></span><span class="fee-red">+$89</span></li>
+            <li><span class="item">Credit card fee</span><span class="dots"></span><span class="fee-red">+3.5%</span></li>
+            <li><span class="item">Stair fee</span><span class="dots"></span><span class="fee-red">+$75/flight</span></li>
+            <li><span class="item">Damage coverage</span><span class="dots"></span><span class="fee-red">by the pound</span></li>
+            <li><span class="item">Booking deposit</span><span class="dots"></span><span class="fee-red">+$100</span></li>
+          </ul>
+          <p class="total total-red">YOUR TOTAL: $XXX + ???</p>
+        </div>
+        <div class="receipt einstein" aria-label="Einstein Moving Company receipt with everything included">
+          <h3>🧠 EINSTEIN MOVING COMPANY</h3>
+          <p class="base">ALL-INCLUSIVE HOURLY RATE&nbsp;&nbsp;$200</p>
+          <ul>
+            <li><span class="item">Trip fee</span><span class="dots"></span><span class="fee-blue">$0</span></li>
+            <li><span class="item">Fuel surcharge</span><span class="dots"></span><span class="fee-blue">$0</span></li>
+            <li><span class="item">Credit card fee</span><span class="dots"></span><span class="fee-blue">$0</span></li>
+            <li><span class="item">Stair fee</span><span class="dots"></span><span class="fee-blue">$0</span></li>
+            <li><span class="item">$2,000 coverage</span><span class="dots"></span><span class="fee-blue">included</span></li>
+            <li><span class="item">Booking deposit</span><span class="dots"></span><span class="fee-blue">$0</span></li>
+          </ul>
+          <p class="total total-blue">YOUR TOTAL: THE RATE. FLAT.</p>
+        </div>
+      </div>
+      <p class="anchor-line">Our rate is the whole cost. <span class="smart">Theirs is just where it starts.</span></p>
+      <p class="proof-line">What that looks like in real life: <b>Quote $1,840. Invoice $1,840.</b></p>
+    </div>
+  </section>
+
+  <!-- ============ 6 REASONS as BENEFIT TILE GRID (settled #20; copy from live homepage) ============ -->
+  <section class="block" id="services" style="background:var(--einstein-light);">
+    <div class="wrap">
+      <h2>6 reasons 50+ people move with us every day</h2>
+      <p class="sub">Besides the fact that we're <em>really, really ridiculously good-looking.</em></p>
+      <div class="tile-grid">
+        <div class="tile">
+          <div class="pictogram">Lightning bolt pictogram</div>
+          <h3>Book instantly</h3>
+          <p>A free online quote in 47 seconds. Check dates, book fast, ask us anything — yes, even your fears.</p>
+        </div>
+        <div class="tile">
+          <div class="pictogram">Receipt pictogram</div>
+          <h3>Know what your move will cost</h3>
+          <p>Simple all-inclusive hourly pricing, no hidden fees. What you don't need on moving day? Surprises.</p>
+        </div>
+        <div class="tile">
+          <div class="pictogram">Shield pictogram</div>
+          <h3>Protect your stuff</h3>
+          <p>Most movers pay $0.60/lb — a $30 check for your $1,200 TV. Our $2,000 coverage is based on actual value, built into your rate.</p>
+        </div>
+        <div class="tile">
+          <div class="pictogram">Crew pictogram</div>
+          <h3>Meet your movers</h3>
+          <p>Every mover is a background-checked W-2 employee. Days before your move, we send their names, photos, and bios.</p>
+        </div>
+        <div class="tile">
+          <div class="pictogram">Clock pictogram</div>
+          <h3>Count on us to be on time</h3>
+          <p>Our On-Time Guarantee: we arrive on time or your move is instantly discounted. The later we are, the bigger the discount.</p>
+        </div>
+        <div class="tile">
+          <div class="pictogram">Chat bubble pictogram</div>
+          <h3>Always expect attentive service</h3>
+          <p>We communicate so proactively you'll never wonder "what's next?" (About your move, at least. Existentially, we're right there with you.)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MEET YOUR MOVERS (crew cards on settled card idiom) ============ -->
+  <section class="block" id="reviews">
+    <div class="wrap">
+      <h2>Who's showing up at my door?</h2>
+      <p class="sub">No strangers, no subcontractors. A few days before your move, we send your crew's names, photos, and bios — so move day starts with a handshake, not a question mark.</p>
+      <div class="crew-grid">
+        <div class="crew-card">
+          <div class="crew-photo">Crew photo placeholder</div>
+          <h3>Marcus</h3>
+          <p class="tenure">3 years with Einstein</p>
+          <p>Background-checked, W-2, and the reigning champion of getting sofas through doorways that "definitely won't fit."</p>
+        </div>
+        <div class="crew-card">
+          <div class="crew-photo">Crew photo placeholder</div>
+          <h3>Devon</h3>
+          <p class="tenure">5 years with Einstein</p>
+          <p>Has wrapped more grandfather clocks than he can count. Treats your stuff like it's his grandmother's.</p>
+        </div>
+        <div class="crew-card">
+          <div class="crew-photo">Crew photo placeholder</div>
+          <h3>Sarah</h3>
+          <p class="tenure">8 years with Einstein</p>
+          <p>Crew lead, stairwell strategist, and the calmest person you'll meet on the most chaotic day of your year.</p>
+        </div>
+      </div>
+      <p class="crew-proof">Fewer than <b>1% of applicants</b> make it onto an Einstein crew.</p>
+      <p class="nudge">We're picky so you don't have to be. 🤝</p>
+    </div>
+  </section>
+
+  <!-- ============ STORY BAND (new element, form-styled white card — front, not center) ============ -->
+  <section class="block" style="background:var(--einstein-light); padding:48px 0;">
+    <div class="wrap">
+      <div class="story-card">
+        <div class="story-photo">Archive photo placeholder — Cameron &amp; Paul with truck #1, 2012</div>
+        <div>
+          <h3>A long time ago, in a sandbox not so far away…</h3>
+          <p>Our story is your standard "two best friends meet in kindergarten, grow up together, and decide to start a moving company." Oh, you've never heard that one before? It's a classic around here.</p>
+          <p>Founded in 2012 with one truck. Now 10 branches across Texas and Tampa, FL — same two friends, same standard.</p>
+          <a class="story-link" href="https://www.einsteinmoving.com/about-us/">Why the name Einstein? →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NIGHTMARES ACCORDION (settled #22 — fears named, answered with receipts) ============ -->
+  <section class="block">
+    <div class="wrap">
+      <h2>Common moving nightmares we eliminate</h2>
+      <p class="sub">(So you can sleep easy.)</p>
+      <div class="nightmare-list" id="nightmares">
+        <div>
+          <button class="nightmare-item" aria-expanded="false"><span>💔 What if my stuff gets damaged?</span><span class="acc-toggle">+</span></button>
+          <div class="acc-answer" hidden><p>$2,000 of coverage is already in your rate — based on actual value, not weight, with no deductible and no upgrade required. The industry default is $0.60 per pound: that's a $30 check for your $1,200 TV. That's like insuring your wedding ring based on how heavy it is.</p></div>
+        </div>
+        <div>
+          <button class="nightmare-item" aria-expanded="false"><span>🧍 Who are these people carrying my life out the door?</span><span class="acc-toggle">+</span></button>
+          <div class="acc-answer" hidden><p>Background-checked W-2 employees — never subcontractors. With Meet Your Mover, you get your crew's names, photos, and bios days before the move. No strangers at your door.</p></div>
+        </div>
+        <div>
+          <button class="nightmare-item" aria-expanded="false"><span>⏰ Will you actually be on time?</span><span class="acc-toggle">+</span></button>
+          <div class="acc-answer" hidden><p>Our On-Time Guarantee has teeth: we commit to a 2-hour arrival window, and if we miss it, your move is instantly discounted — and the discount grows the longer you wait. We rarely need it.</p></div>
+        </div>
+        <div>
+          <button class="nightmare-item" aria-expanded="false"><span>🤑 Will the bill be double the quote?</span><span class="acc-toggle">+</span></button>
+          <div class="acc-answer" hidden><p>No. One all-inclusive hourly rate — truck, gas, pads, wrap, assembly, taxes, coverage, all of it. The clock starts when we pick up your first box, not when we leave the warehouse. The rate you see is the rate you pay.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOCATIONS (settled #33 branch cards) ============ -->
+  <section class="block" id="locations" style="background:var(--einstein-light);">
+    <div class="wrap">
+      <h2>Movers near you</h2>
+      <p class="sub">10 branches, one standard. Find yours.</p>
+      <div class="branch-grid">
+        <a class="branch-card" href="https://www.einsteinmoving.com/locations/texas-movers/north-austin-movers/"><div class="city">North Austin</div><div class="state">Texas</div><div class="link">See local movers</div></a>
+        <a class="branch-card" href="https://www.einsteinmoving.com/locations/texas-movers/south-austin-movers/"><div class="city">South Austin</div><div class="state">Texas</div><div class="link">See local movers</div></a>
+        <a class="branch-card" href="https://www.einsteinmoving.com/locations/texas-movers/leander-movers/"><div class="city">Leander</div><div class="state">Texas</div><div class="link">See local movers</div></a>
+        <a class="branch-card" href="https://www.einsteinmoving.com/locations/texas-movers/san-antonio-movers/"><div class="city">San Antonio</div><div class="state">Texas</div><div class="link">See local movers</div></a>
+        <a class="branch-card" href="https://www.einsteinmoving.com/locations/texas-movers/houston-movers/"><div class="city">Houston</div><div class="state">Texas</div><div class="link">See local movers</div></a>
+        <a class="branch-card" href="https://www.einsteinmoving.com/locations/texas-movers/dallas-movers/"><div class="city">Dallas</div><div class="state">Texas</div><div class="link">See local movers</div></a>
+        <a class="branch-card" href="https://www.einsteinmoving.com/locations/texas-movers/fort-worth-movers/"><div class="city">Fort Worth</div><div class="state">Texas</div><div class="link">See local movers</div></a>
+        <a class="branch-card" href="https://www.einsteinmoving.com/locations/texas-movers/garland-movers/"><div class="city">Garland</div><div class="state">Texas</div><div class="link">See local movers</div></a>
+        <a class="branch-card" href="https://www.einsteinmoving.com/locations/texas-movers/mckinney-movers/"><div class="city">McKinney</div><div class="state">Texas</div><div class="link">See local movers</div></a>
+        <a class="branch-card" href="https://www.einsteinmoving.com/locations/florida-movers/tampa-movers/"><div class="city">Tampa</div><div class="state">Florida</div><div class="link">See local movers</div></a>
+      </div>
+      <p class="areas-line">Each branch serves a 10–15 mile free service area and the surrounding suburbs — from Pflugerville to The Domain, Frisco to the Heights. Outside the zone? We'll show any trip fee upfront, before you book.</p>
+    </div>
+  </section>
+
+  <!-- ============ FAQ (settled #23 — logistical, gray-fill rows on white) ============ -->
+  <section class="block">
+    <div class="wrap">
+      <h2>The logistics, answered</h2>
+      <p class="sub">The practical stuff people ask right before they book.</p>
+      <div class="faq-list" id="faq">
+        <div>
+          <button class="faq-item" aria-expanded="false"><span>What forms of payment do you accept?</span><span class="acc-toggle">+</span></button>
+          <div class="acc-answer" hidden><p>All major credit cards — with no processing fees, ever. We don't accept cash or checks in Texas (Florida takes cards and cash). Office moves paying by check can confirm with us ahead of time.</p></div>
+        </div>
+        <div>
+          <button class="faq-item" aria-expanded="false"><span>How far in advance should I book?</span><span class="acc-toggle">+</span></button>
+          <div class="acc-answer" hidden><p>Local moves: a week or two is usually plenty. Long distance within Texas: 2–4 weeks, especially in summer and at month-end. No deposit and free cancellation mean booking early costs you nothing.</p></div>
+        </div>
+        <div>
+          <button class="faq-item" aria-expanded="false"><span>Can I cancel or change my move date?</span><span class="acc-toggle">+</span></button>
+          <div class="acc-answer" hidden><p>Yes — free cancellation, no deposit required to book. Plans change, we get it. Just give us as much notice as you can.</p></div>
+        </div>
+        <div>
+          <button class="faq-item" aria-expanded="false"><span>Do you disassemble and reassemble furniture?</span><span class="acc-toggle">+</span></button>
+          <div class="acc-answer" hidden><p>Yes. Beds, dresser mirrors, table legs — everything we take apart gets put back together at the other end. Our movers bring fully stocked tool bags, and it's all included in the hourly rate.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXIT-RAMP PANEL (settled #25/#32 — the human handoff) ============ -->
+  <section class="block" id="book" style="padding-top:0;">
+    <div class="wrap">
+      <div class="exit-ramp">
+        <h2>Need more options? Talk to a human.</h2>
+        <p>Weird staircase? Partial move? Just want to hear a friendly voice before you decide? Our moving pros are real people in your city — no phone trees, no pressure.</p>
+        <div class="exit-actions">
+          <a class="btn-secondary" href="tel:7373774537">📞 Call us</a>
+          <a class="btn-secondary" href="sms:7373774537">💬 Text us</a>
+          <a class="btn-secondary" href="https://www.einsteinmoving.com/contact/">✉️ Email your questions</a>
+        </div>
+        <div class="microproof">No deposit · Free cancellation · Quote valid for 7 days</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="wrap">
+      <p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don't earn numbers like those by nickel-and-diming people on moving day.</span></p>
+      <div class="footer-links">
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/north-austin-movers/">North Austin</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/south-austin-movers/">South Austin</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/leander-movers/">Leander</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/san-antonio-movers/">San Antonio</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/houston-movers/">Houston</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/dallas-movers/">Dallas</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/fort-worth-movers/">Fort Worth</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/garland-movers/">Garland</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/mckinney-movers/">McKinney</a>
+        <a href="https://www.einsteinmoving.com/locations/florida-movers/tampa-movers/">Tampa</a>
+      </div>
+      <p class="desc">Einstein Moving Company, founded in 2012, provides professional, reliable residential and commercial moving services across Texas and Tampa, Florida. Trusted service, transparent pricing, and friendly expertise — every box, every home, every customer.</p>
+      <p class="reg">TX TxDMV #006604158C · US DOT #2193963 &nbsp;|&nbsp; FL Mover Reg. No. IM3621 · US DOT #3882313</p>
+      <p class="textus">Questions? Text us: <a href="sms:7373774537">737.377.4537</a></p>
+    </div>
+  </footer>
+
+  <!-- ============ STICKY PRICING/CTA BAR (settled #26) ============ -->
+  <div class="sticky-bar">
+    <div class="sticky-content">
+      <div class="sticky-trust"><span><span class="ok">✓</span> No deposit</span><span><span class="ok">✓</span> Free cancellation</span><span><span class="ok">✓</span> $2,000 coverage</span></div>
+      <a class="btn-primary" href="#book">Get My Free Quote</a>
+    </div>
+  </div>
+
+  <a class="hq-chip" href="../index.html">← Redesign HQ</a>
+
+<script>
+  // Hero rotating word — typewriter, per motion.json heroRotatingWord spec (verbatim from landing-sample)
+  (function () {
+    var el = document.getElementById('rotator');
+    var words = ["Easy","Affordable","Fast","Fun","Smart","A Good Time","Refreshingly Simple"];
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { el.textContent = "Refreshingly Simple"; el.style.borderRight = "none"; return; }
+    var w = 0, c = 0, deleting = false;
+    function tick() {
+      var word = words[w];
+      el.textContent = word.substring(0, c);
+      if (!deleting && c < word.length) { c++; setTimeout(tick, 53); }
+      else if (!deleting && c === word.length) { deleting = true; setTimeout(tick, 3650); }
+      else if (deleting && c > 0) { c--; setTimeout(tick, 30); }
+      else { deleting = false; w = (w + 1) % words.length; setTimeout(tick, 200); }
+    }
+    tick();
+  })();
+
+  // Hero banner-face workshop toggle (mockup tool) — Lora (default, per KP
+  // refinements: Lora = hero/banner display) ⇄ Roboto. Rotator unaffected:
+  // it only swaps textContent, so it keeps typing in either face.
+  (function () {
+    var h1 = document.getElementById('heroH1');
+    var label = document.getElementById('faceLabel');
+    var btn = document.getElementById('faceToggle');
+    if (!h1 || !btn) return;
+    btn.addEventListener('click', function () {
+      var serif = h1.classList.toggle('serif');
+      label.textContent = 'Banner face: ' + (serif ? 'Lora' : 'Roboto');
+    });
+  })();
+
+  // Accordions — nightmares + FAQ share one handler (settled #22/#23 behavior)
+  function wireAccordion(id, btnClass) {
+    document.getElementById(id).addEventListener('click', function (e) {
+      var btn = e.target.closest('.' + btnClass);
+      if (!btn) return;
+      var ans = btn.nextElementSibling;
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      ans.hidden = open;
+      btn.querySelector('.acc-toggle').textContent = open ? '+' : '–';
+    });
+  }
+  wireAccordion('nightmares', 'nightmare-item');
+  wireAccordion('faq', 'faq-item');
+</script>
+
+<!-- Kit Classic — landing-sample.html evolved; built from settled-components.md
+  Retrofitted to KP design-system refinements (Emma, 6/11): ramps/WCAG, Navy-500 text,
+  orange-text ban resolutions, Size 1-6 type, 4px spacing, Lora banner. -->
+<script>
+/* Reaction layer (workshop chrome, not part of the mock) */
+(function () {
+  var KEY = 'einstein-rxn-kit-classic';
+  var PAGE = 'Kit Classic';
+  var css = document.createElement('style');
+  css.textContent = [
+    '.rxn-pin{position:absolute;top:10px;right:10px;z-index:240;width:34px;height:34px;border-radius:50%;border:1px solid #E5E5E5;background:rgba(255,255,255,.92);color:#bbb;font-size:15px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:all .15s}',
+    '.rxn-pin:hover{border-color:#EF8B22;color:#EF8B22}',
+    '.rxn-pin.on{background:#EF8B22;border-color:#EF8B22;color:#fff}',
+    '.rxn-note{display:none;position:absolute;top:50px;right:10px;z-index:240;width:min(320px,70vw);background:#fff;border:1px solid #EF8B22;border-radius:10px;padding:10px 12px;font:13px/1.45 Roboto,sans-serif;color:#333;box-shadow:0 8px 28px rgba(0,0,0,.14);resize:vertical;min-height:56px}',
+    '.rxn-note.show{display:block}',
+    '.rxn-bar{position:fixed;left:14px;bottom:64px;z-index:260;display:flex;gap:8px;align-items:center;background:#1f1f1f;border-radius:100px;padding:7px 9px;box-shadow:0 10px 30px rgba(0,0,0,.35)}',
+    '.rxn-bar .c{font:12px/1 Roboto,sans-serif;color:#ddd;padding:0 5px 0 9px;white-space:nowrap}.rxn-bar .c b{color:#EF8B22}',
+    '.rxn-bar button{font:700 12px/1 Roboto,sans-serif;border:none;border-radius:100px;padding:9px 14px;cursor:pointer;background:#EF8B22;color:#111}',
+    '@media print{.rxn-pin,.rxn-note,.rxn-bar{display:none!important}}'
+  ].join('');
+  document.head.appendChild(css);
+
+  var state = { notes: {}, likes: {} };
+  try {
+    var l = JSON.parse(localStorage.getItem(KEY) || '{}');
+    if (l && typeof l === 'object') { if (l.notes) state.notes = l.notes; if (l.likes) state.likes = l.likes; }
+  } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  var sections = Array.prototype.filter.call(document.querySelectorAll('section, header.hero, [data-rxn]'), function (s) {
+    return s.offsetHeight > 180 && !s.querySelector('.rxn-pin');
+  });
+
+  function labelOf(sec, i) {
+    var h = sec.querySelector('h1,h2,h3');
+    var t = h ? h.textContent.trim().replace(/\s+/g, ' ').slice(0, 70) : (sec.id || 'section ' + (i + 1));
+    return t;
+  }
+
+  var bar = document.createElement('div');
+  bar.className = 'rxn-bar';
+  bar.innerHTML = '<span class="c"><b id="rxnCount">0</b> reactions</span><button id="rxnExport" type="button">📋 Export</button>';
+  document.body.appendChild(bar);
+
+  function renderCount() {
+    var n = 0;
+    Object.keys(state.likes).forEach(function (k) { if (state.likes[k]) n++; });
+    Object.keys(state.notes).forEach(function (k) { if ((state.notes[k] || '').trim() && !state.likes[k]) n++; });
+    document.getElementById('rxnCount').textContent = n;
+  }
+
+  sections.forEach(function (sec, i) {
+    var id = 's' + i;
+    if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
+    var pin = document.createElement('button');
+    pin.className = 'rxn-pin';
+    pin.type = 'button';
+    pin.textContent = '♥';
+    pin.title = 'React to: ' + labelOf(sec, i);
+    var note = document.createElement('textarea');
+    note.className = 'rxn-note';
+    note.placeholder = 'Your take on this section… (saves automatically)';
+    note.value = state.notes[id] || '';
+    function sync() {
+      pin.classList.toggle('on', !!state.likes[id] || !!(state.notes[id] || '').trim());
+    }
+    pin.addEventListener('click', function () {
+      var showing = note.classList.toggle('show');
+      if (showing) { state.likes[id] = true; note.focus(); }
+      else if (!(state.notes[id] || '').trim()) { delete state.likes[id]; }
+      save(); sync(); renderCount();
+    });
+    note.addEventListener('input', function () {
+      state.notes[id] = note.value;
+      save(); sync(); renderCount();
+    });
+    sec.appendChild(pin);
+    sec.appendChild(note);
+    sync();
+  });
+
+  document.getElementById('rxnExport').addEventListener('click', function () {
+    var lines = ['# ' + PAGE + ' — Cameron’s Reactions — ' + new Date().toLocaleDateString(), ''];
+    var any = false;
+    sections.forEach(function (sec, i) {
+      var id = 's' + i;
+      var liked = !!state.likes[id];
+      var note = (state.notes[id] || '').trim();
+      if (!liked && !note) return;
+      any = true;
+      lines.push('## ' + (liked ? '♥ ' : '') + labelOf(sec, i));
+      if (note) note.split('\n').forEach(function (ln) { lines.push('> ' + ln); });
+      lines.push('');
+    });
+    if (!any) lines.push('_No reactions yet — tap a ♥ pin on any section._');
+    var md = lines.join('\n');
+    var blob = new Blob([md], { type: 'text/markdown' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'kit-classic-reactions.md';
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(md).catch(function () {});
+    var btn = document.getElementById('rxnExport');
+    btn.textContent = '✓ Exported';
+    setTimeout(function () { btn.textContent = '📋 Export'; }, 1500);
+  });
+
+  renderCount();
+})();
+
+</script>
+</body>
+</html>

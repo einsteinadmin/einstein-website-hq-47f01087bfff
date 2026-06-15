@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>North Austin Movers — Einstein Moving Company · HOMETOWN PROOF (fidelity mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   EINSTEIN BRAND KIT — colors_and_type.css (INLINED VERBATIM)
+   Source: einstein-brand-kit/agent/visual/colors_and_type.css
+   KP design-system refinements ADOPTED 6/11 (Emma Butler):
+   full tonal ramps, Navy-500 primary text, orange-as-text ban,
+   Size 1-6 type scale @ 20px base, Lora = banner display only,
+   Bebas retired from website work.
+   ============================================================ */
+
+/* ============================================================
+   Einstein Brand Kit — colors_and_type.css
+   Drop-in CSS custom properties + type scale.
+   This is the implementation standard for web/app UI.
+   Pair with tokens/tokens.json (same values as data) and
+   motion/motion.css (timing + easing).
+   Fonts are bundled — fonts/fonts.css declares @font-face for Roboto,
+   Bebas Neue, Thirsty Script, and Lora, so the kit renders offline.
+   ============================================================ */
+
+/* @import url('fonts/fonts.css');  — bundled-fonts import stays commented in mockups; Roboto + Lora load via Google Fonts in <head> */
+
+:root {
+
+  /* ============================================================
+     COLOUR SCALE
+     Full families — 7 stops each. Use scale variables in components;
+     use role aliases (bottom of this section) for semantic intent.
+     Do not invent values outside this scale.
+     ============================================================ */
+
+  /* ---- Orange ---- */
+  --color-orange-50:  #FEF6EC;   /* page backgrounds, warm tinted surfaces */
+  --color-orange-100: #FDE3C2;   /* subtle fills, hover states on light backgrounds */
+  --color-orange-200: #FABD84;   /* decorative elements, illustrations */
+  --color-orange-300: #F5A054;   /* decorative only — do not use for text */
+  --color-orange-500: #EF8B22;   /* brand colour — CTAs, icons, accents (Pantone 144 C) */
+  --color-orange-700: #D96B10;   /* hover state for orange elements */
+  --color-orange-900: #CC5500;   /* deep burnt orange — large text, UI borders, badges */
+
+  /* ---- Navy ---- */
+  --color-navy-50:  #EEF1F4;     /* page backgrounds, card fills */
+  --color-navy-100: #CDD5DA;     /* borders, dividers */
+  --color-navy-200: #9AADB7;     /* muted icons, secondary borders */
+  --color-navy-400: #507080;     /* secondary text — large text only (≥18px or ≥14px bold) */
+  --color-navy-500: #27343D;     /* brand colour — primary text, headings (Pantone 432 CP) */
+  --color-navy-700: #1A2329;     /* footer backgrounds */
+  --color-navy-900: #0B1014;     /* near-black, maximum contrast */
+
+  /* ---- Blue ---- */
+  --color-blue-50:  #EBF4FB;     /* info tints, callout block backgrounds */
+  --color-blue-100: #C3DFEF;     /* subtle info fills */
+  --color-blue-200: #88C0E4;     /* decorative, illustrations */
+  --color-blue-300: #46A2D5;     /* decorative, large text only */
+  --color-blue-500: #0979C3;     /* brand colour — links, interactive buttons, focus states (Pantone 3005 CP) */
+  --color-blue-700: #065E9A;     /* hover state for blue interactive elements */
+  --color-blue-900: #023B63;     /* deep blue — high-emphasis text, dark blue backgrounds */
+
+  /* ---- Grey ---- */
+  --color-grey-50:  #F4F5F5;     /* neutral page backgrounds */
+  --color-grey-100: #E2E3E4;     /* card fills, input backgrounds */
+  --color-grey-200: #C0C2C4;     /* borders, dividers, horizontal rules */
+  --color-grey-400: #787C7F;     /* placeholder text — large text only (≥18px or ≥14px bold) */
+  --color-grey-500: #53575A;     /* brand colour — secondary body text (Pantone 425 C) */
+  --color-grey-700: #363839;     /* primary body text on light backgrounds */
+  --color-grey-900: #191A1B;     /* near-black, maximum contrast */
+
+  /* ---- Brand name aliases (map to scale) ---- */
+  --einstein-orange: var(--color-orange-500);
+  --einstein-gray:   var(--color-grey-500);
+  --einstein-blue:   var(--color-blue-500);
+  --einstein-dark:   var(--color-navy-500);
+  --einstein-light:  #F6F6F6;    /* Cool Gray 1 C — page backgrounds, input fills */
+  --white:           #FFFFFF;
+
+  /* ---- Semantic ---- */
+  --success:    #69995D;   /* checkmarks, confirmations */
+  --error:      #CC0100;   /* errors, competitor hidden fees in red */
+  --email-link: #0A81D1;   /* links in email context only */
+
+  /* ---- Role aliases — prefer these in components ---- */
+  --color-text:        var(--color-grey-500);    /* secondary/body text */
+  --color-heading:     var(--color-navy-500);    /* headings — navy */
+  --color-bg:          var(--white);
+  --color-bg-muted:    var(--einstein-light);
+  --color-bg-dark:     var(--color-navy-500);
+  --color-action:      var(--color-blue-500);    /* where people click, in content */
+  --color-accent:      var(--color-orange-500);  /* personality: emphasis, nav CTA, selection */
+  --color-on-dark:     var(--white);
+
+  /*
+   * Section Background Hierarchy
+   * Use this order — Navy-500 or darker is not approved as a full section
+   * background except the footer.
+   *
+   * 1. White (#FFFFFF)              — default
+   * 2. Orange 50 (#FEF6EC)          — warm / featured sections
+   * 3. Grey 50 (#F4F5F5)            — subtle alternation
+   * 4. Navy 50 (#EEF1F4)            — lightest tint of contrast
+   * 5. Navy 700 (#1A2329)           — footer only
+   */
+
+  /*
+   * WCAG 2.1 AA — Approved pairings (verified contrast ratios)
+   *
+   * Normal text (< 18px regular / < 14px bold): 4.5:1 minimum
+   * Large text / UI (≥ 18px regular / ≥ 14px bold): 3:1 minimum
+   *
+   * Background  →  Foreground         Ratio   Approved for
+   * #EF8B22     →  #27343D            5.4:1   Buttons, badges
+   * #EF8B22     →  #0B1014            6.5:1   High-contrast on orange
+   * #CC5500     →  #FFFFFF            4.3:1   Large text + UI only (not body copy)
+   * #27343D     →  #FFFFFF           12.8:1   Any text size
+   * #27343D     →  #EF8B22            5.4:1   Icons, callouts on dark
+   * #1A2329     →  #EF8B22            6.5:1   Dark overlay use only
+   * #0979C3     →  #FFFFFF            4.8:1   Buttons, links
+   * #065E9A     →  #FFFFFF            6.8:1   Hover states
+   * #FFFFFF     →  #0979C3            4.8:1   Link text
+   * #FFFFFF     →  #27343D           12.8:1   Primary body text
+   * #FFFFFF     →  #53575A            7.3:1   Secondary body text
+   * #EBF4FB     →  #0979C3            4.4:1   Info cards — large text only
+   * #EBF4FB     →  #27343D           11.6:1   Info cards with dark text
+   * #FEF6EC     →  #27343D           11.9:1   Warm tinted cards
+   * #023B63     →  #FFFFFF           11.6:1   Deep blue sections
+   *
+   * Do NOT use Orange-500 as text colour on white — fails contrast for text.
+   * Navy-400 and Grey-400 pass at 3:1 — large text and UI only.
+   */
+
+  /* ============================================================
+     TYPE FAMILIES
+     ============================================================ */
+
+  --font-sans:          'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-script:        'Thirsty Script', cursive;  /* SPARINGLY — "Smart Move" flourishes only */
+  --font-display:       'Bebas Neue', sans-serif;   /* hero headlines */
+  --font-display-serif: 'Lora', serif;              /* Size 1 / banner display only */
+
+  /* ---- Type weights ---- */
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+
+  /* ============================================================
+     TYPE SCALE
+     Base: html { font-size: 20px } — 1rem = 20px throughout.
+
+     Size 1–6 name the visual hierarchy tier, not the HTML element.
+     Heading markup (h1–h6) is independent of visual size:
+       • h1 is typically set at Size 5 or Size 6 visually.
+       • h2 is typically set at Size 2.
+     Any heading level can use any size token — choose by visual
+     hierarchy, then write the correct semantic markup separately.
+
+     Body: use P (--fs-body) for long-form prose. Use Small P
+     (--fs-sm-p) for cards and compact UI. Tiny P for legal only.
+     ============================================================ */
+
+  /* ---- Display & Heading ---- */
+  --fs-size-1: 4rem;    /* 80px  — banner display; use --font-display-serif (Lora) */
+  --lh-size-1: 1.2;
+  --fs-size-2: 2rem;    /* 40px  — major section headings (most often h2) */
+  --lh-size-2: 1.2;
+  --fs-size-3: 1.6rem;  /* 32px */
+  --lh-size-3: 1.25;
+  --fs-size-4: 1.2rem;  /* 24px */
+  --lh-size-4: 1.6;
+  --fs-size-5: 1rem;    /* 20px — typical h1 visual size */
+  --lh-size-5: 1.5;
+  --fs-size-6: 0.9rem;  /* 18px */
+  --lh-size-6: 1.3;
+
+  /* ---- Legacy px aliases (backward-compatible) ---- */
+  --fs-hero:   59px;  --lh-hero:   77px;   /* hero headlines — Bebas Neue */
+  --fs-h1:     24px;  --lh-h1:     36px;
+  --fs-h2:     40px;  --lh-h2:     44px;
+  --fs-h3:     32px;  --lh-h3:     40px;
+  --fs-h4:     24px;  --lh-h4:     32px;
+  --fs-h5:     20px;  --lh-h5:     30px;
+  --fs-h6:     18px;  --lh-h6:     24px;
+
+  /* ---- Body text ---- */
+  --fs-lg-p:   1.2rem;  /* 24px — introductory paragraphs, pull quotes, emphasized copy */
+  --lh-lg-p:   1.5;
+  --fs-body:   1rem;    /* 20px — default long-form body copy (editorial sections) */
+  --lh-body:   1.5;
+  --fs-sm-p:   0.8rem;  /* 16px — card copy, captions, labels, supporting/secondary text */
+  --lh-sm-p:   1.5;
+  --fs-tiny-p: 0.6rem;  /* 12px — legal text, metadata, fine print only */
+  --lh-tiny-p: 1.6;
+
+  /* ---- Radius & shadow ---- */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(39, 52, 61, 0.08);
+  --shadow-md: 0 4px 12px rgba(39, 52, 61, 0.10);
+  --shadow-lg: 0 12px 32px rgba(39, 52, 61, 0.14);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+html {
+  font-size: 20px; /* 1rem = 20px */
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-regular);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   Base typography
+   ============================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-bold);
+  color: var(--color-heading);
+  margin: 0 0 0.5em;
+}
+
+h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); }
+h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); }
+h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); }
+h4 { font-size: var(--fs-h4); line-height: var(--lh-h4); }
+h5 { font-size: var(--fs-h5); line-height: var(--lh-h5); }
+h6 { font-size: var(--fs-h6); line-height: var(--lh-h6); }
+
+.hero-headline  { font-family: var(--font-display); font-size: var(--fs-hero); line-height: var(--lh-hero); font-weight: var(--weight-bold); }
+.display-banner { font-family: var(--font-display-serif); font-size: var(--fs-size-1); line-height: var(--lh-size-1); font-weight: var(--weight-bold); }
+.lead           { font-size: var(--fs-lg-p); line-height: var(--lh-lg-p); }
+.small-text     { font-size: var(--fs-sm-p); line-height: var(--lh-sm-p); }
+.fine-print     { font-size: var(--fs-tiny-p); line-height: var(--lh-tiny-p); }
+
+a { color: var(--color-action); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* "Smart Move" script flourish — use ONLY for that phrase, never body text */
+.script-accent { font-family: var(--font-script); color: var(--color-accent); }
+
+/* ============================================================
+   Typography rules
+   - Avoid long ALL CAPS strings in body text. Reserve caps for short labels.
+   - Thirsty Script: sparingly, never body copy (the "Smart Move" mark only).
+   - Bebas Neue: hero headlines only — not a wholesale body replacement.
+   - Lora: Size 1 / banner display only.
+   - Orange is accent/nav-CTA only. In-content buttons + links use blue.
+   - P (--fs-body) for long-form prose; Small P (--fs-sm-p) for cards + compact UI.
+   - Tiny P (--fs-tiny-p) for legal/metadata only — never for readable content.
+   ============================================================ */
+
+/* Mobile-first: scale hero and large headings down on small screens */
+@media (max-width: 640px) {
+  :root {
+    --fs-hero:   38px;   --lh-hero:   46px;
+    --fs-h2:     30px;   --lh-h2:     36px;
+    --fs-h3:     26px;   --lh-h3:     32px;
+    --fs-lg-p:   20px;   --lh-lg-p:   30px;
+    --fs-size-1: 2.5rem;
+    --fs-size-2: 1.6rem;
+    --fs-size-3: 1.4rem;
+  }
+}
+
+</style>
+
+<style>
+/* ============================================================
+   HOMETOWN PROOF — full-fidelity mockup · RE-SKINNED 6/11 PM
+   Location-template-first (North Austin) · doubles as geo-aware homepage default
+   Visual vocabulary = the SETTLED QUOTE-FORM LANGUAGE
+   (research/settled-components.md — 38 components + the 10 Rules).
+   Light warm surfaces · white cards w/ Grey-200 hairline, 12px radius ·
+   blue = every in-content CTA · orange = fills/selection/nav accents only ·
+   bold NAVY Roboto headlines · navy-on-Orange-50 wink chips · calm motion.
+   RETROFIT 6/11: KP design-system refinements (Emma) — Navy-500 headings,
+   orange-as-text ban (winks → Orange-50 chips, glyph accents → Orange-900),
+   Grey-50 alternation bands, Orange-50 warm surfaces, Navy-700 footer,
+   Lora hero headline, 4px spacing rounds, Blue-700/Orange-700 hovers.
+   ============================================================ */
+:root{
+  --hairline:var(--color-grey-200);
+  --cream:var(--color-orange-50);
+  --cream-border:var(--color-orange-200);
+  --maxw:1120px;
+  --btn-radius:8px; /* the settled button radius — between sm and md */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:var(--font-sans);font-size:17.5px;line-height:1.6;color:var(--einstein-gray);background:var(--white);-webkit-font-smoothing:antialiased;padding-bottom:88px}
+img{max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+section{padding:80px 0}
+
+/* section header rhythm: wink chip (navy on Orange-50 — orange is never text) → bold navy headline → plain sub */
+.wink{display:inline-block;font-size:14.5px;font-style:italic;color:var(--color-navy-500);background:var(--color-orange-50);border:1px solid var(--color-orange-200);border-radius:var(--radius-pill);padding:4px 14px;margin-bottom:12px}
+h2.sec{font-size:clamp(28px,3.8vw,40px);line-height:1.2;font-weight:700;color:var(--color-navy-500);margin-bottom:12px}
+.section-sub{font-size:18px;max-width:640px;color:var(--einstein-gray)}
+.sec-center{text-align:center}
+.sec-center .section-sub{margin:0 auto}
+
+/* ---------- buttons (settled: blue = click, 8px radius) ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-sans);font-weight:700;font-size:16px;border-radius:var(--btn-radius);padding:15px 30px;cursor:pointer;border:none;transition:transform 120ms cubic-bezier(.2,0,0,1),box-shadow 120ms cubic-bezier(.2,0,0,1);text-decoration:none}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+.btn:active{transform:scale(.98)}
+.btn-blue{background:var(--einstein-blue);color:#fff !important}
+.btn-blue:hover{background:var(--color-blue-700);box-shadow:0 4px 12px rgba(9,121,195,.3)}
+.btn-ghost{background:transparent;color:var(--einstein-blue) !important;border:2px solid var(--einstein-blue);padding:13px 28px}
+.btn-ghost:hover{color:var(--color-blue-700) !important;border-color:var(--color-blue-700)}
+/* the ONE orange button: site-nav CTA only — orange fill always pairs with dark text (KP pairing rule) */
+.btn-nav{background:var(--einstein-orange);color:var(--color-navy-500) !important;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.5px;padding:12px 24px;border-radius:var(--btn-radius);min-height:44px}
+.btn-nav:hover{background:var(--color-orange-700);box-shadow:0 4px 12px rgba(239,139,34,.3)}
+.microproof{display:block;font-size:13.5px;color:var(--einstein-gray);margin-top:10px}
+.microproof b{color:var(--einstein-dark)}
+
+/* ---------- template banner (dev chrome, not page design) ---------- */
+.template-banner{background:var(--einstein-dark);color:#cfd8de;font-size:12.5px;line-height:1.45;padding:8px 16px;display:flex;gap:14px;align-items:center;justify-content:flex-start;flex-wrap:wrap;position:relative;z-index:60}
+.template-banner a.hq{color:#fff;font-weight:700;font-size:12.5px;white-space:nowrap;flex:none}
+.template-banner .tag{background:var(--einstein-orange);color:#fff;font-weight:700;font-size:10.5px;letter-spacing:1.5px;padding:2px 9px;border-radius:var(--radius-pill);white-space:nowrap;flex:none}
+.template-banner span:last-child{flex:1;min-width:240px}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--hairline)}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;gap:20px}
+.logo{font-weight:700;font-size:20px;color:var(--color-navy-500);letter-spacing:.2px;text-decoration:none !important;white-space:nowrap}
+.logo em{font-style:normal;color:var(--color-orange-900)} /* ≥18px display accent → Orange-900, never Orange-500 text */
+.geo-pill{display:inline-flex;align-items:center;gap:7px;background:var(--color-grey-50);border:1px solid var(--hairline);border-radius:var(--radius-pill);padding:8px 16px;min-height:44px;font-weight:700;font-size:14px;color:var(--einstein-dark);cursor:pointer;font-family:var(--font-sans);transition:border-color 180ms cubic-bezier(.2,0,0,1)}
+.geo-pill:hover{border-color:var(--einstein-orange)}
+.geo-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--einstein-orange);flex:none}
+.geo-pill .caret{font-size:10px;color:var(--einstein-gray)}
+.geo-wrap{position:relative}
+.geo-menu{position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1px solid var(--hairline);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);min-width:250px;padding:8px;display:none;z-index:55}
+.geo-menu.open{display:block}
+.geo-menu button{display:flex;width:100%;align-items:center;justify-content:space-between;gap:10px;background:none;border:1px solid transparent;font-family:var(--font-sans);font-size:15px;font-weight:500;color:var(--einstein-dark);padding:10px 12px;border-radius:var(--radius-sm);cursor:pointer;text-align:left;transition:border-color 180ms cubic-bezier(.2,0,0,1)}
+.geo-menu button:hover{background:var(--einstein-light)}
+.geo-menu button.active{border-color:var(--einstein-orange);font-weight:700;background:#fff}
+.geo-menu button .check{color:var(--color-orange-900);font-weight:700}
+.geo-menu .demo-note{font-size:11.5px;color:#999;padding:8px 12px 4px;border-top:1px solid #eee;margin-top:6px;line-height:1.4}
+.nav-links{display:flex;gap:22px;margin-left:auto;align-items:center}
+.nav-links a{color:var(--einstein-gray);font-weight:500;font-size:15px}
+.nav-links a:hover{color:var(--einstein-dark);text-decoration:none}
+@media(max-width:900px){.nav-links a:not(.btn-nav){display:none}.nav-links{margin-left:auto}}
+@media(max-width:760px){.nav-links .btn-nav{display:none}} /* sticky bottom bar takes over */
+@media(max-width:560px){
+  .nav-inner{gap:12px;height:60px;padding:0 14px}
+  .logo{font-size:16px}
+  .geo-pill{padding:6px 12px;font-size:13px;white-space:nowrap}
+  .geo-pill #geoPillCity{white-space:nowrap}
+}
+
+/* ---------- hero: the step-header LOCKUP on a light band (settled #4 / #36) ----------
+   spot illustration → bold gray headline → reassurance → blue CTA + microproof.
+   Light, centered, illustrated — never dark, never photographic. */
+.hero{background:var(--color-grey-50);padding:64px 0 64px;text-align:center}
+.hero-inner{max-width:760px;margin:0 auto;padding:0 24px}
+.hero .geo-chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--hairline);border-radius:var(--radius-pill);padding:7px 18px;font-size:13.5px;font-weight:700;color:var(--einstein-dark);margin-bottom:26px}
+.hero .geo-chip .dot{width:8px;height:8px;border-radius:50%;background:var(--einstein-orange)}
+.hero .geo-chip a{font-weight:500}
+.spot-ph{width:84px;height:84px;margin:0 auto 18px;border:2px dashed #C8D2D9;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:9.5px;letter-spacing:1px;color:#90979C;text-align:center;line-height:1.5;background:#fff;text-transform:uppercase;padding:6px}
+.hero h1{font-family:var(--font-display-serif);font-size:clamp(32px,4.6vw,48px);line-height:1.2;font-weight:700;color:var(--color-navy-500);margin:0 auto 16px;max-width:18ch} /* Lora = hero/banner display only */
+.hero .subhead{font-size:clamp(16px,1.9vw,19px);max-width:600px;margin:0 auto 12px;color:var(--einstein-gray)}
+.hero .wink{margin:0 0 24px}
+.hero .hero-trustline{font-size:14px;color:var(--einstein-gray);margin-top:24px}
+.hero .stars{color:var(--color-orange-900);letter-spacing:2px;font-size:15px} /* star glyphs as text → Orange-900 */
+
+/* ---------- condensed trust strip (settled #2) — scope labels kept ---------- */
+.trust-strip{background:var(--white);border-bottom:1px solid var(--hairline);padding:0}
+.trust-strip .wrap{display:flex;justify-content:center;align-items:center;gap:0;flex-wrap:wrap}
+.trust-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:16px 34px;text-align:center}
+.trust-item + .trust-item{border-left:1px solid var(--hairline)}
+.trust-item .scope{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--color-orange-900)} /* tiny caps label → Orange-900 (badge/UI role) */
+.trust-item .line{font-size:13.5px;font-weight:500;color:var(--einstein-gray)}
+.trust-item .line b{font-size:16px;font-weight:700;color:var(--einstein-dark);margin-right:4px}
+@media(max-width:700px){.trust-item{padding:12px 18px;flex-basis:100%}.trust-item + .trust-item{border-left:none;border-top:1px solid var(--hairline)}}
+
+/* ---------- neighbor wall ---------- */
+.neighbor{background:var(--color-grey-50)}
+/* filter chips = the form's selection-pill idiom: selected = orange border (settled #6/#11) */
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin:24px 0 32px;justify-content:center}
+.chip{font-family:var(--font-sans);font-size:14px;font-weight:700;border-radius:var(--radius-pill);padding:10px 20px;min-height:44px;border:1px solid var(--hairline);background:#fff;color:var(--einstein-gray);cursor:pointer;transition:border-color 180ms cubic-bezier(.2,0,0,1),background 180ms cubic-bezier(.2,0,0,1)}
+.chip:hover{border-color:var(--einstein-orange)}
+.chip.active{border:2px solid var(--einstein-orange);padding:9px 19px;color:var(--einstein-dark);background:#fff}
+.wall{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.review-card{background:#fff;border:1px solid var(--hairline);border-radius:var(--radius-md);padding:24px;display:flex;flex-direction:column;gap:12px}
+.review-card .stars{color:var(--color-orange-900);font-size:15px;letter-spacing:2px}
+.review-card blockquote{font-size:15.5px;line-height:1.55;color:var(--einstein-dark);flex:1}
+.review-card .who{font-size:14px;font-weight:700;color:var(--einstein-dark)}
+.review-card .ctx{font-size:13px;color:var(--color-grey-500)}
+.review-card .verify-flag{font-size:11px;color:var(--error);font-weight:700;letter-spacing:.5px}
+.review-card.hidden-by-filter{display:none}
+.wall-foot{margin-top:26px;font-size:15px;text-align:center}
+.video-card{background:#fff;border:1px solid var(--hairline);position:relative;cursor:pointer;min-height:240px;justify-content:center;align-items:center;text-align:center}
+.video-card .play{width:64px;height:64px;border-radius:50%;background:var(--einstein-blue);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;margin:0 auto 12px;box-shadow:var(--shadow-md);transition:transform 120ms cubic-bezier(.2,0,0,1)}
+.video-card:hover .play{transform:scale(1.06)}
+.ph-caption{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#90979C;line-height:1.7}
+.video-card .vc-title{font-weight:700;font-size:16px;margin-bottom:6px;color:var(--einstein-dark)}
+@media(max-width:900px){.wall{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.wall{grid-template-columns:1fr}}
+
+/* ---------- vetting / funnel (kept, restyled with kit variables) ---------- */
+.vetting{background:#fff}
+.funnel{display:flex;align-items:flex-end;gap:0;margin:46px 0 10px;border-bottom:1px solid var(--hairline);position:relative}
+.stage{flex:1;display:flex;flex-direction:column;justify-content:flex-end;text-align:center;position:relative;padding:0 6px}
+.stage .bar{margin:0 auto;width:100%;max-width:150px;background:var(--einstein-light);border:1px solid var(--hairline);border-bottom:none;border-radius:8px 8px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:10px;color:var(--einstein-dark);font-weight:700;font-size:12px;letter-spacing:.5px}
+.stage:nth-child(1) .bar{height:200px}
+.stage:nth-child(2) .bar{height:150px}
+.stage:nth-child(3) .bar{height:105px}
+.stage:nth-child(4) .bar{height:66px}
+.stage:nth-child(5) .bar{height:38px;background:var(--einstein-orange);border-color:var(--einstein-orange);color:var(--color-navy-500)} /* HIRED = the orange terminal (sacred); dark text on orange per KP pairing */
+.stage .stage-label{font-size:13.5px;font-weight:700;color:var(--einstein-dark);margin-top:12px;line-height:1.3}
+.stage .stage-sub{font-size:12px;color:var(--color-grey-500);line-height:1.35}
+.stage .arrow{position:absolute;right:-9px;top:40%;font-size:18px;color:#C8D2D9;z-index:2}
+.funnel-punch{display:flex;align-items:center;gap:16px;margin-top:30px;flex-wrap:wrap;justify-content:center}
+/* the punch chip in the form's pill idiom: white pill, orange border, orange number */
+.funnel-punch .big-chip{font-family:var(--font-sans);font-weight:700;font-size:17px;color:var(--einstein-dark);background:#fff;border:2px solid var(--einstein-orange);padding:12px 28px;border-radius:var(--radius-pill);white-space:nowrap}
+.funnel-punch .big-chip em{font-style:normal;color:var(--color-orange-900)} /* emphasized number → Orange-900, not Orange-500 text */
+.funnel-punch p{font-size:15.5px;max-width:430px}
+/* Calvin pull-quote = white card, orange-italic nudge tail (settled #3 + #30) */
+.pull-quote{margin-top:56px;background:#fff;border:1px solid var(--hairline);border-radius:var(--radius-md);padding:32px 40px;display:flex;gap:24px;align-items:center}
+.pq-photo{flex:none;width:104px;height:104px;border-radius:50%;border:2px dashed #C8D2D9;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:1px;color:#90979C;text-align:center;line-height:1.4;background:var(--einstein-light)}
+.pull-quote blockquote{font-size:clamp(20px,2.4vw,25px);font-weight:700;color:var(--color-navy-500);line-height:1.4}
+.pull-quote .attrib{font-size:14.5px;color:var(--einstein-gray);margin-top:12px}
+.pull-quote .attrib b{color:var(--einstein-dark)}
+.pull-quote .attrib .nudge{display:inline-block;font-style:italic;color:var(--color-navy-500);background:var(--color-orange-50);border:1px solid var(--color-orange-200);border-radius:var(--radius-pill);padding:2px 10px} /* wink → navy on Orange-50 chip */
+@media(max-width:760px){
+  .funnel{flex-wrap:wrap;border-bottom:none;gap:14px}
+  .stage{flex:1 1 28%}
+  .stage .arrow{display:none}
+  .pull-quote{flex-direction:column;align-items:flex-start;padding:26px}
+}
+
+/* ---------- pricing: estimate-details ledger + benefit tiles (settled #34 + #20 + #18) ---------- */
+.pricing{background:var(--color-orange-50)} /* warm/featured section per background hierarchy */
+.pricing-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:start}
+.pricing-grid .anchor{font-weight:700;color:var(--einstein-dark);font-size:20px;margin-bottom:28px}
+.ledger{background:#fff;border:1px solid var(--hairline);border-radius:var(--radius-md);padding:32px}
+.ledger .ledger-head{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.ledger .ledger-head .pict{font-size:22px;flex:none}
+.ledger .ledger-head h3{font-size:18px;color:var(--einstein-dark);font-weight:700;line-height:1.35;margin:0}
+.benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.benefit-tile{background:#fff;border:1px solid var(--hairline);border-radius:var(--radius-md);padding:14px 10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px}
+.benefit-tile .pict{font-size:22px;line-height:1}
+.benefit-tile .lbl{font-size:12px;font-weight:500;color:var(--einstein-gray);line-height:1.4}
+.benefit-tile .lbl b{color:var(--einstein-dark)}
+/* cream ⓘ info banner — the settled objection-handling surface */
+.info-banner{background:var(--cream);border:1px solid var(--cream-border);border-radius:var(--radius-md);padding:16px 18px;font-size:14px;margin-top:18px;line-height:1.55;display:flex;gap:12px;align-items:flex-start}
+.info-banner .i-dot{flex:none;width:22px;height:22px;border-radius:50%;background:var(--einstein-blue);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;font-style:normal;margin-top:2px}
+.info-banner b{color:var(--einstein-dark)}
+@media(max-width:860px){.pricing-grid{grid-template-columns:1fr;gap:34px}}
+@media(max-width:480px){.benefit-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- story band: white-card rhythm (was dark) ---------- */
+.story{background:#fff}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.story p{color:var(--einstein-gray);font-size:17px;margin-bottom:18px}
+.story p b{color:var(--einstein-dark)}
+.archive-ph{border:2px dashed #C8D2D9;border-radius:var(--radius-md);min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--einstein-light);text-align:center;padding:24px}
+.story-stats{display:flex;gap:34px;margin:26px 0;flex-wrap:wrap}
+.story-stats div .n{font-size:32px;font-weight:700;color:var(--einstein-dark);line-height:1.1}
+.story-stats div .l{font-size:13px;color:var(--einstein-gray);margin-top:4px}
+@media(max-width:860px){.story-grid{grid-template-columns:1fr}}
+
+/* ---------- neighborhood tiles: white cards, hover = orange border hint ---------- */
+.hoods{background:var(--color-grey-50)}
+.hood-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:36px}
+.hood{background:#fff;border:1px solid var(--hairline);border-radius:var(--radius-md);padding:32px;display:flex;flex-direction:column;gap:12px;transition:border-color 180ms cubic-bezier(.2,0,0,1)}
+.hood:hover{border-color:var(--einstein-orange);text-decoration:none}
+.hood h3{font-size:20px;font-weight:700;color:var(--einstein-dark);margin:0}
+.hood p{font-size:14.5px;flex:1;line-height:1.55;color:var(--einstein-gray)}
+.hood .hood-cta{font-weight:700;font-size:15px;color:var(--einstein-blue)}
+.hood .hood-rate{font-size:12.5px;color:var(--color-grey-500)}
+@media(max-width:900px){.hood-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.hood-grid{grid-template-columns:1fr}}
+
+/* ---------- FAQ: the settled gray-filled accordion rows (form idiom, on white) ---------- */
+.faq{background:#fff}
+.faq-list{margin:34px auto 0;max-width:760px}
+.faq-item{background:var(--color-grey-50);border:none;border-radius:var(--radius-md);margin-bottom:12px;overflow:hidden}
+.faq-item summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary h3{font-size:17.5px;color:var(--color-navy-500);font-weight:500;line-height:1.4;margin:0}
+.faq-item summary .tw{flex:none;font-size:22px;color:var(--color-orange-900);font-weight:700;transition:transform 180ms cubic-bezier(.2,0,0,1)} /* ≥18px glyph accent → Orange-900 */
+.faq-item[open] summary .tw{transform:rotate(45deg)}
+.faq-item .a{padding:0 24px 22px;font-size:15.5px;line-height:1.6}
+.faq-item .a ul{margin:10px 0 0 20px}
+.faq-item .a li{margin-bottom:6px;font-size:14.5px}
+.faq-item .a b{color:var(--einstein-dark)}
+
+/* ---------- contact / NAP: white-card rhythm on light ---------- */
+.contact{background:var(--color-navy-50)} /* lightest tint of contrast per background hierarchy */
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:start;margin-top:32px}
+.nap{font-size:16px;line-height:1.7;background:#fff;border:1px solid var(--hairline);border-radius:var(--radius-md);padding:32px}
+.nap .row{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--color-grey-100)}
+.nap .row:first-child{padding-top:0}
+.nap .row .ic{flex:none;width:34px;height:34px;border-radius:50%;background:var(--color-grey-50);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--color-orange-900);font-weight:700}
+.nap .row div b{color:var(--einstein-dark)}
+.map-ph{border:2px dashed #C8D2D9;border-radius:var(--radius-md);min-height:330px;display:flex;align-items:center;justify-content:center;background:#fff;text-align:center;padding:24px}
+.areas{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.areas span{background:var(--einstein-light);border:1px solid var(--hairline);border-radius:var(--radius-pill);font-size:13px;font-weight:500;padding:5px 14px;color:var(--einstein-dark)}
+@media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
+
+/* ---------- closer: cream exit-ramp panel (settled #25), blue CTA ---------- */
+.closer{background:#fff;padding-top:0}
+.closer-panel{background:linear-gradient(160deg,var(--color-orange-50),var(--color-orange-100));border:1px solid var(--cream-border);border-radius:var(--radius-lg);text-align:center;padding:64px 32px}
+.closer-panel h2{font-size:clamp(28px,3.8vw,40px);font-weight:700;color:var(--color-navy-500);margin-bottom:12px}
+.closer-panel p{font-size:17.5px;color:var(--einstein-gray);max-width:560px;margin:0 auto 28px}
+
+/* ---------- footer (dark = allowed: footer is the kit's dark surface) ---------- */
+footer{background:var(--color-navy-700);color:rgba(255,255,255,.75);padding:56px 0 40px;font-size:14px} /* footer = the only approved dark section (Navy-700) */
+footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px}
+footer h4{font-size:16px;font-weight:700;color:#fff;margin-bottom:12px}
+footer ul{list-style:none}
+footer li{margin-bottom:7px}
+footer a{color:rgba(255,255,255,.75)}
+footer a:hover{color:#fff}
+footer .text-us{text-align:center;font-size:13px;color:rgba(255,255,255,.65);margin-top:36px}
+footer .text-us a{color:#7FC4F0;text-decoration:underline}
+footer .legal{border-top:1px solid rgba(255,255,255,.12);margin-top:18px;padding-top:22px;font-size:12.5px;line-height:1.7;color:rgba(255,255,255,.5)}
+@media(max-width:760px){footer .cols{grid-template-columns:1fr}}
+
+/* ---------- sticky pricing/CTA bar (settled #26) — persistent, all viewports ---------- */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:70;background:#fff;border-top:1px solid var(--hairline);padding:12px 24px calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 -4px 20px rgba(0,0,0,.1)}
+.sticky-cta .sc-proof{font-size:13px;color:var(--einstein-gray);display:flex;gap:16px;flex-wrap:wrap}
+.sticky-cta .sc-proof span b{color:var(--einstein-dark)}
+.sticky-cta .btn{padding:13px 24px;font-size:15px;flex:none}
+@media(max-width:760px){
+  .sticky-cta .sc-proof span:nth-child(n+3){display:none}
+  .sticky-cta .btn{flex:1;justify-content:center}
+}
+
+/* ---------- FLIP demo ---------- */
+.flip-swap{will-change:transform,opacity}
+.geo-toast{position:fixed;top:84px;left:50%;transform:translateX(-50%) translateY(-8px);background:var(--einstein-dark);color:#fff;font-size:13.5px;font-weight:500;padding:9px 20px;border-radius:var(--radius-pill);box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:80}
+.geo-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (prefers-reduced-motion:reduce){
+  .btn,.chip,.hood,.geo-pill,.video-card .play,.faq-item summary .tw{transition:none}
+  .geo-toast{transition:none}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What happens if my movers are late?","acceptedAnswer":{"@type":"Answer","text":"You get a discount. We commit to a 2-hour arrival window — if we miss it, your move is instantly discounted, and the discount grows the longer you wait. We call it our On-Time Guarantee, and we rarely need it."}},
+{"@type":"Question","name":"What does the $2,000 damage coverage actually cover?","acceptedAnswer":{"@type":"Answer","text":"$2,000 damage coverage is included free on every move, based on actual value rather than weight, with no deductible. A few exceptions apply: particle board furniture is covered at $0.60/lb, owner-packed boxes aren't guaranteed, appliances require a liability waiver, and coverage applies when we're driving our own trucks."}},
+{"@type":"Question","name":"Can I cancel my move?","acceptedAnswer":{"@type":"Answer","text":"Yes — free cancellation, and no deposit is required to book. Plans change; just give us as much notice as you can."}},
+{"@type":"Question","name":"Who's showing up at my door?","acceptedAnswer":{"@type":"Answer","text":"No strangers. A few days before your move we send your crew's names, photos, and bios. Every Einstein mover is a background-checked W-2 employee."}},
+{"@type":"Question","name":"How long does a North Austin move take?","acceptedAnswer":{"@type":"Answer","text":"North Austin moves run 2.5 hours minimum, about 7 hours on average. Time depends on size, distance, and stops — we give you a realistic estimate upfront so there are no guessing games."}}
+]}
+</script>
+</head>
+<body>
+
+<!-- ══════════ TEMPLATE NOTE BANNER ══════════ -->
+<div class="template-banner">
+  <a class="hq" href="../index.html">&larr; Redesign HQ</a>
+  <span class="tag">Template note</span>
+  <span><b>This is the per-branch location template.</b> The homepage default = this page geo-resolved to the visitor's city; national fallback when geo is unknown. Every city lives at a real crawlable URL — nothing is geo-gated.</span>
+</div>
+
+<!-- ══════════ STICKY NAV with GEO PILL ══════════ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#top">Einstein <em>Moving Co.</em></a>
+    <div class="geo-wrap">
+      <button class="geo-pill" id="geoPill" aria-haspopup="true" aria-expanded="false">
+        <span class="dot"></span><span id="geoPillCity">North Austin</span><span class="caret">&#9662;</span>
+      </button>
+      <div class="geo-menu" id="geoMenu" role="menu">
+        <button data-city="naustin" class="active">North Austin <span class="check">&#10003;</span></button>
+        <button data-city="dallas">Dallas</button>
+        <button data-city="tampa">Tampa</button>
+        <div class="demo-note">DEMO — city switcher seeded with 3 of 10 cities. Switching FLIP-transitions the hero, review counts, and 3 neighbor-wall cards: ten cities, one system.</div>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#reviews">Reviews</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#story">Our Story</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn-nav" href="#pricing">See my price</a>
+    </nav>
+  </div>
+</header>
+
+<div class="geo-toast" id="geoToast">Same system. Your city.</div>
+
+<!-- ══════════ HERO — the step-header lockup on a light band ══════════ -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <span class="geo-chip"><span class="dot"></span> You're in <span data-bind="chipCity" data-flip>North Austin</span> &nbsp;&middot;&nbsp; <a href="#" id="heroChangeCity">change city</a></span>
+    <div class="spot-ph" aria-hidden="true">Spot illustration<br>truck / mascot<br>line art</div>
+    <h1 data-bind="heroH1" data-flip>Voted North Austin's Best Movers: 9 Years Running</h1>
+    <p class="subhead" data-bind="heroSub" data-flip>Local moving across Texas and Tampa, FL — this is our North Austin crew, making moves easy from Pflugerville to The Domain since 2012.</p>
+    <p class="wink">No PhD required, we promise.</p>
+    <a class="btn btn-blue" href="#pricing" data-bind="heroCta" data-flip>See my North Austin price &rarr;</a>
+    <span class="microproof"><b>No deposit</b> &middot; free cancellation &middot; $2,000 coverage included</span>
+    <p class="hero-trustline"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> &nbsp;4.9 stars &middot; <span data-bind="heroReviewLine" data-flip>1,400+ North Austin Google reviews</span> &middot; part of 8,100+ company-wide</p>
+  </div>
+</section>
+
+<!-- ══════════ CONDENSED TRUST STRIP — universal, scope-labeled ══════════ -->
+<div class="trust-strip" aria-label="Trust signals">
+  <div class="wrap">
+    <div class="trust-item">
+      <span class="scope" data-bind="trustScope1" data-flip>North Austin</span>
+      <span class="line"><b data-bind="trustNum1" data-flip>1,400+</b><span data-bind="trustLbl1" data-flip>verified Google reviews &middot; 4.9 stars</span></span>
+    </div>
+    <div class="trust-item">
+      <span class="scope" data-bind="trustScope2" data-flip>Austin &middot; 2017&ndash;2025</span>
+      <span class="line"><b data-bind="trustNum2" data-flip>9&times;</b><span data-bind="trustLbl2" data-flip>voted Best Movers — nine years running</span></span>
+    </div>
+    <div class="trust-item">
+      <span class="scope">Company-wide</span>
+      <span class="line"><b>8,100+</b><span>reviews across 10 branches &middot; 55+ awards &middot; 100,000+ moves</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ NEIGHBOR WALL ══════════ -->
+<section class="neighbor" id="reviews">
+  <div class="wrap">
+    <div class="sec-center">
+      <p class="wink">The neighbor wall</p>
+      <h2 class="sec">What do your <span data-bind="wallCity" data-flip>North Austin</span> neighbors say?</h2>
+      <p class="section-sub">Real excerpts, real names, real moves — not a carousel. <b data-bind="wallCount" data-flip>1,400+ North Austin Google reviews</b>, scope-labeled, part of 8,100+ company-wide.</p>
+    </div>
+
+    <div class="chips" role="group" aria-label="Filter reviews">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="pricing">Pricing honesty</button>
+      <button class="chip" data-filter="repeat">Repeat customers</button>
+      <button class="chip" data-filter="apartment">Apartment moves</button>
+    </div>
+
+    <div class="wall" id="wall">
+      <!-- 3 geo-swappable cards -->
+      <article class="review-card" data-tags="all repeat" data-geo-card="0" data-flip>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <blockquote data-geo="quote">"Corey and Christopher helped us do a 2-stop move, and got the whole thing done 2 hours under the estimated time. They took great care of all of our furniture. Will absolutely be using Einstein again next time I move."</blockquote>
+        <div><span class="who" data-geo="who">Lyndsay M.</span><div class="ctx" data-geo="ctx">2-stop move &middot; April 2026</div><div class="verify-flag" data-geo="flag" hidden></div></div>
+      </article>
+      <article class="review-card" data-tags="all repeat" data-geo-card="1" data-flip>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <blockquote data-geo="quote">"This is our second move with Einstein and they were absolutely wonderful. We had Ryan and Crawfish and it felt like they were just some of our friends, not just movers. Zero complaints."</blockquote>
+        <div><span class="who" data-geo="who">Eric T.</span><div class="ctx" data-geo="ctx">Repeat customer &middot; new home &middot; May 2026</div><div class="verify-flag" data-geo="flag" hidden></div></div>
+      </article>
+      <article class="review-card" data-tags="all pricing repeat" data-geo-card="2" data-flip>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <blockquote data-geo="quote">"I was billed exactly what I was quoted, which unfortunately is not common in this industry. I will definitely use them for move 14 and beyond."</blockquote>
+        <div><span class="who" data-geo="who">Patrick H.</span><div class="ctx" data-geo="ctx">13 moves and counting</div><div class="verify-flag" data-geo="flag" hidden></div></div>
+      </article>
+      <!-- 3 fixed cards -->
+      <article class="review-card" data-tags="all pricing" data-flip>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <blockquote>"Einstein's pricing was fair and transparent, and my total price was very close to my estimate. Couldn't recommend more!!"</blockquote>
+        <div><span class="who">Abigail S.</span><div class="ctx">Quoted vs. billed: a match</div></div>
+      </article>
+      <article class="review-card" data-tags="all pricing" data-flip>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <blockquote>"Not too expensive, and they were transparent about the costs and quote. Ralph walked me through the whole quoting process and explained everything in detail."</blockquote>
+        <div><span class="who">Haley F.</span><div class="ctx">Walked through every line item</div></div>
+      </article>
+      <article class="review-card" data-tags="all apartment" data-flip>
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <blockquote>"Punctual with the agreed-upon time window, and efficient in seamlessly moving all of my furniture from my old apartment to my new apartment. Shoutout to Zachary and Tyler!"</blockquote>
+        <div><span class="who">Blake D.</span><div class="ctx">Apartment-to-apartment move</div></div>
+      </article>
+      <!-- featured video -->
+      <article class="review-card video-card" data-tags="all" id="featVideo" role="button" tabindex="0" aria-label="Play featured customer review video" data-flip>
+        <div>
+          <div class="play">&#9658;</div>
+          <div class="vc-title">Featured review — on camera</div>
+          <div class="ph-caption">VIDEO PLACEHOLDER &middot; influencer / customer footage &middot; inventory TBD &middot; tap to play</div>
+        </div>
+      </article>
+    </div>
+
+    <p class="wall-foot">Plain pricing, since you're already wondering: <b>one all-inclusive hourly rate, everything included.</b> <a href="#pricing">Here's exactly what that covers &darr;</a></p>
+  </div>
+</section>
+
+<!-- ══════════ THE VETTING STORY ══════════ -->
+<section class="vetting">
+  <div class="wrap">
+    <div class="sec-center">
+      <p class="wink">Who's showing up at my door?</p>
+      <h2 class="sec">The reviews are the output. This is the input.</h2>
+      <p class="section-sub">Anyone can claim five stars. Here's the part nobody shows you: how hard it is to become the person carrying your couch.</p>
+    </div>
+
+    <div class="funnel" role="img" aria-label="Hiring funnel: applicants, background check, interviews, evaluation period, hired — fewer than 1 in 100 applicants make it">
+      <div class="stage"><div class="bar">APPLY</div><div class="stage-label">Applicants</div><div class="stage-sub">Everyone wants the shirt</div><span class="arrow">&rarr;</span></div>
+      <div class="stage"><div class="bar">CHECK</div><div class="stage-label">Background check</div><div class="stage-sub">Every mover, every time</div><span class="arrow">&rarr;</span></div>
+      <div class="stage"><div class="bar">TALK</div><div class="stage-label">Interviews</div><div class="stage-sub">Character first, biceps second</div><span class="arrow">&rarr;</span></div>
+      <div class="stage"><div class="bar">PROVE</div><div class="stage-label">Trial</div><div class="stage-sub">Real boxes, real standards</div><span class="arrow">&rarr;</span></div>
+      <div class="stage"><div class="bar">HIRED</div><div class="stage-label">W-2 Einstein mover</div><div class="stage-sub">Not a subcontractor. Ever.</div></div>
+    </div>
+    <div class="funnel-punch">
+      <span class="big-chip">Fewer than <em>1 in 100</em> make it</span>
+      <p>Less than 1% of mover applicants get hired. Then you get their name, photo, and bio days before your move — so the knock on your door isn't a surprise.</p>
+    </div>
+
+    <div class="pull-quote">
+      <div class="pq-photo">PHOTO<br>CALVIN H.<br>(real headshot)</div>
+      <div>
+        <blockquote>"I've moved thousands of people in this town. Yours is next."</blockquote>
+        <div class="attrib"><b>Calvin H.</b> &middot; North Austin manager &middot; 5+ years in moving &middot; came to Austin in 2012 for the music, stayed for the moves. <span class="nudge">Working on his first novel — very slowly.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PRICING ══════════ -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="pricing-grid">
+      <div>
+        <p class="wink">Am I going to get ripped off?</p>
+        <h2 class="sec">One hourly rate. The whole cost.</h2>
+        <p style="margin-bottom:16px;">Wondering what movers actually cost? We bill by the hour, and we'll give you a clear rate before anything is scheduled. No lowball quotes designed to look good and hurt later. <b style="color:var(--einstein-dark)">What we quote is what you pay.</b></p>
+        <p style="margin-bottom:16px;">A lot of movers advertise a low hourly rate, then treat the rest like add-ons — like a hotel advertising $199 a night, then hitting you with a $75 resort fee at checkout.</p>
+        <p class="anchor">Our rate is the whole cost. Theirs is just where it starts.</p>
+        <a class="btn btn-blue" href="#" data-bind="pricingCta" data-flip>See my North Austin price &rarr;</a>
+        <span class="microproof"><b>No deposit</b> &middot; free cancellation &middot; instant online quote</span>
+      </div>
+      <div class="ledger">
+        <div class="ledger-head"><span class="pict" aria-hidden="true">&#129504;</span><h3>What's included in your hourly rate, every move:</h3></div>
+        <div class="benefit-grid">
+          <div class="benefit-tile"><span class="pict" aria-hidden="true">&#128170;</span><span class="lbl"><b>2+ trained, vetted movers</b><br>you meet them beforehand!</span></div>
+          <div class="benefit-tile"><span class="pict" aria-hidden="true">&#128666;</span><span class="lbl"><b>Fully equipped truck</b><br>gas included in the free service area</span></div>
+          <div class="benefit-tile"><span class="pict" aria-hidden="true">&#128230;</span><span class="lbl"><b>Loading &amp; unloading</b><br>of all your belongings</span></div>
+          <div class="benefit-tile"><span class="pict" aria-hidden="true">&#128295;</span><span class="lbl"><b>Furniture assembly</b><br>and disassembly, standard items</span></div>
+          <div class="benefit-tile"><span class="pict" aria-hidden="true">&#129534;</span><span class="lbl"><b>Taxes &amp; insurance</b><br>standard coverage built in</span></div>
+          <div class="benefit-tile"><span class="pict" aria-hidden="true">&#128737;</span><span class="lbl"><b>$2,000 damage coverage</b><br>included — for free</span></div>
+          <div class="benefit-tile"><span class="pict" aria-hidden="true">&#128719;</span><span class="lbl"><b>Wraps, pads &amp; protection</b><br>at no extra cost</span></div>
+          <div class="benefit-tile"><span class="pict" aria-hidden="true">&#9200;</span><span class="lbl"><b>2-hour arrival window</b><br>or less — guaranteed</span></div>
+          <div class="benefit-tile"><span class="pict" aria-hidden="true">&#9981;</span><span class="lbl"><b>No fuel surcharges</b><br>no credit card fees, ever</span></div>
+        </div>
+        <div class="info-banner"><span class="i-dot">i</span><span><b>When does the clock start?</b> When we pick up your first box — not when we leave the warehouse. You never pay for our commute (or our coffee stop).</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ STORY BAND ══════════ -->
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div>
+        <p class="wink">The company behind your local crew</p>
+        <h2 class="sec">Two kindergarten best friends. One used truck. 2012.</h2>
+        <p>Our story is your standard "two best friends meet in kindergarten, grow up together, and decide to start a moving company." Oh, you've never heard that one before? It's a classic around here.</p>
+        <p>Cameron and Paul started Einstein in 2012 with <b>one truck</b> and a theory: moving usually sucks, and it doesn't have to. The plan was never to be the biggest — it was to be the company people actually recommend to their neighbors. Fourteen years later, that one truck is <b>10 branches across Texas and Tampa, FL</b>, and the theory still runs the place: every mover a background-checked W-2 employee, every quote the whole cost, every move planting 4 trees.</p>
+        <p>The branches stay local on purpose. Your crew is from here, dispatched from here, accountable here — the company behind them just makes sure every city gets the same system.</p>
+        <div class="story-stats">
+          <div><div class="n">2012</div><div class="l">founded</div></div>
+          <div><div class="n">10</div><div class="l">branches, TX + FL</div></div>
+          <div><div class="n">100,000+</div><div class="l">moves completed</div></div>
+          <div><div class="n">4</div><div class="l">trees planted per move</div></div>
+        </div>
+        <a class="btn btn-ghost" href="#">Why the name Einstein? &rarr;</a>
+      </div>
+      <div class="archive-ph">
+        <span style="font-size:42px;">&#128247;</span>
+        <span class="ph-caption">ARCHIVE PHOTO PLACEHOLDER<br>Cameron + Paul, the first truck, 2012<br>(real archive photo — no stock)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ NEIGHBORHOOD TILES ══════════ -->
+<section class="hoods">
+  <div class="wrap">
+    <div class="sec-center">
+      <p class="wink">Where are you headed?</p>
+      <h2 class="sec">Moving around <span data-bind="hoodCity" data-flip>North Austin</span>? We know the block.</h2>
+      <p class="section-sub">Every one of these moves starts at our North Austin rate — same crew, same all-inclusive hourly price.</p>
+    </div>
+    <div class="hood-grid">
+      <a class="hood" href="#pricing">
+        <h3>Pflugerville</h3>
+        <p>First homes and fast-filling neighborhoods — if you have kids, the locals will tell you to research Pflugerville ISD early. We move a lot of families here.</p>
+        <span class="hood-rate">Moves here start at our N. Austin rate</span>
+        <span class="hood-cta">See my price &rarr;</span>
+      </a>
+      <a class="hood" href="#pricing">
+        <h3>Round Rock</h3>
+        <p>Round Rock ISD is one of the area's most-researched school districts for a reason. Hit Brushy Creek Trail on a weekday morning before the crowds show up.</p>
+        <span class="hood-rate">Moves here start at our N. Austin rate</span>
+        <span class="hood-cta">See my price &rarr;</span>
+      </a>
+      <a class="hood" href="#pricing">
+        <h3>Georgetown</h3>
+        <p>The square, the river, the fastest-growing-city headlines — Georgetown moves are a North Austin specialty, well inside our service area.</p>
+        <span class="hood-rate">Moves here start at our N. Austin rate</span>
+        <span class="hood-cta">See my price &rarr;</span>
+      </a>
+      <a class="hood" href="#pricing">
+        <h3>Hutto</h3>
+        <p>Hippo country. New construction everywhere, which means tight closing timelines — exactly the kind of move our 2-hour arrival window was built for.</p>
+        <span class="hood-rate">Moves here start at our N. Austin rate</span>
+        <span class="hood-cta">See my price &rarr;</span>
+      </a>
+      <a class="hood" href="#pricing">
+        <h3>The Domain</h3>
+        <p>Your new weekend routine covers shopping, dining, and people-watching in one place. High-rise apartment move? Reserve the elevator — we'll handle the rest.</p>
+        <span class="hood-rate">Moves here start at our N. Austin rate</span>
+        <span class="hood-cta">See my price &rarr;</span>
+      </a>
+      <a class="hood" href="#contact">
+        <h3>Everywhere nearby</h3>
+        <p>Coupland, Elgin, Manor, and beyond — we proudly service these communities from our Brown Lane HQ. Outside the free zone? We'll disclose any trip fee upfront, before you book.</p>
+        <span class="hood-rate">Full service-area list below</span>
+        <span class="hood-cta">See service areas &darr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ CLOSER ══════════ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-center">
+      <p class="wink">The stuff you're actually wondering</p>
+      <h2 class="sec">Fair questions. Straight answers.</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary><h3>What happens if my movers are late?</h3><span class="tw">+</span></summary>
+        <div class="a">You get a discount. Most movers give you a 4–8 hour arrival window and hope for the best. We commit to a <b>2-hour window</b> — if we miss it, your move is instantly discounted, and the discount grows the longer you wait. We call it our On-Time Guarantee, and we rarely need it.</div>
+      </details>
+      <details class="faq-item">
+        <summary><h3>What does the $2,000 damage coverage actually cover?</h3><span class="tw">+</span></summary>
+        <div class="a">$2,000 of coverage is included free on every move — based on <b>actual value, not weight</b>, with no deductible. (The industry default is 60&cent;/lb: a $30 check for a broken $1,000 TV.) A few honest exceptions:
+          <ul>
+            <li>Particle board furniture: covered at $0.60/lb only — it's inherently fragile.</li>
+            <li>Owner-packed boxes: if you packed it, we can't guarantee what's inside.</li>
+            <li>Appliances: disconnect/reconnect requires a signed liability waiver.</li>
+            <li>PODs or rental trucks: coverage applies when we're driving our trucks.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary><h3>Can I cancel my move?</h3><span class="tw">+</span></summary>
+        <div class="a">Yes — <b>free cancellation, no deposit required</b> to book. Plans change, we get it. Just give us as much notice as you can.</div>
+      </details>
+      <details class="faq-item">
+        <summary><h3>Who's showing up at my door?</h3><span class="tw">+</span></summary>
+        <div class="a">No strangers showing up unannounced. A few days before your move, we send your crew's <b>names, photos, and bios</b>. Every Einstein mover is a background-checked, W-2 employee — no subcontractors, ever.</div>
+      </details>
+      <details class="faq-item">
+        <summary><h3>How long does a North Austin move take?</h3><span class="tw">+</span></summary>
+        <div class="a">Moves in North Austin take <b>2.5 hours minimum, about 7 hours on average</b>. Larger moves, longer timelines — time depends on size, distance, and number of stops. We'll give you a realistic estimate upfront so there are no guessing games.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT / NAP ══════════ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <p class="wink">Your local branch</p>
+    <h2 class="sec">Einstein Moving Company — North Austin</h2>
+    <div class="contact-grid">
+      <div class="nap">
+        <div class="row"><span class="ic">&#9906;</span><div><b>9200 Brown Lane, Suite A</b><br>Austin, TX 78754</div></div>
+        <div class="row"><span class="ic">&#9742;</span><div><b><a href="tel:7373774537">737.377.4537</a></b><br>Real humans, unbelievably quick replies</div></div>
+        <div class="row"><span class="ic">&#128337;</span><div><b>Mon&ndash;Fri</b> 8:00 AM &ndash; 5:30 PM<br><b>Sat&ndash;Sun</b> 8:30 AM &ndash; 4:30 PM</div></div>
+        <div class="row"><span class="ic">&#128179;</span><div><b>Payment:</b> all major credit cards. No cash or checks (office moves paying by check — call ahead to confirm).</div></div>
+        <div style="padding-top:18px;">
+          <b style="color:var(--einstein-dark)">North Austin service areas</b> — we proudly serve these communities and beyond:
+          <div class="areas">
+            <span>Coupland</span><span>Elgin</span><span>Georgetown</span><span>Hutto</span><span>Manor</span><span>Pflugerville</span><span>Round Rock</span>
+          </div>
+        </div>
+      </div>
+      <div class="map-ph">
+        <span class="ph-caption">MAP PLACEHOLDER<br>branch pin + free service radius<br>(real embedded map at build — no stock imagery)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CLOSER — cream exit-ramp panel, blue CTA ══════════ -->
+<section class="closer">
+  <div class="wrap">
+    <div class="closer-panel">
+      <h2>Ready when you are.</h2>
+      <p>One all-inclusive hourly rate, a crew you'll meet before move day, and 1,400+ North Austin neighbors who already vouched for us.</p>
+      <a class="btn btn-blue" href="#pricing" data-bind="closerCta" data-flip>See my North Austin price &rarr;</a>
+      <span class="microproof"><b>~47 seconds</b> &middot; no deposit &middot; free cancellation &middot; 0 phone calls</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>Einstein Moving Company</h4>
+        <p style="max-width:380px;line-height:1.65;">Founded in 2012. Professional, reliable moving across Texas and Tampa, Florida — trusted service, transparent pricing, and friendly expertise on every box, every home, every customer. Every move plants 4 trees.</p>
+      </div>
+      <div>
+        <h4>Texas branches</h4>
+        <ul>
+          <li><a href="#top">North Austin</a></li>
+          <li><a href="#">South Austin</a></li>
+          <li><a href="#">Leander</a></li>
+          <li><a href="#">San Antonio</a></li>
+          <li><a href="#">Houston</a></li>
+          <li><a href="#">Dallas</a></li>
+          <li><a href="#">Fort Worth</a></li>
+          <li><a href="#">Garland</a></li>
+          <li><a href="#">McKinney</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Florida + more</h4>
+        <ul>
+          <li><a href="#">Tampa</a></li>
+          <li><a href="#pricing">Straightforward Pricing</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-us">Questions? Text us: <a href="sms:7373774537">737.377.4537</a></div>
+    <div class="legal">
+      Texas: TxDMV #006604158C &middot; US DOT #2193963 &nbsp;|&nbsp; Florida: Mover Reg. No. IM3621 &middot; US DOT #3882313<br>
+      &copy; 2026 Einstein Moving Company. Voted Best Movers 9 years running (Austin, 2017&ndash;2025) &middot; Nextdoor Neighborhood Favorite &middot; Inc. 5000 7&times; honoree.
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+  DEV NOTE — HOMETOWN PROOF full-fidelity mockup (Albert, 6/11/2026)
+  Built location-template-FIRST (North Austin) per IA critic sequencing;
+  homepage default = this page geo-resolved, national fallback when geo unknown.
+
+  Council fixes applied (2026-06-11 design-council synthesis):
+  #3  CTA system — direct CTA = "See my price" everywhere; no "Book Your Move"
+      in nav; mobile sticky bottom CTA bar ("See my price · ~47 sec").
+  #5  ONE trust band component, scope-labeled (N. Austin / Austin-awards /
+      company-wide scopes as a visible prop) — kills the live site's number drift.
+  #7  Signature motion = geo-pill FLIP only (hero H1 + review counts + 3 wall
+      cards transition on city switch — "ten cities, one system" in motion).
+      Nothing else moves. Hover-video killed → ONE featured review, tap-to-play.
+  #8  FAQ closer specced — question-phrased H3s, real tightened answers,
+      FAQPage JSON-LD in head; payment policy stated TX-style in NAP block.
+  #9  Canonical facts only — no invented stats; "<1 in 100" replaces v1's
+      8%/99.4% inventions; funnel bars carry NO fabricated stage counts.
+  CD adjustment — Calvin pull-quote restored but MODEST ("thousands", from his
+      real live-site bio; no invented "12,000" figure).
+  CRO adjustment — neighborhood tiles = quote entry points (pre-fill form Step 0
+      at build); geo-unknown fallback noted in template banner; geo never gates
+      content (all cities' content would be server-rendered; switcher is a demo
+      overlay over a fully-in-DOM default).
+  Salvage — Miller 3-step plan deferred to quote-invitation component (lives in
+      the closer microproof line here to keep one signature moment per page).
+  Reduced motion: FLIP + smooth-scroll disabled via prefers-reduced-motion.
+  [VERIFY] flags: Dallas + Tampa demo data (review counts, hero claims, and
+      re-sourcing review excerpts per city) — marked inline in the demo.
+
+  RE-SKIN (Albert, 6/11/2026 PM) — re-skinned to settled quote-form language
+  per research/settled-components.md (38 components + 10 Rules):
+  - Dark photo hero → LIGHT --einstein-light band with the form's step-header
+    lockup (spot-illustration placeholder → bold gray headline → reassurance →
+    orange italic wink → blue CTA + microproof). Crew-reel placeholder dropped:
+    Rule 1 — no photo/dark heroes inside the settled language.
+  - Bebas Neue dropped entirely; all headlines = bold Roboto in --einstein-gray.
+  - Trust band 3-cell grid → condensed trust strip (one hairline-bound row),
+    scope labels kept as tiny orange caps.
+  - Review cards → white, 12px radius, hairline border (orange top-bars gone);
+    filter chips = selection-pill idiom, selected = orange border.
+  - Funnel bars → light-gray hairline cards, HIRED terminal = the page's orange;
+    "<1 in 100" punch = white pill w/ 2px orange border; Calvin pull-quote =
+    white card, personality tail in orange italic.
+  - Included checklist → ledger card + 9 benefit tiles (emoji = pictogram
+    placeholders; production swaps in the kit's orange/navy line-art set);
+    clock-starts tip → cream ⓘ info banner (settled #18).
+  - Story band dark → white; closer blue gradient → cream exit-ramp panel
+    (settled #25) with blue CTA; FAQ → gray-filled borderless settled rows.
+  - Sticky bar now persistent at ALL viewports (settled #26: the CTA never
+    scrolls away) — white, top hairline, ✓-microproof left, blue CTA right.
+  - colors_and_type.css inlined verbatim as the first <style> block; page CSS
+    consumes its variables. Structure, copy, canonical numbers, FLIP demo,
+    filters, JSON-LD, [VERIFY] flags all unchanged.
+
+  Retrofitted to KP design-system refinements (Emma, 6/11).
+  - New colors_and_type.css (full tonal ramps) re-inlined verbatim; Lora added
+    via Google Fonts (hero H1 only — banner display face).
+  - Navy-500 headings/primary text; Grey-50 alternation bands; Orange-50
+    warm/featured surfaces (pricing, closer, info banners); Navy-50 contact
+    band; Navy-700 footer (the only approved dark section — template banner
+    stays dark as dev chrome).
+  - ORANGE-TEXT BAN enforced: winks + Calvin nudge → navy text on Orange-50
+    chips w/ Orange-200 hairline; stars/check/＋toggle/scope labels/"1 in 100"/
+    logo accent → Orange-900. Orange-500 stays as FILL only: geo-pill dot,
+    HIRED funnel terminal (now dark text per pairing), selection borders,
+    nav CTA bg (text → navy per "always pair orange with dark text").
+  - Hovers: blue CTAs → Blue-700 bg; nav CTA → Orange-700 bg.
+  - 4px spacing rounds: 80px section rhythm, 24/32/40 card padding, 32px card
+    gaps, ≥44px touch targets (geo pill, chips, nav CTA).
+  - Emoji pictograms + dashed photo placeholders KEPT as placeholders —
+    production swaps in the kit's single SVG icon set (orange fill → blue
+    hover, 40/56/80px sizing per icons.md). JS untouched byte-for-byte.
+  ════════════════════════════════════════════════════════════ -->
+</footer>
+
+<!-- ══════════ STICKY PRICING / CTA BAR (persistent) ══════════ -->
+<div class="sticky-cta">
+  <span class="sc-proof"><span><b>~47 sec</b></span><span>&#10003; No deposit</span><span>&#10003; Free cancellation</span><span>&#10003; $2,000 coverage</span></span>
+  <a class="btn btn-blue" href="#pricing" data-bind="stickyCta" data-flip>See my price &rarr;</a>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ────────────────────────────────────────────────
+     CITY DATA — demo seed: 3 of 10 cities.
+     North Austin = canonical (real numbers). Dallas + Tampa =
+     sample data to prove the template; [VERIFY] flags inline.
+     ──────────────────────────────────────────────── */
+  var CITIES = {
+    naustin: {
+      label: 'North Austin',
+      bind: {
+        chipCity: "North Austin",
+        heroH1: "Voted North Austin's Best Movers: 9 Years Running",
+        heroSub: "Local moving across Texas and Tampa, FL — this is our North Austin crew, making moves easy from Pflugerville to The Domain since 2012.",
+        heroCta: "See my North Austin price →",
+        heroReviewLine: "1,400+ North Austin Google reviews",
+        trustScope1: "North Austin",
+        trustNum1: "1,400+",
+        trustLbl1: "verified Google reviews · 4.9 stars",
+        trustScope2: "Austin · 2017–2025",
+        trustNum2: "9×",
+        trustLbl2: "voted Best Movers — nine years running",
+        wallCity: "North Austin",
+        wallCount: "1,400+ North Austin Google reviews",
+        hoodCity: "North Austin",
+        pricingCta: "See my North Austin price →",
+        closerCta: "See my North Austin price →",
+        stickyCta: "See my price →"
+      },
+      reviews: [
+        { quote: "“Corey and Christopher helped us do a 2-stop move, and got the whole thing done 2 hours under the estimated time. They took great care of all of our furniture. Will absolutely be using Einstein again next time I move.”",
+          who: "Lyndsay M.", ctx: "2-stop move · April 2026", flag: "" },
+        { quote: "“This is our second move with Einstein and they were absolutely wonderful. We had Ryan and Crawfish and it felt like they were just some of our friends, not just movers. Zero complaints.”",
+          who: "Eric T.", ctx: "Repeat customer · new home · May 2026", flag: "" },
+        { quote: "“I was billed exactly what I was quoted, which unfortunately is not common in this industry. I will definitely use them for move 14 and beyond.”",
+          who: "Patrick H.", ctx: "13 moves and counting", flag: "" }
+      ]
+    },
+    dallas: {
+      label: 'Dallas',
+      bind: {
+        chipCity: "Dallas",
+        heroH1: "Voted DFW's Best Movers: 4× Gold Winner",
+        heroSub: "Local moving across Texas and Tampa, FL — this is our Dallas crew, making moves easy across the Metroplex since [VERIFY branch year].",
+        heroCta: "See my Dallas price →",
+        heroReviewLine: "[VERIFY] Dallas Google review count",
+        trustScope1: "Dallas",
+        trustNum1: "[VERIFY]",
+        trustLbl1: "Dallas Google reviews · pull from branch page",
+        trustScope2: "DFW · 4× Gold",
+        trustNum2: "4×",
+        trustLbl2: "voted Best Movers by real DFW residents",
+        wallCity: "Dallas",
+        wallCount: "[VERIFY] Dallas Google reviews",
+        hoodCity: "Dallas",
+        pricingCta: "See my Dallas price →",
+        closerCta: "See my Dallas price →",
+        stickyCta: "See my price →"
+      },
+      reviews: [
+        { quote: "“First time using professional movers, and I gotta say I'm hooked. Ben and Thomas were nothing short of perfect, and were speedy and efficient!”",
+          who: "Bear B.", ctx: "First time hiring pros", flag: "[VERIFY] re-source from Dallas reviews" },
+        { quote: "“A friend recommended Einstein Moving to me, and I had a great experience. Nate and Anthony were awesome! They took care of my stuff, and everything arrived in the same condition it left in.”",
+          who: "Cece", ctx: "Friend referral", flag: "[VERIFY] re-source from Dallas reviews" },
+        { quote: "“Brandon and Mike have been great. They were on time, they met the challenge with smiles, and got to work fast. I had been so anxious about the move, but they've made it easy.”",
+          who: "Apryl A.", ctx: "Mid-move review (really)", flag: "[VERIFY] re-source from Dallas reviews" }
+      ]
+    },
+    tampa: {
+      label: 'Tampa',
+      bind: {
+        chipCity: "Tampa",
+        heroH1: "Tampa's Neighborhood Favorite Movers",
+        heroSub: "Local moving across Tampa, FL and Texas — this is our Tampa crew, our first branch beyond the Lone Star State. [VERIFY hero claim vs Tampa awards]",
+        heroCta: "See my Tampa price →",
+        heroReviewLine: "[VERIFY] Tampa Google review count",
+        trustScope1: "Tampa",
+        trustNum1: "[VERIFY]",
+        trustLbl1: "Tampa Google reviews · pull from branch page",
+        trustScope2: "Nextdoor",
+        trustNum2: "FAVE",
+        trustLbl2: "Neighborhood Favorite — voted by actual neighbors [VERIFY scope]",
+        wallCity: "Tampa",
+        wallCount: "[VERIFY] Tampa Google reviews",
+        hoodCity: "Tampa",
+        pricingCta: "See my Tampa price →",
+        closerCta: "See my Tampa price →",
+        stickyCta: "See my price →"
+      },
+      reviews: [
+        { quote: "“Believe everything you read about Einstein Moving Company. It's all true!! Extremely professional movers, reasonably priced, relatively quick, and just a great experience overall.”",
+          who: "Eric T.", ctx: "Company-wide review", flag: "[VERIFY] re-source from Tampa reviews" },
+        { quote: "“Punctual with the agreed-upon time window, and efficient in seamlessly moving all of my furniture from my old apartment to my new apartment.”",
+          who: "Blake D.", ctx: "Apartment move", flag: "[VERIFY] re-source from Tampa reviews" },
+        { quote: "“Einstein's pricing was fair and transparent, and my total price was very close to my estimate. Couldn't recommend more!!”",
+          who: "Abigail S.", ctx: "Company-wide review", flag: "[VERIFY] re-source from Tampa reviews" }
+      ]
+    }
+  };
+
+  /* ────────────────────────────────────────────────
+     GEO PILL — dropdown
+     ──────────────────────────────────────────────── */
+  var pill = document.getElementById('geoPill');
+  var menu = document.getElementById('geoMenu');
+  var pillCity = document.getElementById('geoPillCity');
+  var toast = document.getElementById('geoToast');
+  var currentCity = 'naustin';
+
+  function toggleMenu(force) {
+    var open = typeof force === 'boolean' ? force : !menu.classList.contains('open');
+    menu.classList.toggle('open', open);
+    pill.setAttribute('aria-expanded', String(open));
+  }
+  pill.addEventListener('click', function (e) { e.stopPropagation(); toggleMenu(); });
+  document.addEventListener('click', function () { toggleMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleMenu(false); });
+  document.getElementById('heroChangeCity').addEventListener('click', function (e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    toggleMenu(true);
+  });
+
+  /* ────────────────────────────────────────────────
+     THE SIGNATURE MOTION — FLIP transition on city switch.
+     First: record positions of every [data-flip] element.
+     Swap: write the new city's content into the DOM.
+     Last + Invert + Play: animate each element from its old
+     box to its new box (translate + scale), content crossfades.
+     Proves "ten cities, one system" — the layout never changes,
+     only the data flows through it.
+     Reduced motion: instant swap, zero animation.
+     ──────────────────────────────────────────────── */
+  function applyCity(key) {
+    var city = CITIES[key];
+    // text binds
+    document.querySelectorAll('[data-bind]').forEach(function (el) {
+      var k = el.getAttribute('data-bind');
+      if (Object.prototype.hasOwnProperty.call(city.bind, k)) {
+        el.textContent = city.bind[k];
+      }
+    });
+    // geo review cards
+    document.querySelectorAll('[data-geo-card]').forEach(function (card) {
+      var i = parseInt(card.getAttribute('data-geo-card'), 10);
+      var r = city.reviews[i];
+      if (!r) return;
+      card.querySelector('[data-geo="quote"]').textContent = r.quote;
+      card.querySelector('[data-geo="who"]').textContent = r.who;
+      card.querySelector('[data-geo="ctx"]').textContent = r.ctx;
+      var flag = card.querySelector('[data-geo="flag"]');
+      flag.textContent = r.flag;
+      flag.hidden = !r.flag;
+    });
+  }
+
+  function flipToCity(key) {
+    if (key === currentCity) return;
+    var targets = Array.prototype.slice.call(document.querySelectorAll('[data-flip]'));
+
+    if (reducedMotion || !('animate' in document.body)) {
+      applyCity(key);            // reduced motion: swap, no FLIP
+      finishSwitch(key);
+      return;
+    }
+
+    // FIRST
+    var first = targets.map(function (el) { return el.getBoundingClientRect(); });
+    applyCity(key);
+    // LAST
+    targets.forEach(function (el, i) {
+      var last = el.getBoundingClientRect();
+      var f = first[i];
+      var dx = f.left - last.left;
+      var dy = f.top - last.top;
+      var sx = last.width ? f.width / last.width : 1;
+      var sy = last.height ? f.height / last.height : 1;
+      var moved = Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5 || Math.abs(1 - sx) > 0.01 || Math.abs(1 - sy) > 0.01;
+      // INVERT + PLAY: geometry slides, content crossfades
+      el.animate([
+        { transform: 'translate(' + dx + 'px,' + dy + 'px) scale(' + sx + ',' + sy + ')', opacity: moved ? 0.55 : 0.2 },
+        { transform: 'none', opacity: 1 }
+      ], { duration: moved ? 520 : 420, delay: Math.min(i * 18, 180), easing: 'cubic-bezier(.22,1,.36,1)' });
+    });
+    finishSwitch(key);
+  }
+
+  function finishSwitch(key) {
+    currentCity = key;
+    pillCity.textContent = CITIES[key].label;
+    menu.querySelectorAll('button[data-city]').forEach(function (b) {
+      var active = b.getAttribute('data-city') === key;
+      b.classList.toggle('active', active);
+      var check = b.querySelector('.check');
+      if (active && !check) {
+        var s = document.createElement('span');
+        s.className = 'check';
+        s.innerHTML = '&#10003;';
+        b.appendChild(s);
+      } else if (!active && check) {
+        check.remove();
+      }
+    });
+    toast.textContent = 'Same system. Now showing: ' + CITIES[key].label + '.';
+    toast.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { toast.classList.remove('show'); }, 2200);
+  }
+
+  menu.querySelectorAll('button[data-city]').forEach(function (b) {
+    b.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggleMenu(false);
+      flipToCity(b.getAttribute('data-city'));
+    });
+  });
+
+  /* ────────────────────────────────────────────────
+     NEIGHBOR WALL — filter chips (content stays in DOM,
+     filtering only hides — never removes; LLM/crawler safe)
+     ──────────────────────────────────────────────── */
+  document.querySelectorAll('.chip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      document.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      var f = chip.getAttribute('data-filter');
+      document.querySelectorAll('#wall .review-card').forEach(function (card) {
+        var tags = (card.getAttribute('data-tags') || '').split(' ');
+        card.classList.toggle('hidden-by-filter', f !== 'all' && tags.indexOf(f) === -1);
+      });
+    });
+  });
+
+  /* ────────────────────────────────────────────────
+     FEATURED VIDEO — tap-to-play (no hover-video; council #7)
+     ──────────────────────────────────────────────── */
+  var feat = document.getElementById('featVideo');
+  function playDemo() {
+    feat.innerHTML = '<div style="padding:20px;"><div class="vc-title">&#9658; Playing&hellip; (demo)</div><div class="ph-caption">REAL CUSTOMER FOOTAGE LANDS HERE AT BUILD<br>tap-to-play, never autoplay, never hover-triggered</div></div>';
+    feat.style.cursor = 'default';
+  }
+  feat.addEventListener('click', playDemo);
+  feat.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playDemo(); }
+  });
+})();
+</script>
+<script>
+/* Reaction layer (workshop chrome, not part of the mock) */
+(function () {
+  var KEY = 'einstein-rxn-hometown';
+  var PAGE = 'Hometown Proof (N. Austin template)';
+  var css = document.createElement('style');
+  css.textContent = [
+    '.rxn-pin{position:absolute;top:10px;right:10px;z-index:240;width:34px;height:34px;border-radius:50%;border:1px solid #E5E5E5;background:rgba(255,255,255,.92);color:#bbb;font-size:15px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:all .15s}',
+    '.rxn-pin:hover{border-color:#EF8B22;color:#EF8B22}',
+    '.rxn-pin.on{background:#EF8B22;border-color:#EF8B22;color:#fff}',
+    '.rxn-note{display:none;position:absolute;top:50px;right:10px;z-index:240;width:min(320px,70vw);background:#fff;border:1px solid #EF8B22;border-radius:10px;padding:10px 12px;font:13px/1.45 Roboto,sans-serif;color:#333;box-shadow:0 8px 28px rgba(0,0,0,.14);resize:vertical;min-height:56px}',
+    '.rxn-note.show{display:block}',
+    '.rxn-bar{position:fixed;left:14px;bottom:64px;z-index:260;display:flex;gap:8px;align-items:center;background:#1f1f1f;border-radius:100px;padding:7px 9px;box-shadow:0 10px 30px rgba(0,0,0,.35)}',
+    '.rxn-bar .c{font:12px/1 Roboto,sans-serif;color:#ddd;padding:0 5px 0 9px;white-space:nowrap}.rxn-bar .c b{color:#EF8B22}',
+    '.rxn-bar button{font:700 12px/1 Roboto,sans-serif;border:none;border-radius:100px;padding:9px 14px;cursor:pointer;background:#EF8B22;color:#111}',
+    '@media print{.rxn-pin,.rxn-note,.rxn-bar{display:none!important}}'
+  ].join('');
+  document.head.appendChild(css);
+
+  var state = { notes: {}, likes: {} };
+  try {
+    var l = JSON.parse(localStorage.getItem(KEY) || '{}');
+    if (l && typeof l === 'object') { if (l.notes) state.notes = l.notes; if (l.likes) state.likes = l.likes; }
+  } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  var sections = Array.prototype.filter.call(document.querySelectorAll('section, header.hero, [data-rxn]'), function (s) {
+    return s.offsetHeight > 180 && !s.querySelector('.rxn-pin');
+  });
+
+  function labelOf(sec, i) {
+    var h = sec.querySelector('h1,h2,h3');
+    var t = h ? h.textContent.trim().replace(/\s+/g, ' ').slice(0, 70) : (sec.id || 'section ' + (i + 1));
+    return t;
+  }
+
+  var bar = document.createElement('div');
+  bar.className = 'rxn-bar';
+  bar.innerHTML = '<span class="c"><b id="rxnCount">0</b> reactions</span><button id="rxnExport" type="button">📋 Export</button>';
+  document.body.appendChild(bar);
+
+  function renderCount() {
+    var n = 0;
+    Object.keys(state.likes).forEach(function (k) { if (state.likes[k]) n++; });
+    Object.keys(state.notes).forEach(function (k) { if ((state.notes[k] || '').trim() && !state.likes[k]) n++; });
+    document.getElementById('rxnCount').textContent = n;
+  }
+
+  sections.forEach(function (sec, i) {
+    var id = 's' + i;
+    if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
+    var pin = document.createElement('button');
+    pin.className = 'rxn-pin';
+    pin.type = 'button';
+    pin.textContent = '♥';
+    pin.title = 'React to: ' + labelOf(sec, i);
+    var note = document.createElement('textarea');
+    note.className = 'rxn-note';
+    note.placeholder = 'Your take on this section… (saves automatically)';
+    note.value = state.notes[id] || '';
+    function sync() {
+      pin.classList.toggle('on', !!state.likes[id] || !!(state.notes[id] || '').trim());
+    }
+    pin.addEventListener('click', function () {
+      var showing = note.classList.toggle('show');
+      if (showing) { state.likes[id] = true; note.focus(); }
+      else if (!(state.notes[id] || '').trim()) { delete state.likes[id]; }
+      save(); sync(); renderCount();
+    });
+    note.addEventListener('input', function () {
+      state.notes[id] = note.value;
+      save(); sync(); renderCount();
+    });
+    sec.appendChild(pin);
+    sec.appendChild(note);
+    sync();
+  });
+
+  document.getElementById('rxnExport').addEventListener('click', function () {
+    var lines = ['# ' + PAGE + ' — Cameron’s Reactions — ' + new Date().toLocaleDateString(), ''];
+    var any = false;
+    sections.forEach(function (sec, i) {
+      var id = 's' + i;
+      var liked = !!state.likes[id];
+      var note = (state.notes[id] || '').trim();
+      if (!liked && !note) return;
+      any = true;
+      lines.push('## ' + (liked ? '♥ ' : '') + labelOf(sec, i));
+      if (note) note.split('\n').forEach(function (ln) { lines.push('> ' + ln); });
+      lines.push('');
+    });
+    if (!any) lines.push('_No reactions yet — tap a ♥ pin on any section._');
+    var md = lines.join('\n');
+    var blob = new Blob([md], { type: 'text/markdown' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'hometown-proof-reactions.md';
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(md).catch(function () {});
+    var btn = document.getElementById('rxnExport');
+    btn.textContent = '✓ Exported';
+    setTimeout(function () { btn.textContent = '📋 Export'; }, 1500);
+  });
+
+  renderCount();
+})();
+
+</script>
+</body>
+</html>

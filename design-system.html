@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Einstein Quote Form — Settled Component Sheet</title>
+<!--
+  THE SETTLED DESIGN LANGUAGE of the redesigned quote form (the locked design foundation).
+  Open this page to build any new site page: reuse these surfaces, don't re-invent.
+  Spec narrative: settled-components.md (same folder).
+  Sources: einstein-brand-kit/agent/visual/artifacts/quote-form/ (9 screens),
+  colors_and_type.css, components/components.html, artifacts/web/landing-sample.html,
+  channels/quote-form.md, motion/motion.json.
+-->
+<link rel="stylesheet" href="../../einstein-brand-kit/agent/visual/colors_and_type.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#FBFBFA; font-size:16px; line-height:1.5; }
+  .page { max-width:1080px; margin:0 auto; padding:48px 28px 120px; }
+
+  /* ---- sheet chrome ---- */
+  .sheet-head h1 { font-size:34px; line-height:1.15; margin-bottom:6px; }
+  .sheet-head .sub { color:var(--einstein-gray); font-size:16px; max-width:760px; margin:0 0 4px; }
+  .sheet-head .rule-link { font-size:14px; color:var(--einstein-gray); }
+  .group-title { font-family:var(--font-display); font-size:34px; letter-spacing:1px; color:var(--einstein-dark); margin:64px 0 4px; border-bottom:3px solid var(--einstein-orange); display:inline-block; padding-bottom:2px; }
+  .group-note { font-size:14px; color:var(--einstein-gray); margin:6px 0 18px; max-width:760px; }
+  .spec { background:#fff; border:1px solid #E5E5E5; border-radius:var(--radius-md); padding:28px; margin:20px 0; }
+  .spec-name { font-size:13px; text-transform:uppercase; letter-spacing:.6px; color:var(--color-orange-900); font-weight:700; margin:0 0 2px; }
+  .spec-seen { font-size:12.5px; color:#8a8e91; margin:0 0 14px; }
+  .spec-notes { font-size:13px; color:var(--einstein-gray); background:var(--einstein-light); border-radius:var(--radius-sm); padding:10px 14px; margin-top:18px; line-height:1.55; }
+  .spec-notes b { color:var(--einstein-dark); }
+  .stage { padding:8px 0; }
+
+  /* ============ FOUNDATIONS ============ */
+  .chip-row { display:flex; flex-wrap:wrap; gap:14px; }
+  .chip { width:150px; }
+  .chip .swatch { height:64px; border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,.06); }
+  .chip .cname { font-size:13px; font-weight:700; color:var(--einstein-dark); margin-top:6px; }
+  .chip .cval { font-size:12px; color:#8a8e91; }
+  .type-row { display:flex; align-items:baseline; gap:18px; padding:8px 0; border-bottom:1px dashed #ECECEC; }
+  .type-row .tname { width:210px; flex:none; font-size:12px; color:#8a8e91; }
+  .radius-row { display:flex; gap:18px; flex-wrap:wrap; align-items:flex-end; }
+  .radius-demo { background:var(--einstein-light); border:1px solid #E5E5E5; width:110px; height:64px; display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--einstein-gray); }
+
+  /* ============ ATOMS ============ */
+  .btn-primary { background:var(--einstein-blue); color:#fff; padding:16px 32px; border-radius:8px; font-family:var(--font-sans); font-weight:700; font-size:16px; border:none; cursor:pointer; transition:transform 120ms cubic-bezier(.2,0,0,1), box-shadow 120ms cubic-bezier(.2,0,0,1); }
+  .btn-primary:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(9,121,195,.3); }
+  .btn-primary:active { transform:scale(.98); }
+  .btn-secondary { background:var(--einstein-blue); color:#fff; padding:10px 22px; border-radius:8px; font-weight:700; font-size:14px; border:none; cursor:pointer; }
+  .btn-nav { background:var(--einstein-orange); color:#fff; padding:12px 24px; border-radius:8px; font-family:var(--font-sans); font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:.5px; border:none; cursor:pointer; }
+  .microproof { margin-top:12px; font-size:14px; color:var(--einstein-gray); }
+  .microproof .check { color:var(--success); font-weight:700; }
+  /* The wink — restyled per KP refinements 6/11: small winks are navy-on-Orange-50 chips; large display accents are Orange-900 text. #EF8B22 is never text. */
+  .nudge { display:inline-block; font-style:italic; color:var(--color-navy-500); background:var(--color-orange-50); border-radius:var(--radius-pill); padding:3px 12px; font-size:14px; }
+  .nudge-display { display:inline; font-style:italic; color:var(--color-orange-900); background:none; border-radius:0; padding:0; font-size:18px; font-weight:700; }
+  .numbered-badge { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; background:var(--einstein-orange); color:#fff; border-radius:50%; font-weight:700; font-size:14px; }
+  .sms-pill { display:inline-flex; align-items:center; gap:6px; background:#fff; border:1px solid var(--einstein-blue); color:var(--einstein-blue); border-radius:var(--radius-pill); padding:5px 14px; font-size:12.5px; font-weight:500; }
+  .field { max-width:340px; }
+  .field label { display:block; font-size:13px; font-weight:500; color:var(--einstein-gray); margin-bottom:6px; }
+  .field .helper { display:inline-block; font-size:12.5px; font-style:italic; color:var(--color-navy-500); background:var(--color-orange-50); border-radius:var(--radius-pill); padding:1px 8px; font-weight:400; }
+  .field input[type=text], .field select, .field textarea { width:100%; background:var(--einstein-light); border:1px solid #E5E5E5; border-radius:var(--radius-sm); padding:12px 14px; font-family:var(--font-sans); font-size:14.5px; color:var(--einstein-dark); transition:box-shadow 120ms; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline:none; box-shadow:0 0 0 3px rgba(9,121,195,.25); border-color:var(--einstein-blue); }
+  .field textarea { min-height:84px; resize:vertical; }
+  .field textarea::placeholder, .field input::placeholder { font-style:italic; color:#9aa0a4; }
+  .toggle-row { display:flex; align-items:center; justify-content:space-between; gap:14px; background:#fff; border:1px solid #E5E5E5; border-radius:var(--radius-sm); padding:10px 14px; font-size:14px; color:var(--einstein-gray); max-width:340px; }
+  .switch { position:relative; width:42px; height:24px; flex:none; }
+  .switch input { display:none; }
+  .switch .track { position:absolute; inset:0; background:#D8D8D8; border-radius:var(--radius-pill); transition:background 160ms; }
+  .switch .track::after { content:""; position:absolute; top:3px; left:3px; width:18px; height:18px; background:#fff; border-radius:50%; box-shadow:0 1px 2px rgba(0,0,0,.2); transition:left 160ms; }
+  .switch input:checked + .track { background:var(--einstein-blue); }
+  .switch input:checked + .track::after { left:21px; }
+  .footer-text { font-size:13px; color:var(--einstein-gray); }
+  .save-chip { display:inline-block; background:rgba(105,153,93,.12); color:var(--success); font-weight:700; font-size:11.5px; border-radius:var(--radius-pill); padding:2px 8px; }
+
+  /* ============ MOLECULES ============ */
+  /* stepper */
+  .stepper { display:flex; align-items:flex-start; justify-content:center; }
+  .step { display:flex; flex-direction:column; align-items:center; width:96px; position:relative; }
+  .step .dot { width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; background:#fff; border:1.5px solid #D8D8D8; color:#9aa0a4; z-index:1; }
+  .step.done .dot { background:var(--einstein-blue); border-color:var(--einstein-blue); color:#fff; }
+  .step.current .dot { background:#fff; border-color:var(--einstein-orange); color:var(--color-orange-900); font-size:13px; }
+  .step .slabel { font-size:10px; color:#9aa0a4; margin-top:6px; text-align:center; }
+  .step.current .slabel { color:var(--einstein-gray); font-weight:700; }
+  .step::before { content:""; position:absolute; top:12px; left:-50%; width:100%; height:2px; background:#E5E5E5; }
+  .step:first-child::before { display:none; }
+  .step.done::before, .step.current::before { background:var(--einstein-blue); }
+
+  /* trust strip + trust card */
+  .trust-bar { display:flex; justify-content:center; gap:32px; padding:12px 0; border-top:1px solid #E5E5E5; border-bottom:1px solid #E5E5E5; flex-wrap:wrap; }
+  .trust-item { display:flex; align-items:center; gap:8px; font-size:14px; color:var(--einstein-gray); font-weight:500; }
+  .trust-card { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; background:#fff; border:1px solid #E5E5E5; border-radius:var(--radius-md); padding:28px; text-align:center; }
+  .trust-card .ticon { font-size:30px; }
+  .trust-card .tname2 { font-weight:700; font-size:14px; color:var(--einstein-dark); margin-top:8px; }
+  .trust-card .tsub { font-size:12px; color:var(--einstein-gray); }
+
+  /* step header lockup */
+  .lockup { text-align:center; max-width:620px; margin:0 auto; }
+  .lockup .spot { font-size:42px; }
+  .lockup h3 { margin:8px 0 6px; font-size:28px; line-height:1.2; }
+  .lockup .reassure { color:var(--einstein-gray); font-size:16px; margin:0 0 6px; }
+
+  /* choice cards */
+  .qcard { background:#fff; border:1px solid #E5E5E5; border-radius:var(--radius-md); padding:22px 24px; max-width:520px; margin:0 auto; text-align:center; }
+  .qcard .q { font-weight:700; font-size:16px; color:var(--einstein-dark); margin:0 0 4px; }
+  .qcard .clarify { font-size:12.5px; font-style:italic; color:var(--einstein-gray); margin:0 0 14px; }
+  .choice-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .choice-card { background:var(--einstein-light); border:1.5px solid #E5E5E5; border-radius:8px; padding:12px 14px; font-family:var(--font-sans); font-size:14px; color:var(--einstein-gray); cursor:pointer; transition:border-color 180ms cubic-bezier(.2,0,0,1), background-color 180ms cubic-bezier(.2,0,0,1); }
+  .choice-card b { color:var(--einstein-dark); }
+  .choice-card:hover { border-color:var(--einstein-orange); }
+  .choice-card.selected { border-color:var(--einstein-orange); background:#fff; }
+
+  /* pictogram select */
+  .pict-grid { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+  .pict-card { width:118px; background:#fff; border:1.5px solid #E5E5E5; border-radius:10px; padding:18px 10px; text-align:center; cursor:pointer; transition:border-color 180ms; }
+  .pict-card:hover, .pict-card.selected { border-color:var(--einstein-orange); }
+  .pict-card .picon { font-size:30px; }
+  .pict-card .pname { font-size:11.5px; font-weight:700; color:var(--einstein-dark); margin-top:8px; }
+  .pict-card .pqual { font-size:10.5px; color:var(--einstein-gray); }
+
+  /* calendar */
+  .cal { background:var(--einstein-light); border-radius:var(--radius-md); box-shadow:var(--shadow-md); padding:20px; max-width:430px; margin:0 auto; }
+  .cal .mname { text-align:center; font-weight:700; font-size:18px; color:var(--einstein-dark); margin-bottom:10px; }
+  .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:7px; }
+  .cal-grid .dow { font-size:10px; font-weight:700; letter-spacing:.5px; color:#9aa0a4; text-align:center; text-transform:uppercase; padding:4px 0; }
+  .day { background:#fff; border:1px solid #E5E5E5; border-radius:9px; text-align:center; padding:10px 0; font-size:13px; color:var(--einstein-gray); cursor:pointer; }
+  .day.muted { color:#C8CACB; background:#F0F0F0; border-color:transparent; cursor:default; }
+  .day.selected { background:var(--einstein-orange); border-color:var(--einstein-orange); color:#fff; font-weight:700; }
+
+  /* rate carousel + time pills */
+  .rate-row { display:flex; gap:10px; align-items:stretch; justify-content:center; flex-wrap:wrap; }
+  .rate-card { background:#fff; border:1.5px solid #E5E5E5; border-radius:9px; padding:10px 14px; text-align:center; cursor:pointer; min-width:88px; }
+  .rate-card .rd { font-size:11.5px; color:var(--einstein-gray); }
+  .rate-card .rp { font-weight:700; font-size:15px; color:var(--einstein-dark); }
+  .rate-card.selected { background:var(--einstein-orange); border-color:var(--einstein-orange); }
+  .rate-card.selected .rd, .rate-card.selected .rp { color:#fff; }
+  .rate-card .rsel { font-size:10px; color:#fff; opacity:.9; }
+  .time-pills { display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:420px; margin:0 auto; }
+  .time-pill { background:#fff; border:1.5px solid #E5E5E5; border-radius:8px; padding:13px; text-align:center; font-weight:700; font-size:14px; color:var(--einstein-dark); cursor:pointer; }
+  .time-pill.selected { border-color:var(--einstein-orange); }
+
+  /* notice banner */
+  .notice { display:flex; gap:14px; align-items:flex-start; background:#FFF6EC; border:1px solid rgba(239,139,34,.5); border-radius:var(--radius-md); padding:16px 18px; font-size:14px; color:var(--einstein-gray); }
+  .notice .i { flex:none; width:24px; height:24px; border-radius:50%; background:var(--einstein-blue); color:#fff; font-weight:700; font-size:13px; display:flex; align-items:center; justify-content:center; font-style:normal; }
+  .notice b { color:var(--einstein-dark); }
+
+  /* why-we-ask panel */
+  .why-panel { background:linear-gradient(180deg,#FFF8EF,#FDF1E2); border:1px solid rgba(239,139,34,.55); border-radius:var(--radius-md); padding:24px 26px; }
+  .why-panel h4 { font-size:18px; margin:10px 0 8px; }
+  .why-cols { display:grid; grid-template-columns:1fr 1fr; gap:6px 24px; font-size:14px; color:var(--einstein-gray); margin-top:12px; }
+  .why-cols .ok::before { content:"✅ "; }
+  .why-cols .no::before { content:"❌ "; }
+
+  /* branch card */
+  .branch-grid { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
+  .branch-card { background:#fff; border:1px solid #E5E5E5; border-radius:var(--radius-md); padding:18px 26px; text-align:center; min-width:160px; }
+  .branch-card .bname { font-weight:700; font-size:14.5px; color:var(--einstein-dark); margin-bottom:4px; }
+  .branch-card a { display:block; font-size:13.5px; text-decoration:underline; padding:1px 0; }
+
+  /* FAQ */
+  .faq-list { max-width:680px; margin:0 auto; display:flex; flex-direction:column; gap:10px; }
+  .faq-item { display:flex; justify-content:space-between; align-items:center; width:100%; border:none; border-radius:var(--radius-md); padding:16px 18px; background:var(--einstein-light); cursor:pointer; font-family:var(--font-sans); font-size:15.5px; font-weight:500; color:var(--einstein-gray); text-align:left; }
+  .faq-item.bordered { background:#fff; border:1px solid #E5E5E5; }
+  .faq-toggle { color:var(--color-orange-900); font-weight:700; font-size:21px; line-height:1; }
+  .faq-answer { padding:6px 18px 12px; color:var(--einstein-gray); font-size:14.5px; }
+  .faq-answer[hidden] { display:none; }
+
+  /* sticky bar (rendered inline as a specimen) */
+  .sticky-demo { background:#fff; border:1px solid #E5E5E5; border-top:1px solid #E5E5E5; box-shadow:0 -4px 20px rgba(0,0,0,.08); padding:14px 20px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; border-radius:6px; }
+  .sticky-left { font-size:14.5px; color:var(--einstein-gray); }
+  .sticky-left .price { font-weight:700; color:var(--einstein-dark); }
+  .sticky-right { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .sticky-proof { font-size:13px; color:var(--einstein-gray); }
+  .sticky-proof .check { color:var(--success); font-weight:700; }
+
+  /* ============ ORGANISMS ============ */
+  /* estimate layout */
+  .estimate-card { background:#fff; border:1px solid #E5E5E5; border-radius:var(--radius-md); box-shadow:var(--shadow-sm); padding:30px; max-width:620px; margin:0 auto; text-align:center; }
+  .big-price { font-size:46px; font-weight:700; color:var(--einstein-dark); line-height:1.05; }
+  .price-basis { font-size:13.5px; color:var(--einstein-gray); margin:4px 0 18px; }
+  .price-basis b { color:var(--color-navy-500); background:var(--color-orange-50); border-radius:4px; padding:0 6px; }
+  .stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:0 0 14px; }
+  .stat { font-size:12px; color:var(--einstein-gray); }
+  .stat .sicon { font-size:26px; display:block; margin-bottom:4px; }
+  .stat b { display:block; color:var(--einstein-dark); font-size:12.5px; }
+  .fine { font-size:10.5px; color:#9aa0a4; margin:0 0 16px; }
+  .flex-label { font-size:13.5px; font-weight:700; color:var(--einstein-dark); margin:0 0 8px; }
+
+  /* receipts */
+  .receipt-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; max-width:720px; margin:0 auto; }
+  .receipt { font-family:"Courier New", Courier, monospace; background:#fff; border:1px solid #E5E5E5; box-shadow:var(--shadow-sm); padding:20px 18px; font-size:12.5px; color:var(--einstein-dark); }
+  .receipt.einstein { border:1.5px solid var(--einstein-blue); }
+  .receipt h5 { font-family:inherit; text-align:center; font-size:13px; letter-spacing:1px; margin:0 0 10px; text-transform:uppercase; }
+  .receipt .rline { display:flex; justify-content:space-between; gap:8px; padding:2px 0; }
+  .receipt .rline .dots { flex:1; border-bottom:1px dotted #B9BCBE; transform:translateY(-3px); }
+  .receipt .red { color:var(--error); font-weight:700; }
+  .receipt .blue { color:var(--einstein-blue); font-weight:700; }
+  .receipt .rtotal { text-align:center; margin-top:12px; font-weight:700; }
+  .receipt .rtotal.red { text-decoration:underline; }
+  .receipt .rtotal.blue { text-decoration:underline; }
+
+  /* benefit tiles */
+  .tile-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .tile { background:#fff; border:1px solid #E5E5E5; border-radius:var(--radius-md); padding:18px 10px; text-align:center; }
+  .tile .ticon2 { font-size:26px; }
+  .tile .tlabel { font-size:11.5px; font-weight:500; color:var(--einstein-gray); margin-top:8px; line-height:1.35; }
+
+  /* orange panel */
+  .orange-panel { background:var(--einstein-orange); border-radius:var(--radius-lg); color:#fff; text-align:center; padding:38px 30px; }
+  .orange-panel .shield { font-size:38px; }
+  .orange-panel h3 { color:#fff; font-size:24px; margin:10px 0 2px; }
+  .orange-panel .opsub { font-weight:700; font-size:16px; margin:0 0 12px; }
+  .orange-panel .opbody { font-size:14px; max-width:560px; margin:0 auto; opacity:.96; }
+  .orange-panel .opfine { font-size:12px; font-style:italic; opacity:.85; margin-top:12px; }
+
+  /* nightmares */
+  .nightmare-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .nightmare { display:flex; justify-content:space-between; align-items:center; gap:10px; background:#fff; border:1px solid #E5E5E5; border-radius:var(--radius-md); padding:14px 16px; font-size:13px; font-weight:700; color:var(--einstein-dark); text-align:left; cursor:pointer; }
+  .nightmare .plus { color:var(--color-orange-900); font-size:19px; flex:none; }
+
+  /* awards */
+  .award-strip { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .award { background:var(--einstein-light); border-radius:8px; padding:18px 26px; font-weight:700; color:#7a7e81; font-size:15px; letter-spacing:.5px; }
+
+  /* exit ramp */
+  .exit-panel { background:linear-gradient(180deg,#FFF9F1,#FCEEDC); border:1px solid rgba(239,139,34,.55); border-radius:var(--radius-md); text-align:center; padding:28px; }
+  .exit-panel h4 { font-size:20px; margin:0 0 6px; }
+  .exit-panel p { font-size:14px; color:var(--einstein-gray); margin:0 0 16px; }
+
+  /* hero */
+  .hero-demo { background:var(--einstein-light); border-radius:var(--radius-md); text-align:center; padding:54px 24px 46px; }
+  .hero-demo h2 { font-size:40px; line-height:1.15; margin:0 0 10px; }
+  .rotator { color:var(--color-orange-900); border-right:3px solid var(--color-orange-900); padding-right:4px; }
+  .hero-demo .lead2 { font-size:17px; color:var(--einstein-gray); max-width:560px; margin:0 auto 22px; }
+  .anchor-line { text-align:center; font-size:21px; line-height:1.45; font-weight:700; color:var(--color-navy-500); max-width:640px; margin:24px auto 0; }
+  .anchor-line .smart { color:var(--color-orange-900); }
+
+  /* inestimable */
+  .inest { text-align:center; }
+  .inest .oct { display:inline-flex; align-items:center; justify-content:center; width:52px; height:52px; background:var(--einstein-orange); color:#fff; font-weight:700; font-size:26px; border-radius:14px; transform:rotate(0deg); clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%); }
+  .inest h3 { font-size:26px; margin:12px 0 8px; }
+  .inest .ibody { font-size:15px; color:var(--einstein-gray); max-width:560px; margin:0 auto 8px; }
+  .inest .ibody b { color:var(--einstein-dark); }
+  .inest .ihl { color:var(--color-orange-900); font-weight:700; }
+
+  /* estimate details ledger */
+  .ledger { background:#fff; border:1px solid #E5E5E5; border-radius:var(--radius-md); padding:24px 26px; max-width:480px; margin:0 auto; }
+  .ledger h4 { font-size:17px; margin:0 0 14px; }
+  .lrow { display:flex; justify-content:space-between; gap:16px; padding:7px 0; font-size:14px; color:var(--einstein-gray); }
+  .lrow b { color:var(--einstein-dark); text-align:right; }
+  .lrow.total b { color:var(--color-orange-900); }
+
+  /* ============ KP REFINEMENTS (adopted 6/11) ============ */
+  /* tonal ramps */
+  .ramp-row { display:flex; align-items:center; gap:8px; margin:10px 0; flex-wrap:wrap; }
+  .ramp-row .rlabel { width:64px; flex:none; font-size:12px; font-weight:700; color:var(--color-navy-500); }
+  .ramp-chip { width:88px; }
+  .ramp-chip .rsw { height:44px; border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,.06); }
+  .ramp-chip .rcn { font-size:10.5px; font-weight:700; color:var(--color-navy-500); margin-top:3px; }
+  .ramp-chip .rcv { font-size:10px; color:#8a8e91; }
+  /* type ramp */
+  .tramp .type-row .tname { width:250px; }
+  /* spacing bars */
+  .sp-row { display:flex; align-items:center; gap:12px; padding:3px 0; }
+  .sp-row .spn { width:140px; flex:none; font-size:12px; color:#8a8e91; }
+  .sp-row .spbar { height:14px; background:var(--color-orange-100); border:1px solid var(--color-orange-200); border-radius:3px; }
+  /* icon demo */
+  .icon-demo { display:inline-flex; flex-direction:column; align-items:center; gap:6px; padding:16px; cursor:pointer; }
+  .icon-demo svg .acc { fill:var(--einstein-orange); transition:fill 150ms ease-in-out; }
+  .icon-demo:hover svg .acc, .icon-demo:focus-visible svg .acc { fill:var(--einstein-blue); }
+  .icon-demo:active svg .acc { fill:var(--color-blue-700); }
+  .icon-demo .ilabel { font-size:11px; color:var(--einstein-gray); }
+
+  @media (max-width:720px){
+    .tile-grid { grid-template-columns:repeat(2,1fr); }
+    .nightmare-grid { grid-template-columns:1fr; }
+    .receipt-grid, .why-cols, .trust-card { grid-template-columns:1fr; }
+    .stepper { flex-wrap:wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="sheet-head">
+    <h1>The Quote Form's Settled Language</h1>
+    <p class="sub">Living component sheet harvested from the redesigned quote form — <b>the locked design foundation</b>. Build new pages by lifting these surfaces. Narrative spec + the 10 Rules: <code>settled-components.md</code>.</p>
+    <p class="rule-link"><b>Core law:</b> blue = action · orange = the wink (fills, chips, Orange-900 large accents — <b>never #EF8B22 text</b>) · primary text = Navy 500 · white cards on light warm backgrounds · illustration not photography · trust is ambient · motion is calm (120/180/240ms) · everything on the 4px grid.</p>
+    <p class="rule-link"><b>Updated 6/11 PM</b> — KP design-system refinements (Emma Butler) adopted: tonal ramps + WCAG pairings, 20px-base Size 1–6 type scale (Lora = banner only, Bebas retired from website work), 4px spacing system, iconography rules. The Rules are now <b>12</b> (see <code>settled-components.md</code>).</p>
+  </header>
+
+  <!-- ================= FOUNDATIONS ================= -->
+  <div class="group-title">Foundations</div>
+  <p class="group-note">From <code>colors_and_type.css</code> — use the CSS variables, never raw hex.</p>
+
+  <div class="spec">
+    <p class="spec-name">Color roles</p>
+    <p class="spec-seen">colors_and_type.css · applied in every screen</p>
+    <div class="chip-row">
+      <div class="chip"><div class="swatch" style="background:var(--einstein-orange)"></div><div class="cname">--einstein-orange</div><div class="cval">#EF8B22 · accent, selection borders, nav CTA, badges — FILLS ONLY, never text</div></div>
+      <div class="chip"><div class="swatch" style="background:var(--color-orange-900)"></div><div class="cname">--color-orange-900</div><div class="cval">#CC5500 · large display accents (≥18px / ≥14px bold), UI glyphs, borders</div></div>
+      <div class="chip"><div class="swatch" style="background:var(--color-orange-50)"></div><div class="cname">--color-orange-50</div><div class="cval">#FEF6EC · warm sections + the wink chip (navy text on it)</div></div>
+      <div class="chip"><div class="swatch" style="background:var(--einstein-blue)"></div><div class="cname">--einstein-blue</div><div class="cval">#0979C3 · in-content CTAs, links, completed steps, toggles ON</div></div>
+      <div class="chip"><div class="swatch" style="background:var(--color-navy-500)"></div><div class="cname">--color-navy-500</div><div class="cval">#27343D · PRIMARY text + headings (and the big price); footer bg</div></div>
+      <div class="chip"><div class="swatch" style="background:var(--einstein-gray)"></div><div class="cname">--einstein-gray</div><div class="cval">#53575A · secondary body text (Grey 500)</div></div>
+      <div class="chip"><div class="swatch" style="background:var(--einstein-light)"></div><div class="cname">--einstein-light</div><div class="cval">#F6F6F6 · page bands, input fills, FAQ rows</div></div>
+      <div class="chip"><div class="swatch" style="background:var(--success)"></div><div class="cname">--success</div><div class="cval">#69995D · checks, savings chips</div></div>
+      <div class="chip"><div class="swatch" style="background:var(--error)"></div><div class="cname">--error</div><div class="cval">#CC0100 · competitor fees ONLY (money semantics)</div></div>
+    </div>
+    <div class="spec-notes"><b>Semantics:</b> fees red · our zeros blue · savings green · selected orange (border/fill) · clicked blue. Hairline everywhere: <code>1px solid #E5E5E5</code>. <b>KP 6/11:</b> primary text is Navy 500 — Grey 500 is the secondary voice. The old cream tint (#FFF6EC banners) maps to <b>Orange-50 #FEF6EC</b> going forward.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Tonal ramps + approved pairings — KP refinements, adopted 6/11</p>
+    <p class="spec-seen">human/kp-refinements-june11/Einstein-colour-palette-instructions.md · colors_and_type.css</p>
+    <div class="ramp-row"><span class="rlabel">Orange</span>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-orange-50)"></div><div class="rcn">50</div><div class="rcv">#FEF6EC</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-orange-100)"></div><div class="rcn">100</div><div class="rcv">#FDE3C2</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-orange-200)"></div><div class="rcn">200</div><div class="rcv">#FABD84</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-orange-300)"></div><div class="rcn">300</div><div class="rcv">#F5A054</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-orange-500)"></div><div class="rcn">500 ★</div><div class="rcv">#EF8B22</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-orange-700)"></div><div class="rcn">700</div><div class="rcv">#D96B10</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-orange-900)"></div><div class="rcn">900</div><div class="rcv">#CC5500</div></div>
+    </div>
+    <div class="ramp-row"><span class="rlabel">Navy</span>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-navy-50)"></div><div class="rcn">50</div><div class="rcv">#EEF1F4</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-navy-100)"></div><div class="rcn">100</div><div class="rcv">#CDD5DA</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-navy-200)"></div><div class="rcn">200</div><div class="rcv">#9AADB7</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-navy-400)"></div><div class="rcn">400</div><div class="rcv">#507080</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-navy-500)"></div><div class="rcn">500 ★</div><div class="rcv">#27343D</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-navy-700)"></div><div class="rcn">700</div><div class="rcv">#1A2329</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-navy-900)"></div><div class="rcn">900</div><div class="rcv">#0B1014</div></div>
+    </div>
+    <div class="ramp-row"><span class="rlabel">Blue</span>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-blue-50)"></div><div class="rcn">50</div><div class="rcv">#EBF4FB</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-blue-100)"></div><div class="rcn">100</div><div class="rcv">#C3DFEF</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-blue-200)"></div><div class="rcn">200</div><div class="rcv">#88C0E4</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-blue-300)"></div><div class="rcn">300</div><div class="rcv">#46A2D5</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-blue-500)"></div><div class="rcn">500 ★</div><div class="rcv">#0979C3</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-blue-700)"></div><div class="rcn">700</div><div class="rcv">#065E9A</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-blue-900)"></div><div class="rcn">900</div><div class="rcv">#023B63</div></div>
+    </div>
+    <div class="ramp-row"><span class="rlabel">Grey</span>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-grey-50)"></div><div class="rcn">50</div><div class="rcv">#F4F5F5</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-grey-100)"></div><div class="rcn">100</div><div class="rcv">#E2E3E4</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-grey-200)"></div><div class="rcn">200</div><div class="rcv">#C0C2C4</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-grey-400)"></div><div class="rcn">400</div><div class="rcv">#787C7F</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-grey-500)"></div><div class="rcn">500 ★</div><div class="rcv">#53575A</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-grey-700)"></div><div class="rcn">700</div><div class="rcv">#363839</div></div>
+      <div class="ramp-chip"><div class="rsw" style="background:var(--color-grey-900)"></div><div class="rcn">900</div><div class="rcv">#191A1B</div></div>
+    </div>
+    <div class="spec-notes"><b>Pairings are law (WCAG 2.1 AA):</b> use only the approved pairs in <code>Einstein-colour-palette-instructions.md</code> — Orange-500 always carries dark text (#27343D / #0B1014), never white-on-orange-for-text-on-white tricks; Orange-900 on white passes 4.3:1 (large text + UI only, no body copy); Navy-400 / Grey-400 are large-text-only. <b>Primary text = Navy 500.</b> <b>Section background hierarchy:</b> white default → Orange-50 for warm/featured → Grey-50 for subtle alternation → Navy-50 for the lightest contrast tint. Navy 500+ is never a full section background — <b>dark = footer only</b>.</div>
+  </div>
+
+  <div class="spec tramp">
+    <p class="spec-name">Type scale — 20px base, Size 1–6 (KP refinements, adopted 6/11)</p>
+    <p class="spec-seen">colors_and_type.css · Einstein-typographic-scale-instructions.md · headings bold Navy 500, body regular</p>
+    <div class="type-row"><span class="tname">Size 1 · 4rem/80px · Lora, BANNER ONLY</span><span style="font-family:var(--font-display-serif); font-size:var(--fs-size-1); font-weight:700; color:var(--color-navy-500); line-height:1.2;">Moving, but Easy</span></div>
+    <div class="type-row"><span class="tname">Size 2 · 2rem/40px · most often the h2</span><span style="font-size:var(--fs-size-2); font-weight:700; color:var(--color-navy-500); line-height:1.2;">The Moving Bill Reality Check</span></div>
+    <div class="type-row"><span class="tname">Size 3 · 1.6rem/32px</span><span style="font-size:var(--fs-size-3); font-weight:700; color:var(--color-navy-500);">Let's plan your genius move</span></div>
+    <div class="type-row"><span class="tname">Size 4 · 1.2rem/24px</span><span style="font-size:var(--fs-size-4); font-weight:700; color:var(--color-navy-500);">Why should you choose this Smart Move™?</span></div>
+    <div class="type-row"><span class="tname">Size 5 · 1rem/20px · the typical h1 size</span><span style="font-size:var(--fs-size-5); font-weight:700; color:var(--color-navy-500);">Smart Moving in Austin, TX</span></div>
+    <div class="type-row"><span class="tname">Size 6 · 0.9rem/18px</span><span style="font-size:var(--fs-size-6); font-weight:700; color:var(--color-navy-500);">Estimate details</span></div>
+    <div class="type-row"><span class="tname">Large P · 1.2rem/24px · intros, pull quotes</span><span style="font-size:var(--fs-lg-p); color:var(--einstein-gray);">We'll bring the brains and the brawn.</span></div>
+    <div class="type-row"><span class="tname">P · 1rem/20px · BASE — editorial prose</span><span style="font-size:var(--fs-body); color:var(--einstein-gray);">Tell us about your locations and we'll handle the brain work.</span></div>
+    <div class="type-row"><span class="tname">Small P · 0.8rem/16px · cards, captions, labels</span><span style="font-size:var(--fs-sm-p); color:var(--einstein-gray);">Wrapping and padding your furniture is always included.</span></div>
+    <div class="type-row"><span class="tname">Tiny P · 0.6rem/12px · legal/fine print only</span><span style="font-size:var(--fs-tiny-p); color:var(--einstein-gray);">*This is just an estimate based on standard inventory for your location type.</span></div>
+    <div class="type-row"><span class="tname">--font-script (Thirsty) · "Smart Move" only</span><span class="script-accent" style="font-size:26px;">Smart Move</span></div>
+    <div class="spec-notes"><b>Rules (KP 6/11):</b> <code>html { font-size: 20px }</code> — 1rem = 20px. Headings are named by SIZE not heading level: any h-level can take any size; the page h1 usually styles at <b>Size 5/6</b>, the h2 at <b>Size 2</b>. <b>Lora = hero/banner display only</b> (Size 1). <b>Bebas Neue is RETIRED from website work</b> — internal tools only. P for prose, Small P for components. Thirsty Script only for the Smart Move mark. No long ALL-CAPS body runs.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Radius &amp; elevation</p>
+    <p class="spec-seen">tokens · every card and field</p>
+    <div class="radius-row">
+      <div class="radius-demo" style="border-radius:var(--radius-sm)">--radius-sm 6 · inputs</div>
+      <div class="radius-demo" style="border-radius:8px">8px · buttons, choice cards</div>
+      <div class="radius-demo" style="border-radius:var(--radius-md)">--radius-md 12 · cards</div>
+      <div class="radius-demo" style="border-radius:var(--radius-lg)">--radius-lg 20 · feature panels</div>
+      <div class="radius-demo" style="border-radius:var(--radius-pill)">pill · badges</div>
+      <div class="radius-demo" style="box-shadow:var(--shadow-md); border:none; background:#fff;">--shadow-md · floating only</div>
+    </div>
+    <div class="spec-notes"><b>Default card:</b> white · 12px radius · hairline border · <i>no</i> shadow. Shadow only when an element floats (calendar panel, sticky bar, estimate card gets --shadow-sm).</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Spacing — 4px system (KP refinements, adopted 6/11)</p>
+    <p class="spec-seen">Einstein-4px-spacing-system.md · agent/visual/spacing.md · 1440px base, 12 col, 32px gutters, 112px margins</p>
+    <div class="sp-row"><span class="spn">sp-1 · 4px · micro</span><div class="spbar" style="width:4px;"></div></div>
+    <div class="sp-row"><span class="spn">sp-2 · 8px · label→field</span><div class="spbar" style="width:8px;"></div></div>
+    <div class="sp-row"><span class="spn">sp-3 · 12px · compact internals</span><div class="spbar" style="width:12px;"></div></div>
+    <div class="sp-row"><span class="spn">sp-4 · 16px · base unit</span><div class="spbar" style="width:16px;"></div></div>
+    <div class="sp-row"><span class="spn">sp-5 · 20px · heading→body</span><div class="spbar" style="width:20px;"></div></div>
+    <div class="sp-row"><span class="spn">sp-6 · 24px · field→field</span><div class="spbar" style="width:24px;"></div></div>
+    <div class="sp-row"><span class="spn">sp-8 · 32px · gutter / card gap</span><div class="spbar" style="width:32px;"></div></div>
+    <div class="sp-row"><span class="spn">sp-10 · 40px · card padding</span><div class="spbar" style="width:40px;"></div></div>
+    <div class="sp-row"><span class="spn">sp-12 · 48px · block groups</span><div class="spbar" style="width:48px;"></div></div>
+    <div class="sp-row"><span class="spn">sp-14 · 56px · field height</span><div class="spbar" style="width:56px;"></div></div>
+    <div class="sp-row"><span class="spn">sp-16 · 64px · large button h</span><div class="spbar" style="width:64px;"></div></div>
+    <div class="sp-row"><span class="spn">sp-20 · 80px · max icon / sub-section</span><div class="spbar" style="width:80px;"></div></div>
+    <div class="sp-row"><span class="spn">sp-28 · 112px · major sections</span><div class="spbar" style="width:112px;"></div></div>
+    <div class="spec-notes"><b>The rules:</b> every gap is a token — never 15/22/35px. <b>Card internal padding 40px</b> (32 tablet, 24 mobile); card-to-card gap 32px = the gutter. <b>Section rhythm 112 / 80 / 64</b> (desktop → tablet → mobile, step down ONE level per breakpoint). Heading→body 20px; paragraph spacing 32px (practical rhythm unit for the 30px line height). Form fields 56px tall, 24px apart. <b>Touch targets never below 44px.</b> Proximity signals relationship; nested spacing decreases; shrink spacing before shrinking type.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Iconography — one SVG set, orange fill → blue hover (KP refinements, adopted 6/11)</p>
+    <p class="spec-seen">Einstein-iconography-rules.md · agent/visual/icons.md (hover the trucks)</p>
+    <div class="stage" style="display:flex; align-items:flex-end; gap:8px; flex-wrap:wrap;">
+      <button class="icon-demo" style="background:none; border:none;" aria-label="Icon demo 40px">
+        <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false"><path class="acc" d="M2 6h11v10H2z"/><path d="M13 9h4.2L20 12v4h-7z" fill="#27343D"/><circle cx="6.5" cy="18" r="2" fill="#27343D"/><circle cx="16.5" cy="18" r="2" fill="#27343D"/></svg>
+        <span class="ilabel">40px · sp-10 (min)</span>
+      </button>
+      <button class="icon-demo" style="background:none; border:none;" aria-label="Icon demo 56px">
+        <svg viewBox="0 0 24 24" width="56" height="56" aria-hidden="true" focusable="false"><path class="acc" d="M2 6h11v10H2z"/><path d="M13 9h4.2L20 12v4h-7z" fill="#27343D"/><circle cx="6.5" cy="18" r="2" fill="#27343D"/><circle cx="16.5" cy="18" r="2" fill="#27343D"/></svg>
+        <span class="ilabel">56px · sp-14 (default)</span>
+      </button>
+      <button class="icon-demo" style="background:none; border:none;" aria-label="Icon demo 80px">
+        <svg viewBox="0 0 24 24" width="80" height="80" aria-hidden="true" focusable="false"><path class="acc" d="M2 6h11v10H2z"/><path d="M13 9h4.2L20 12v4h-7z" fill="#27343D"/><circle cx="6.5" cy="18" r="2" fill="#27343D"/><circle cx="16.5" cy="18" r="2" fill="#27343D"/></svg>
+        <span class="ilabel">80px · sp-20 (max, hero)</span>
+      </button>
+    </div>
+    <div class="spec-notes"><b>Three sizes only:</b> 40 / 56 / 80px, all with 16px padding, 8px icon-to-label gap, <code>viewBox="0 0 24 24"</code>. <b>Primary fill = Orange-500 → Blue-500 on hover/focus → Blue-700 pressed → Grey-200 @40% disabled</b>, animated <code>fill 150ms ease-in-out</code>. Orange-500 is legal here because it's a FILL — the same hex as text isn't. One consistent SVG set sitewide (no mixed libraries, no icon fonts); stroke weight scales with size (1.5/2/2.5px). <b>The emoji you see across this sheet are a placeholder convention for this workshop — explicitly NOT for production.</b> Production icons come from the kit's orange/navy line set.</div>
+  </div>
+
+  <!-- ================= ATOMS ================= -->
+  <div class="group-title">Atoms</div>
+
+  <div class="spec">
+    <p class="spec-name">Buttons — blue acts, orange navigates</p>
+    <p class="spec-seen">Every screen · components.html · landing-sample</p>
+    <div class="stage" style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+      <button class="btn-primary">Continue to next step</button>
+      <button class="btn-primary">Review + Book</button>
+      <button class="btn-secondary">Email estimate to yourself</button>
+      <button class="btn-nav">Book Your Move</button>
+    </div>
+    <div class="spec-notes"><b>Primary (blue):</b> 8px radius, bold 16px, sentence-case forward verbs ("Choose move date", "Book your move!") — never "Submit". Hover lifts 1px @120ms, press scales .98. <b>Nav CTA (orange, UPPERCASE):</b> navigation bar only — the single orange button on the site.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Microproof line</p>
+    <p class="spec-seen">Screens 04, 05, 07, 09 · landing-sample · touches every primary CTA</p>
+    <div class="stage">
+      <button class="btn-primary">Get My Free Quote</button>
+      <div class="microproof">No deposit · Free cancellation · No hidden fees</div>
+      <div class="microproof"><span class="check">✓</span> No deposit&nbsp;&nbsp;<span class="check">✓</span> Free cancellation&nbsp;&nbsp;<span class="check">✓</span> $2,000 coverage</div>
+    </div>
+    <div class="spec-notes">13–14px gray, dot-separated or green-check chips. A naked CTA is off-brand. Variants: "Quote valid for 7 days" · "Join 100,000+ happy customers who made the Smart Move™".</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">The wink — two variants (restyled per KP refinements, adopted 6/11)</p>
+    <p class="spec-seen">Screens 01, 03, 04, 08, 09 (under headings and field labels) — was "orange italic text"; #EF8B22 text is now banned</p>
+    <div class="stage" style="display:flex; flex-direction:column; gap:8px; align-items:flex-start;">
+      <span style="font-size:11px; color:#8a8e91; text-transform:uppercase; letter-spacing:.5px;">Small wink — navy italic on an Orange-50 chip (13–14px microcopy)</span>
+      <div class="nudge">By the way, weekdays are often the *best* days to move!</div>
+      <div class="nudge">🧠 Helps our Smart Move System™ create your perfect crew size</div>
+      <div class="nudge">You're so close to booking the easiest move of your life.</div>
+      <span style="font-size:11px; color:#8a8e91; text-transform:uppercase; letter-spacing:.5px; margin-top:10px;">Display accent — Orange-900 #CC5500, large only (≥18px: hero rotator word, anchor-line kicker)</span>
+      <div style="font-size:21px; font-weight:700; color:var(--color-navy-500);">Our rate is the whole cost. <span class="nudge-display" style="font-size:21px;">Theirs is just where it starts.</span></div>
+    </div>
+    <div class="spec-notes"><b>The wink survives, the hex changes.</b> Small winks (jokes, weekday nudges — never surge framing, "why we ask" helpers): <b>italic Navy-500 text on an Orange-50 #FEF6EC chip</b>, rounded, subtle, one emoji max. Large display accents (≥18px regular / ≥14px bold — hero rotator words, anchor kickers, highlighted phrases): <b>Orange-900 #CC5500 text</b>, which passes WCAG on white. <b>#EF8B22 as text is a bug, everywhere, at every size.</b> Classes: <code>.nudge</code> (chip) and <code>.nudge-display</code>.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Badges — numbered circle · Smart Move pill · savings chip</p>
+    <p class="spec-seen">Screens 01, 09 (numbers) · 01, 04, 06 (pill) · 05 (savings)</p>
+    <div class="stage" style="display:flex; gap:18px; align-items:center; flex-wrap:wrap;">
+      <span class="numbered-badge">1</span><span class="numbered-badge">2</span>
+      <span class="sms-pill">🧠 Smart Move System™ Activated</span>
+      <span class="save-chip">Save $45</span>
+    </div>
+    <div class="spec-notes"><b>Numbered:</b> 32px orange circle, white bold — ordered content. <b>Pill:</b> white, blue border, blue 12.5px text — the section eyebrow for Smart Move System content. <b>Savings:</b> green pill — savings are gifts, never penalties.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Form field · select · textarea (gray-fill idiom)</p>
+    <p class="spec-seen">Screens 01, 04, 09</p>
+    <div class="stage" style="display:flex; gap:24px; flex-wrap:wrap;">
+      <div class="field">
+        <label>Address *</label>
+        <input type="text" value="3914 Edgerock Dr, Austin, TX 78731, USA">
+        <label style="margin-top:14px;">Size * <span class="helper">🧠 Helps our Smart Move System™ create your perfect crew size</span></label>
+        <select><option>2 bedroom</option></select>
+        <label style="margin-top:14px;">Distance truck can park from entrance *</label>
+        <select><option>A Brief Jaunt (21-50 Feet)</option></select>
+      </div>
+      <div class="field">
+        <label><span class="numbered-badge" style="width:22px;height:22px;font-size:12px;">1</span>&nbsp; Origin considerations</label>
+        <textarea placeholder="We have a large Pokémon card collection that should be handled as though it is as precious as a newborn baby."></textarea>
+      </div>
+    </div>
+    <div class="spec-notes"><b>Field:</b> 13px medium gray label · #F6F6F6 fill · hairline · 6px radius. Focus ring @120ms, helpers fade @180ms, <b>errors never shake</b>. Placeholders are italic and do comedy that teaches the expected answer. Select options get personality ("A Brief Jaunt"). <b>KP 6/11:</b> the "why we ask" helper is now a wink chip (navy italic on Orange-50), not orange text.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Toggle row (boolean + consent)</p>
+    <p class="spec-seen">Screens 01 (Elevator/Stairs), 04 (terms), 09 (acknowledgement)</p>
+    <div class="stage" style="display:flex; gap:14px; flex-wrap:wrap;">
+      <div class="toggle-row"><span>Elevator <span style="color:#9aa0a4;">ⓘ</span></span><label class="switch"><input type="checkbox"><span class="track"></span></label></div>
+      <div class="toggle-row"><span>Stairs</span><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div>
+    </div>
+    <div class="stage"><div class="toggle-row" style="max-width:560px;"><span style="font-size:13.5px;">I understand that minimum prices are involved and all website quotes are estimates.</span><label class="switch"><input type="checkbox" checked><span class="track"></span></label></div></div>
+    <div class="spec-notes">Bordered row + iOS switch; ON = blue. Consent variants stretch wide with the full plain-language sentence as the label.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Footer "text us" line</p>
+    <p class="spec-seen">Every form screen, bottom center</p>
+    <div class="stage footer-text" style="text-align:center;">Questions? Text us: <a href="#">+1 (737) 252-7165</a></div>
+    <div class="spec-notes">Texting offered first — the lowest-pressure human channel. Blue underlined link.</div>
+  </div>
+
+  <!-- ================= MOLECULES ================= -->
+  <div class="group-title">Molecules</div>
+
+  <div class="spec">
+    <p class="spec-name">Progress stepper — the truck drives the route</p>
+    <p class="spec-seen">Screens 01–09, top center of every step</p>
+    <div class="stage stepper">
+      <div class="step done"><div class="dot">✓</div><div class="slabel">Location Details</div></div>
+      <div class="step done"><div class="dot">✓</div><div class="slabel">Special Items</div></div>
+      <div class="step current"><div class="dot">🚚</div><div class="slabel">Date &amp; Time</div></div>
+      <div class="step"><div class="dot">4</div><div class="slabel">Contact Info</div></div>
+      <div class="step"><div class="dot">5</div><div class="slabel">Estimate</div></div>
+      <div class="step"><div class="dot">6</div><div class="slabel">Book</div></div>
+    </div>
+    <div class="spec-notes">Done = blue circle/✓, current = the orange truck icon on the rail (production uses the kit's truck pictogram), upcoming = hairline gray numbers. Rail turns blue behind the truck. Progress width animates @240ms; steps slide 8–12px + fade @240–280ms.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Condensed trust strip — ambient, every page</p>
+    <p class="spec-seen">Screens 01–09 (under stepper) · landing-sample (under hero)</p>
+    <div class="stage trust-bar">
+      <div class="trust-item">🏆 Multi-award winning</div>
+      <div class="trust-item">⭐ 4.9/5 Stars</div>
+      <div class="trust-item">🛡️ $2,000 Coverage</div>
+      <div class="trust-item">🔍 No Hidden Fees</div>
+    </div>
+    <div class="spec-notes">4 items, orange icons, 14px medium gray, hairline rules — no card, no fill. Landing variant swaps item 4 for "📦 100,000+ Moves Completed". <b>Canonical numbers: 8,100+ reviews · $2,000.</b></div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Trust badge card — the expanded version (once per page)</p>
+    <p class="spec-seen">Screen 01</p>
+    <div class="stage trust-card">
+      <div><div class="ticon">🏆</div><div class="tname2">Award-Winning</div><div class="tsub">55 awards won and counting!</div></div>
+      <div><div class="ticon">⭐</div><div class="tname2">4.9/5 Stars</div><div class="tsub">8,100+ reviews</div></div>
+      <div><div class="ticon">🛡️</div><div class="tname2">Fully Insured</div><div class="tsub">$2,000 coverage</div></div>
+      <div><div class="ticon">🔍</div><div class="tname2">No Hidden Fees</div><div class="tsub">Seriously, none</div></div>
+    </div>
+    <div class="spec-notes">One white card, 4 columns: pictogram → bold claim → winking sub ("Seriously, none"). Production icons = the kit's orange/navy line set, not emoji.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Step-header lockup — the form's "hero"</p>
+    <p class="spec-seen">Screens 01, 02, 03, 04, 08, 09</p>
+    <div class="stage lockup">
+      <div class="spot">📦</div>
+      <h3>Any extra special stuff going on?</h3>
+      <p class="reassure">On a tight timeline? Need help packing? Bringing *some* stuff, but not all the stuff? Tell us here.</p>
+      <div class="nudge">No PhD required, we promise 📌</div>
+    </div>
+    <div class="spec-notes">Spot illustration → bold Navy-500 headline (warm question or progress cheer) → plain reassurance → the wink (navy italic on Orange-50 chip — KP 6/11). Centered, light background. This pattern opens interior pages sitewide — <b>not</b> a photo hero.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Question card + binary choice cards</p>
+    <p class="spec-seen">Screen 02 (×4) · components.html</p>
+    <div class="stage qcard">
+      <p class="q">Do you need help packing your belongings into boxes?</p>
+      <p class="clarify">Wrapping and padding your furniture is always included—this is just about getting your stuff into boxes.</p>
+      <div class="choice-grid">
+        <button class="choice-card"><b>Yes</b>, help me please! 🙏</button>
+        <button class="choice-card selected"><b>No</b>, I'll do it myself 💪</button>
+      </div>
+    </div>
+    <div class="spec-notes">One question per white card; centered bold question + optional italic clarifier (the anxiety-killer). Choices: gray-fill rounded buttons, <b>bold verdict + playful tail + emoji</b>. Selected = orange border. Transition 180ms. Click to toggle.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Pictogram select cards (special items)</p>
+    <p class="spec-seen">Screen 02</p>
+    <div class="stage pict-grid">
+      <button class="pict-card"><span class="picon">🎹</span><div class="pname">Piano</div><div class="pqual">&nbsp;</div></button>
+      <button class="pict-card selected"><span class="picon">🗄️</span><div class="pname">Safe</div><div class="pqual">(over 600lbs)</div></button>
+      <button class="pict-card"><span class="picon">🖼️</span><div class="pname">Artwork</div><div class="pqual">(worth over $2,000)</div></button>
+      <button class="pict-card"><span class="picon">🎱</span><div class="pname">Pool Table</div><div class="pqual">&nbsp;</div></button>
+      <button class="pict-card"><span class="picon">🕰️</span><div class="pname">Heavy Furniture</div><div class="pqual">(over 600lbs)</div></button>
+    </div>
+    <div class="spec-notes">Square white cards, centered orange/navy pictogram + bold label + honest threshold in parens. Multi-select, orange border = selected.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Date picker — orange-selected calendar</p>
+    <p class="spec-seen">Screen 03</p>
+    <div class="stage cal">
+      <div class="mname">June</div>
+      <div class="cal-grid">
+        <div class="dow">Mon</div><div class="dow">Tue</div><div class="dow">Wed</div><div class="dow">Thu</div><div class="dow">Fri</div><div class="dow">Sat</div><div class="dow">Sun</div>
+        <div class="day muted">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day selected">26</div><div class="day">27</div><div class="day">28</div>
+      </div>
+    </div>
+    <div class="spec-notes">Light panel + soft shadow; day cells = white rounded squares with hairline; <b>selected = solid orange</b>; past days muted. The weekday-pricing nudge lives in the lockup above as a wink chip (navy italic on Orange-50) — soft nudge, never surge framing.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Flexible-dates rate carousel + time pills</p>
+    <p class="spec-seen">Screen 05 (inside the estimate card)</p>
+    <div class="stage">
+      <p class="flex-label">💸 Flexible? Check these rates:</p>
+      <div class="rate-row">
+        <div class="rate-card"><div class="rd">Wed 24</div><div class="rp">$918.00</div><div><span class="save-chip">Save $45</span></div></div>
+        <div class="rate-card"><div class="rd">Thu 25</div><div class="rp">$918.00</div><div><span class="save-chip">Save $45</span></div></div>
+        <div class="rate-card selected"><div class="rd">Fri 26</div><div class="rp">$963.00</div><div class="rsel">You selected</div></div>
+        <div class="rate-card"><div class="rd">Sat 27</div><div class="rp">$963.00</div></div>
+      </div>
+      <p class="flex-label" style="margin-top:18px; text-align:center;">What start time works best for you?</p>
+      <div class="time-pills">
+        <button class="time-pill selected">1:15 PM</button>
+        <button class="time-pill">1:30 PM</button>
+      </div>
+    </div>
+    <div class="spec-notes">Selected day = orange fill + "You selected"; cheaper days carry green savings chips. The settled visual for Variable Pricing on the marketing site too. Time pills = sibling of choice cards (orange border selected).</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Notice banner — objection named, answered, exit ramp</p>
+    <p class="spec-seen">Screen 05</p>
+    <div class="stage notice">
+      <span class="i">i</span>
+      <span><b>Price look different than expected?</b> This estimate is based on standard inventory for your location type. If you'd like a more precise quote, give us a call at <a href="#">+1 (737) 252-1557</a> or schedule a free virtual walkthrough.</span>
+    </div>
+    <div class="spec-notes">Cream fill + thin orange border + blue ⓘ. Anticipates the "wait, what?" by name and always offers a human. Reuse for pricing caveats, service-area edges, policy notes.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">"Why we ask" panel — ✅/❌ transparency block</p>
+    <p class="spec-seen">Screen 04</p>
+    <div class="stage why-panel">
+      <span class="sms-pill">🧠 Smart Move System™</span>
+      <h4>Why we collect your contact information early:</h4>
+      <p style="font-size:14px; color:var(--einstein-gray); margin:0;">Unlike other companies, we ask for your info earlier in the process so we can make sure you get the most accurate quote possible — and forget to finish booking? We've got your back!</p>
+      <div class="why-cols">
+        <span class="ok">Instant accurate quote</span><span class="no">We NEVER sell your data</span>
+        <span class="ok">Award-winning service</span><span class="no">No high-pressure sales calls</span>
+        <span class="ok">Smart moving tips</span><span class="no">No spam, EVER</span>
+      </div>
+    </div>
+    <div class="spec-notes">Cream panel + pill eyebrow + bold "why" lead + two-column ✅ promises / ❌ anti-promises. Deploy at any data-ask friction point. The ✅/❌ list is reusable standalone.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Branch contact card</p>
+    <p class="spec-seen">Screen 08 (10-branch grid)</p>
+    <div class="stage branch-grid">
+      <div class="branch-card"><div class="bname">North Austin</div><a href="#">737.377.4537</a><a href="#">Email</a></div>
+      <div class="branch-card"><div class="bname">San Antonio</div><a href="#">210.942.7241</a><a href="#">Email</a></div>
+      <div class="branch-card"><div class="bname">Tampa</div><a href="#">(813) 548-3988</a><a href="#">Email</a></div>
+    </div>
+    <div class="spec-notes">White card, hairline, centered: bold city → blue phone → blue Email. The per-market contact unit for locations pages and footers.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">FAQ accordion — two sanctioned skins</p>
+    <p class="spec-seen">Screen 07 (gray fill) · components.html + landing-sample (white bordered)</p>
+    <div class="stage faq-list" id="faq">
+      <div>
+        <button class="faq-item" aria-expanded="false"><span>Do I need to tip?</span><span class="faq-toggle">+</span></button>
+        <div class="faq-answer" hidden><p>Tips are never expected, always appreciated, and 100% optional. Our crews are paid well either way.</p></div>
+      </div>
+      <div>
+        <button class="faq-item bordered" aria-expanded="false"><span>Am I going to get ripped off?</span><span class="faq-toggle">+</span></button>
+        <div class="faq-answer" hidden><p>Short answer: no. Our rate is the whole cost — supplies, fuel, card processing, and $2,000 of damage coverage are already in it. Theirs is just where the bill starts.</p></div>
+      </div>
+    </div>
+    <div class="spec-notes"><b>Form skin:</b> gray-filled borderless rows (use on white sections). <b>Landing skin:</b> white + hairline (use on gray sections). Orange +/–. Expand height @240ms, content fade @180ms. Real answers in real HTML = GEO asset.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Sticky pricing / CTA bar</p>
+    <p class="spec-seen">Screens 05–07 (bottom, fixed) · landing-sample</p>
+    <div class="stage sticky-demo">
+      <div class="sticky-left">Friday, June 26 | <a href="#">Select Time</a> · <span class="price">$963.00</span></div>
+      <div class="sticky-right">
+        <span class="sticky-proof"><span class="check">✓</span> No deposit&nbsp;&nbsp;<span class="check">✓</span> Free cancellation</span>
+        <button class="btn-primary" style="padding:12px 24px; font-size:14.5px;">Review + Book</button>
+      </div>
+    </div>
+    <div class="spec-notes">Fixed bottom, white, upward shadow. Left = live state (date | price) or microproof trio; right = green checks + ONE blue verb. The CTA never scrolls away on conversion-leaning pages. (Rendered inline here as a specimen.)</div>
+  </div>
+
+  <!-- ================= ORGANISMS ================= -->
+  <div class="group-title">Organisms</div>
+
+  <div class="spec">
+    <p class="spec-name">Estimate result — price presentation</p>
+    <p class="spec-seen">Screen 05 (top)</p>
+    <div class="stage" style="text-align:center;">
+      <h4 style="font-size:24px; margin-bottom:2px;">Your <span class="script-accent" style="font-size:26px;">Smart Move</span>™ estimate for June 26, 2026</h4>
+      <p style="font-size:14.5px; color:var(--einstein-gray); margin:0 0 18px;">Your custom estimate powered by 100,000+ moves</p>
+      <div class="estimate-card">
+        <div class="big-price">$963.00</div>
+        <p class="price-basis">Based on a <b>$107 hourly rate</b> with a 2.5 hour minimum</p>
+        <div class="stat-row">
+          <div class="stat"><span class="sicon">🧑‍🔧</span><b>2 movers</b></div>
+          <div class="stat"><span class="sicon">⏳</span><b>4.5 hours</b></div>
+          <div class="stat"><span class="sicon">🚛</span><b>1 × 26' truck</b></div>
+          <div class="stat"><span class="sicon">⛽</span><b>$0 trip fee</b></div>
+        </div>
+        <p class="fine">*This is just an estimate based on standard inventory for your location type. Want a more precise estimate? <a href="#">Give us a call</a> or schedule a virtual walkthrough.</p>
+      </div>
+    </div>
+    <div class="spec-notes">ONE card holds: huge bold <b>Navy-500</b> price (not orange) → plain-English basis → stat icon row (the "$0 trip fee" zero-as-feature) → honest fine print with a blue human exit → rate carousel → time pills. Price mirrors live into the sticky bar.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">"Moving Bill Reality Check" — receipt comparison</p>
+    <p class="spec-seen">Screen 05 (bottom) · card-skin sibling in components.html + landing-sample</p>
+    <div class="stage" style="text-align:center;">
+      <h4 style="font-size:24px;">The Moving Bill Reality Check</h4>
+      <p style="font-size:15px; color:var(--einstein-gray); max-width:560px; margin:0 auto 22px;">Unlike other moving companies, we refuse to play the "hidden fees" game. Check out how their "lower" hourly rates <b style="color:var(--color-orange-900);">actually add 25-50%</b> to your final moving bill!</p>
+      <div class="receipt-grid">
+        <div class="receipt">
+          <h5>Typical Moving Company</h5>
+          <div class="rline"><span>BASE HOURLY RATE</span><span class="dots"></span><span>???💸</span></div>
+          <div class="rline"><span>Credit Card Processing</span><span class="dots"></span><span class="red">+3-4%</span></div>
+          <div class="rline"><span>Fuel Surcharge</span><span class="dots"></span><span class="red">+15-20%</span></div>
+          <div class="rline"><span>Shrink Wrap &amp; Tape</span><span class="dots"></span><span class="red">+$75-150</span></div>
+          <div class="rline"><span>Stairs/Long Carry Fee</span><span class="dots"></span><span class="red">+$50-100</span></div>
+          <div class="rline"><span>Additional Insurance</span><span class="dots"></span><span class="red">+$100+</span></div>
+          <div class="rtotal red">Your Total $XXX+???</div>
+        </div>
+        <div class="receipt einstein">
+          <h5>🧠 Einstein Moving Company</h5>
+          <div class="rline"><span>ALL-INCLUSIVE HOURLY RATE</span><span class="dots"></span><span>$214.00</span></div>
+          <div class="rline"><span>Everything included</span><span class="dots"></span><span class="blue">$0</span></div>
+          <div class="rline"><span>Trip Fee</span><span class="dots"></span><span class="blue">$0</span></div>
+          <div class="rline" style="justify-content:center; padding-top:6px;"><span style="text-align:center;">No Surprises. No Hidden Fees. No Nonsense.</span></div>
+          <div class="rline" style="justify-content:center;"><span style="text-align:center;">Our price includes supplies, fuel, stairs, assembly, insurance, credit card processing, and more!</span></div>
+          <div class="rtotal blue">Your Total $963.00</div>
+        </div>
+      </div>
+      <p class="anchor-line">Our rate is the whole cost. <span class="smart">Theirs is just where it starts.</span></p>
+    </div>
+    <div class="spec-notes"><b>Form's settled art direction:</b> typewriter receipts, dotted leaders, fees red / our $0s blue, Einstein receipt gets the blue border. The flat-card skin (landing-sample) is the sanctioned simplified port — same skeleton + color semantics. Close the section with one bold <b>anchor line</b> (Navy-500 sentence, Orange-900 kicker — the large-display-accent rule).</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Benefit tile grid — Smart Move inclusions</p>
+    <p class="spec-seen">Screen 06 ("Why should you choose this Smart Move™?")</p>
+    <div class="stage tile-grid">
+      <div class="tile"><span class="ticon2">🛋️</span><div class="tlabel">Home and furniture protection included</div></div>
+      <div class="tile"><span class="ticon2">🔧</span><div class="tlabel">Free furniture assembly</div></div>
+      <div class="tile"><span class="ticon2">🛡️</span><div class="tlabel">$2,000 damage coverage included</div></div>
+      <div class="tile"><span class="ticon2">💳</span><div class="tlabel">No credit card processing fees</div></div>
+      <div class="tile"><span class="ticon2">📺</span><div class="tlabel">Free TV box rentals</div></div>
+      <div class="tile"><span class="ticon2">🪜</span><div class="tlabel">No stairs fee</div></div>
+      <div class="tile"><span class="ticon2">⏱️</span><div class="tlabel">On-time guarantee</div></div>
+      <div class="tile"><span class="ticon2">🚛</span><div class="tlabel">No trip fees</div></div>
+    </div>
+    <div class="spec-notes">4×2 white tiles, pictogram + 2-line label. Every tile is an inclusion or an absent fee — "Free / No / Included" do the selling. The settled "features section" for homepage/services/Why Us.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Orange feature panel — ONE per page</p>
+    <p class="spec-seen">Screen 06 (Smart Move Damage Coverage™ — the only saturated-orange surface in the whole flow)</p>
+    <div class="stage orange-panel">
+      <div class="shield">🛡️</div>
+      <h3>Smart Move Damage Coverage™</h3>
+      <p class="opsub">$2,000 of protection included for FREE</p>
+      <p class="opbody">Einstein Moving Company leads our industry by offering coverage that actually, well, covers you. <b>We cover up to $2,000 per move to repair, replace, or provide cash settlement for any damaged items.</b> And there's no extra charge!</p>
+      <p class="opfine">(The industry standard is just $0.60/lb — that's only $30 for a 50lb TV!)</p>
+    </div>
+    <div class="spec-notes">The loudest claim gets the loudest surface — solid orange, 20px radius, white text, bold dollar promises, italic fine-print kicker. <b>Ration it:</b> one orange panel per page keeps it loud. <b>⚠ KP 6/11 open conflict:</b> the approved pairings put dark text (#27343D / #0B1014) on Orange-500 — white-on-orange body copy here predates the refinements. Flag for the KP working session before reusing; if restyled, navy text or an Orange-700/900 surface are the compliant routes.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">"Moving nightmares" — fear-framed accordion grid</p>
+    <p class="spec-seen">Screen 06 ("5 common moving nightmares Einstein eliminates — So you can sleep easy.")</p>
+    <div class="stage nightmare-grid">
+      <button class="nightmare"><span>💸 Other movers make it so hard to confirm a booking. Do you?</span><span class="plus">+</span></button>
+      <button class="nightmare"><span>⏰ Will you actually be on time?</span><span class="plus">+</span></button>
+      <button class="nightmare"><span>💔 What if my stuff gets damaged?</span><span class="plus">+</span></button>
+      <button class="nightmare"><span>🧍 Who's showing up at my door?</span><span class="plus">+</span></button>
+      <button class="nightmare"><span>🤑 Am I going to get ripped off?</span><span class="plus">+</span></button>
+    </div>
+    <div class="spec-notes">Distinct from the plain FAQ: emotional questions in the customer's anxious words, emoji-led, card grid. THE settled objection block for the homepage. Answers are blunt + warm.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Award strip + exit-ramp panel</p>
+    <p class="spec-seen">Screens 06–07</p>
+    <div class="stage" style="text-align:center;">
+      <h4 style="font-size:22px; margin-bottom:2px;">The most awarded moving company EVER 🏆</h4>
+      <p style="font-size:14px; color:var(--einstein-gray); margin:0 0 16px;">Seriously, we're running out of shelf space!</p>
+      <div class="award-strip"><span class="award">Inc. 5000</span><span class="award">Angi</span><span class="award">Best of the Best</span><span class="award">Super Service</span></div>
+    </div>
+    <div class="stage exit-panel">
+      <h4>Need more options?</h4>
+      <p>No deposit required. Free cancellation. Quote valid for 7 days.</p>
+      <button class="btn-secondary">Email estimate to yourself</button>
+    </div>
+    <div class="spec-notes"><b>Awards:</b> superlative + self-aware joke; logos on light-gray tiles (swap in market-specific awards on location pages). <b>Exit ramp:</b> cream gradient + orange border + blue secondary CTA — the no-pressure capture for "not ready yet."</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Inestimable / "a human will call" pattern</p>
+    <p class="spec-seen">Screen 08</p>
+    <div class="stage inest">
+      <span class="oct">!</span>
+      <h3>Almost done...</h3>
+      <p class="ibody"><b>Since your move <span class="ihl">is a partial move (not moving everything)</span>, we'll need a human to put the finishing touches on your estimate.</b> One of our friendly moving pros will reach out ASAP using the contact info you submitted. We can't wait to be of service!</p>
+      <p class="nudge">Want to chat now? Have more questions? Reach out to the location nearest you:</p>
+    </div>
+    <div class="spec-notes">Orange octagon-! → "Almost done..." (never "error"/"sorry") → bold body with the key reason highlighted in <b>Orange-900</b> (bold ≥14px = WCAG-large, passes — KP 6/11) → wink chip → branch contact card grid. The settled graceful-degradation surface for any human-handoff state.</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Estimate details ledger (book/confirm)</p>
+    <p class="spec-seen">Screen 09</p>
+    <div class="stage ledger">
+      <h4>📋 Estimate details</h4>
+      <div class="lrow"><span>Move Day</span><b>Thursday, June 25 @ 8:30 AM</b></div>
+      <div class="lrow"><span>Origin</span><b>3914 Edgerock Dr, Austin, TX</b></div>
+      <div class="lrow"><span>Number of Movers</span><b>2 Pros</b></div>
+      <div class="lrow"><span>Hourly Rate</span><b>$204.00</b></div>
+      <div class="lrow"><span>Estimated Hours</span><b>4.5 hrs</b></div>
+      <div class="lrow total"><span>Total</span><b>$918.00</b></div>
+    </div>
+    <div class="spec-notes">Label/value rows, values bold right-aligned; <b>only the Total gets the orange accent — Orange-900 #CC5500</b> (bold = WCAG-large; #EF8B22 text is banned, KP 6/11). Header = pictogram + bold title. Reuse for confirmations, move-portal summaries, pricing examples. Page closes with blue "Book your move!" + "Join 100,000+ happy customers who made the Smart Move™".</div>
+  </div>
+
+  <div class="spec">
+    <p class="spec-name">Homepage hero — rotating word (landing-sample idiom)</p>
+    <p class="spec-seen">landing-sample · motion.json → heroRotatingWord (not in the form — the form's hero is the lockup)</p>
+    <div class="stage hero-demo">
+      <h2>Moving, but <span class="rotator" id="rotator">Easy</span></h2>
+      <p class="lead2">We'll bring the brains <em>and</em> the brawn. Background-checked W-2 crews, a price that's the whole cost, and $2,000 of coverage already in it.</p>
+      <button class="btn-primary">Get My Free Quote</button>
+      <div class="microproof">No deposit · Free cancellation · No hidden fees</div>
+    </div>
+    <div class="stage hero-demo" style="margin-top:14px;">
+      <span style="font-size:11px; color:#8a8e91; text-transform:uppercase; letter-spacing:.5px;">Lora banner variant (Size 1 — hero/banner display only, KP 6/11)</span>
+      <h2 style="font-family:var(--font-display-serif);">Moving, but <span class="rotator">Easy</span></h2>
+      <p class="lead2">Same hero, set in Lora — the only sanctioned home for the serif. Body and everything else stays Roboto.</p>
+    </div>
+    <div class="spec-notes">Light band (no photo, no dark), Navy-500 H1 with the rotating word in <b>Orange-900 #CC5500</b> (the large-display-accent resolution — #EF8B22 text is banned, KP 6/11). Typewriter: 53ms/char, hold 3650ms, backspace out; words: Easy · Affordable · Fast · Fun · Smart · A Good Time · Refreshingly Simple. Fixed-width block (no reflow); reduced-motion = one static word. <b>Lora option:</b> the hero H1 may be set in Lora as a Size-1 banner treatment — banners ONLY, never body/headings below the hero.</div>
+  </div>
+
+</div>
+
+<script>
+  // choice/pill/calendar selection demos — orange border/fill = selected
+  document.querySelectorAll('.choice-grid, .time-pills, .pict-grid').forEach(function(g){
+    g.addEventListener('click', function(e){
+      var c = e.target.closest('.choice-card, .time-pill, .pict-card'); if(!c) return;
+      if (c.classList.contains('pict-card')) { c.classList.toggle('selected'); return; }
+      g.querySelectorAll('.selected').forEach(function(s){ s.classList.remove('selected'); });
+      c.classList.add('selected');
+    });
+  });
+  document.querySelectorAll('.cal-grid').forEach(function(g){
+    g.addEventListener('click', function(e){
+      var d = e.target.closest('.day'); if(!d || d.classList.contains('muted')) return;
+      g.querySelectorAll('.day.selected').forEach(function(s){ s.classList.remove('selected'); });
+      d.classList.add('selected');
+    });
+  });
+  document.querySelectorAll('.rate-row').forEach(function(g){
+    g.addEventListener('click', function(e){
+      var d = e.target.closest('.rate-card'); if(!d) return;
+      g.querySelectorAll('.rate-card.selected').forEach(function(s){ s.classList.remove('selected'); });
+      d.classList.add('selected');
+    });
+  });
+  // FAQ accordion
+  document.getElementById('faq').addEventListener('click', function(e){
+    var btn = e.target.closest('.faq-item'); if(!btn) return;
+    var ans = btn.nextElementSibling;
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    ans.hidden = open;
+    btn.querySelector('.faq-toggle').textContent = open ? '+' : '–';
+  });
+  // hero rotator per motion.json
+  (function(){
+    var el = document.getElementById('rotator');
+    var words = ["Easy","Affordable","Fast","Fun","Smart","A Good Time","Refreshingly Simple"];
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent="Refreshingly Simple"; el.style.borderRight="none"; return; }
+    var w=0,c=0,del=false;
+    (function tick(){
+      var word = words[w];
+      el.textContent = word.substring(0,c);
+      if(!del && c<word.length){ c++; setTimeout(tick,53); }
+      else if(!del){ del=true; setTimeout(tick,3650); }
+      else if(c>0){ c--; setTimeout(tick,30); }
+      else { del=false; w=(w+1)%words.length; setTimeout(tick,200); }
+    })();
+  })();
+</script>
+</body>
+</html>

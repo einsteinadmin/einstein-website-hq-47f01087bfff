@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>Website Redesign HQ — Einstein Moving × Kickpoint</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Bebas+Neue&display=swap');
+  :root { --orange:#EF8B22; --blue:#0979C3; --navy:#1B3A5C; --ink:#2A2A2A; --gray:#6B6B6B; --light:#F7F5F1; --line:#E5E1DA; --teal:#0E8F84; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Roboto',-apple-system,sans-serif; background:var(--light); color:var(--ink); line-height:1.55; }
+  .wrap { max-width:1020px; margin:0 auto; padding:56px 36px 100px; }
+  .eyebrow { font-size:.72rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--orange); margin-bottom:10px; }
+  h1 { font-family:'Bebas Neue',sans-serif; font-size:3.4rem; line-height:1; letter-spacing:1px; color:var(--navy); margin-bottom:12px; }
+  .lede { font-size:1.05rem; color:var(--gray); max-width:760px; }
+  .meta { font-size:.78rem; color:#999; margin-top:12px; }
+  /* featured banner — the design system / component set */
+  .feature { margin-top:36px; background:#fff; border:1px solid var(--line); border-left:4px solid var(--orange); border-radius:12px; padding:26px 28px; }
+  .feature .ft-eyebrow { font-size:.68rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--orange); margin-bottom:8px; }
+  .feature h2 { font-size:1.4rem; font-weight:900; color:var(--navy); margin-bottom:8px; }
+  .feature p { font-size:.92rem; color:var(--gray); max-width:720px; margin-bottom:16px; }
+  .feature a.cta { display:inline-block; font-size:.86rem; font-weight:700; color:#fff; background:var(--blue); padding:11px 20px; border-radius:100px; text-decoration:none; transition:background .15s; }
+  .feature a.cta:hover { background:#065E9A; }
+  .phases { margin-top:36px; display:flex; flex-direction:column; gap:0; position:relative; }
+  .phase { display:grid; grid-template-columns:64px 1fr; gap:22px; padding:26px 0; border-bottom:1px solid var(--line); }
+  .ph-num { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--orange); line-height:1; padding-top:2px; }
+  .phase.done .ph-num { color:var(--teal); }
+  .phase.now .ph-num { color:var(--blue); }
+  .ph-status { display:inline-block; font-size:.62rem; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; padding:3px 10px; border-radius:100px; margin-left:10px; vertical-align:middle; }
+  .done .ph-status { background:#E0F2EF; color:var(--teal); }
+  .now .ph-status { background:#E3EFFA; color:var(--blue); }
+  .next .ph-status { background:#EFECE6; color:var(--gray); }
+  .phase h2 { font-size:1.2rem; font-weight:900; color:var(--navy); margin-bottom:6px; }
+  .phase p { font-size:.9rem; color:var(--gray); max-width:680px; margin-bottom:12px; }
+  .links { display:flex; gap:8px; flex-wrap:wrap; }
+  .links a { font-size:.8rem; font-weight:600; color:var(--blue); text-decoration:none; background:#fff; border:1px solid var(--line); padding:8px 14px; border-radius:100px; transition:border-color .15s; }
+  .links a:hover { border-color:var(--blue); }
+  .links a.hosted::after { content:' ↗'; color:var(--orange); }
+  .links a.star { border-color:rgba(239,139,34,.5); }
+  .links span.soon { font-size:.8rem; color:#aaa; padding:8px 6px; }
+  .foot { margin-top:36px; font-size:.8rem; color:#999; }
+  @media (max-width:640px){ .wrap{padding:36px 20px 70px;} .phase{grid-template-columns:44px 1fr; gap:14px;} h1{font-size:2.4rem;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Q2 2026 · Einstein Moving Company × Kickpoint</div>
+  <h1>Website Redesign HQ</h1>
+  <p class="lede">The shared home for the redesign — design system, inspiration, concept directions, and full-fidelity homepage mockups, all in one place. Every link is live; open any mockup on desktop and on your phone (they're responsive).</p>
+  <p class="meta">Einstein × Kickpoint · Updated 6/15/2026</p>
+
+  <!-- FEATURED: the design system / component set -->
+  <div class="feature">
+    <div class="ft-eyebrow">⭐ Start here — the design system</div>
+    <h2>The Component Set — built from the quote form</h2>
+    <p>The redesigned quote form is the locked design direction; this sheet extracts its settled language into a reusable system — every component, color, type rule, and spacing rule the mockups are built from (Emma's adopted refinements baked in). The homepages below are this system applied.</p>
+    <a class="cta" href="design-system.html">Open the Component Set →</a>
+  </div>
+
+  <div class="phases">
+
+    <div class="phase done">
+      <div class="ph-num">01</div>
+      <div>
+        <h2>Inspiration Board <span class="ph-status">Done</span></h2>
+        <p>22 references in three waves (brand story · design awards · the mover journey) with picks, notes, and cuts baked in. Includes the plan, the design steer, and the LLM/AI-readability lens.</p>
+        <div class="links">
+          <a class="hosted" href="https://einsteinadmin.github.io/einstein-brand-story-172a11390747/research.html">Inspiration board</a>
+          <a class="hosted" href="https://einsteinadmin.github.io/einstein-brand-story-172a11390747/">Brand-story deck</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase done">
+      <div class="ph-num">02</div>
+      <div>
+        <h2>Concept Directions <span class="ph-status">Done</span></h2>
+        <p>Blended homepage concepts with reactions baked in — the shoot-out that produced the finalists carried into full fidelity below.</p>
+        <div class="links">
+          <a class="hosted" href="https://einsteinadmin.github.io/einstein-mockup-directions-4133ff677ba2/">Concept directions</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase now">
+      <div class="ph-num">03</div>
+      <div>
+        <h2>Full-Fidelity Homepages <span class="ph-status">For review</span></h2>
+        <p>Five homepage concepts as real pages with real copy, all built on the component set above and Emma's design-system refinements (tonal ramps + WCAG pairings, Navy-500 text, orange-text ban, 20px Size 1–6 type with Lora banners, 4px spacing). Each page has ♥ reaction pins + an Export button for feedback. <b>The Mover Journey also ships a mobile peekaboo</b>: on phones the crew descends per-floor "window" scenes between the cards (desktop keeps the scroll "Camera Stage"). Open it on your phone to see it. The journey's movers are placeholder art — final motion would be commissioned illustration.</p>
+        <div class="links">
+          <a class="star" href="fidelity/brand-story.html">⭐ The Brand Story (customer as hero)</a>
+          <a href="fidelity/mover-journey.html">The Mover Journey (desktop + mobile)</a>
+          <a href="fidelity/hometown-proof.html">Hometown Proof (location template)</a>
+          <a href="fidelity/front-door.html">Front Door 2.0</a>
+          <a href="fidelity/kit-classic.html">Kit Classic</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase next">
+      <div class="ph-num">04</div>
+      <div>
+        <h2>Five-Page Build-Out <span class="ph-status">Next</span></h2>
+        <p>The chosen direction applied across the five page types (Homepage · Why Us · Location · Straightforward Pricing · Service), every region tagged reusable-component vs page-specific.</p>
+        <div class="links"><span class="soon">After we align on a direction together</span></div>
+      </div>
+    </div>
+
+    <div class="phase next">
+      <div class="ph-num">05</div>
+      <div>
+        <h2>Component Extraction — Figma library <span class="ph-status">Next</span></h2>
+        <p>Emma extracts the labeled components into the Figma library (Einstein owns it); KP verifies the WordPress FSE translation. The component census (trust band, worry list, FAQ closer, receipt, story band, review card, quote invitation) seeds the list.</p>
+        <div class="links"><span class="soon">Sprint 2</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="foot">Reference: the project <a href="planning-packet.html" style="color:var(--blue);">planning packet</a>. Foundation, always: the redesigned <b>quote form is the design direction</b>, captured in the <b>Component Set</b> above — the rest of the site catches up to it.</p>
+</div>
+</body>
+</html>

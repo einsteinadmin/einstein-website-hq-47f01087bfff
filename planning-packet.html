@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>Website Workshop — Planning Packet</title>
+<style>
+  :root {
+    --orange: #EF8B22;
+    --blue: #0979C3;
+    --navy: #1B3A5C;
+    --ink: #2A2A2A;
+    --gray: #6B6B6B;
+    --light: #F7F5F1;
+    --line: #E5E1DA;
+    --good: #2E7D52;
+    --warn: #B3541E;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Roboto', -apple-system, sans-serif; color: var(--ink); background: var(--light); line-height: 1.6; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 48px 36px 100px; }
+  .eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+  h1 { font-size: 2.4rem; font-weight: 900; line-height: 1.12; letter-spacing: -0.5px; margin-bottom: 14px; color: var(--navy); }
+  .lede { font-size: 1.08rem; color: var(--gray); max-width: 760px; margin-bottom: 8px; }
+  .meta { font-size: .8rem; color: #999; margin-top: 14px; }
+  .toc { display: flex; gap: 10px; flex-wrap: wrap; margin: 28px 0 0; }
+  .toc a { font-size: .78rem; font-weight: 600; color: var(--blue); text-decoration: none; border: 1px solid var(--line); background: #fff; padding: 7px 14px; border-radius: 100px; }
+  .toc a:hover { border-color: var(--blue); }
+  section { margin-top: 64px; }
+  h2 { font-size: 1.5rem; font-weight: 900; color: var(--navy); margin-bottom: 6px; letter-spacing: -0.3px; }
+  .sub { font-size: .95rem; color: var(--gray); margin-bottom: 22px; max-width: 760px; }
+  h3 { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin: 26px 0 8px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; font-size: .88rem; }
+  th { text-align: left; background: var(--navy); color: #fff; font-weight: 600; padding: 10px 14px; font-size: .78rem; letter-spacing: .5px; text-transform: uppercase; }
+  td { padding: 10px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px 26px; margin-bottom: 16px; }
+  .card h3 { margin-top: 0; }
+  .tag { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-right: 6px; }
+  .tag.ok { background: #E6F2EB; color: var(--good); }
+  .tag.flag { background: #FBEDE3; color: var(--warn); }
+  .tag.opt { background: #E8F1F8; color: var(--blue); }
+  ul, ol { padding-left: 22px; }
+  li { margin-bottom: 7px; font-size: .92rem; }
+  li strong { color: var(--ink); }
+  .callout { background: #fff; border-left: 4px solid var(--orange); border-radius: 0 10px 10px 0; padding: 16px 22px; margin: 18px 0; font-size: .92rem; }
+  .callout.blue { border-left-color: var(--blue); }
+  .shape { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 24px 28px; margin-bottom: 18px; }
+  .shape-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .shape-num { font-size: .72rem; font-weight: 800; letter-spacing: 2px; color: var(--orange); }
+  .shape h3 { margin: 0; font-size: 1.15rem; }
+  .shape .thesis { font-style: italic; color: var(--gray); font-size: .94rem; margin: 4px 0 14px; }
+  .pc { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 12px; }
+  .pc h4 { font-size: .72rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .pc .pro h4 { color: var(--good); }
+  .pc .con h4 { color: var(--warn); }
+  .pc ul { padding-left: 18px; }
+  .pc li { font-size: .87rem; margin-bottom: 5px; }
+  .q { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px 22px; margin-bottom: 12px; }
+  .q .qq { font-weight: 700; font-size: .98rem; margin-bottom: 5px; }
+  .q .qw { font-size: .87rem; color: var(--gray); }
+  .q .default { font-size: .85rem; margin-top: 8px; }
+  .q .default b { color: var(--blue); }
+  code { background: #EFECE6; padding: 1px 6px; border-radius: 4px; font-size: .84em; }
+  @media (max-width: 760px) { .wrap { padding: 32px 20px 80px; } h1 { font-size: 1.8rem; } .pc { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Q2 2026 · Website Redesign · Workshop Tool</div>
+  <h1>Planning Packet — before we build anything.</h1>
+  <p class="lede">Laura's ask: mock up 5 page types in a workshopping tool so Emma can extract reusable components in sprint 2. This packet is the planning phase: what's loaded, what the live copy actually says, what the design-awards world is doing, four ways the tool could be shaped — and the questions to settle in the interview before a single line of the tool gets written.</p>
+  <p class="meta">Prepared by Albert · Thu 6/11/2026, pre-KP-meeting · Spec pulse 12222440475 (KP redesign board) · Owner pulse 11983296787 (Cam's Board)</p>
+
+  <div class="callout blue" style="margin-top:22px;">
+    <strong>Existing artifacts (open from here):</strong>
+    <a href="../mockup-directions.html">Mockup Directions — the 5 homepage concepts</a> (May 2026) ·
+    <a href="../website-redesign-analysis.md">Website Redesign Analysis</a> (Apr 2, 2026) ·
+    <a href="https://einsteinadmin.github.io/einstein-brand-story-172a11390747/">Brand-Story Deck (hosted)</a> ·
+    <a href="https://einsteinadmin.github.io/einstein-brand-story-172a11390747/research.html">its 10-site Research page</a> ·
+    <a href="../brand-story-site/index.html">same deck, local copy</a> ·
+    <a href="../einstein-brand-kit/handoff.md">Einstein Brand Kit</a> ·
+    <a href="research/live-site-copy.md">Live-copy pull (verbatim, 6/11)</a> ·
+    <a href="research/inspiration-sweep.md">Inspiration sweep (full file)</a>
+  </div>
+
+  <nav class="toc">
+    <a href="#assets">1 · Asset Inventory</a>
+    <a href="#copy">2 · Live Copy Snapshot</a>
+    <a href="#inspo">3 · Inspiration Shortlist</a>
+    <a href="#shapes">4 · Tool-Shape Candidates</a>
+    <a href="#interview">5 · Interview Questions</a>
+  </nav>
+
+  <!-- ════════ 1 · ASSETS ════════ -->
+  <section id="assets">
+    <h2>1 · Asset inventory — all loaded ✓</h2>
+    <p class="sub">Everything the kickoff brief listed is confirmed loaded and digested. One-line takeaway per asset.</p>
+    <table>
+      <tr><th>Asset</th><th>Status / key takeaway</th></tr>
+      <tr><td>Einstein Brand Kit</td><td><span class="tag ok">Loaded</span> Canonical design+voice source. Quote form = design foundation. Hard rules: blue CTAs in content / orange = accent+nav only · no "Smart Comfort" customer-facing · canonical numbers (4.9★ / 8,100+ reviews / 55+ awards / 100K+ moves / $2K coverage) · no stock photos · variable pricing stays a soft weekday nudge.</td></tr>
+      <tr><td><a href="../mockup-directions.html">mockup-directions.html</a></td><td><span class="tag ok">Loaded</span> Built <strong>May 2026</strong> as the sister doc to the brand-story deck (pre-SOW prep for KP). 5 directional homepage concepts as annotated wireframes — Origin Story First · Proof Wall · Local-First · Smart Move System · Editorial Hospitality — each with preserve/change/kill lists and risk notes. <strong>You haven't reviewed these since May — re-read before the interview's question 2.</strong></td></tr>
+      <tr><td><a href="../website-redesign-analysis.md">website-redesign-analysis.md</a></td><td><span class="tag ok">Loaded</span> Built <strong>Apr 2, 2026</strong> for the council evaluation of KP's proposal (pre-dates the CMS decision). Current-site audit: awards page is the best page, quote form is the modern north star, homepage is "a 2021 site." The old-vs-new design gap grows with every new page.</td></tr>
+      <tr><td>brand-story-site/ + research md</td><td><span class="tag ok">Loaded</span> The 10 non-moving-industry examples + the "7 Moves" synthesis (origin story front and center · personality in every pixel · proof stacking · video hero · location pages with soul · voice in micro-moments · scroll as narrative).</td></tr>
+      <tr><td>Brand Story Drive docs (4)</td><td><span class="tag ok">Loaded</span> Brand Story + Shareable Version (the 5-pillar Smart Move System narrative, "moving doesn't have to suck") · QA/website-ideas (an interactive "what's your biggest concern?" picker module — a ready-made component idea) · StoryBrand Implementation ("cut half the words" experiment, the one-liner, transitional CTAs).</td></tr>
+      <tr><td>Live site copy (5 pages)</td><td><span class="tag ok">Pulled fresh today</span> See section 2. Full verbatim in <code>research/live-site-copy.md</code>.</td></tr>
+      <tr><td>Workshop-tool pattern v2</td><td><span class="tag ok">Loaded</span> The proven idiom: large artifact preview · per-screen change cards · Keep/Deny + denied tray · 👁 preview toggles · export-to-markdown spec. Built for <em>reviewing a change set</em> — note in section 4 why that matters here.</td></tr>
+      <tr><td>Design-awards sweep</td><td><span class="tag ok">Run today</span> 11 verified 2024–26 references. See section 3. Full file: <code>research/inspiration-sweep.md</code>.</td></tr>
+    </table>
+  </section>
+
+  <!-- ════════ 2 · COPY ════════ -->
+  <section id="copy">
+    <h2>2 · Live copy snapshot — the thesis mostly holds, with four asterisks</h2>
+    <p class="sub">Pulled today from production. Verbatim copy for all 5 pages lives in <code>research/live-site-copy.md</code> — that's the raw material for the mockups. Here's the read.</p>
+
+    <div class="card">
+      <h3>Page-by-page</h3>
+      <ul>
+        <li><strong>Homepage</strong> — 15 sections deep. The "6 Reasons" copy is the rewrite at its best; trust signals scattered across 4 different sections instead of one arc. Three differently-labeled CTAs competing.</li>
+        <li><strong>Why Us</strong> (<code>/why-us/</code>) — sharp opener + the honest disqualifier ("Just moving a few boxes? We might not be your best fit"). But it sprawls to 9 differentiators vs. the homepage's 6 — two competing canon lists.</li>
+        <li><strong>Location — North Austin</strong> (representative pick) — a content goldmine with zero architecture: 18 sections, 60+ full mover bios, 20+ FAQs on one scroll. The bios and local-living guide are exactly the "location pages with soul" material the research calls for — it's all there, just buried.</li>
+        <li><strong>Straightforward Pricing</strong> — the strongest persuasion content on the site (line-item quote comparison, coverage matrix, "Moving Cost Nightmares") trapped in plain two-column tables with ✅/❌ glyphs.</li>
+        <li><strong>Service — Apartment Movers</strong> (representative pick) — the weak one. Visibly older copy stratum ("mind-blowing customer service," "No one is better") mixed with one new paragraph; structurally an SEO doorway template; "Book Your Move Now" appears 6+ times.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>The four asterisks on "the copy is good"</h3>
+      <ul>
+        <li><span class="tag flag">Gap</span> <strong>"Smart Move System" is never named on any of the 5 pages.</strong> Only fragments ("Smart moves are built on…", Smart Move Checklist). The brand story the redesign exists to deliver isn't actually on the live site yet.</li>
+        <li><span class="tag flag">Contradiction</span> <strong>Verified live 6/11:</strong> homepage reason #2 says "simple, <strong>flat-rate pricing</strong> and no hidden fees," and the shared final-CTA band ("…flat-rate pricing, no hidden fees, and over 55+ awards won") runs on the homepage, pricing page, AND location page — while those same pricing/location pages explain "Straightforward <strong>Hourly</strong> Rates." The intent is one flat all-inclusive hourly rate, but "flat-rate pricing" reads as fixed-total-price. Wording fix, e.g. "one all-inclusive hourly rate" — and the mockups should use the corrected phrasing.</li>
+        <li><span class="tag flag">Drift</span> Proof numbers vary unlabeled: 8,100+ reviews (sitewide) vs 1,400+ (N. Austin Google) vs "100,000+ moves" vs "1,000s+ of moves." All true at different scopes — mockups should label scope.</li>
+        <li><span class="tag flag">Bugs</span> Four production copy bugs captured verbatim (e.g. the pricing page's broken <em>"optional" nightmare</em> headline, "try Einstein Moving a try"). Worth a punch list to KP regardless of the redesign.</li>
+      </ul>
+      <p style="font-size:.88rem; color:var(--gray); margin-top:10px;">Also telling: emoji doing icon/badge/callout work all over the site (🏅⭐💡🤷📍) — the copy improvising visual components the theme doesn't have. That's the design-constraint thesis written in the copy itself.</p>
+    </div>
+
+    <div class="callout">
+      <strong>De facto component library already in the copy:</strong> comparison table (3 variants) · ✅ included-in-rate checklist (2 near-duplicate sources) · 47-second quote block · trust subtext line ("No deposit · Free Cancellation · Instant Online Quotes") · final CTA band · review cards with move context · award narrative cards · service grid · location grid. Emma's component extraction has raw material before we draw anything.
+    </div>
+  </section>
+
+  <!-- ════════ 3 · INSPIRATION ════════ -->
+  <section id="inspo">
+    <h2>3 · Inspiration shortlist — 11 references, 2024–26</h2>
+    <p class="sub"><strong>Provenance:</strong> this sweep is net-new (run this morning, 6/11) — it did not exist before today. It's a second wave on top of the 10 brand-story sites (<a href="https://einsteinadmin.github.io/einstein-brand-story-172a11390747/research.html">WGAC, Lemonade, Dishoom, etc.</a>) from April: that set was brand-personality inspiration; this set is design-award + conversion-pattern inspiration. Candidate follow-up: fold these into the brand-story research page so there's one inspiration home. All sites verified live via Awwwards/CSSDA pages, award announcements, or current industry analyses.</p>
+
+    <h3 style="margin-top:8px;">Service-business references</h3>
+    <div class="card">
+      <h3 style="font-size:.98rem;"><a href="https://terminal-industries.com">Terminal Industries</a> — Awwwards Site of the Month, Sep 2025</h3>
+      <p style="font-size:.86rem; color:var(--gray); margin:2px 0 8px;">AI yard-operating system for logistics — a "boring" trucking-adjacent service made genuinely premium. The closest existing proof of Einstein's exact repositioning.</p>
+      <ul>
+        <li><strong>Scroll narrative from real operational imagery + clean type</strong> — no abstract 3D fluff. Direct template for explaining the Smart Move System with real truck/crew photography.</li>
+        <li><strong>Modular sections, tight disciplined color system</strong> — confidence from restraint. Maps straight onto an FSE block library.</li>
+        <li>Proves a trucks-and-yards industry can look like a tech company without losing credibility.</li>
+      </ul>
+      <p style="font-size:.82rem; color:var(--warn); margin-top:8px;">Fit note: enterprise-B2B tone — steal the structure and photography discipline, keep Einstein's warmth in the copy.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:.98rem;"><a href="https://vippromoving.com">VIPro Moving</a> — 2025 "Best Website," Best of Movers Awards (beat 200+ movers)</h3>
+      <p style="font-size:.86rem; color:var(--gray); margin:2px 0 8px;">Premium LA/SF mover — the current high-water mark <em>inside</em> the industry.</p>
+      <ul>
+        <li><strong>Real hero video of their own crews (not stock)</strong> — the single most-cited reason it won. Einstein has 75 trucks and 400+ people; cheap ammunition.</li>
+        <li><strong>Wall of customer VIDEO reviews</strong> — would instantly out-credential the written 8,100+ claim.</li>
+        <li>Minimal-friction messaging: one promise, one CTA, no menu maze above the fold.</li>
+      </ul>
+      <p style="font-size:.82rem; color:var(--warn); margin-top:8px;">Fit note: it's the bar to clear, not the ceiling — visually "polished modern," not distinctive. Beat it on personality and motion.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:.98rem;"><a href="https://www.hioscar.com">Oscar Health</a> — 2025–26 healthcare-design benchmark (Webstacks, Azuro roundups)</h3>
+      <ul>
+        <li><strong>Concrete dollar benefits in the hero</strong> ("$0 virtual care") — Einstein equivalent: lead with pricing facts and guarantees, not adjectives.</li>
+        <li><strong>Blue + orange on a calm white base reading premium-trustworthy</strong> — proof our exact palette can read medical-grade trust, not discount.</li>
+        <li>Plain-language explainers for a confusing purchase — the model for "how a quote is built" on the Pricing page.</li>
+      </ul>
+      <p style="font-size:.82rem; color:var(--warn); margin-top:8px;">Fit note: conversion benchmark, not visual flair — steal the information architecture.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:.98rem;"><a href="https://www.breachbunny.com">BreachBunny</a> — Awwwards Honorable Mention, Nov 2025 (Demodern)</h3>
+      <p style="font-size:.86rem; color:var(--gray); margin:2px 0 8px;">Insurance for a digital-native generation, told "through memes, games, and 3D."</p>
+      <ul>
+        <li><strong>Personality as a trust strategy in a low-trust category</strong> — insurance and moving share the same skepticism problem; validates witty-but-trustworthy at award level.</li>
+        <li><strong>Hero that narrates problem→solution in 3–4 scroll beats</strong> before asking the user for any nav decision.</li>
+        <li>Video-preview hover on content cards — makes review/crew videos feel alive without autoplay.</li>
+      </ul>
+      <p style="font-size:.82rem; color:var(--warn); margin-top:8px;">Fit note: very WebGL/JS-heavy — steal the narrative hero and tone, implement with CSS scroll-driven animation.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:.98rem;"><a href="https://www.myguysmoving.com">MG Moving</a> + <a href="https://missionacandplumbing.com">Mission AC &amp; Plumbing</a> — 2025 conversion-pattern standouts (SmartMoving / OnTheMap)</h3>
+      <ul>
+        <li><strong>3-field starter form above the fold</strong> that hands into the real funnel — the repeated finding across every moving/home-services roundup: 3 fields converts, 8 doesn't. Our full VP form should be step 2, not step 0.</li>
+        <li><strong>Trust badges + licenses + Google score clustered in one band</strong> directly under the hero.</li>
+        <li><strong>Owner/BM talking-head video in the hero</strong> (Mission AC) — humanizes strangers-in-your-home in 10 seconds; perfect for location pages.</li>
+        <li>Sticky "Book Now" that never disappears, including a mobile bottom bar.</li>
+      </ul>
+      <p style="font-size:.82rem; color:var(--warn); margin-top:8px;">Fit note: visually mid, both of them — pure mechanics references, zero aesthetic inspiration.</p>
+    </div>
+
+    <h3>Beyond-industry references</h3>
+    <div class="card">
+      <h3 style="font-size:.98rem;"><a href="https://www.mont-fort.com">Montfort</a> — Awwwards Site of the Month Jul 2025 + SOTD on Awwwards/FWA/CSSDA (Immersive Garden)</h3>
+      <p style="font-size:.86rem; color:var(--gray); margin:2px 0 8px;">Commodity trading — a conservative, trust-critical industry given a cinematic treatment, and it swept every major award.</p>
+      <ul>
+        <li><strong>Scroll-pinned chapter storytelling</strong>: full-viewport sections that pin, play one idea (image + one line), then release — the model for a "your move, step by step" band or the brand-story page.</li>
+        <li><strong>Big display type over full-bleed photography</strong> with heavy negative space — directly compatible with the Bebas-on-photo treatment already proven in Mission Control.</li>
+        <li>Proof a <em>boring trust industry</em> wins by committing to one cinematic idea instead of ten features.</li>
+      </ul>
+      <p style="font-size:.82rem; color:var(--warn); margin-top:8px;">Fit note: heaviest implementation on this list (WebGL) — steal the pinned-chapter pacing; CSS sticky/scroll-timeline gets 80% at zero JS cost.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:.98rem;"><a href="https://mercury.com">Mercury</a> · <a href="https://ramp.com">Ramp</a> · <a href="https://www.moderntreasury.com">Modern Treasury</a> — the fintech trust trio (2025–26 design-pattern analyses)</h3>
+      <p style="font-size:.86rem; color:var(--gray); margin:2px 0 8px;">All three must convert AND feel safe enough to hold your money — the same trust math as moving.</p>
+      <ul>
+        <li><strong>Mercury — show the product, not metaphors:</strong> hero shows the actual dashboard with realistic data. Einstein: show the quote experience / move-day timeline in the hero, not a couple hugging boxes. Friction-removing CTA copy ("See your price" beats "Get a quote").</li>
+        <li><strong>Ramp — quantify every claim and show the math:</strong> stat counters and proof bars as first-class design blocks; transparent pricing tiers with the detail table below the fold — direct template for the hourly-rate + what's-always-included page.</li>
+        <li><strong>Modern Treasury — the before/after flow diagram:</strong> chaos (DIY / cheap mover) vs. order (the Smart Move System as a clean numbered flow). The contrast does the selling — strongest single pattern for Why Us.</li>
+      </ul>
+      <p style="font-size:.82rem; color:var(--warn); margin-top:8px;">Fit note: all three run cooler/quieter than Einstein's voice, and B2B data density can overwhelm consumers — cap at 3–4 hero numbers per page, keep the warmth.</p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:.98rem;"><a href="https://microsoft.ai">Microsoft AI</a> — Awwwards Site of the Day, Nov 2025</h3>
+      <ul>
+        <li><strong>Oversized statement typography as the primary visual</strong> — some sections have no hero image at all. The fallback pattern wherever our photography is weak.</li>
+        <li>Generous max-width prose with one accent color — the readable long-form pattern for service pages and guides.</li>
+      </ul>
+      <p style="font-size:.82rem; color:var(--warn); margin-top:8px;">Fit note: sterile for Einstein's voice — typography/spacing reference only.</p>
+    </div>
+
+    <h3>The 7 patterns mapped to our 5 page types</h3>
+    <ol>
+      <li><strong>Real-footage hero, one promise, one CTA</strong> → Homepage, Location (BM video per branch)</li>
+      <li><strong>Product-forward hero</strong> (show the quote flow / move-day timeline) → Homepage, Pricing</li>
+      <li><strong>Trust band directly under the hero</strong> (one reusable block) → every page type</li>
+      <li><strong>Scroll-pinned 3–5 beat process story</strong> ("the Smart Move System, step by step") → Why Us, Homepage, Service</li>
+      <li><strong>Before/after contrast diagram</strong> → Why Us, Service</li>
+      <li><strong>Quantified proof + transparent pricing table + 3-field starter form</strong> → Pricing, Homepage</li>
+      <li><strong>Filterable review wall, video-first</strong> → Why Us, Location (auto-filtered per branch)</li>
+    </ol>
+    <p style="font-size:.88rem; color:var(--gray);">Implementation posture: every pattern decomposes into an FSE-block-shaped component; CSS scroll-driven animation + <code>position: sticky</code> over JS libraries.</p>
+  </section>
+
+  <!-- ════════ 4 · SHAPES ════════ -->
+  <section id="shapes">
+    <h2>4 · Four candidate shapes for the tool</h2>
+    <p class="sub">The non-obvious call underneath all of these: the workshop-tool pattern we've proven (quote funnel, field app) is built for <em>reviewing a known change set</em>. This project is different — it's <em>generating and choosing between design directions</em>. So the shape question is real, not cosmetic. The 5-variations pattern (brettfromdj) is Shape A as promised — an option, not the default.</p>
+
+    <div class="shape">
+      <div class="shape-head"><span class="shape-num">SHAPE A</span><h3>Variations Gallery — 5 treatments per page, side by side</h3></div>
+      <p class="thesis">For each of the 5 page types, one HTML file renders ~5 full design variations of the same page with the same real copy. Reviewers flip between them and pick a winner (or parts of winners) per page.</p>
+      <div class="pc">
+        <div class="pro"><h4>For</h4><ul>
+          <li>Maximum divergence — exactly what "get ALL the ideas out" asks for</li>
+          <li>Direct comparison is the easiest review mode for non-designers</li>
+          <li>Fable 5 can genuinely generate distinct treatments fast</li>
+        </ul></div>
+        <div class="con"><h4>Against</h4><ul>
+          <li>5 pages × 5 variations = 25 full page builds — variations risk going shallow (same layout, different paint)</li>
+          <li>Doesn't natively serve Emma's component extraction — winners are whole pages, components stay implicit</li>
+          <li>Decision mechanics get messy ("I like 2's hero and 4's pricing table") with no structured way to capture that</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="shape">
+      <div class="shape-head"><span class="shape-num">SHAPE B</span><h3>Classic workshop tool — one build per page + proposed-change cards</h3></div>
+      <p class="thesis">The proven idiom: rebuild each of the 5 pages once in a single design direction; every departure from the current site is a change card (Keep/Deny, trade-off, notes, export). KP reviews like they reviewed the quote funnel.</p>
+      <div class="pc">
+        <div class="pro"><h4>For</h4><ul>
+          <li>Pattern is proven with KP — they just green-lit the quote-funnel workshop in this exact idiom</li>
+          <li>Export = a real build spec; lowest tooling risk</li>
+          <li>Change cards can carry component tags for Emma</li>
+        </ul></div>
+        <div class="con"><h4>Against</h4><ul>
+          <li><strong>Presumes the design direction is already chosen</strong> — it isn't. Five concepts exist; nobody has picked</li>
+          <li>One direction baked in = the exploration Laura asked for never happens</li>
+          <li>Keep/Deny on "the whole new hero" is a clumsy unit of decision for design work</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="shape">
+      <div class="shape-head"><span class="shape-num">SHAPE C</span><h3>Two-stage: direction shoot-out, then page build-out</h3></div>
+      <p class="thesis">Stage 1: render 3 finalists from the existing 5 mockup-direction concepts as full-fidelity HOMEPAGES with real copy — a direction shoot-out. Cameron + KP pick/blend one. Stage 2: apply the winning direction across all 5 page types in the workshop idiom, with component tagging for Emma.</p>
+      <div class="pc">
+        <div class="pro"><h4>For</h4><ul>
+          <li>Matches how design actually converges: direction first, then application</li>
+          <li>Reuses the existing concept work instead of re-deriving it — the wireframes become real</li>
+          <li>Bounded: 3 homepage builds, then 5 pages once — ~8 builds total vs. Shape A's 25</li>
+          <li>Stage 1 alone is a strong artifact for next week even if travel interrupts Stage 2</li>
+        </ul></div>
+        <div class="con"><h4>Against</h4><ul>
+          <li>Two decision gates = more elapsed time, and KP is about to go dark (Laura out, closed week of July 4)</li>
+          <li>Homepage-only shoot-out may under-test how a direction handles a pricing table or a 60-bio roster</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="shape">
+      <div class="shape-head"><span class="shape-num">SHAPE D</span><h3>Component-first — variant library + assembled pages (mix and match)</h3></div>
+      <p class="thesis">Since Emma's sprint-2 job is extracting components, lead with them: build the key blocks (hero, trust band, process story, pricing table, review wall, location intro…) in 2–3 treatments each, then assemble the 5 pages from them. The tool lets reviewers swap component variants in place per page slot and tags every region as reusable-component vs. page-specific.</p>
+      <div class="pc">
+        <div class="pro"><h4>For</h4><ul>
+          <li>Most directly serves the stated sprint-2 goal — the export IS a component inventory with chosen treatments</li>
+          <li>Variation at the component level = combinatorial richness for far less build than Shape A</li>
+          <li>Thinks exactly like the FSE block theme the site will be built on</li>
+        </ul></div>
+        <div class="con"><h4>Against</h4><ul>
+          <li>Risks losing the gestalt — great pages are designed wholes, and mix-and-match invites frankenpages</li>
+          <li>Heaviest engineering of the four (slot-swapping machinery)</li>
+          <li>Component treatments still need a direction to be designed IN — smuggles the Shape C question back in</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="callout blue">
+      <strong>My lean (for the interview, not a decision):</strong> Shape C with a Shape D export — direction shoot-out on the homepage first, then build out the 5 pages in the winning direction with every region tagged component-vs-page-specific so Emma's extraction is reading a labeled map, not archaeology. Shape A stays available as the Stage 1 mechanic if you'd rather shoot out 5 than 3.
+    </div>
+  </section>
+
+  <!-- ════════ 5 · INTERVIEW ════════ -->
+  <section id="interview">
+    <h2>5 · Interview — what I need from you before building</h2>
+    <p class="sub">Grouped: the shape call, then assumptions to confirm, then angles I don't think anyone has raised. Defaults stated so you can rubber-stamp fast where I've guessed right.</p>
+
+    <h3>The shape call</h3>
+    <div class="q">
+      <div class="qq">1 · Which shape — A, B, C, D, or a blend?</div>
+      <div class="qw">This is the one decision everything else hangs off. Also: does the 2:30 KP meeting change Laura's ask in any way that moves this?</div>
+      <div class="default">Default if you shrug: <b>C with D's tagged export</b> (lean above).</div>
+    </div>
+    <div class="q">
+      <div class="qq">2 · Do the five mockup-direction concepts still stand as the direction candidates — and do you already have a favorite?</div>
+      <div class="qw">They're from May, pre-dating the Brand Kit completion and the KP workshop conversation. Has KP seen them? If you're already 80% sold on one (e.g. Origin Story First), a shoot-out is theater and we should skip straight to build-out.</div>
+      <div class="default">Default: <b>treat them as live candidates; shoot out the strongest 3</b> (my read: Origin Story First, Proof Wall, Editorial Hospitality — Local-First and Smart Move System fold in as patterns rather than whole directions).</div>
+    </div>
+
+    <h3>Assumptions to confirm</h3>
+    <div class="q">
+      <div class="qq">3 · Representative pages: North Austin for the location page, Apartment Movers for the service page?</div>
+      <div class="qw">That's what I pulled. N. Austin is the richest location page; Apartment Movers is deliberately a weak page (oldest copy) — which makes it a good redesign test but a bad copy source.</div>
+      <div class="default">Default: <b>keep both picks</b>; flag the apartment copy as needing a rewrite pass rather than preservation.</div>
+    </div>
+    <div class="q">
+      <div class="qq">4 · Copy authority: is this tool design-only, or can the mockups propose copy changes?</div>
+      <div class="qw">The thesis is "copy is good, design is the constraint" — but the pull found real copy problems: Smart Move System never named, flat-rate vs. hourly contradiction, two competing differentiator lists, four production bugs. Strict design-only would force the mocks to repeat known errors.</div>
+      <div class="default">Default: <b>design-first, copy-corrected</b> — keep the live copy as the base, fix the contradictions/bugs silently, and flag any real copy *proposals* as their own tagged change type so KP sees them as suggestions, not faits accomplis. Separately: send KP the bug punch list now regardless.</div>
+    </div>
+    <div class="q">
+      <div class="qq">5 · Who reviews, and how?</div>
+      <div class="qw">You alone → then Emma? A live working session with Laura/Emma? Async with each KP person exporting their own decisions? This changes the decision mechanics (pick-a-variant vs. Keep/Deny) and how opinionated the export needs to be. Also: same GitHub Pages obscure-URL sharing pattern as the quote-funnel workshop?</div>
+      <div class="default">Default: <b>built for async KP review</b> (the quote-funnel pattern), with you doing the first pass.</div>
+    </div>
+    <div class="q">
+      <div class="qq">6 · Photography and video: what do we actually have?</div>
+      <div class="qw">Every strong reference leans on real footage (crews, trucks, drone). The Brand Kit bans stock. For mockups: do we have a real asset library to pull from (Austin L's footage? drone shots? archive photos of you and Paul?), or do the mocks use honest placeholder frames ("60-SEC ORIGIN FILM HERE") like the wireframes did?</div>
+      <div class="default">Default: <b>real assets where they exist, labeled placeholder frames where they don't</b> — never stock, never AI-generated people.</div>
+    </div>
+
+    <h3>Angles I don't think anyone's raised</h3>
+    <div class="q">
+      <div class="qq">7 · How much motion belongs in the mocks?</div>
+      <div class="qw">The theme constraint is partly about *feel* — scroll-pinned chapters, parallax, the scroll-based mover animation you floated to KP on 6/3. Static mocks can't sell motion; motion-heavy mocks take longer and can distract from layout decisions. There's also a middle path: build one page with full motion as the "feel proof," keep the rest static.</div>
+      <div class="default">Default: <b>one motion showcase (the homepage), rest static-with-notes.</b></div>
+    </div>
+    <div class="q">
+      <div class="qq">8 · Mobile: first-class or footnote?</div>
+      <div class="qw">Majority of mover traffic is mobile, the Brand Kit says mobile-first — but mocking every variation responsively roughly doubles the work, and KP's component extraction may only need desktop + a mobile note per component. A toggle-width preview in the tool is a cheap middle ground.</div>
+      <div class="default">Default: <b>responsive builds (they're HTML anyway) with a device-width toggle in the tool</b> — not separate mobile designs.</div>
+    </div>
+    <div class="q">
+      <div class="qq">9 · What does Emma actually need from the export?</div>
+      <div class="qw">Sprint 2 is hers. Nobody has specified what "extract components" consumes: a labeled component inventory? Annotated HTML she can inspect? Token-mapped CSS (the kit's tokens.json → theme.json pipeline)? Worth asking at the 2:30 today — it determines whether component tagging is a nice-to-have or the spine of the tool.</div>
+      <div class="default">Default until KP answers: <b>every region tagged component-vs-page-specific, with a component inventory export</b> (name, where used, which treatment won).</div>
+    </div>
+    <div class="q">
+      <div class="qq">10 · The clock: you travel ~6/15, KP goes quiet after that. What must exist by Sunday?</div>
+      <div class="qw">Four days. Stage 1 of Shape C (3 homepage treatments) is achievable by then; all five pages in any shape is not — unless we keep building during travel and KP reviews async. Should the plan explicitly target "direction locked before you leave, build-out continues remotely"?</div>
+      <div class="default">Default: <b>yes — direction shoot-out reviewable by Sun 6/14, build-out async after.</b></div>
+    </div>
+
+    <p style="margin-top:30px; font-size:.9rem; color:var(--gray);"><strong>Hard stop here per the brief:</strong> no tool build until this interview happens. If the 2:30 KP meeting changes scope, we amend this packet first, then interview.</p>
+  </section>
+
+</div>
+</body>
+</html>
