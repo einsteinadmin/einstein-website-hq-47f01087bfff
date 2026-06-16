@@ -1,0 +1,2026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Einstein Moving Company — The Mover Journey (v2 · Peekaboo, lighter build)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════════════════════════════
+   EINSTEIN BRAND KIT — colors_and_type.css (INLINED VERBATIM)
+   Source: einstein-brand-kit/agent/visual/colors_and_type.css
+   KP design-system refinements ADOPTED 6/11 (Emma Butler): full tonal
+   ramps, Navy-500 primary text, orange-as-text ban, Size 1-6 scale @
+   20px base, Lora = banner display only, Bebas retired from web work.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ============================================================
+   Einstein Brand Kit — colors_and_type.css
+   Drop-in CSS custom properties + type scale.
+   This is the implementation standard for web/app UI.
+   Pair with tokens/tokens.json (same values as data) and
+   motion/motion.css (timing + easing).
+   Fonts are bundled — fonts/fonts.css declares @font-face for Roboto,
+   Bebas Neue, Thirsty Script, and Lora, so the kit renders offline.
+   ============================================================ */
+
+/* @import url('fonts/fonts.css');  — kit-bundled fonts import stays commented; Roboto + Lora load via Google Fonts above */
+
+:root {
+
+  /* ============================================================
+     COLOUR SCALE
+     Full families — 7 stops each. Use scale variables in components;
+     use role aliases (bottom of this section) for semantic intent.
+     Do not invent values outside this scale.
+     ============================================================ */
+
+  /* ---- Orange ---- */
+  --color-orange-50:  #FEF6EC;   /* page backgrounds, warm tinted surfaces */
+  --color-orange-100: #FDE3C2;   /* subtle fills, hover states on light backgrounds */
+  --color-orange-200: #FABD84;   /* decorative elements, illustrations */
+  --color-orange-300: #F5A054;   /* decorative only — do not use for text */
+  --color-orange-500: #EF8B22;   /* brand colour — CTAs, icons, accents (Pantone 144 C) */
+  --color-orange-700: #D96B10;   /* hover state for orange elements */
+  --color-orange-900: #CC5500;   /* deep burnt orange — large text, UI borders, badges */
+
+  /* ---- Navy ---- */
+  --color-navy-50:  #EEF1F4;     /* page backgrounds, card fills */
+  --color-navy-100: #CDD5DA;     /* borders, dividers */
+  --color-navy-200: #9AADB7;     /* muted icons, secondary borders */
+  --color-navy-400: #507080;     /* secondary text — large text only (≥18px or ≥14px bold) */
+  --color-navy-500: #27343D;     /* brand colour — primary text, headings (Pantone 432 CP) */
+  --color-navy-700: #1A2329;     /* footer backgrounds */
+  --color-navy-900: #0B1014;     /* near-black, maximum contrast */
+
+  /* ---- Blue ---- */
+  --color-blue-50:  #EBF4FB;     /* info tints, callout block backgrounds */
+  --color-blue-100: #C3DFEF;     /* subtle info fills */
+  --color-blue-200: #88C0E4;     /* decorative, illustrations */
+  --color-blue-300: #46A2D5;     /* decorative, large text only */
+  --color-blue-500: #0979C3;     /* brand colour — links, interactive buttons, focus states (Pantone 3005 CP) */
+  --color-blue-700: #065E9A;     /* hover state for blue interactive elements */
+  --color-blue-900: #023B63;     /* deep blue — high-emphasis text, dark blue backgrounds */
+
+  /* ---- Grey ---- */
+  --color-grey-50:  #F4F5F5;     /* neutral page backgrounds */
+  --color-grey-100: #E2E3E4;     /* card fills, input backgrounds */
+  --color-grey-200: #C0C2C4;     /* borders, dividers, horizontal rules */
+  --color-grey-400: #787C7F;     /* placeholder text — large text only (≥18px or ≥14px bold) */
+  --color-grey-500: #53575A;     /* brand colour — secondary body text (Pantone 425 C) */
+  --color-grey-700: #363839;     /* primary body text on light backgrounds */
+  --color-grey-900: #191A1B;     /* near-black, maximum contrast */
+
+  /* ---- Brand name aliases (map to scale) ---- */
+  --einstein-orange: var(--color-orange-500);
+  --einstein-gray:   var(--color-grey-500);
+  --einstein-blue:   var(--color-blue-500);
+  --einstein-dark:   var(--color-navy-500);
+  --einstein-light:  #F6F6F6;    /* Cool Gray 1 C — page backgrounds, input fills */
+  --white:           #FFFFFF;
+
+  /* ---- Semantic ---- */
+  --success:    #69995D;   /* checkmarks, confirmations */
+  --error:      #CC0100;   /* errors, competitor hidden fees in red */
+  --email-link: #0A81D1;   /* links in email context only */
+
+  /* ---- Role aliases — prefer these in components ---- */
+  --color-text:        var(--color-grey-500);    /* secondary/body text */
+  --color-heading:     var(--color-navy-500);    /* headings — navy */
+  --color-bg:          var(--white);
+  --color-bg-muted:    var(--color-grey-50);
+  --color-bg-dark:     var(--color-navy-500);
+  --color-action:      var(--color-blue-500);    /* where people click, in content */
+  --color-accent:      var(--color-orange-500);  /* personality: emphasis, nav CTA, selection */
+  --color-on-dark:     var(--white);
+
+  /*
+   * Section Background Hierarchy
+   * Use this order — Navy-500 or darker is not approved as a full section
+   * background except the footer.
+   *
+   * 1. White (#FFFFFF)              — default
+   * 2. Orange 50 (#FEF6EC)          — warm / featured sections
+   * 3. Grey 50 (#F4F5F5)            — subtle alternation
+   * 4. Navy 50 (#EEF1F4)            — lightest tint of contrast
+   * 5. Navy 700 (#1A2329)           — footer only
+   */
+
+  /*
+   * WCAG 2.1 AA — Approved pairings (verified contrast ratios)
+   *
+   * Normal text (< 18px regular / < 14px bold): 4.5:1 minimum
+   * Large text / UI (≥ 18px regular / ≥ 14px bold): 3:1 minimum
+   *
+   * Background  →  Foreground         Ratio   Approved for
+   * #EF8B22     →  #27343D            5.4:1   Buttons, badges
+   * #EF8B22     →  #0B1014            6.5:1   High-contrast on orange
+   * #CC5500     →  #FFFFFF            4.3:1   Large text + UI only (not body copy)
+   * #27343D     →  #FFFFFF           12.8:1   Any text size
+   * #27343D     →  #EF8B22            5.4:1   Icons, callouts on dark
+   * #1A2329     →  #EF8B22            6.5:1   Dark overlay use only
+   * #0979C3     →  #FFFFFF            4.8:1   Buttons, links
+   * #065E9A     →  #FFFFFF            6.8:1   Hover states
+   * #FFFFFF     →  #0979C3            4.8:1   Link text
+   * #FFFFFF     →  #27343D           12.8:1   Primary body text
+   * #FFFFFF     →  #53575A            7.3:1   Secondary body text
+   * #EBF4FB     →  #0979C3            4.4:1   Info cards — large text only
+   * #EBF4FB     →  #27343D           11.6:1   Info cards with dark text
+   * #FEF6EC     →  #27343D           11.9:1   Warm tinted cards
+   * #023B63     →  #FFFFFF           11.6:1   Deep blue sections
+   *
+   * Do NOT use Orange-500 as text colour on white — fails contrast for text.
+   * Navy-400 and Grey-400 pass at 3:1 — large text and UI only.
+   */
+
+  /* ============================================================
+     TYPE FAMILIES
+     ============================================================ */
+
+  --font-sans:          'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-script:        'Thirsty Script', cursive;  /* SPARINGLY — "Smart Move" flourishes only */
+  --font-display:       'Bebas Neue', sans-serif;   /* hero headlines */
+  --font-display-serif: 'Lora', serif;              /* Size 1 / banner display only */
+
+  /* ---- Type weights ---- */
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+
+  /* ============================================================
+     TYPE SCALE
+     Base: html { font-size: 20px } — 1rem = 20px throughout.
+
+     Size 1–6 name the visual hierarchy tier, not the HTML element.
+     Heading markup (h1–h6) is independent of visual size:
+       • h1 is typically set at Size 5 or Size 6 visually.
+       • h2 is typically set at Size 2.
+     Any heading level can use any size token — choose by visual
+     hierarchy, then write the correct semantic markup separately.
+
+     Body: use P (--fs-body) for long-form prose. Use Small P
+     (--fs-sm-p) for cards and compact UI. Tiny P for legal only.
+     ============================================================ */
+
+  /* ---- Display & Heading ---- */
+  --fs-size-1: 4rem;    /* 80px  — banner display; use --font-display-serif (Lora) */
+  --lh-size-1: 1.2;
+  --fs-size-2: 2rem;    /* 40px  — major section headings (most often h2) */
+  --lh-size-2: 1.2;
+  --fs-size-3: 1.6rem;  /* 32px */
+  --lh-size-3: 1.25;
+  --fs-size-4: 1.2rem;  /* 24px */
+  --lh-size-4: 1.6;
+  --fs-size-5: 1rem;    /* 20px — typical h1 visual size */
+  --lh-size-5: 1.5;
+  --fs-size-6: 0.9rem;  /* 18px */
+  --lh-size-6: 1.3;
+
+  /* ---- Legacy px aliases (backward-compatible) ---- */
+  --fs-hero:   59px;  --lh-hero:   77px;   /* hero headlines — Bebas Neue */
+  --fs-h1:     24px;  --lh-h1:     36px;
+  --fs-h2:     40px;  --lh-h2:     44px;
+  --fs-h3:     32px;  --lh-h3:     40px;
+  --fs-h4:     24px;  --lh-h4:     32px;
+  --fs-h5:     20px;  --lh-h5:     30px;
+  --fs-h6:     18px;  --lh-h6:     24px;
+
+  /* ---- Body text ---- */
+  --fs-lg-p:   1.2rem;  /* 24px — introductory paragraphs, pull quotes, emphasized copy */
+  --lh-lg-p:   1.5;
+  --fs-body:   1rem;    /* 20px — default long-form body copy (editorial sections) */
+  --lh-body:   1.5;
+  --fs-sm-p:   0.8rem;  /* 16px — card copy, captions, labels, supporting/secondary text */
+  --lh-sm-p:   1.5;
+  --fs-tiny-p: 0.6rem;  /* 12px — legal text, metadata, fine print only */
+  --lh-tiny-p: 1.6;
+
+  /* ---- Radius & shadow ---- */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(39, 52, 61, 0.08);
+  --shadow-md: 0 4px 12px rgba(39, 52, 61, 0.10);
+  --shadow-lg: 0 12px 32px rgba(39, 52, 61, 0.14);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+html {
+  font-size: 20px; /* 1rem = 20px */
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-regular);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   Base typography
+   ============================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-bold);
+  color: var(--color-heading);
+  margin: 0 0 0.5em;
+}
+
+h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); }
+h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); }
+h3 { font-size: var(--fs-h3); line-height: var(--lh-h3); }
+h4 { font-size: var(--fs-h4); line-height: var(--lh-h4); }
+h5 { font-size: var(--fs-h5); line-height: var(--lh-h5); }
+h6 { font-size: var(--fs-h6); line-height: var(--lh-h6); }
+
+.hero-headline  { font-family: var(--font-display); font-size: var(--fs-hero); line-height: var(--lh-hero); font-weight: var(--weight-bold); }
+.display-banner { font-family: var(--font-display-serif); font-size: var(--fs-size-1); line-height: var(--lh-size-1); font-weight: var(--weight-bold); }
+.lead           { font-size: var(--fs-lg-p); line-height: var(--lh-lg-p); }
+.small-text     { font-size: var(--fs-sm-p); line-height: var(--lh-sm-p); }
+.fine-print     { font-size: var(--fs-tiny-p); line-height: var(--lh-tiny-p); }
+
+a { color: var(--color-action); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* "Smart Move" script flourish — use ONLY for that phrase, never body text */
+.script-accent { font-family: var(--font-script); color: var(--color-accent); }
+
+/* ============================================================
+   Typography rules
+   - Avoid long ALL CAPS strings in body text. Reserve caps for short labels.
+   - Thirsty Script: sparingly, never body copy (the "Smart Move" mark only).
+   - Bebas Neue: hero headlines only — not a wholesale body replacement.
+   - Lora: Size 1 / banner display only.
+   - Orange is accent/nav-CTA only. In-content buttons + links use blue.
+   - P (--fs-body) for long-form prose; Small P (--fs-sm-p) for cards + compact UI.
+   - Tiny P (--fs-tiny-p) for legal/metadata only — never for readable content.
+   ============================================================ */
+
+/* Mobile-first: scale hero and large headings down on small screens */
+@media (max-width: 640px) {
+  :root {
+    --fs-hero:   38px;   --lh-hero:   46px;
+    --fs-h2:     30px;   --lh-h2:     36px;
+    --fs-h3:     26px;   --lh-h3:     32px;
+    --fs-lg-p:   20px;   --lh-lg-p:   30px;
+    --fs-size-1: 2.5rem;
+    --fs-size-2: 1.6rem;
+    --fs-size-3: 1.4rem;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   MOCKUP LAYER — THE MOVER JOURNEY v2b · "CAMERA STAGE"
+   One 100vh sticky stage pinned for the whole journey; a 500vh world
+   (building cross-section) translates upward past the camera while
+   ONE mover rig + ONE Orange-500 couch hold a stable viewport band.
+   Floors are real <section> content mounted INSIDE the world.
+   DEFAULT CSS = the complete static page (JS-off / reduced-motion /
+   mobile). The journey layout only exists inside
+   @media(min-width:769px){ body.journey-live … } — pin heights are
+   gated behind that class, so a JS-disabled visitor gets a normal-
+   length readable page (no dead pinned stretches).
+   Skin: settled-components.md (quote-form language) + Emma/KP
+   refinements 6/11 — Navy-500 text, orange-as-text BAN, Grey-200
+   hairlines, blue in-content CTAs, Lora hero H1 only, 4px spacing.
+   ════════════════════════════════════════════════════════════════ */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  /* mockup density override — kit body scale (20/30) stands for production prose sections */
+  font-size:18px; line-height:1.55;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+
+/* ---- buttons: BLUE = in-content action (8px radius per form spec),
+        ORANGE = nav CTA only ---- */
+.btn-blue{
+  display:inline-block;background:var(--einstein-blue);color:#fff;
+  font-weight:700;font-size:16px;padding:15px 30px;border-radius:8px;border:none;
+  transition:transform .12s cubic-bezier(.2,0,0,1), box-shadow .12s cubic-bezier(.2,0,0,1);
+}
+.btn-blue:hover{text-decoration:none;background:var(--color-blue-700);transform:translateY(-1px);box-shadow:0 4px 14px rgba(9,121,195,.30)}
+.btn-blue:active{transform:scale(.98)}
+.btn-micro{display:block;font-size:13.5px;color:var(--einstein-gray);opacity:.85;margin-top:10px}
+.btn-nav{
+  display:inline-flex;align-items:center;min-height:44px;
+  background:var(--einstein-orange);color:var(--color-navy-500);font-weight:700;font-size:14px;
+  text-transform:uppercase;letter-spacing:.5px;
+  padding:12px 24px;border-radius:8px;white-space:nowrap;
+  transition:transform .12s cubic-bezier(.2,0,0,1),background .12s cubic-bezier(.2,0,0,1);
+} /* orange fill always pairs with dark text (KP pairing rule) */
+.btn-nav:hover{text-decoration:none;background:var(--color-orange-700);transform:translateY(-1px)}
+
+/* the form's signature "wink" — navy text on an Orange-50 chip (orange is never text) */
+.nudge{display:inline-block;font-style:italic;color:var(--color-navy-500);background:var(--color-orange-50);border:1px solid var(--color-orange-200);border-radius:var(--radius-pill);padding:4px 12px;font-size:14px;font-weight:400}
+
+/* inline icon helper (kit SVG icon set placeholders — no emoji iconography) */
+.ic{display:inline-block;vertical-align:-3px;flex:none}
+
+/* ============================================================
+   WORKSHOP CHROME — "Redesign HQ" back link (not part of the mock)
+   ============================================================ */
+.hq-link{
+  position:fixed;bottom:14px;left:14px;z-index:90;
+  background:rgba(39,52,61,.85);color:#fff;font-size:12px;font-weight:500;
+  padding:6px 12px;border-radius:var(--radius-pill);backdrop-filter:blur(4px);
+}
+.hq-link:hover{text-decoration:none;background:var(--einstein-dark)}
+
+/* ============================================================
+   NAV — white band, hairline rule
+   ============================================================ */
+.site-nav{
+  position:sticky;top:0;z-index:80;background:#fff;
+  display:flex;align-items:center;gap:28px;
+  padding:14px clamp(18px,4vw,48px);border-bottom:1px solid var(--color-grey-200);
+}
+.logo{font-family:var(--font-sans);font-weight:700;font-size:24px;letter-spacing:1px;color:var(--color-navy-500)}
+.logo .dot{color:var(--color-orange-900)} /* ≥18px display accent → Orange-900 */
+.nav-links{display:flex;gap:24px;margin-left:auto;font-size:16px;font-weight:500}
+.nav-links a{color:var(--einstein-gray)}
+@media(max-width:768px){.nav-links{display:none}.site-nav{gap:12px}.btn-nav{margin-left:auto}}
+
+/* ============================================================
+   HERO — STATIC, answer-complete, LCP/SEO-safe. Zero animation
+   initializes above the fold (the tease arrow is static too).
+   ============================================================ */
+.hero{
+  background:var(--color-grey-50);
+  padding:clamp(44px,6vw,84px) clamp(18px,4vw,48px) 26px;
+  text-align:center;
+}
+.hero-inner{max-width:820px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
+.hero-spot{width:76px;height:auto;margin-bottom:18px}
+.hero h1{
+  font-family:var(--font-display-serif); /* Lora — hero/banner display ONLY; floors stay Roboto */
+  font-size:clamp(32px,4vw,46px);line-height:1.18;margin-bottom:16px;letter-spacing:-.5px;text-wrap:balance;
+  color:var(--color-navy-500);
+}
+.hero .wit{font-size:clamp(18px,2vw,22px);line-height:1.45;color:var(--einstein-gray);margin:0 0 16px;max-width:44ch}
+/* hero proof line — locked hero copy (P2, lifted from v2a's lockup) */
+.hero .proof-line{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin:0 0 24px;font-size:14.5px;font-weight:500;color:var(--color-navy-500)}
+.hero .proof-line span{display:flex;align-items:center;gap:6px}
+.hero .btn-micro{margin-top:12px}
+/* v2: speed claim lifted into the hero (audit must-fix) — the highest-converting line, above the fold */
+.hero .hero-speed{margin:14px 0 0;font-size:15.5px;font-weight:500;color:var(--color-navy-500)}
+.hero .hero-speed b{color:var(--color-orange-900)} /* ≥14px bold → Orange-900 passes on white */
+/* headline workshop — Cameron clicks through options + favorites (workshop chrome,
+   not part of the mock; default option 0 = the answer-first compliant headline) */
+.hl-workshop{display:inline-flex;align-items:center;gap:8px;margin:0 0 16px;padding:5px 8px;
+  background:var(--color-orange-50);border:1px solid var(--color-orange-100);border-radius:100px;
+  font-size:12px;color:var(--color-navy-500)}
+.hl-workshop .hl-count{font-weight:700;min-width:32px;text-align:center}
+.hl-workshop button{font:inherit;border:none;background:transparent;color:var(--color-navy-500);
+  cursor:pointer;border-radius:100px;padding:4px 9px;line-height:1;min-height:28px}
+.hl-workshop .hl-nav{font-size:16px;font-weight:700;padding:2px 9px}
+.hl-workshop button:hover{background:var(--color-orange-100)}
+.hl-workshop .hl-fav.on{background:var(--color-orange-500);color:#fff}
+.hl-workshop .hl-copy{border-left:1px solid var(--color-orange-100)}
+/* crew-reel placeholder — locked hero element (concept spec); static frame */
+.crew-reel{
+  width:min(560px,92%);margin-top:30px;aspect-ratio:16/7;
+  border:2px dashed var(--color-grey-200);border-radius:var(--radius-md);background:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  color:var(--color-grey-500);font-size:13px;font-weight:700;letter-spacing:1px;
+}
+.crew-reel small{font-weight:400;font-size:12px;color:var(--color-grey-500);opacity:.85;letter-spacing:.2px}
+.couch-tease{
+  display:flex;flex-direction:column;align-items:center;gap:2px;margin-top:30px;
+  color:var(--einstein-gray);font-size:14px;font-weight:500;letter-spacing:.5px;
+}
+.couch-tease svg{width:54px;height:auto}
+.couch-tease .arrow{font-size:18px;font-weight:700;color:var(--color-orange-900)} /* static — no hero animation (P10); 700 weight = ≥14px BOLD Orange-900-on-white rule */
+
+/* condensed trust strip — ambient, kit SVG icons (no emoji), scope-labeled */
+.trust-strip{
+  background:#fff;border-top:1px solid var(--color-grey-200);border-bottom:1px solid var(--color-grey-200);
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;
+  padding:13px clamp(18px,4vw,48px);
+  font-size:13.5px;font-weight:500;color:var(--einstein-gray);
+}
+.trust-strip span{display:flex;align-items:center;gap:7px;white-space:nowrap}
+
+/* ============================================================
+   JOURNEY — DEFAULT (STATIC) LAYOUT
+   Everything below reads as a normal stacked page. The building
+   art, ticker and wall numerals are journey-only decoration.
+   ============================================================ */
+.journey-wrap{position:relative;background:var(--color-grey-50)}
+.stage{position:relative}
+.world{position:relative}
+.bldg,.wall-num,.facade-sign,.ticker{display:none}
+/* in-page price anchor (graft from v2a): mid-journey CTAs land on the
+   COMPLETED finale. Static modes: 100vh above the journey's end = the
+   finale card + loaded truck in view. Journey mode: wrap 520vh − 100vh
+   anchor offset = scrollY at p=1.0 — couch loaded, doors shut, copy
+   resolved. No scroll-position math needed in JS. */
+#see-price{position:absolute;left:0;bottom:min(100vh,100%);width:1px;height:1px}
+
+/* the ONE mover rig — static modes show it once, at the journey top */
+.rig{width:min(330px,82vw);margin:34px auto 0;position:relative}
+.rig-cap{text-align:center;font-size:13px;color:var(--einstein-gray);margin:6px auto 0;max-width:46ch}
+
+/* floor sections — static: normal stacked content. position:relative by
+   DEFAULT (not just in journey mode): the verbatim reaction layer sets an
+   inline position:relative on computed-static sections at load — since the
+   journey now arms lazily (P10), that inline style would otherwise override
+   the journey's position:absolute and break the pinned world. */
+.floor-panel{position:relative;padding:clamp(36px,5vw,64px) clamp(18px,4vw,48px)}
+.floor-panel .panel-card{max-width:880px;margin:0 auto}
+.panel-card{
+  background:#fff;border:1px solid var(--color-grey-200);border-radius:var(--radius-md);
+  padding:clamp(22px,2.6vw,36px);
+}
+.floor-tag{
+  font-family:var(--font-sans);font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--color-orange-900);margin-bottom:12px;display:block;
+} /* ≥14px bold Orange-900 on white = large-text UI, passes 3:1 */
+.floor-panel h2{font-size:clamp(24px,2.4vw,34px);line-height:1.16;letter-spacing:-.3px}
+.floor-panel p.lede{font-size:clamp(16px,1.4vw,19px)}
+.floor-cta{margin-top:24px}
+
+/* quip — the orange-italic nudge as a speech bubble. Static modes show
+   it inline at the top of its floor (visible, readable). Journey mode
+   repositions it over the rig's dock spot + progress-gates it. */
+.quip{
+  position:relative;display:inline-block;max-width:300px;margin:0 0 14px;
+  background:var(--color-orange-50);border:1px solid var(--color-orange-200);border-radius:12px;border-bottom-left-radius:2px;
+  padding:8px 13px;font-size:13.5px;font-weight:500;font-style:italic;color:var(--color-navy-500);
+}
+.quip .sig{display:block;font-style:normal;font-weight:400;font-size:12px;color:var(--color-grey-500);margin-top:2px}
+.floor-panel > .quip{display:table;margin:0 auto 14px} /* static modes: centered over its card */
+.quip::after{
+  content:'';position:absolute;left:14px;top:100%;width:10px;height:10px;
+  background:var(--color-orange-50);border-left:1px solid var(--color-orange-200);border-bottom:1px solid var(--color-orange-200);
+  transform:translateY(-5px) rotate(-45deg);
+}
+
+/* ---- pricing ledger (Floor 4) — label left, value bold blue right ---- */
+.ledger{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--color-grey-200)}
+.ledger li{
+  display:flex;justify-content:space-between;align-items:baseline;gap:18px;
+  padding:9px 2px;border-bottom:1px solid var(--color-grey-200);font-size:15px;
+}
+.ledger .val{font-weight:700;color:var(--einstein-blue);white-space:nowrap;flex:none}
+.anchor-line{
+  margin:22px 0 0;text-align:center;font-size:19px;font-weight:700;color:var(--color-navy-500);
+}
+.anchor-line em{font-style:normal;color:var(--color-orange-900)} /* ≥18px bold display accent → Orange-900 */
+
+/* ---- crew cards (Floor 3) ---- */
+.crew-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.crew-card{background:#fff;border:1px solid var(--color-grey-200);border-radius:var(--radius-md);padding:14px;text-align:center}
+.crew-card .face{
+  aspect-ratio:1;border:2px dashed var(--color-grey-200);border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--color-grey-400);
+  margin-bottom:10px;letter-spacing:.5px;background:var(--color-grey-50);text-align:center;
+}
+.crew-card .nm{font-weight:700;font-size:16px;color:var(--einstein-dark)}
+.crew-card .tn{font-size:13.5px;color:var(--einstein-gray);opacity:.8}
+.hire-line{margin-top:16px;font-size:15.5px}
+.hire-line strong{color:var(--einstein-dark)}
+
+/* ---- Floor 2 rest landing — nightmares accordion + award strip ---- */
+.rest-sub{color:var(--einstein-gray);max-width:56ch;font-size:16px;margin-top:0}
+.nightmares{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px;margin:22px 0 0}
+.nightmare{
+  background:#fff;border:1px solid var(--color-grey-200);border-radius:var(--radius-md);overflow:hidden;
+  transition:border-color .18s cubic-bezier(.2,0,0,1);
+}
+.nightmare:hover{border-color:var(--einstein-orange)}
+.nightmare summary{
+  cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center;
+  padding:14px 16px;
+}
+.nightmare summary::-webkit-details-marker{display:none}
+.nightmare summary h3{font-size:15.5px;line-height:1.35;margin:0;color:var(--color-navy-500);display:flex;align-items:center;gap:9px}
+.nightmare .tog{color:var(--color-orange-900);font-weight:700;font-size:20px;flex:none;transition:transform .18s cubic-bezier(.2,0,0,1)}
+.nightmare[open] .tog{transform:rotate(45deg)}
+.nightmare p{margin:0;padding:0 16px 14px;font-size:14px;color:var(--einstein-gray)}
+.nightmare p strong{color:var(--einstein-dark)}
+.award-head{margin:34px 0 0;font-size:clamp(20px,1.9vw,26px);display:flex;align-items:center;gap:10px}
+.award-sub{margin:6px 0 0;font-size:14px}
+.award-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-top:16px}
+.award{margin:0;background:var(--color-grey-50);border:1px solid transparent;border-radius:var(--radius-md);overflow:hidden;
+  transition:border-color .18s cubic-bezier(.2,0,0,1)}
+.award summary{cursor:pointer;list-style:none;padding:13px 15px;display:flex;flex-direction:column;gap:2px}
+.award summary::-webkit-details-marker{display:none}
+.award .big{font-family:var(--font-sans);font-weight:700;font-size:26px;line-height:1.05;color:var(--color-orange-900);letter-spacing:0}
+.award .lbl{font-size:13px;color:var(--einstein-gray);font-weight:500}
+.award .hint{font-size:12.5px;color:var(--color-grey-500)} /* bumped from 11.5/Grey-400 (P11 contrast) */
+.award p{margin:0;padding:0 15px 13px;font-size:13.5px;color:var(--einstein-gray)}
+.award[open]{background:var(--color-orange-50);border-color:var(--einstein-orange)}
+.rest-nudge{margin-top:22px}
+
+/* ---- lobby — photo + one line; front, not center ---- */
+#lobby .inner{max-width:980px;margin:0 auto;display:grid;grid-template-columns:280px 1fr;gap:44px;align-items:center}
+.kframe{
+  border:10px solid #fff;outline:1px solid var(--color-grey-200);box-shadow:var(--shadow-md);
+  background:#fff;aspect-ratio:4/3;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-size:12.5px;color:var(--color-grey-400);letter-spacing:.5px;padding:16px;
+  transform:rotate(-1.5deg);
+}
+.story p{font-size:clamp(20px,2vw,25px);font-weight:500;color:var(--einstein-dark);line-height:1.35;margin:0 0 12px}
+.story a{font-size:16px;font-weight:500}
+@media(max-width:768px){#lobby .inner{grid-template-columns:1fr;gap:26px}.kframe{max-width:280px}}
+
+/* ---- truck (street scene) — static: composed above the finale copy ---- */
+.truck-wrap{width:min(560px,92%);margin:8px auto 0;padding:0 4px}
+.truck-stage{position:relative}
+.truck-svg{width:100%;height:auto;overflow:visible}
+/* roll-up rear door — HTML overlay clipped to the cargo opening.
+   NOT orange (P4): the couch stays the only large Orange-500 object. */
+.door-clip{
+  position:absolute;left:68.6%;top:49.3%;width:14.6%;height:30%;
+  overflow:hidden;pointer-events:none;z-index:12;
+}
+.door-roll{
+  position:absolute;left:0;top:0;width:100%;height:100%;
+  transform:translateY(0); /* static modes: door CLOSED — resolved, story-complete
+     frame (P4): finished move, crew standing beside the truck */
+  background:repeating-linear-gradient(180deg,var(--color-navy-100) 0 9px,var(--color-navy-200) 9px 11px);
+  border:2px solid var(--color-grey-500);border-top:none;
+}
+.door-roll::after{
+  content:'';position:absolute;left:22%;right:22%;bottom:5px;height:5px;border-radius:3px;
+  background:var(--color-navy-500);
+}
+
+/* ---- finale copy ---- */
+#finale .panel-card{text-align:left}
+#finale h2{font-size:clamp(26px,2.6vw,36px);line-height:1.12}
+#finale .invite{font-size:clamp(16px,1.5vw,19px);margin:0 0 22px}
+.plan-band{
+  counter-reset:step;list-style:none;display:flex;gap:10px;flex-wrap:wrap;
+  margin:26px 0 0;padding:0;font-size:14px;font-weight:500;color:var(--einstein-gray);
+}
+.plan-band li{
+  counter-increment:step;background:#fff;border:1px solid var(--color-grey-200);border-radius:var(--radius-pill);
+  padding:8px 15px 8px 9px;display:flex;align-items:center;gap:9px;
+}
+.plan-band li::before{
+  content:counter(step);background:var(--einstein-blue);color:#fff;font-weight:700;
+  width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none;
+}
+
+/* ============================================================
+   FAQ + FOOTER
+   ============================================================ */
+.faq{background:#fff;padding:clamp(56px,7vw,100px) clamp(18px,4vw,48px)}
+.faq .inner{max-width:800px;margin:0 auto}
+.faq h2{font-size:clamp(26px,3vw,36px)}
+.faq details{background:var(--color-grey-50);border:none;border-radius:var(--radius-md);padding:0 20px;margin-bottom:10px}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center;padding:17px 0}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary h3{font-size:17px;font-weight:500;margin:0;color:var(--color-navy-500)}
+.faq summary .chev{color:var(--color-orange-900);font-weight:700;font-size:20px;flex:none;transition:transform .18s cubic-bezier(.2,0,0,1)}
+.faq details[open] .chev{transform:rotate(45deg)}
+.faq details p{margin:0 0 18px;font-size:15.5px;max-width:62ch}
+
+.site-footer{background:var(--color-navy-700);color:rgba(255,255,255,.8);padding:48px clamp(18px,4vw,48px) 90px;font-size:14.5px}
+.site-footer .inner{max-width:1180px;margin:0 auto;display:grid;gap:22px}
+.site-footer .proofline{color:#fff;font-weight:500;font-size:16px}
+.site-footer .branches{display:flex;flex-wrap:wrap;gap:6px 18px}
+.site-footer a{color:rgba(255,255,255,.85)}
+.site-footer .legal{font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.6}
+
+/* ============================================================
+   MOBILE STICKY CTA BAR
+   ============================================================ */
+.sticky-cta{display:none}
+@media(max-width:768px){
+  .sticky-cta{
+    display:flex;position:fixed;left:0;right:0;bottom:0;z-index:85;
+    background:#fff;border-top:1px solid var(--color-grey-200);box-shadow:0 -4px 20px rgba(0,0,0,.1);
+    justify-content:space-between;align-items:center;gap:12px;
+    padding:10px 16px;color:var(--einstein-gray);
+  }
+  .sticky-cta:hover{text-decoration:none}
+  .sticky-cta .ctx{font-size:12px;font-weight:500;line-height:1.35;min-width:0}
+  .sticky-cta .ctx small{display:block;font-weight:400;opacity:.75;font-size:11px;white-space:nowrap}
+  .sticky-cta .go{
+    background:var(--einstein-blue);color:#fff;font-weight:700;font-size:15px;
+    padding:11px 18px;border-radius:8px;white-space:nowrap;flex:none;
+  }
+}
+
+/* ============================================================
+   THE RIG — SVG pose API (one rig, one couch, ever)
+   Walk: progress-derived .step-b flips (reversal free). Stairs:
+   compact diagonal carry via class transforms on the pose groups
+   (couch keeps its own inner pose group so JS inline transforms on
+   .couch-outer never fight the class transition).
+   ============================================================ */
+.rig-svg{width:100%;height:auto;overflow:visible}
+.rig-svg .leg{transform-box:fill-box;transform-origin:top center;transition:transform .12s linear}
+.rig-svg.step-b .legA{transform:rotate(16deg)}
+.rig-svg.step-b .legB{transform:rotate(-14deg)}
+/* P3: mover #2's solo walk to the bumper during the finale load —
+   front-only leg flips (beats .rig-svg.still .leg on specificity) */
+.rig-svg.front-step-b .mv-front .legA{transform:rotate(16deg)}
+.rig-svg.front-step-b .mv-front .legB{transform:rotate(-14deg)}
+.rig-svg:not(.step-b):not(.still) .legA{transform:rotate(-12deg)}
+.rig-svg:not(.step-b):not(.still) .legB{transform:rotate(14deg)}
+.rig-svg.still .leg{transform:none}
+.rig-svg .mv-front,.rig-svg .mv-back,.rig-svg .couch-pose{
+  transform-box:fill-box;transform-origin:center;
+  transition:transform .4s cubic-bezier(.2,0,0,1);
+}
+.rig-svg.stairs-r .mv-front{transform:translate(-44px,40px)}
+.rig-svg.stairs-r .mv-back{transform:translate(40px,-24px)}
+.rig-svg.stairs-r .couch-pose{transform:rotate(24deg)}
+.rig-svg.stairs-l .mv-front{transform:translate(-40px,-24px)}
+.rig-svg.stairs-l .mv-back{transform:translate(44px,40px)}
+.rig-svg.stairs-l .couch-pose{transform:rotate(-24deg)}
+.rig-svg .arm-wave{transform-box:fill-box;transform-origin:bottom center;transition:transform .3s cubic-bezier(.2,0,0,1)}
+.rig-svg.pose-rest .arm-wave{transform:rotate(-118deg)}   /* brow wipe at the rest landing */
+.rig-svg.pose-load .arm-wave{transform:rotate(-34deg)}
+.rig-svg.pose-after .arm-wave{transform:rotate(-130deg)}  /* wave once the couch is in */
+.rig-svg .arm-back{transform-box:fill-box;transform-origin:right center;transition:transform .3s cubic-bezier(.2,0,0,1)}
+.rig-svg.pose-after .arm-back{transform:rotate(46deg)}
+.couch-outer{transform-box:fill-box;transform-origin:50% 100%} /* bottom-center: the finale
+   scale-in keeps the couch's feet on the truck floor while it recedes into the box (P1) */
+
+/* ════════════════════════════════════════════════════════════════
+   JOURNEY MODE — desktop only, gated behind body.journey-live.
+   (JS-off never gets these heights → AC15. Mobile never matches the
+   media query → vignette mode. Reduced-motion never gets the class.)
+
+   WORLD MAP (1 screen = 100vh; world = 500vh; svg unit: x ×10 = vw·10,
+   y ×10 = vh·10 → bldg viewBox 0 0 1000 5000, preserveAspectRatio=none)
+     screen 0 (0–100vh)   FLOOR 4 · Smart Pricing   dock x=15vw, feet y=70
+     screen 1 (100–200)   FLOOR 3 · Meet the crew   dock x=81vw, feet y=170
+     screen 2 (200–300)   FLOOR 2 · Rest landing    dock x=15vw, feet y=270
+     screen 3 (300–400)   LOBBY                     cross x=68→56, feet y=370
+     screen 4 (400–500)   CURB / finale             stand x≈49,  feet y=470
+   Flights (drawn in bldg svg, SWITCHBACK — alternating screen sides):
+     A 15→81vw (down-right) · B 81→15 (down-left) · C 15→68 (down-right)
+     D 56→50 (stoop channel, down-left)
+   ════════════════════════════════════════════════════════════════ */
+@media(min-width:769px){
+
+  body.journey-live .journey-wrap{height:520vh}     /* 100vh stage + 420vh scrub (P6 trim: was 560) */
+  body.journey-live .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+  body.journey-live .world{position:absolute;left:0;top:0;width:100%;height:500vh;will-change:transform}
+  body.journey-live .bldg{display:block;position:absolute;left:0;top:0;width:100%;height:100%}
+
+  /* big painted floor numerals — HTML (the stretched svg would distort glyphs) */
+  body.journey-live .wall-num{
+    display:block;position:absolute;z-index:2;font-family:var(--font-sans);font-weight:700;
+    font-size:24vh;line-height:1;letter-spacing:-1vh;user-select:none;pointer-events:none;
+  }
+  body.journey-live .wn-4{left:4vw;top:22vh;color:var(--color-orange-100)}
+  body.journey-live .wn-3{left:86vw;top:122vh;color:var(--color-grey-100)}
+  body.journey-live .wn-2{left:4vw;top:222vh;color:var(--color-grey-100)}
+  body.journey-live .wn-l{left:44.5vw;top:306vh;color:var(--color-navy-100);font-size:14vh}
+  body.journey-live .facade-sign{
+    display:block;position:absolute;z-index:2;left:52vw;top:402.5vh;transform:translateX(-50%);
+    font-weight:700;font-size:2.2vh;letter-spacing:.6vh;color:var(--color-navy-200);white-space:nowrap;
+    pointer-events:none;
+  }
+
+  /* THE rig — absolute in world coordinates; JS keeps it in the camera
+     band (feet = camY + 70vh) so it never leaves the viewport (AC3). */
+  body.journey-live .rig{
+    position:absolute;left:0;top:0;width:24vw;margin:0;z-index:10;
+    will-change:transform;transform-origin:50% 100%;
+    transform:translate(1.6vw, calc(70vh - 11vw)); /* p=0 state: approach start (x=12.5vw
+       center → left edge 0.5vw — fully on-canvas from the first visible frame, P7) */
+  }
+  body.journey-live .rig-cap{display:none}
+
+  /* floor sections — mounted INSIDE the world at their floor's screen.
+     Content docks OPPOSITE the movers' side (switchback alternation). */
+  body.journey-live .floor-panel{position:absolute;padding:0;margin:0;z-index:20}
+  body.journey-live .floor-panel .panel-card{max-width:none;margin:0;box-shadow:var(--shadow-md)}
+  /* every floor's info tile docks at the SAME 10vh below the viewport top —
+     consistent breathing room under the 75px fixed nav, no clipping (the
+     Floor-2 card used to ride up to 4vh and tuck under the nav). Quips are
+     children of these sections, so each card move is mirrored by an inverse
+     quip offset below → the speech bubbles stay pinned to the rig. */
+  body.journey-live #floor-4{left:50vw;top:10vh;width:42vw}     /* movers LEFT → card RIGHT */
+  body.journey-live #floor-3{left:5vw;top:110vh;width:42vw}     /* movers RIGHT → card LEFT  (10vh) */
+  body.journey-live #floor-2{left:51vw;top:210vh;width:42vw}    /* movers LEFT → card RIGHT  (10vh) */
+  body.journey-live #lobby{left:0;top:300vh;width:100vw;height:100vh;pointer-events:none}
+  body.journey-live #lobby a{pointer-events:auto}
+  body.journey-live #lobby .inner{display:contents}
+  body.journey-live #lobby .story{position:absolute;left:6vw;top:10vh;width:36vw}
+  body.journey-live #lobby .kframe{position:absolute;left:64vw;top:11vh;width:22vw}
+  body.journey-live #finale{left:56vw;top:410vh;width:38vw;opacity:0} /* resolves WITH the load (AC13); 10vh dock */
+  body.journey-live .truck-wrap{
+    /* NO z-index here — a stacking context would trap .door-clip (z12)
+       below the rig (z10); the couch must vanish BEHIND the door */
+    position:absolute;left:5vw;top:calc(470vh - 19.86vw);width:40vw;margin:0;padding:0;
+  }
+  body.journey-live .door-roll{transform:translateY(-101%)}  /* doors OPEN while the journey runs */
+  body.journey-live .truck-couch-static,
+  body.journey-live .truck-crew-static{display:none}         /* the rig's couch + crew are THE couch
+                                                                + crew while the journey runs (P1) */
+
+  /* compact Floor-2 card so the rest landing fits one screen */
+  body.journey-live #floor-2 .nightmares{grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+  body.journey-live #floor-2 .award-strip{grid-template-columns:repeat(3,1fr)}
+  body.journey-live #floor-2 h2{font-size:clamp(22px,1.9vw,28px)}
+  body.journey-live #floor-2 .panel-card{padding:clamp(18px,1.8vw,26px)}
+
+  /* quips — progress-gated, repositioned from their floor card to the
+     rig's dock spot (rig is 24vw wide × 11vw tall; feet at 70vh) */
+  body.journey-live .quip{
+    position:absolute;margin:0;z-index:26;opacity:0;pointer-events:none;
+    transform:translate(-50%,8px);max-width:240px;width:max-content;
+    transition:opacity .24s cubic-bezier(.2,0,0,1), transform .24s cubic-bezier(.2,0,0,1);
+  }
+  body.journey-live .quip.on{opacity:1;transform:translate(-50%,0)}
+  body.journey-live #floor-4 .quip{left:-35vw;top:calc(51vh - 11vw)}  /* dock x15 − panel left 50 */
+  body.journey-live #floor-3 .quip{left:76vw;top:calc(51vh - 11vw)}   /* dock x81 − panel left 5; +2vh comp for card move 112→110 */
+  body.journey-live #floor-2 .quip{left:-36vw;top:calc(51vh - 11vw)}  /* dock x15 − panel left 51; −6vh comp for card move 204→210 */
+  body.journey-live #lobby .quip{left:61vw;top:calc(61vh - 11vw)}     /* over the lobby crossing
+       (rig walks 66→57vw beneath it during the quip window) — P5 lobby beat */
+  body.journey-live #floor-3 .quip::after{left:auto;right:14px}
+
+  /* floor ticker — persistent descent orientation (AC4) */
+  body.journey-live .ticker{
+    display:flex;position:absolute;right:14px;top:50%;transform:translateY(-50%);
+    flex-direction:column;gap:8px;z-index:30;
+  }
+  body.journey-live .ticker span{
+    width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-sans);font-weight:700;font-size:14px;color:var(--color-grey-500);
+    background:rgba(255,255,255,.78);border:1px solid var(--color-grey-200);
+    transition:all .2s cubic-bezier(.2,0,0,1);
+  }
+  body.journey-live .ticker span.on{
+    background:var(--color-orange-50);border-color:var(--color-orange-200);color:var(--color-navy-500);
+    transform:scale(1.12);
+  }
+}
+
+/* ============================================================
+   MOBILE ≤768px — VIGNETTE MODE: zero pinning, normal stacking,
+   IO entrances only. Finale = the resolved frame (P4, grafted from
+   v2a): doors fully closed, crew standing beside the truck — a
+   story-complete payoff with no animation left to half-finish.
+   ============================================================ */
+@media(max-width:768px){
+  .rig{width:min(260px,72vw)}
+  body.vignette-ready .vg{opacity:0;transform:translateY(24px);transition:opacity .5s cubic-bezier(.2,0,0,1),transform .5s cubic-bezier(.2,0,0,1)}
+  body.vignette-ready .vg.inview{opacity:1;transform:translateY(0)}
+}
+
+/* ============================================================
+   MOBILE ≤768px — PEEKABOO MODE (concept prototype, JS-built).
+   The crew descends per-floor "window" scenes wedged between the
+   stacked cards; you catch them in the gap and they vanish behind
+   the next card. Crew position = a CLAMPED fraction of how far each
+   window has scrolled through the screen → strictly monotonic, so
+   the crew always follows its flight (cannot bounce). Placeholders —
+   final art = commissioned illustration (Rive / sprite sheet).
+   JS-off mobile keeps the static stacked fallback above.
+   ============================================================ */
+.peek-win{display:none}
+@media(max-width:768px){
+  body.peek-ready .journey-wrap{background:var(--color-grey-50)} /* light building, like the desktop stage */
+  body.peek-ready #journey .rig[data-role="movers"]{display:none} /* static in-world rig hidden; the windows carry the crew */
+  body.peek-ready .floor-panel{position:relative;z-index:2;background:var(--color-grey-50)} /* light wall — crew shows only in the window gaps */
+  body.peek-ready #faq,body.peek-ready .site-footer{position:relative;z-index:2;background:var(--color-grey-50)}
+  /* crisp cards (Cameron 6/13): no vignette fade on the peekaboo — cards stay sharp + float over the building */
+  body.peek-ready .vg{opacity:1!important;transform:none!important;transition:none!important}
+  body.peek-ready .floor-panel .panel-card{box-shadow:0 14px 34px -20px rgba(39,52,61,.42)}
+
+  .peek-win{display:block;position:relative;height:84vh;overflow:hidden;z-index:1;background:var(--color-grey-50)}
+  .peek-win .pk-svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .peek-win .pk-label{position:absolute;top:18px;left:0;right:0;text-align:center;
+    font-family:var(--font-sans);font-weight:800;letter-spacing:3px;font-size:11px;
+    text-transform:uppercase;color:rgba(39,52,61,.4);z-index:4}
+  .peek-crew{position:absolute;left:50%;top:50%;width:min(208px,56vw);z-index:5;
+    transform:translate(-50%,-64%);will-change:left,top;pointer-events:none}
+  .peek-crew .rig-svg{width:100%;height:auto;overflow:visible;
+    filter:drop-shadow(0 8px 12px rgba(39,52,61,.16))}
+}
+
+/* ════════════════════════════════════════════════════════════════
+   v2 · PEEKABOO AT ALL WIDTHS — the desktop "Camera Stage" is removed
+   (body.journey-live is never added). These re-declare the peek-ready
+   rules WITHOUT the ≤768px gate so the window engine runs on desktop
+   too, then tune sizing up for wide screens. The cheaper, content-first,
+   one-engine build the audit recommended.
+   ════════════════════════════════════════════════════════════════ */
+body.peek-ready .journey-wrap{background:var(--color-grey-50)}
+body.peek-ready #journey .rig[data-role="movers"]{display:none}
+body.peek-ready .floor-panel{position:relative;z-index:2;background:var(--color-grey-50)}
+body.peek-ready #faq,body.peek-ready .site-footer{position:relative;z-index:2;background:var(--color-grey-50)}
+body.peek-ready .vg{opacity:1!important;transform:none!important;transition:none!important}
+body.peek-ready .floor-panel .panel-card{box-shadow:0 14px 34px -20px rgba(39,52,61,.42)}
+body.peek-ready .peek-win{display:block;position:relative;height:84vh;overflow:hidden;z-index:1;background:var(--color-grey-50)}
+body.peek-ready .peek-win .pk-svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+body.peek-ready .peek-win .pk-label{position:absolute;top:18px;left:0;right:0;text-align:center;font-family:var(--font-sans);font-weight:800;letter-spacing:3px;font-size:11px;text-transform:uppercase;color:rgba(39,52,61,.4);z-index:4}
+body.peek-ready .peek-crew{position:absolute;left:50%;top:50%;width:min(208px,56vw);z-index:5;transform:translate(-50%,-64%);will-change:left,top;pointer-events:none}
+body.peek-ready .peek-crew .rig-svg{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 8px 12px rgba(39,52,61,.16))}
+/* desktop: bigger crew, slightly tighter window, centered card */
+@media(min-width:769px){
+  body.peek-ready .peek-crew{width:min(360px,26vw)}
+  body.peek-ready .peek-win{height:70vh}
+  body.peek-ready .peek-win .pk-label{font-size:13px;letter-spacing:4px}
+  body.peek-ready .floor-panel .panel-card{max-width:840px}
+}
+
+/* ============================================================
+   REDUCED MOTION — journey-live class is never added (the gate
+   script checks), but belt-and-suspenders: force the static page,
+   movers static at the journey top, quips + loaded couch visible.
+   ============================================================ */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  body .journey-wrap{height:auto!important}
+  body .stage{position:static!important;height:auto!important;overflow:visible!important}
+  body .world{position:static!important;height:auto!important;transform:none!important}
+  body .bldg,body .wall-num,body .facade-sign,body .ticker{display:none!important}
+  body .floor-panel{position:static!important;width:auto!important;opacity:1!important;transform:none!important}
+  body .rig{position:relative!important;left:auto;top:auto;width:min(330px,82vw)!important;margin:34px auto 0;transform:none!important}
+  body .quip{position:relative!important;left:auto!important;top:auto!important;opacity:1!important;transform:none!important;margin:0 0 14px}
+  body .truck-wrap{position:static!important;width:min(560px,92%)!important;margin:8px auto 0;transform:none!important}
+  body .truck-couch-static,body .truck-crew-static{display:block!important}
+  body .door-roll{transform:translateY(0)!important} /* doors shut — finished-move frame */
+}
+</style>
+</head>
+<body>
+
+<script>
+/* LAYOUT GATE — JS-off → class never exists → the default CSS above
+   renders a complete, normal-length page. prefers-reduced-motion → no
+   class → same static page. P10 (lazy init, grafted from v2a): the
+   journey-live class is added on the FIRST scroll event, so nothing
+   runs — and no pin heights exist — above the fold at load. P9: the
+   class is never added at ≤768px (mobile owns vignette mode). */
+(function () {
+  /* v2 · PEEKABOO BUILD: the desktop "Camera Stage" (body.journey-live) is
+     intentionally DISABLED. The peekaboo window engine — proven on mobile in
+     v1 — now runs at ALL widths (see the engine below: mqMobile is forced
+     true, so live() is always false and initPeek()/peekRender() run on
+     desktop too). journey-live is never added, so its @media(min-width:769px)
+     CSS stays inert. This is the lighter, one-engine, content-first build. */
+  window.__journeyArm = function () {}; /* no-op — Camera Stage off in v2 */
+})();
+</script>
+
+<a class="hq-link" href="../index.html">&larr; Redesign HQ</a>
+
+<!-- ════════ NAV — orange = nav CTA (the one orange button); every
+     "See my price" targets the quote-form proxy, never the homepage ════════ -->
+<nav class="site-nav" aria-label="Main">
+  <span class="logo">EINSTEIN<span class="dot">.</span></span>
+  <div class="nav-links">
+    <a href="https://www.einsteinmoving.com/service/">Services</a>
+    <a href="https://www.einsteinmoving.com/why-us/straightforward-pricing/">Pricing</a>
+    <a href="https://www.einsteinmoving.com/locations/">Locations</a>
+    <a href="https://www.einsteinmoving.com/why-us/">Reviews</a>
+  </div>
+  <a class="btn-nav" href="https://www.einsteinmoving.com/quote/">See my price</a>
+</nav>
+
+<!-- ════════ HERO — STATIC + answer-complete. Lora H1 answers what/where;
+     wit subhead; blue CTA; proof microline; crew-reel placeholder;
+     follow-the-couch tease (static arrow — no animation in the hero). ════════ -->
+<header class="hero">
+  <div class="hero-inner">
+    <svg class="hero-spot" viewBox="0 0 100 80" aria-hidden="true">
+      <rect x="30" y="34" width="40" height="26" rx="4" fill="none" stroke="#27343D" stroke-width="3"/>
+      <rect x="36" y="16" width="28" height="18" rx="3" fill="none" stroke="#EF8B22" stroke-width="3"/>
+      <line x1="50" y1="16" x2="50" y2="34" stroke="#EF8B22" stroke-width="2.5"/>
+      <path d="M20 12 v50 a8 8 0 0 0 8 8 h6" fill="none" stroke="#27343D" stroke-width="3.5" stroke-linecap="round"/>
+      <circle cx="40" cy="71" r="6" fill="none" stroke="#27343D" stroke-width="3"/>
+    </svg>
+    <h1 id="heroHl">Local moving across Texas&nbsp;+&nbsp;Tampa, done the smart way.</h1>
+    <div class="hl-workshop" aria-hidden="true" title="Headline workshop — click through options, favorite the keepers">
+      <button class="hl-nav" id="hlPrev" type="button">&lsaquo;</button>
+      <span class="hl-count"><span id="hlIdx">1</span>/<span id="hlTot">6</span></span>
+      <button class="hl-nav" id="hlNext" type="button">&rsaquo;</button>
+      <button class="hl-fav" id="hlFav" type="button">&#9825;&nbsp;favorite</button>
+      <button class="hl-copy" id="hlCopy" type="button">copy &#9733;&nbsp;<span id="hlFavN">0</span></button>
+    </div>
+    <p class="wit">Moving is awful. We&rsquo;ve spent over a decade making sure ours isn&rsquo;t.</p>
+    <p class="proof-line">
+      <span><svg class="ic" width="15" height="15" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z" fill="#CC5500"/></svg>4.9 stars &middot; 8,100+ reviews company-wide</span>
+      <span>55+ awards</span>
+      <span>100,000+ moves since 2012</span>
+    </p>
+    <a class="btn-blue" href="https://www.einsteinmoving.com/quote/">See my price &rarr;</a>
+    <span class="btn-micro">No deposit &middot; Free cancellation &middot; $2,000 coverage included</span>
+    <p class="hero-speed">A real price online in <b>~47 seconds</b> &middot; zero phone calls.</p>
+    <div class="crew-reel" aria-label="Crew video placeholder">
+      CREW REEL &mdash; PLACEHOLDER
+      <small>8-second muted loop &middot; real Einstein crews on real moves (b-roll)</small>
+    </div>
+    <div class="couch-tease" aria-hidden="true">
+      <svg viewBox="0 0 80 30"><rect x="8" y="10" width="64" height="14" rx="5" fill="#EF8B22"/><rect x="4" y="6" width="10" height="18" rx="4" fill="#EF8B22"/><rect x="66" y="6" width="10" height="18" rx="4" fill="#EF8B22"/></svg>
+      <span>follow the couch</span>
+      <span class="arrow">&darr;</span>
+    </div>
+  </div>
+</header>
+
+<!-- condensed trust strip — kit SVG line icons (no emoji), scope-labeled reviews -->
+<div class="trust-strip" aria-label="Trust highlights">
+  <span><svg class="ic" width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 7.5 7H3.5v5.5L7 16h6l3.5-3.5V7h-4z" fill="none" stroke="#CC5500" stroke-width="1.8"/><path d="M8 19h4M10 16v3" stroke="#CC5500" stroke-width="1.8"/></svg> Multi-award winning</span>
+  <span><svg class="ic" width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.7l2.5 5.1 5.6.8-4 4 .9 5.6L10 14.6l-5 2.6.9-5.6-4-4 5.6-.8z" fill="#CC5500"/></svg> 4.9/5 Stars &middot; 8,100+ reviews company-wide</span>
+  <span><svg class="ic" width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5l7 2.8v5c0 4.4-3 7.6-7 9.2-4-1.6-7-4.8-7-9.2v-5z" fill="none" stroke="#CC5500" stroke-width="1.8"/><path d="M6.6 9.8l2.3 2.3 4.4-4.4" fill="none" stroke="#CC5500" stroke-width="1.8"/></svg> $2,000 Coverage Included</span>
+  <span><svg class="ic" width="16" height="16" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="#CC5500" stroke-width="1.8"/><path d="M13 13l5 5" stroke="#CC5500" stroke-width="1.8" stroke-linecap="round"/></svg> No Hidden Fees</span>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     THE JOURNEY — one wrapper, one sticky stage, one 500vh world,
+     ONE crew, ONE couch. Every floor is a real <section> (reaction
+     pins attach; JS-off reads top-to-bottom as a normal page).
+     ════════════════════════════════════════════════════════════════ -->
+<div class="journey-wrap" id="journey">
+  <div class="stage">
+    <div class="world">
+
+      <!-- THE BUILDING — one continuous cross-section: per-floor wall
+           tints (descent orientation), switchback stairs running
+           unbroken Floor 4 → curb, floor slabs with stair gaps (no
+           sealed boxes), lobby, stoop channel, facade + street. -->
+      <svg class="bldg" viewBox="0 0 1000 5000" preserveAspectRatio="none" aria-hidden="true">
+        <!-- wall tint bands (AC4: distinct per floor) -->
+        <rect x="0" y="0"    width="1000" height="1000" fill="#FEF6EC"/>
+        <rect x="0" y="1000" width="1000" height="1000" fill="#FFFFFF"/>
+        <rect x="0" y="2000" width="1000" height="1000" fill="#F4F5F5"/>
+        <rect x="0" y="3000" width="1000" height="1000" fill="#EEF1F4"/>
+        <rect x="0" y="4000" width="1000" height="1000" fill="#E2E3E4"/>
+
+        <!-- interior windows -->
+        <g fill="#FFFFFF" stroke="#C0C2C4" stroke-width="2" vector-effect="non-scaling-stroke">
+          <rect x="340" y="200" width="110" height="180" rx="6"/>
+          <rect x="540" y="1230" width="110" height="180" rx="6"/>
+          <rect x="340" y="2210" width="110" height="180" rx="6"/>
+        </g>
+        <g stroke="#C0C2C4" stroke-width="2" vector-effect="non-scaling-stroke">
+          <line x1="395" y1="200" x2="395" y2="380"/><line x1="340" y1="290" x2="450" y2="290"/>
+          <line x1="595" y1="1230" x2="595" y2="1410"/><line x1="540" y1="1320" x2="650" y2="1320"/>
+          <line x1="395" y1="2210" x2="395" y2="2390"/><line x1="340" y1="2300" x2="450" y2="2300"/>
+        </g>
+
+        <!-- lobby plant -->
+        <circle cx="902" cy="3580" r="58" fill="#69995D" opacity=".8"/>
+        <rect x="884" y="3620" width="40" height="62" rx="6" fill="#9AADB7"/>
+
+        <!-- floor slabs — gapped where the stairwell passes through
+             (the spine is never sealed; geometry continues) -->
+        <g fill="#E2E3E4" stroke="#C0C2C4" stroke-width="2" vector-effect="non-scaling-stroke">
+          <rect x="0"   y="985"  width="350" height="30"/>
+          <rect x="480" y="985"  width="520" height="30"/>
+          <rect x="0"   y="1985" width="480" height="30"/>
+          <rect x="615" y="1985" width="385" height="30"/>
+          <rect x="0"   y="2985" width="310" height="30"/>
+          <rect x="445" y="2985" width="555" height="30"/>
+        </g>
+
+        <!-- SWITCHBACK FLIGHTS — stepped bands, alternating direction.
+             A: F4-left → F3-right · B: F3-right → F2-left ·
+             C: F2-left → lobby · D: stoop channel to the curb -->
+        <g fill="#FFFFFF" stroke="#9AADB7" stroke-width="2.5" vector-effect="non-scaling-stroke">
+          <path d="M245 700 h47.1 v83.3 h47.1 v83.3 h47.1 v83.3 h47.1 v83.3 h47.1 v83.3 h47.1 v83.3 h47.1 v83.3 h47.1 v83.3 h47.1 v83.3 h47.1 v83.3 h47.1 v83.3 h47.1 v83.3 v40 L245 740 Z"/>
+          <path d="M715 1700 h-47.1 v83.3 h-47.1 v83.3 h-47.1 v83.3 h-47.1 v83.3 h-47.1 v83.3 h-47.1 v83.3 h-47.1 v83.3 h-47.1 v83.3 h-47.1 v83.3 h-47.1 v83.3 h-47.1 v83.3 h-47.1 v83.3 v40 L715 1740 Z"/>
+          <path d="M245 2700 h36.3 v83.3 h36.3 v83.3 h36.3 v83.3 h36.3 v83.3 h36.3 v83.3 h36.3 v83.3 h36.3 v83.3 h36.3 v83.3 h36.3 v83.3 h36.3 v83.3 h36.3 v83.3 h36.3 v83.3 v40 L245 2740 Z"/>
+        </g>
+        <!-- handrails -->
+        <g stroke="#9AADB7" stroke-width="4" vector-effect="non-scaling-stroke" stroke-linecap="round">
+          <line x1="260" y1="640" x2="825" y2="1640"/>
+          <line x1="700" y1="1640" x2="135" y2="2640"/>
+          <line x1="260" y1="2640" x2="695" y2="3640"/>
+        </g>
+
+        <!-- dock landings -->
+        <g fill="#FFFFFF" stroke="#9AADB7" stroke-width="2.5" vector-effect="non-scaling-stroke">
+          <rect x="55"  y="700"  width="200" height="24"/>
+          <rect x="700" y="1700" width="250" height="24"/>
+          <rect x="55"  y="2700" width="245" height="24"/>
+        </g>
+
+        <!-- lobby floor + foundation, stoop channel, street facade -->
+        <g fill="#E2E3E4" stroke="#C0C2C4" stroke-width="2" vector-effect="non-scaling-stroke">
+          <rect x="0"   y="3685" width="455" height="315"/>
+          <rect x="585" y="3685" width="415" height="315"/>
+        </g>
+        <rect x="455" y="3685" width="130" height="1015" fill="#EEF1F4" stroke="#C0C2C4" stroke-width="2" vector-effect="non-scaling-stroke"/>
+        <path d="M560 3700 h-5 v83.3 h-5 v83.3 h-5 v83.3 h-5 v83.3 h-5 v83.3 h-5 v83.3 h-5 v83.3 h-5 v83.3 h-5 v83.3 h-5 v83.3 h-5 v83.3 h-5 v83.3 v40 L560 3740 Z" fill="#FFFFFF" stroke="#9AADB7" stroke-width="2.5" vector-effect="non-scaling-stroke"/>
+        <g fill="#F4F5F5" stroke="#C0C2C4" stroke-width="2" vector-effect="non-scaling-stroke">
+          <rect x="0"   y="4000" width="455" height="690"/>
+          <rect x="585" y="4000" width="415" height="690"/>
+        </g>
+        <!-- storefront glass -->
+        <g fill="#EBF4FB" stroke="#C0C2C4" stroke-width="2" vector-effect="non-scaling-stroke">
+          <rect x="40"  y="4140" width="380" height="330"/>
+          <rect x="640" y="4140" width="300" height="330"/>
+        </g>
+        <g stroke="#C0C2C4" stroke-width="2" vector-effect="non-scaling-stroke">
+          <line x1="230" y1="4140" x2="230" y2="4470"/>
+          <line x1="790" y1="4140" x2="790" y2="4470"/>
+        </g>
+        <!-- street: curb + road -->
+        <rect x="0" y="4690" width="1000" height="14" fill="#E2E3E4"/>
+        <rect x="0" y="4704" width="1000" height="296" fill="#C0C2C4"/>
+        <g fill="#FFFFFF" opacity=".8">
+          <rect x="60"  y="4858" width="70" height="12" rx="6"/>
+          <rect x="230" y="4858" width="70" height="12" rx="6"/>
+          <rect x="400" y="4858" width="70" height="12" rx="6"/>
+          <rect x="570" y="4858" width="70" height="12" rx="6"/>
+          <rect x="740" y="4858" width="70" height="12" rx="6"/>
+          <rect x="910" y="4858" width="70" height="12" rx="6"/>
+        </g>
+        <!-- a curb tree (4 trees planted per move) -->
+        <rect x="930" y="4560" width="16" height="134" rx="6" fill="#53575A"/>
+        <circle cx="938" cy="4520" r="64" fill="#69995D" opacity=".9"/>
+      </svg>
+
+      <!-- painted floor numerals + facade sign (HTML — the stretched svg would distort text) -->
+      <div class="wall-num wn-4" aria-hidden="true">4</div>
+      <div class="wall-num wn-3" aria-hidden="true">3</div>
+      <div class="wall-num wn-2" aria-hidden="true">2</div>
+      <div class="wall-num wn-l" aria-hidden="true">L</div>
+      <div class="facade-sign" aria-hidden="true">EINSTEIN MOVING CO. &middot; EST. 2012</div>
+
+      <!-- ═══ THE RIG — the only crew and the only carried couch on this
+           page (P1). JS keeps it in the camera band; static modes show
+           it once, here, at the top of the journey. ═══ -->
+      <div class="rig" data-role="movers">
+        <svg class="rig-svg pose-carry still" viewBox="0 0 240 110" aria-hidden="true">
+          <!-- helper (back) — grey cap -->
+          <g class="mv-back">
+            <circle cx="40" cy="26" r="11" fill="#27343D"/>
+            <path d="M29 24 a11 11 0 0 1 22 0 z" fill="#53575A"/>
+            <rect x="31" y="36" width="18" height="34" rx="8" fill="#27343D"/>
+            <rect class="leg legA" x="33" y="68" width="7" height="36" rx="3.5" fill="#27343D"/>
+            <rect class="leg legB" x="42" y="68" width="7" height="36" rx="3.5" fill="#27343D"/>
+            <rect class="arm-back" x="44" y="42" width="26" height="7" rx="3.5" fill="#27343D"/>
+          </g>
+          <!-- THE ORANGE COUCH — the signature object. Outer group takes
+               JS inline transforms (set-down / the finale load); inner
+               pose group takes the stair-tilt class transform. -->
+          <g class="couch-outer" data-role="couch">
+            <g class="couch-pose">
+              <rect x="66" y="32" width="108" height="18" rx="7" fill="#D96B10"/>
+              <rect x="62" y="46" width="116" height="24" rx="9" fill="#EF8B22"/>
+              <rect x="58" y="40" width="13" height="30" rx="6" fill="#EF8B22"/>
+              <rect x="169" y="40" width="13" height="30" rx="6" fill="#EF8B22"/>
+              <line x1="120" y1="48" x2="120" y2="68" stroke="#D96B10" stroke-width="2.5"/>
+              <rect x="70" y="70" width="6" height="8" rx="2" fill="#CC5500"/>
+              <rect x="164" y="70" width="6" height="8" rx="2" fill="#CC5500"/>
+            </g>
+          </g>
+          <!-- lead (front) — navy cap + badge, a touch taller -->
+          <g class="mv-front">
+            <circle cx="200" cy="23" r="11.5" fill="#27343D"/>
+            <path d="M188.5 21 a11.5 11.5 0 0 1 23 0 z" fill="#1A2329"/>
+            <rect x="191" y="34" width="18" height="36" rx="8" fill="#27343D"/>
+            <rect x="193.5" y="41" width="6" height="6" rx="1.5" fill="#CC5500"/>
+            <rect class="leg legA" x="193" y="69" width="7" height="35" rx="3.5" fill="#27343D"/>
+            <rect class="leg legB" x="202" y="69" width="7" height="35" rx="3.5" fill="#27343D"/>
+            <rect class="arm-wave" x="172" y="42" width="24" height="7" rx="3.5" fill="#27343D"/>
+          </g>
+        </svg>
+        <p class="rig-cap">Marcus + Devon and the orange couch &mdash; follow them down to your price.</p>
+      </div>
+
+      <!-- ──── FLOOR 4 · SMART PRICING — dock beat 1 (movers LEFT, card RIGHT) ──── -->
+      <section class="floor-panel vg" id="floor-4">
+        <div class="quip" data-quip data-quip-window="0.033,0.113">&ldquo;Careful &mdash; that&rsquo;s the no-hidden-fees floor.&rdquo;</div>
+        <div class="panel-card">
+          <span class="floor-tag">FLOOR 4 &middot; SMART PRICING</span>
+          <h2>One honest hourly rate. Everything included.</h2>
+          <p class="lede">No trip fees, no fuel surcharges, no credit-card fees, no &ldquo;heavy item&rdquo; math at the end. What we quote is what you pay.</p>
+          <ul class="ledger">
+            <li><span>2+ trained, vetted movers (you meet them beforehand)</span><span class="val">Included</span></li>
+            <li><span>Fully equipped truck &mdash; wraps, pads, tools</span><span class="val">Included</span></li>
+            <li><span>Furniture disassembly + reassembly</span><span class="val">Included</span></li>
+            <li><span>$2,000 damage coverage</span><span class="val">Included</span></li>
+            <li><span>Taxes and standard insurance</span><span class="val">Included</span></li>
+            <li><span>Trip fees &middot; fuel &middot; card fees &middot; deposit</span><span class="val">$0</span></li>
+          </ul>
+          <p class="anchor-line">Our rate is the whole cost. <em>Theirs is just where it starts.</em></p>
+          <!-- v2: mid-floor CTA removed (audit blocker — the old #see-price scrolled deeper into the story instead of to the form). The persistent nav CTA + the finale CTA carry conversion. -->
+        </div>
+      </section>
+
+      <!-- ──── FLOOR 3 · MEET YOUR MOVERS — dock beat 2 (movers RIGHT, card LEFT) ──── -->
+      <section class="floor-panel vg" id="floor-3">
+        <div class="quip" data-quip data-quip-window="0.270,0.356">&ldquo;Background-checked, W-2, and yes &mdash; we do this all day.&rdquo;<span class="sig">&mdash; Marcus, 3 yrs</span></div>
+        <div class="panel-card">
+          <span class="floor-tag">FLOOR 3 &middot; MEET YOUR MOVERS</span>
+          <h2>Who&rsquo;s showing up at my door?</h2>
+          <p class="lede">No strangers, no subcontractors. Days before your move, we send your crew&rsquo;s names, photos, and bios. Every Einstein mover is a background-checked, W-2 employee.</p>
+          <div class="crew-row">
+            <div class="crew-card">
+              <div class="face">PHOTO<br>PLACEHOLDER</div>
+              <div class="nm">Marcus</div>
+              <div class="tn">Mover &middot; 3 yrs</div>
+            </div>
+            <div class="crew-card">
+              <div class="face">PHOTO<br>PLACEHOLDER</div>
+              <div class="nm">Devon</div>
+              <div class="tn">Lead &middot; 5 yrs</div>
+            </div>
+            <div class="crew-card">
+              <div class="face">PHOTO<br>PLACEHOLDER</div>
+              <div class="nm">Sarah</div>
+              <div class="tn">Manager &middot; 8 yrs</div>
+            </div>
+          </div>
+          <p class="hire-line">We hire <strong>fewer than 1% of applicants</strong> &mdash; the reviews are the output, this is the input.</p>
+          <!-- v2: mid-floor CTA removed (audit blocker) — nav + finale CTAs carry conversion -->
+        </div>
+      </section>
+
+      <!-- ──── FLOOR 2 · THE REST LANDING — the breather beat (SBS The Boat's
+           pacing lesson). The SAME crew visibly rests here: couch down,
+           brow wipe, while the worry cards make the case. ──── -->
+      <section class="floor-panel vg" id="floor-2">
+        <div class="quip" data-quip data-quip-window="0.507,0.592">&ldquo;Five stars is heavy. So&rsquo;s this couch.&rdquo;<span class="sig">&mdash; Devon, 5 yrs</span></div>
+        <div class="panel-card">
+          <span class="floor-tag">FLOOR 2 &middot; THE REST LANDING</span>
+          <h2>The four moving nightmares Einstein eliminates</h2>
+          <p class="rest-sub">(So you can sleep easy.) Same four fears, every move. Here&rsquo;s exactly how each one is handled &mdash; no vague promises.</p>
+          <div class="nightmares">
+            <details class="nightmare">
+              <summary><h3><svg class="ic" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M11 2h6v6L8.5 16.5a2 2 0 0 1-2.8 0L3 13.8a2 2 0 0 1 0-2.8z" fill="none" stroke="#27343D" stroke-width="1.7"/><circle cx="14" cy="6" r="1.4" fill="#CC5500"/></svg> &ldquo;Am I going to get ripped off?&rdquo;</h3><span class="tog">+</span></summary>
+              <p>One all-inclusive hourly rate. <strong>No hidden fees, no deposit, free cancellation.</strong> The clock starts at your door &mdash; not at our warehouse.</p>
+            </details>
+            <details class="nightmare">
+              <summary><h3><svg class="ic" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="6.5" r="3.6" fill="none" stroke="#27343D" stroke-width="1.7"/><path d="M3.5 17.5c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5" fill="none" stroke="#27343D" stroke-width="1.7"/></svg> &ldquo;Who&rsquo;s showing up at my door?&rdquo;</h3><span class="tog">+</span></summary>
+              <p><strong>Photos and bios before move day.</strong> Background-checked, W-2 employees &mdash; never subcontractors.</p>
+            </details>
+            <details class="nightmare">
+              <summary><h3><svg class="ic" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="#27343D" stroke-width="1.7"/><path d="M10 5.5V10l3 2" fill="none" stroke="#CC5500" stroke-width="1.7" stroke-linecap="round"/></svg> &ldquo;Will they actually be on time?&rdquo;</h3><span class="tog">+</span></summary>
+              <p>Our <strong>On-Time Guarantee</strong>: we arrive on time or your move is instantly discounted &mdash; and the later we are, the bigger the discount.</p>
+            </details>
+            <details class="nightmare">
+              <summary><h3><svg class="ic" width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.8l6.6 2.6v4.8c0 4.2-2.8 7.2-6.6 8.7-3.8-1.5-6.6-4.5-6.6-8.7V4.4z" fill="none" stroke="#27343D" stroke-width="1.7"/><path d="M7 9.7l2.2 2.2 4-4" fill="none" stroke="#CC5500" stroke-width="1.7"/></svg> &ldquo;What if something breaks?&rdquo;</h3><span class="tog">+</span></summary>
+              <p><strong>$2,000 damage coverage included, free.</strong> Based on what your stuff is worth &mdash; not 60&cent; per pound. No deductible, no upgrade required.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── THE TROPHY CASE — awards split out of Floor 2 (audit: one H2 per
+           floor + de-densify the Rest Landing). Its own card, no crew window. ──── -->
+      <section class="floor-panel vg" id="awards">
+        <div class="panel-card">
+          <span class="floor-tag">THE TROPHY CASE</span>
+          <h2 class="award-head">The most awarded moving company EVER <svg class="ic" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 7.5 7H3.5v5.5L7 16h6l3.5-3.5V7h-4z" fill="none" stroke="#CC5500" stroke-width="1.8"/><path d="M8 19h4M10 16v3" stroke="#CC5500" stroke-width="1.8"/></svg></h2>
+          <p class="award-sub nudge">Seriously, we&rsquo;re running out of shelf space!</p>
+          <div class="award-strip">
+            <details class="award">
+              <summary><span class="big">4.9&#9733;</span><span class="lbl">8,100+ reviews</span><span class="hint">tap for the breakdown</span></summary>
+              <p>4.9 out of 5 across 8,100+ verified reviews, company-wide. You don&rsquo;t earn that by nickel-and-diming people on moving day.</p>
+            </details>
+            <details class="award">
+              <summary><span class="big">55+</span><span class="lbl">Awards won</span><span class="hint">tap to expand</span></summary>
+              <p>Voted Best of Austin 9 years in a row (2017&ndash;2025), Best in DFW 4&times;, Houston Chronicle&rsquo;s best 3 years straight, SA Current 3 years running, and Nextdoor&rsquo;s Neighborhood Fave &mdash; voted by the neighbors we actually serve.</p>
+            </details>
+            <details class="award">
+              <summary><span class="big">100K+</span><span class="lbl">Moves completed</span><span class="hint">tap to expand</span></summary>
+              <p>Over 100,000 moves since 2012, across 10 branches in Texas and Tampa, FL. Every one of them planted four trees.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── THE LOBBY — origin story: front, not center. The crew carries
+           the couch across under the framed photo (which rides the wall —
+           the world's own motion is its parallax). ──── -->
+      <section class="floor-panel vg" id="lobby">
+        <div class="quip" data-quip data-quip-window="0.711,0.761">&ldquo;Easy on the turn &mdash; truck&rsquo;s right out front.&rdquo;</div>
+        <div class="inner">
+          <div class="kframe">
+            KINDERGARTEN PHOTO &mdash; PLACEHOLDER<br>(the two founders, framed on the lobby wall)
+          </div>
+          <div class="story">
+            <span class="floor-tag">THE LOBBY</span>
+            <p>Two best friends from kindergarten. One truck. 2012.</p>
+            <a href="https://www.einsteinmoving.com/about-us/">The whole story (it&rsquo;s a classic around here) &rarr;</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ──── THE CURB — the truck. The rig's OWN couch slides into this
+           cargo hole (continuous motion, no crossfade); the roll-up door
+           (navy — never orange) closes over it. The static couch inside
+           is the JS-off / reduced-motion / mobile fallback rendering and
+           is display:none the entire time the journey runs. ──── -->
+      <div class="truck-wrap vg" data-role="truck" aria-hidden="false">
+        <div class="truck-stage">
+          <svg class="truck-svg" viewBox="0 0 560 300" aria-label="Einstein moving truck, couch loaded">
+            <ellipse cx="290" cy="284" rx="240" ry="9" fill="rgba(39,52,61,.10)"/>
+            <rect x="150" y="58" width="330" height="180" rx="10" fill="#FFFFFF" stroke="#C0C2C4" stroke-width="3"/>
+            <text x="265" y="128" text-anchor="middle" font-family="'Roboto',sans-serif" font-weight="700" font-size="34" fill="#27343D" letter-spacing="2">EINSTEIN</text>
+            <text x="265" y="156" text-anchor="middle" font-family="'Roboto',sans-serif" font-weight="500" font-size="13" fill="#53575A">THE SMART MOVE</text>
+            <path d="M150 116 h-44 a13 13 0 0 0 -11 6 l-26 42 a13 13 0 0 0 -2.5 8 v52 a14 14 0 0 0 14 14 h69.5 z" fill="#27343D"/>
+            <rect x="76" y="130" width="40" height="36" rx="5" fill="#C3DFEF"/>
+            <rect x="66" y="216" width="12" height="8" rx="3" fill="#FDE3C2"/>
+            <!-- rear cargo opening -->
+            <rect data-role="hole" x="384" y="148" width="82" height="90" fill="#1A2329"/>
+            <line x1="384" y1="146" x2="384" y2="240" stroke="#53575A" stroke-width="2"/>
+            <line x1="466" y1="146" x2="466" y2="240" stroke="#53575A" stroke-width="2"/>
+            <!-- fallback couch-in-truck (hidden whenever the journey runs) -->
+            <g class="truck-couch-static">
+              <rect x="392" y="196" width="66" height="13" rx="5" fill="#D96B10"/>
+              <rect x="389" y="207" width="72" height="16" rx="6" fill="#EF8B22"/>
+              <rect x="386" y="202" width="9" height="21" rx="4" fill="#EF8B22"/>
+              <rect x="455" y="202" width="9" height="21" rx="4" fill="#EF8B22"/>
+              <rect x="394" y="223" width="5" height="6" rx="2" fill="#CC5500"/>
+              <rect x="451" y="223" width="5" height="6" rx="2" fill="#CC5500"/>
+            </g>
+            <rect x="466" y="238" width="16" height="8" rx="2" fill="#9AADB7"/>
+            <!-- STATIC crew beside the truck (P4, grafted from v2a's resolved
+                 mobile-finale frame) — JS-off / reduced-motion / mobile only;
+                 hidden under journey-live (the live rig owns the scene). -->
+            <g class="truck-crew-static" transform="translate(33,32)" aria-hidden="true">
+              <circle cx="466" cy="196" r="7" fill="#27343D"/>
+              <rect x="459" y="203" width="14" height="22" rx="6" fill="#27343D"/>
+              <rect x="461" y="224" width="5" height="22" rx="2.5" fill="#1A2329"/>
+              <rect x="467" y="224" width="5" height="22" rx="2.5" fill="#1A2329"/>
+              <rect x="470" y="186" width="6" height="18" rx="3" fill="#27343D"/>
+              <circle cx="492" cy="200" r="6.4" fill="#27343D"/>
+              <rect x="486" y="206" width="13" height="20" rx="5.5" fill="#27343D"/>
+              <rect x="488" y="225" width="4.6" height="21" rx="2.3" fill="#1A2329"/>
+              <rect x="493.5" y="225" width="4.6" height="21" rx="2.3" fill="#1A2329"/>
+            </g>
+            <circle cx="104" cy="252" r="26" fill="#27343D"/><circle cx="104" cy="252" r="11" fill="#9AADB7"/>
+            <circle cx="330" cy="252" r="26" fill="#27343D"/><circle cx="330" cy="252" r="11" fill="#9AADB7"/>
+            <circle cx="412" cy="252" r="26" fill="#27343D"/><circle cx="412" cy="252" r="11" fill="#9AADB7"/>
+          </svg>
+          <!-- roll-up rear door — clipped overlay ABOVE the rig layer, so the
+               couch disappears INTO the truck as the door closes -->
+          <div class="door-clip" aria-hidden="true"><div class="door-roll"></div></div>
+        </div>
+      </div>
+
+      <!-- ──── FINALE COPY — resolves in sync with the load (AC13) ──── -->
+      <section class="floor-panel vg" id="finale">
+        <div class="panel-card">
+          <span class="floor-tag">THE CURB &middot; THE PAYOFF</span>
+          <h2>That&rsquo;s the Smart Move. Now let&rsquo;s do yours.</h2>
+          <p class="invite">Now that you know us &mdash; let&rsquo;s do the math. A real quote, online, in about 47 seconds. Zero phone calls.</p>
+          <a class="btn-blue" href="https://www.einsteinmoving.com/quote/">See my price &rarr;</a>
+          <span class="btn-micro">No deposit &middot; Free cancellation &middot; $2,000 coverage included</span>
+          <ol class="plan-band">
+            <li>Tell us about your move</li>
+            <li>Meet your crew</li>
+            <li>Pay exactly what we quoted</li>
+          </ol>
+        </div>
+      </section>
+
+    </div><!-- /world -->
+
+    <!-- floor ticker — the elevator dial (journey mode only) -->
+    <div class="ticker" aria-hidden="true">
+      <span data-tick>4</span>
+      <span data-tick>3</span>
+      <span data-tick>2</span>
+      <span data-tick>L</span>
+      <span data-tick><svg width="20" height="13" viewBox="0 0 30 19" aria-hidden="true"><rect x="0" y="2" width="19" height="11" rx="2" fill="#27343D"/><path d="M19 5h6l4 5v3h-10z" fill="#27343D"/><circle cx="6" cy="15" r="3" fill="#53575A"/><circle cx="23" cy="15" r="3" fill="#53575A"/></svg></span>
+    </div>
+  </div><!-- /stage -->
+
+  <!-- anchor target (graft from v2a): mid-journey "See my price" CTAs land
+       here — the COMPLETED finale (p=1.0: couch loaded, doors shut, quote
+       panel resolved) instead of bailing off-page mid-story. A/B candidate
+       vs sending floors straight to /quote/. -->
+  <div id="see-price" aria-hidden="true"></div>
+</div><!-- /journey-wrap -->
+
+<!-- ════════ FAQ CLOSER — gray-fill accordion; question-phrased H3s.
+     Real answers from the live site. ════════ -->
+<section class="faq vg" id="faq">
+  <div class="inner">
+    <h2>The fine print, in plain English</h2>
+    <details>
+      <summary><h3>What forms of payment do you accept?</h3><span class="chev">+</span></summary>
+      <p>All major credit cards, with no card fees. In Texas we&rsquo;re cards only; in Florida we take cards and cash. Companies paying by check for an office move can contact us ahead of time to confirm.</p>
+    </details>
+    <details>
+      <summary><h3>How far in advance should I book?</h3><span class="chev">+</span></summary>
+      <p>The earlier the better &mdash; especially summer and end-of-month dates. For long-distance moves within Texas we recommend 2&ndash;4 weeks out. And since there&rsquo;s no deposit and cancellation is free, booking early costs you nothing.</p>
+    </details>
+    <details>
+      <summary><h3>What happens if something breaks?</h3><span class="chev">+</span></summary>
+      <p>$2,000 damage coverage. Included, free, on every move. The industry default is 60 cents per pound &mdash; that&rsquo;s a $30 check for a broken $1,000 TV. We cover your belongings based on what they&rsquo;re actually worth, with no deductible.</p>
+    </details>
+    <details>
+      <summary><h3>How do I get a quote?</h3><span class="chev">+</span></summary>
+      <p>Online, in about 47 seconds, with zero phone calls. You&rsquo;ll see your full hourly rate before anything is scheduled &mdash; and the rate you see is the rate you pay.</p>
+    </details>
+    <!-- production note: ship this block with FAQPage JSON-LD (omitted here — mockup is noindex'd) -->
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer class="site-footer">
+  <div class="inner">
+    <p class="proofline">Einstein Moving Company &mdash; founded 2012 &middot; 4.9&#9733; from 8,100+ reviews &middot; 55+ awards &middot; 100,000+ moves &middot; 4 trees planted per move</p>
+    <nav class="branches" aria-label="Branches">
+      <a href="https://www.einsteinmoving.com/locations/texas-movers/north-austin-movers/">North Austin</a>
+      <a href="https://www.einsteinmoving.com/locations/">South Austin</a>
+      <a href="https://www.einsteinmoving.com/locations/">Leander</a>
+      <a href="https://www.einsteinmoving.com/locations/">San Antonio</a>
+      <a href="https://www.einsteinmoving.com/locations/">Houston</a>
+      <a href="https://www.einsteinmoving.com/locations/">Dallas</a>
+      <a href="https://www.einsteinmoving.com/locations/">Fort Worth</a>
+      <a href="https://www.einsteinmoving.com/locations/">Garland</a>
+      <a href="https://www.einsteinmoving.com/locations/">McKinney</a>
+      <a href="https://www.einsteinmoving.com/locations/">Tampa, FL</a>
+    </nav>
+    <p class="legal">TX TxDMV #006604158C, US DOT #2193963 &middot; FL Mover Reg. No. IM3621, US DOT #3882313<br>
+    Full-fidelity mockup &mdash; The Mover Journey (v2 &middot; Peekaboo, lighter build) &middot; Einstein website redesign workshop &middot; not a live page.</p>
+  </div>
+</footer>
+
+<!-- Mobile sticky bottom CTA bar -->
+<a class="sticky-cta" href="https://www.einsteinmoving.com/quote/">
+  <span class="ctx">No deposit &middot; free cancellation<small>~47 seconds, zero phone calls</small></span>
+  <span class="go">See my price &rarr;</span>
+</a>
+
+<!-- ════════════════════════════════════════════════════════════════
+   SCROLL MATH — documented per the build rules.
+
+   Architecture: CAMERA STAGE (Scout Motors translation). ONE wrapper
+   (.journey-wrap, 520vh) bounds ONE position:sticky 100vh stage for
+   the whole journey. Inside it a 500vh world (5 × 100vh screens)
+   translates upward; the rig holds the camera band (feet = camY+70vh).
+   Scrub range = 520vh − 100vh = 420vh (P6 trim from 460 — the ride
+   exhales 40vh sooner; trim taken from the travels, dwells kept).
+   Sticky bounds are natural — the stage releases exactly at p=1, no
+   scroll trap. p = clamp01(−wrapRect.top / (wrapH − vh)).
+
+   TIMELINE (p → camera, in screens; dwells = plateaus, travels eased):
+     p 0.0000–0.1333  cam 0    F4 DOCK    walk-in 12.5→15vw (fully on-
+                                          canvas from frame 1, P7) · set
+                                          couch down (t .20–.86) · quip
+                                          p .033–.113 · pick up
+     p 0.1333–0.2429  cam 0→1  FLIGHT A   x 15→81vw, stairs-r pose
+     p 0.2429–0.3762  cam 1    F3 DOCK    x 81 · set-down · signed quip
+                                          p .270–.356
+     p 0.3762–0.4714  cam 1→2  FLIGHT B   x 81→15, stairs-l pose
+     p 0.4714–0.6143  cam 2    F2 REST    couch down whole dwell, brow
+                                          wipe (pose-rest) · quip
+                                          p .507–.592
+     p 0.6143–0.7000  cam 2→3  FLIGHT C   x 15→68, stairs-r
+     p 0.7000–0.7762  cam 3    LOBBY      carry across 68→56, photo
+                                          rides the wall (front, not
+                                          center) · quip p .711–.761
+                                          ("Easy on the turn…", P5)
+     p 0.7762–0.8524  cam 3→4  STOOP D    x 56→50 inside the channel
+     p 0.8524–1.0000  cam 4    CURB       walk 50→49 (t<.20) · LOAD
+                                          t .24–.52: the rig's own couch
+                                          arcs into the cargo hole AND
+                                          scales to 0.42 about its bottom-
+                                          center — it recedes fully INSIDE
+                                          the doorway (P1) while mover #2
+                                          walks to the bumper and pushes
+                                          (P3) · DOORS t .60–.82: roll-up
+                                          closes over a fully-loaded couch
+                                          · COPY resolves t .30–.70 ·
+                                          settle + wave to p=1.
+
+   In-pin beat proof (AC5): inside each dock dwell t≈0.2/0.5/0.8 =
+   approach/carry → couch-down + quip → picked-up/leaving.
+
+   Dead-scroll control: dwells are 32–62vh of scrub each and every
+   dwell contains visible rig beats; travels are 32–46vh.
+
+   Settle assist (P8): NO scroll hijack. On 340ms idle, ease ≤80px
+   (240ms rAF, direction-aware, cancelled by wheel/touch/pointer/key)
+   toward (a) the nearest dock edge when parked MID-FLIGHT, or (b) the
+   doors-closed (down) / doors-open (up) state when parked mid door-
+   roll in the finale. Beyond 80px the park is honored — the user is
+   never dragged; the v1 maybeSnap() forced-scroll bug zone is
+   structurally impossible.
+
+   Reversal: every value above derives from p — scrolling up replays
+   everything backwards (the movers walk the couch backwards upstairs).
+
+   In-page CTA anchor (graft from v2a): #see-price sits 100vh above the
+   journey-wrap's bottom edge — in journey mode that is exactly p=1.0
+   (couch loaded, doors shut, copy resolved); in static modes it lands
+   the finale card + truck in view. F4/F3/F2 CTAs use it; nav, hero,
+   finale and the mobile sticky bar still go straight to /quote/.
+
+   Fallbacks: JS-off = body.journey-live never added → wrapper height
+   auto, static stacked page, quips visible, truck resolved (doors
+   shut, static crew beside it). Reduced motion = same static page
+   (gate script + CSS belt-and-braces). Mobile ≤768px = static
+   stacking + IO vignettes; the finale is the same resolved frame —
+   no animation left to half-finish (P4). Lazy init (P10): the gate
+   adds journey-live on the FIRST scroll event (desktop only, P9), so
+   the page loads at its static height and nothing runs above the
+   fold; the engine's scroll loop boots on that same first scroll.
+
+   DEV NOTE / PRODUCTION PATH: this vanilla build is the spec — GSAP
+   ScrollTrigger pin + scrub timeline, commissioned sprite sheets
+   (2 movers + couch; carry / stairs-l / stairs-r / rest / load /
+   wave), optional canvas frame-sequence for the couch-into-truck
+   beat ONLY (the seam is clean: .truck-stage), journey layer lazy-
+   loaded ≤800KB, built as a "Mover Journey" wrapper block over
+   normal WordPress FSE content blocks. Honest claims: the finale is
+   a measured translate of the same SVG group (not FLIP); the rear
+   door is a roll-up (clip) rather than hinged swing doors — truer to
+   a real box truck and unmistakably different open vs closed. The
+   18px body size is a deliberate mock-density deviation from the
+   kit's 20px base. Stair pitch is steeper than architectural reality
+   (100vh per floor over ~66vw) — the compact stairs-pose + step-
+   synced bob carry the read; the production sprite sheet should
+   draw the true stair-carry pose.
+   ════════════════════════════════════════════════════════════════ -->
+
+<script>
+(function () {
+  'use strict';
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return; // static page via CSS; the gate script never added the class
+
+  /* v2: force "peekaboo mode" at EVERY width. matchMedia('(min-width:0px)')
+     is always true → live() (Camera Stage) is always false, and the peek
+     engine (initVignettes + peekRender) runs on desktop too. */
+  var mqMobile = window.matchMedia('(min-width: 0px)');
+
+  /* ---------- refs ---------- */
+  var $ = function (s) { return document.querySelector(s); };
+  var wrap = $('.journey-wrap'), world = $('.world'), rig = $('.rig'),
+      rigSvg = $('.rig-svg'), couch = $('[data-role="couch"]'),
+      mvFront = $('.rig-svg .mv-front'), mvBack = $('.rig-svg .mv-back'),
+      holeEl = $('[data-role="hole"]'), doorRoll = $('.door-roll'),
+      finalePanel = $('#finale');
+  var tickEls = Array.prototype.slice.call(document.querySelectorAll('.ticker [data-tick]'));
+  var quips = Array.prototype.map.call(document.querySelectorAll('[data-quip-window]'), function (el) {
+    var w = el.getAttribute('data-quip-window').split(',');
+    return { el: el, a: +w[0], b: +w[1] };
+  });
+
+  var vhPx = window.innerHeight, vwPx = window.innerWidth;
+  var loadDelta = null, finaleDirty = false;
+
+  /* ---------- helpers ---------- */
+  function clamp01(v) { return v < 0 ? 0 : (v > 1 ? 1 : v); }
+  function smooth(t) { return t * t * (3 - 2 * t); }
+  function tri(ph) { var f = ph % 1; return f < 0.5 ? f * 2 : 2 - f * 2; }
+  function live() { return !!wrap && !mqMobile.matches && document.body.classList.contains('journey-live'); }
+
+  /* ---------- the timeline (see SCROLL MATH comment above) ---------- */
+  /* fractions of a 420vh scrub (P6 trim — was 460): dwells f4 56 / f3 56 /
+     f2 60 / lobby 32 / curb 62 vh · flights A 46 / B 40 / C 36 / D 32 vh */
+  var SEG = [
+    { a: 0.0000, b: 0.1333, c0: 0, c1: 0, dwell: 'f4' },
+    { a: 0.1333, b: 0.2429, c0: 0, c1: 1, x0: 15, x1: 81, dir: 1 },
+    { a: 0.2429, b: 0.3762, c0: 1, c1: 1, dwell: 'f3' },
+    { a: 0.3762, b: 0.4714, c0: 1, c1: 2, x0: 81, x1: 15, dir: -1 },
+    { a: 0.4714, b: 0.6143, c0: 2, c1: 2, dwell: 'f2' },
+    { a: 0.6143, b: 0.7000, c0: 2, c1: 3, x0: 15, x1: 68, dir: 1 },
+    { a: 0.7000, b: 0.7762, c0: 3, c1: 3, dwell: 'lobby' },
+    { a: 0.7762, b: 0.8524, c0: 3, c1: 4, x0: 56, x1: 50, dir: -1 },
+    { a: 0.8524, b: 1.0000, c0: 4, c1: 4, dwell: 'curb' }
+  ];
+  function segAt(p) {
+    for (var i = 0; i < SEG.length; i++) { if (p <= SEG[i].b) return SEG[i]; }
+    return SEG[SEG.length - 1];
+  }
+  function progress() {
+    var r = wrap.getBoundingClientRect();
+    var total = r.height - vhPx;
+    return total > 0 ? clamp01(-r.top / total) : 0;
+  }
+
+  /* ---------- rig placement (world coordinates; feet = camY + 70vh) ---------- */
+  function placeRig(xVw, cam, bob) {
+    var rw = 0.24 * vwPx, rh = rw * (110 / 240);
+    var x = (xVw / 100) * vwPx - rw / 2;
+    var y = (cam + 0.70) * vhPx - rh + bob;
+    rig.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)';
+  }
+  function setWalk(walking, phase) {
+    rigSvg.classList.toggle('still', !walking);
+    rigSvg.classList.toggle('step-b', walking && Math.floor(phase) % 2 === 1);
+  }
+  function setStairs(dir) {
+    rigSvg.classList.toggle('stairs-r', dir === 1);
+    rigSvg.classList.toggle('stairs-l', dir === -1);
+  }
+  function resetFinaleBits() {
+    doorRoll.style.transform = '';
+    finalePanel.style.opacity = '';
+    finalePanel.style.transform = '';
+    mvFront.style.transform = '';
+    mvFront.style.transition = '';
+    mvBack.style.transform = '';
+    mvBack.style.transition = '';
+    rigSvg.classList.remove('front-step-b');
+    finaleDirty = false;
+  }
+
+  /* couch → cargo-hole delta, measured in rig-svg user units (the rig
+     svg is 24vw wide for a 240-unit viewBox, so scale = vw/1000) */
+  function measureLoad() {
+    couch.style.transform = '';
+    var s = (0.24 * vwPx) / 240;
+    var c = couch.getBoundingClientRect();
+    var h = holeEl.getBoundingClientRect();
+    loadDelta = {
+      x: ((h.left + h.right) / 2 - (c.left + c.right) / 2) / s,
+      y: ((h.bottom - 8) - c.bottom) / s
+    };
+  }
+
+  /* ---------- the finale beat (camera parked at the curb) ---------- */
+  function renderCurb(t, cam) {
+    var walkT = clamp01(t / 0.20);
+    var loadT = clamp01((t - 0.24) / 0.28);
+    var doorT = clamp01((t - 0.60) / 0.22);  /* P1: door waits until the couch is fully inside */
+    var copyT = clamp01((t - 0.30) / 0.40);
+
+    setStairs(0);
+    rigSvg.classList.remove('pose-rest');
+    var x = 50 - 1 * smooth(walkT);
+    var walking = loadT === 0 && walkT < 1;
+    setWalk(walking, walkT * 2);
+    placeRig(x, cam, walking ? 3 * tri(walkT * 2) : 0);
+
+    if (!finaleDirty) { mvFront.style.transition = 'none'; mvBack.style.transition = 'none'; } /* scrub-pure walk — no .4s pose lag (P3) */
+
+    if (loadT > 0) {
+      if (!loadDelta) measureLoad();
+      var e = smooth(loadT), lift = Math.sin(Math.PI * loadT);
+      /* P1: the couch recedes INTO the cargo box — scale (about its bottom-
+         center) ends at 0.42, so the whole couch sits within the doorway
+         (≈75px vs the ~84px door coverage) and the shut roll-up fully hides
+         it. Matches the static couch-in-truck's drawn scale. */
+      var shrink = 1 - 0.58 * e;
+      couch.style.transform =
+        'translate(' + (loadDelta.x * e).toFixed(1) + 'px,' +
+        (loadDelta.y * e - 64 * lift).toFixed(1) + 'px) rotate(' + (-8 * lift).toFixed(1) + 'deg)' +
+        ' scale(' + shrink.toFixed(3) + ')';
+      /* P3: mover #2 walks to the bumper and pushes — both movers on the
+         load. −100 rig-units ≈ 150px left: he ends just behind the couch's
+         tail, beside mover #1, clear of the door opening. */
+      var frontT = smooth(clamp01(loadT / 0.85));
+      mvFront.style.transform = 'translate(' + (-100 * frontT).toFixed(1) + 'px,0px)';
+      /* polish: mover #2 (back) follows to the bumper instead of marooning
+         ~300px uphill — ends just behind #1, clear of the door opening. */
+      mvBack.style.transform = 'translate(' + (-86 * frontT).toFixed(1) + 'px,0px)';
+      rigSvg.classList.toggle('front-step-b',
+        loadT > 0.02 && loadT < 0.85 && Math.floor(loadT * 10) % 2 === 1);
+    } else {
+      couch.style.transform = '';
+      mvFront.style.transform = '';
+      mvBack.style.transform = '';
+      rigSvg.classList.remove('front-step-b');
+    }
+    rigSvg.classList.toggle('pose-load', loadT > 0 && loadT < 1);
+    rigSvg.classList.toggle('pose-after', loadT >= 1);
+
+    doorRoll.style.transform = 'translateY(' + (-101 * (1 - smooth(doorT))).toFixed(1) + '%)';
+    finalePanel.style.opacity = copyT.toFixed(3);
+    finalePanel.style.transform = 'translateY(' + ((1 - smooth(copyT)) * 24).toFixed(1) + 'px)';
+    finaleDirty = true;
+  }
+
+  /* ---------- per-frame rig logic (everything derives from p) ---------- */
+  function renderRig(p, seg, t, cam) {
+    if (seg.dwell === 'curb') { renderCurb(t, cam); return; }
+
+    var x, phase = 0, walking = false, S = 0, restPose = false;
+
+    if (!seg.dwell) { /* stair flight */
+      x = seg.x0 + (seg.x1 - seg.x0) * smooth(t);
+      walking = true; phase = t * 12;            /* 12 leg-flips = 12 drawn treads */
+      setStairs(seg.dir);
+      couch.style.transform = '';                /* stair tilt comes from the pose class */
+    } else {
+      setStairs(0);
+      if (seg.dwell === 'f4') {
+        x = t < 0.18 ? 12.5 + 2.5 * smooth(t / 0.18) : 15;  /* P7: start fully on-canvas */
+        walking = t < 0.18; phase = (t / 0.18) * 3;
+        S = smooth(clamp01((t - 0.20) / 0.08)) - smooth(clamp01((t - 0.86) / 0.08));
+      } else if (seg.dwell === 'f3') {
+        x = 81;
+        S = smooth(clamp01((t - 0.16) / 0.08)) - smooth(clamp01((t - 0.86) / 0.08));
+      } else if (seg.dwell === 'f2') {
+        x = 15;
+        S = smooth(clamp01((t - 0.10) / 0.08)) - smooth(clamp01((t - 0.92) / 0.07));
+        restPose = t >= 0.14 && t <= 0.90;
+      } else { /* lobby — carry across, past the photo */
+        x = 68 - 12 * smooth(t);
+        walking = true; phase = t * 6;
+      }
+      couch.style.transform = 'translate(0px,' + (S * 26).toFixed(1) + 'px)';
+    }
+
+    rigSvg.classList.toggle('pose-rest', restPose);
+    rigSvg.classList.remove('pose-load');
+    rigSvg.classList.remove('pose-after');
+    setWalk(walking, phase);
+    placeRig(x, cam, walking ? 4 * tri(phase) : 0);
+    if (finaleDirty) resetFinaleBits();
+  }
+
+  /* ---------- master render ---------- */
+  function render() {
+    if (!live()) return;
+    var p = progress();
+    var seg = segAt(p);
+    var span = seg.b - seg.a;
+    var t = span > 0 ? clamp01((p - seg.a) / span) : 0;
+    var cam = seg.c0 + (seg.c1 - seg.c0) * smooth(t);
+
+    world.style.transform = 'translate3d(0,' + (-cam * vhPx).toFixed(2) + 'px,0)';
+
+    var idx = Math.round(cam);
+    for (var i = 0; i < tickEls.length; i++) tickEls[i].classList.toggle('on', i === idx);
+    for (var q = 0; q < quips.length; q++) quips[q].el.classList.toggle('on', p >= quips[q].a && p <= quips[q].b);
+
+    renderRig(p, seg, t, cam);
+  }
+
+  /* ---------- settle assist (P8) — eased nudge ≤80px, direction-aware,
+       cancel-on-any-input. Fires only (a) parked mid-FLIGHT near a dock
+       edge, or (b) parked mid door-roll in the finale → settles to the
+       doors-closed (or, scrolling up, doors-open) state. Never a forced
+       snap: beyond 80px it leaves the user exactly where they parked. ---------- */
+  var assistRaf = 0, idleTimer = 0, lastY = window.pageYOffset, lastDir = 1;
+  function cancelAssist() { if (assistRaf) { cancelAnimationFrame(assistRaf); assistRaf = 0; } }
+  ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function (ev) {
+    window.addEventListener(ev, cancelAssist, { passive: true });
+  });
+  function tryAssist() {
+    if (!live() || assistRaf) return;
+    var p = progress(), seg = segAt(p);
+    var scrubPx = wrap.offsetHeight - vhPx;
+    var d = null;
+    if (seg.dwell === 'curb') {
+      /* mid door-roll park = a visibly half-shut door; settle it */
+      var ct = (p - seg.a) / (seg.b - seg.a);
+      if (ct > 0.60 && ct < 0.82) {
+        var target = seg.a + (lastDir < 0 ? 0.60 : 0.82) * (seg.b - seg.a);
+        var dd = (target - p) * scrubPx;
+        if (Math.abs(dd) <= 80) d = dd;
+      }
+    } else if (seg.c0 !== seg.c1) {           /* mid-flight park near a dock edge */
+      var dA = (seg.a - p) * scrubPx, dB = (seg.b - p) * scrubPx;
+      if (lastDir > 0 && Math.abs(dB) <= 80) d = dB;
+      else if (lastDir < 0 && Math.abs(dA) <= 80) d = dA;
+      else if (Math.abs(dA) <= 80) d = dA;
+      else if (Math.abs(dB) <= 80) d = dB;
+    }
+    if (d === null || Math.abs(d) < 2) return;
+    var from = window.pageYOffset, t0 = performance.now();
+    function stepFn(now) {
+      var k = Math.min((now - t0) / 240, 1);
+      window.scrollTo(0, from + d * smooth(k));
+      assistRaf = k < 1 ? requestAnimationFrame(stepFn) : 0;
+    }
+    assistRaf = requestAnimationFrame(stepFn);
+  }
+
+  /* ---------- mode switching / cleanup (AC19: no stale transforms) ---------- */
+  function clearInline() {
+    world.style.transform = '';
+    rig.style.transform = '';
+    couch.style.transform = '';
+    mvFront.style.transform = '';
+    mvFront.style.transition = '';
+    mvBack.style.transform = '';
+    mvBack.style.transition = '';
+    ['still', 'step-b', 'front-step-b', 'stairs-r', 'stairs-l', 'pose-rest', 'pose-load', 'pose-after']
+      .forEach(function (c) { rigSvg.classList.remove(c); });
+    rigSvg.classList.add('still');
+    doorRoll.style.transform = '';
+    finalePanel.style.opacity = '';
+    finalePanel.style.transform = '';
+    quips.forEach(function (q) { q.el.classList.remove('on'); });
+    tickEls.forEach(function (el) { el.classList.remove('on'); });
+    loadDelta = null; finaleDirty = false;
+  }
+
+  /* ---------- mobile vignette mode (zero pinning) ----------
+     Finale needs no IO payoff anymore (P4): the static composition IS the
+     resolved frame — doors shut, crew beside the truck. */
+  var vignettesDone = false;
+  function initVignettes() {
+    if (!('IntersectionObserver' in window)) return;
+    document.body.classList.add('vignette-ready'); /* re-added after a desktop round-trip */
+    initPeek(); /* peekaboo crew windows (idempotent) */
+    if (vignettesDone) return;
+    vignettesDone = true;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('inview'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    document.querySelectorAll('.vg').forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---------- MOBILE PEEKABOO ENGINE (concept placeholder) ----------
+     Builds a per-floor "window" scene before each card and walks a
+     cloned crew down its flight as the window scrolls past. Position is
+     a clamped 0..1 fraction of the window's pass → monotonic, no bounce.
+     Final art = commissioned illustration; this SVG is a stand-in. */
+  var peekBuilt = false, peekWins = [];
+  var PEEK_FLOORS = [
+    {before:'#floor-4',    dir:'r', label:'Floor 4 — the carry begins', num:'4', decor:'industrial'},
+    {before:'#floor-3',    dir:'l', label:'Floor 3 — meet your crew',    num:'3', decor:'office'},
+    {before:'#floor-2',    dir:'r', label:'Floor 2 — quick breather',    num:'2', decor:'home'},
+    {before:'#lobby',      dir:'l', label:'Lobby — almost out',          num:'L', decor:'lobby'},
+    {before:'.truck-wrap', dir:'r', label:'The curb — load up',          num:'',  decor:'curb', curb:true}
+  ];
+  function pkSteps(dir){
+    var n=8, sx=(dir==='r')?16:84, ex=(dir==='r')?84:16, sy=28, ey=92, s='', w=12;
+    for(var i=0;i<n;i++){
+      var t=i/(n-1), cx=sx+(ex-sx)*t, cy=sy+(ey-sy)*t;
+      if(i<n-1){
+        var nt=(i+1)/(n-1), ncx=sx+(ex-sx)*nt, ncy=sy+(ey-sy)*nt;
+        s+='<rect x="'+(ncx-w/2).toFixed(1)+'" y="'+cy.toFixed(1)+'" width="'+w+'" height="'+(ncy-cy+1).toFixed(1)+'" fill="#AFC0CB"/>'; /* riser — soft blue-grey on light */
+      }
+      s+='<rect x="'+(cx-w/2).toFixed(1)+'" y="'+cy.toFixed(1)+'" width="'+w+'" height="2.6" rx="0.5" fill="#C9D6DF"/>'; /* tread */
+    }
+    return s;
+  }
+  function pkDecor(kind){
+    switch(kind){
+      case 'industrial': return '<rect x="3" y="0" width="1.6" height="100" fill="rgba(39,52,61,.06)"/><rect x="7" y="0" width="1" height="100" fill="rgba(39,52,61,.05)"/><line x1="90" y1="0" x2="90" y2="9.6" stroke="rgba(39,52,61,.1)" stroke-width="0.7"/><circle cx="90" cy="13" r="3.4" fill="rgba(245,180,70,.28)"/>';
+      case 'office': return '<rect x="5" y="72" width="8" height="20" rx="1" fill="rgba(39,52,61,.07)"/><rect x="5.6" y="64" width="6.8" height="8" rx="1.2" fill="rgba(90,150,210,.22)"/><rect x="76" y="80" width="20" height="2" fill="rgba(39,52,61,.07)"/>';
+      case 'home': return '<rect x="6" y="20" width="13" height="10" rx="1" fill="none" stroke="rgba(39,52,61,.16)" stroke-width="0.8"/><line x1="6" y1="25" x2="19" y2="25" stroke="rgba(39,52,61,.09)" stroke-width="0.6"/><path d="M90 92 q1.5 -9 0 -15 M90 92 q-2.5 -8 -5 -12 M90 92 q3.5 -7 6 -11" fill="none" stroke="rgba(70,150,100,.5)" stroke-width="1"/><rect x="87.5" y="92" width="5" height="5" rx="0.6" fill="rgba(150,90,55,.45)"/>';
+      case 'lobby': return '<rect x="0" y="86" width="100" height="14" fill="rgba(39,52,61,.05)"/><rect x="60" y="70" width="26" height="16" rx="1" fill="rgba(39,52,61,.07)"/><rect x="6" y="40" width="9" height="46" fill="rgba(39,52,61,.06)"/><line x1="50" y1="40" x2="50" y2="86" stroke="rgba(39,52,61,.09)" stroke-width="0.7"/>';
+      case 'curb': return '<rect x="0" y="88" width="100" height="12" fill="rgba(39,52,61,.06)"/><line x1="0" y1="88" x2="100" y2="88" stroke="rgba(39,52,61,.18)" stroke-width="0.6"/><g><rect x="58" y="56" width="38" height="30" rx="1.6" fill="#27343D"/><rect x="58" y="60" width="24" height="26" fill="#34495a"/><rect x="83" y="62" width="12" height="10" rx="1" fill="#5a7286"/><circle cx="66" cy="88" r="3.2" fill="#1a242b"/><circle cx="90" cy="88" r="3.2" fill="#1a242b"/></g><circle cx="10" cy="40" r="9" fill="rgba(70,150,100,.32)"/><rect x="9" y="48" width="2" height="40" fill="rgba(120,85,55,.45)"/>';
+      default: return '';
+    }
+  }
+  function pkScene(f){
+    var num = f.num ? '<text x="50" y="64" text-anchor="middle" font-family="Lora,Georgia,serif" font-size="58" font-weight="700" fill="rgba(39,52,61,0.06)">'+f.num+'</text>' : '';
+    return '<svg class="pk-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">'+
+      pkDecor(f.decor)+num+(f.curb?'':pkSteps(f.dir))+'</svg>';
+  }
+  function initPeek(){
+    if (peekBuilt) { document.body.classList.add('peek-ready'); return; }
+    var rigSvg = document.querySelector('#journey .rig[data-role="movers"] .rig-svg');
+    if (!rigSvg) return;
+    PEEK_FLOORS.forEach(function(f){
+      var anchor = document.querySelector(f.before); if(!anchor||!anchor.parentNode) return;
+      var win = document.createElement('div');
+      win.className = 'peek-win' + (f.curb?' pk-curb':'');
+      win.innerHTML = pkScene(f) + '<div class="pk-label">'+f.label+'</div>';
+      var crew = document.createElement('div'); crew.className='peek-crew';
+      var c = rigSvg.cloneNode(true);
+      c.removeAttribute('id');
+      c.setAttribute('class', 'rig-svg ' + (f.curb ? 'pose-carry still' : (f.dir==='r'?'stairs-r':'stairs-l')));
+      crew.appendChild(c);
+      win.appendChild(crew);
+      anchor.parentNode.insertBefore(win, anchor);
+      peekWins.push({el:win, crew:crew, svg:c, dir:f.dir, curb:!!f.curb});
+    });
+    peekBuilt = true;
+    document.body.classList.add('peek-ready');
+  }
+  function peekRender(){
+    if (!mqMobile.matches || !peekBuilt) return;
+    var vh = window.innerHeight, ref = vh*0.56;
+    for (var k=0;k<peekWins.length;k++){
+      var w = peekWins[k], r = w.el.getBoundingClientRect();
+      var p = (ref - r.top) / r.height; if(p<0)p=0; if(p>1)p=1;
+      var x0,x1,y0=18,y1=84;
+      if(w.dir==='r'){x0=22;x1=78;} else {x0=78;x1=22;}
+      if(w.curb){ x0=20;x1=58;y0=70;y1=78; }
+      w.crew.style.left = (x0+(x1-x0)*p).toFixed(2)+'%';
+      w.crew.style.top  = (y0+(y1-y0)*p).toFixed(2)+'%';
+      if(!w.curb){
+        var on = (Math.floor(p*9)%2)===0;
+        w.svg.classList.toggle('step-b', on && p>0.03 && p<0.97);
+      }
+      var vis = r.bottom>30 && r.top<vh-30;
+      w.crew.style.opacity = vis ? '1' : '0';
+    }
+  }
+
+  function onResize() {
+    vhPx = window.innerHeight; vwPx = window.innerWidth;
+    loadDelta = null;
+    if (mqMobile.matches) {
+      document.body.classList.remove('journey-live');   /* P9: no stale mode class on mobile */
+      clearInline(); initVignettes(); peekRender();
+    } else {
+      document.body.classList.remove('vignette-ready'); /* P9: symmetric hygiene */
+      document.body.classList.remove('peek-ready');     /* peek windows collapse (display:none) on desktop */
+      if (window.__journeyArm) window.__journeyArm();   /* re-arm after a mobile→desktop cross */
+      clearInline(); render();
+    }
+  }
+
+  /* ---------- rAF-throttled scroll loop; lazy boot on first scroll ---------- */
+  var ticking = false;
+  function onScroll() {
+    var y = window.pageYOffset;
+    if (y !== lastY) { lastDir = y > lastY ? 1 : -1; lastY = y; }
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; render(); peekRender(); });
+    }
+    if (!assistRaf) {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(tryAssist, 340);
+    }
+  }
+
+  window.addEventListener('resize', onResize);
+  if (mqMobile.addEventListener) mqMobile.addEventListener('change', onResize);
+  if (mqMobile.matches) { initVignettes(); peekRender(); }
+
+  var booted = false;
+  function boot() {
+    if (booted) return; booted = true;
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  if (window.pageYOffset > 10) { boot(); }
+  else {
+    window.addEventListener('scroll', function first() {
+      window.removeEventListener('scroll', first);
+      boot();
+    }, { passive: true });
+  }
+})();
+</script>
+<script>
+/* Reaction layer (workshop chrome, not part of the mock) */
+(function () {
+  var KEY = 'einstein-rxn-journey-v2';
+  var PAGE = 'The Mover Journey (v2 · Peekaboo)';
+  var css = document.createElement('style');
+  css.textContent = [
+    '.rxn-pin{position:absolute;top:10px;right:10px;z-index:240;width:34px;height:34px;border-radius:50%;border:1px solid #E5E5E5;background:rgba(255,255,255,.92);color:#bbb;font-size:15px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:all .15s}',
+    '.rxn-pin:hover{border-color:#EF8B22;color:#EF8B22}',
+    '.rxn-pin.on{background:#EF8B22;border-color:#EF8B22;color:#fff}',
+    '.rxn-note{display:none;position:absolute;top:50px;right:10px;z-index:240;width:min(320px,70vw);background:#fff;border:1px solid #EF8B22;border-radius:10px;padding:10px 12px;font:13px/1.45 Roboto,sans-serif;color:#333;box-shadow:0 8px 28px rgba(0,0,0,.14);resize:vertical;min-height:56px}',
+    '.rxn-note.show{display:block}',
+    '.rxn-bar{position:fixed;left:14px;bottom:64px;z-index:260;display:flex;gap:8px;align-items:center;background:#1f1f1f;border-radius:100px;padding:7px 9px;box-shadow:0 10px 30px rgba(0,0,0,.35)}',
+    '.rxn-bar .c{font:12px/1 Roboto,sans-serif;color:#ddd;padding:0 5px 0 9px;white-space:nowrap}.rxn-bar .c b{color:#EF8B22}',
+    '.rxn-bar button{font:700 12px/1 Roboto,sans-serif;border:none;border-radius:100px;padding:9px 14px;cursor:pointer;background:#EF8B22;color:#111}',
+    '@media print{.rxn-pin,.rxn-note,.rxn-bar{display:none!important}}'
+  ].join('');
+  document.head.appendChild(css);
+
+  var state = { notes: {}, likes: {} };
+  try {
+    var l = JSON.parse(localStorage.getItem(KEY) || '{}');
+    if (l && typeof l === 'object') { if (l.notes) state.notes = l.notes; if (l.likes) state.likes = l.likes; }
+  } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  var sections = Array.prototype.filter.call(document.querySelectorAll('section, header.hero, [data-rxn]'), function (s) {
+    return s.offsetHeight > 180 && !s.querySelector('.rxn-pin');
+  });
+
+  function labelOf(sec, i) {
+    var h = sec.querySelector('h1,h2,h3');
+    var t = h ? h.textContent.trim().replace(/\s+/g, ' ').slice(0, 70) : (sec.id || 'section ' + (i + 1));
+    return t;
+  }
+
+  var bar = document.createElement('div');
+  bar.className = 'rxn-bar';
+  bar.innerHTML = '<span class="c"><b id="rxnCount">0</b> reactions</span><button id="rxnExport" type="button">📋 Export</button>';
+  document.body.appendChild(bar);
+
+  function renderCount() {
+    var n = 0;
+    Object.keys(state.likes).forEach(function (k) { if (state.likes[k]) n++; });
+    Object.keys(state.notes).forEach(function (k) { if ((state.notes[k] || '').trim() && !state.likes[k]) n++; });
+    document.getElementById('rxnCount').textContent = n;
+  }
+
+  sections.forEach(function (sec, i) {
+    var id = 's' + i;
+    if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
+    var pin = document.createElement('button');
+    pin.className = 'rxn-pin';
+    pin.type = 'button';
+    pin.textContent = '♥';
+    pin.title = 'React to: ' + labelOf(sec, i);
+    var note = document.createElement('textarea');
+    note.className = 'rxn-note';
+    note.placeholder = 'Your take on this section… (saves automatically)';
+    note.value = state.notes[id] || '';
+    function sync() {
+      pin.classList.toggle('on', !!state.likes[id] || !!(state.notes[id] || '').trim());
+    }
+    pin.addEventListener('click', function () {
+      var showing = note.classList.toggle('show');
+      if (showing) { state.likes[id] = true; note.focus(); }
+      else if (!(state.notes[id] || '').trim()) { delete state.likes[id]; }
+      save(); sync(); renderCount();
+    });
+    note.addEventListener('input', function () {
+      state.notes[id] = note.value;
+      save(); sync(); renderCount();
+    });
+    sec.appendChild(pin);
+    sec.appendChild(note);
+    sync();
+  });
+
+  document.getElementById('rxnExport').addEventListener('click', function () {
+    var lines = ['# ' + PAGE + ' — Cameron’s Reactions — ' + new Date().toLocaleDateString(), ''];
+    var any = false;
+    sections.forEach(function (sec, i) {
+      var id = 's' + i;
+      var liked = !!state.likes[id];
+      var note = (state.notes[id] || '').trim();
+      if (!liked && !note) return;
+      any = true;
+      lines.push('## ' + (liked ? '♥ ' : '') + labelOf(sec, i));
+      if (note) note.split('\n').forEach(function (ln) { lines.push('> ' + ln); });
+      lines.push('');
+    });
+    if (!any) lines.push('_No reactions yet — tap a ♥ pin on any section._');
+    var md = lines.join('\n');
+    var blob = new Blob([md], { type: 'text/markdown' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'mover-journey-reactions.md';
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(md).catch(function () {});
+    var btn = document.getElementById('rxnExport');
+    btn.textContent = '✓ Exported';
+    setTimeout(function () { btn.textContent = '📋 Export'; }, 1500);
+  });
+
+  renderCount();
+})();
+
+</script>
+<script>
+/* Headline workshop (chrome, NOT part of the mock) — cycle + favorite hero headlines.
+   Option 0 is the answer-first / LLM-compliant headline and stays the page default.
+   If a wit-first option wins, move the what/where answer into the hero subhead. */
+(function(){
+  var HEADLINES = [
+    "Local moving across Texas + Tampa, done the smart way.",
+    "Moving is awful. Ours isn’t.",
+    "Moving doesn’t have to suck.",
+    "The smartest way to move across Texas + Tampa.",
+    "Your move, minus the dread.",
+    "Watch how moving’s supposed to go."
+  ];
+  var KEY='einstein-mj-headlines';
+  var h1=document.getElementById('heroHl'); if(!h1) return;
+  var idx=0, favs={};
+  try{ favs=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){}
+  var idxEl=document.getElementById('hlIdx'), totEl=document.getElementById('hlTot'),
+      favBtn=document.getElementById('hlFav'), favN=document.getElementById('hlFavN');
+  totEl.textContent=HEADLINES.length;
+  function favCount(){ return Object.keys(favs).filter(function(k){return favs[k];}).length; }
+  function render(){
+    h1.textContent=HEADLINES[idx];
+    idxEl.textContent=idx+1;
+    favBtn.classList.toggle('on', !!favs[idx]);
+    favBtn.innerHTML=(favs[idx]?'♥':'♡')+' '+(favs[idx]?'favorited':'favorite');
+    favN.textContent=favCount();
+  }
+  function go(d){ idx=(idx+d+HEADLINES.length)%HEADLINES.length; render(); }
+  document.getElementById('hlPrev').addEventListener('click',function(){go(-1);});
+  document.getElementById('hlNext').addEventListener('click',function(){go(1);});
+  favBtn.addEventListener('click',function(){
+    favs[idx]=!favs[idx];
+    try{localStorage.setItem(KEY,JSON.stringify(favs));}catch(e){}
+    render();
+  });
+  document.getElementById('hlCopy').addEventListener('click',function(){
+    var list=HEADLINES.filter(function(_,i){return favs[i];});
+    var txt=list.length?('Favorited headlines:\n'+list.map(function(s){return '• '+s;}).join('\n')):'(no headlines favorited yet)';
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).catch(function(){});}
+    var b=this, old=b.innerHTML; b.textContent=list.length?('copied '+list.length):'none yet';
+    setTimeout(function(){ b.innerHTML=old; favN.textContent=favCount(); },1300);
+  });
+  render();
+})();
+</script>
+</body>
+</html>
