@@ -327,6 +327,14 @@ nav { display:flex; justify-content:space-between; align-items:center; padding:1
 .btn-primary { display:inline-block; background:var(--einstein-blue); color:#fff; padding:16px 32px; border-radius:8px; font-weight:700; font-size:16px; border:none; cursor:pointer; text-decoration:none; transition:transform 120ms var(--ease-standard), box-shadow 120ms var(--ease-standard), background 120ms var(--ease-standard); }
 .btn-primary:hover { background:var(--color-blue-700); transform:translateY(-1px); box-shadow:0 4px 12px rgba(9,121,195,.3); text-decoration:none; }
 .btn-primary:active { transform:scale(.98); }
+
+/* ---- Mid-page CTA band ('tiny math elves') — orange fill, navy text, blue button (brand-correct dark-on-orange) ---- */
+.cta-band { background:var(--einstein-orange); text-align:center; padding:60px 0; }
+.cta-band h2 { color:var(--color-navy-500); margin:0 0 12px; }
+.cta-band .cta-sub { color:var(--color-navy-500); font-size:19px; line-height:1.5; margin:0 0 8px; }
+.cta-band .cta-elves { color:var(--color-navy-700); font-size:16px; line-height:1.5; margin:0 0 26px; }
+.cta-band .btn-primary { font-size:17px; padding:17px 36px; box-shadow:0 4px 14px rgba(11,16,20,.18); }
+.cta-band .btn-primary:hover { box-shadow:0 8px 22px rgba(11,16,20,.28); }
 .microproof { margin-top:12px; font-size:14px; line-height:22px; color:var(--color-text); }
 .nudge { /* the wink chip: navy italic on Orange-50 — never #EF8B22 text */
   width:fit-content; margin:12px auto 0; text-align:center; font-style:italic;
@@ -744,6 +752,16 @@ footer .devnote { text-align:center; font-size:11px; line-height:18px; color:var
       </div>
 
       <p class="closer-line">Five fears, handled. <span class="smart">That&rsquo;s the Smart Move System.</span></p>
+    </div>
+  </section>
+
+  <!-- ============ MID-PAGE CTA BAND ('tiny math elves') — momentum capture after the system lands ============ -->
+  <section class="cta-band" id="cta">
+    <div class="wrap">
+      <h2>Get your accurate online moving quote in 47 seconds.</h2>
+      <p class="cta-sub">It&rsquo;s fun, there&rsquo;s zero pressure, and it takes <b>0 phone calls.</b></p>
+      <p class="cta-elves">The team of tiny math elves behind this button can&rsquo;t wait to get to work. 🧮</p>
+      <a class="btn-primary" id="ctaBandCta" href="https://www.einsteinmoving.com/quote/">How much will my move cost? →</a>
     </div>
   </section>
 
