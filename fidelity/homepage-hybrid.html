@@ -490,6 +490,19 @@ footer .devnote { text-align:center; font-size:11px; line-height:18px; color:var
 .fear-answer{font-size:1rem;line-height:1.5;margin:0 0 14px;max-width:660px;color:var(--color-text);}
 .fear-answer b{color:var(--color-navy-500);}
 
+/* damage-coverage mini-comparison (Smart Protection) */
+.cov-table{width:100%;max-width:620px;border-collapse:collapse;margin:14px 0 10px;background:#fff;border:var(--hairline);border-radius:var(--radius-md);overflow:hidden;font-size:14px;}
+.cov-table th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--color-grey-500);padding:10px 14px;font-weight:700;border-bottom:var(--hairline);}
+.cov-table td{padding:11px 14px;border-top:var(--hairline);color:var(--color-navy-500);vertical-align:top;}
+.cov-table tbody td:first-child{font-weight:700;}
+.cov-table .cov-wt{display:block;font-size:11px;color:var(--color-grey-500);font-weight:400;margin-top:2px;}
+.cov-table th.cThem,.cov-table td.cov-them{background:#FCF3F3;}
+.cov-table th.cUs,.cov-table td.cov-us{background:#EFF5EC;}
+.cov-table td.cov-them{color:var(--error);font-weight:700;white-space:nowrap;}
+.cov-table td.cov-us{color:#3F7A33;font-weight:700;}
+.cov-metaphor{font-size:14px;font-style:italic;color:var(--color-navy-500);margin:8px 0 0;max-width:560px;}
+@media(max-width:640px){.cov-table{font-size:13px;}.cov-table th,.cov-table td{padding:8px 10px;}}
+
 /* crew cards (Smart Movers proof) */
 .crew-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px;}
 .crew-card{background:#fff;border:var(--hairline);border-radius:var(--radius-md);padding:16px;text-align:center;}
@@ -684,13 +697,12 @@ footer .devnote { text-align:center; font-size:11px; line-height:18px; color:var
                   <div class="r-stamp">NO SURPRISES</div>
                 </div>
               </div>
-              <p class="receipt-headline">Quote $1,840. Invoice <span class="smart">$1,840.</span> Our favorite sentence in the whole company.</p>
-              <p class="receipt-note">Example move, real line items from our pricing page. Your numbers will differ; the matching trick won&rsquo;t.</p>
+              <p class="receipt-note">Example move with real line items. Your numbers will differ — the no-surprises math won&rsquo;t.</p>
             </div>
 
             <div class="pay-module pay-chips" data-pricing="chips" hidden>
               <div class="receipt-chips">
-                <div class="receipt-chip"><b>Quote $1,840 = Invoice $1,840</b></div>
+                <div class="receipt-chip"><b>The quote is the price you pay</b></div>
                 <div class="receipt-chip"><b>$0</b> deposit · <b>$0</b> hidden fees</div>
               </div>
             </div>
@@ -700,13 +712,18 @@ footer .devnote { text-align:center; font-size:11px; line-height:18px; color:var
         <article class="fear-block alt" id="b-protection" data-rxn>
           <div class="fear-visual"><div class="pictogram">Shield pictogram</div></div>
           <div>
-            <h3 class="fear-head" data-a="“What if they break my stuff?”" data-b="$2,000 of coverage, already included.">“What if they break my stuff?”</h3>
+            <h3 class="fear-head" data-a="“What if they break my stuff?”" data-b="$2,000 of coverage, by actual value — free.">“What if they break my stuff?”</h3>
             <p class="pillar-tag"><span class="tag">Smart Protection</span></p>
-            <p class="fear-answer"><b>$2,000 of Smart Move Damage Coverage</b> comes standard &mdash; furniture, floors, walls, doorframes. And if something does go wrong, claims are quick and hassle-free, not a months-long paperwork siege.</p>
-            <div class="receipt-chips">
-              <div class="receipt-chip"><b>$2,000</b> coverage, included free</div>
-              <div class="receipt-chip"><b>Furniture · floors · walls · doorframes</b></div>
-            </div>
+            <p class="fear-answer">Most movers cover your things by the <b>pound</b> — which has nothing to do with what your stuff is worth. Our <b>No Worries Damage Coverage</b> pays on <b>actual value, up to $2,000, free</b> — no deductible, no upgrade, claims handled fast by a real person. Here&rsquo;s what that means when something breaks:</p>
+            <table class="cov-table">
+              <thead><tr><th>If a mover breaks your&hellip;</th><th class="cThem">Per-pound (most movers)</th><th class="cUs">Einstein</th></tr></thead>
+              <tbody>
+                <tr><td>65&Prime; TV<span class="cov-wt">~50 lb &middot; $1,200 value</span></td><td class="cov-them">$30</td><td class="cov-us">up to $1,200 &middot; free</td></tr>
+                <tr><td>Sofa<span class="cov-wt">~150 lb &middot; $1,800 value</span></td><td class="cov-them">$90</td><td class="cov-us">up to $1,800 &middot; free</td></tr>
+                <tr><td>Antique dresser<span class="cov-wt">~80 lb &middot; $3,500 value</span></td><td class="cov-them">$48</td><td class="cov-us">$2,000 &middot; capped</td></tr>
+              </tbody>
+            </table>
+            <p class="cov-metaphor">Insuring by the pound is like insuring your wedding ring by how heavy it is, not what it&rsquo;s worth.</p>
           </div>
         </article>
 
