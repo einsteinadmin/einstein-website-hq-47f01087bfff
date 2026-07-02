@@ -201,6 +201,7 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .sms-pill .brain{color:var(--orange-900)}
 .pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:30px}
 .pillar{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:18px 14px;text-align:center}
+.pillar .pfear{font-size:12px;color:var(--error);font-weight:600;margin:0 0 8px;line-height:1.35} /* workshop toggle: fear-chip device ported from Why Us B */
 .pillar .ic{width:46px;height:46px;border-radius:50%;background:var(--orange-50);display:flex;align-items:center;justify-content:center;font-size:21px;margin:0 auto 10px}
 .pillar h4{margin:0 0 4px;font-size:14.5px;color:var(--navy-500)}
 .pillar p{margin:0;font-size:12.5px;color:var(--grey-500);line-height:1.45}
@@ -495,11 +496,11 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
     <h2 class="sec rv" id="smsH2">It all runs on one system.</h2>
     <p class="sub rv">Honest pricing, real coverage, and crews you meet aren&rsquo;t three lucky features &mdash; they&rsquo;re five connected parts we&rsquo;ve refined over 100,000 moves.</p>
     <div class="pillars rv">
-      <div class="pillar"><div class="ic">📅</div><h4>Smart Scheduling</h4><p>Book in minutes — backed by our <b>On-Time Guarantee</b>: late = your move is discounted.</p></div>
-      <div class="pillar"><div class="ic">💪</div><h4>Smart Movers</h4><p>Background-checked W-2 crews you meet before move day.</p><a href="#movers">See how ↑</a></div>
-      <div class="pillar"><div class="ic">💲</div><h4>Smart Pricing</h4><p>One all-inclusive hourly rate. No hidden fees.</p><a href="#pricing">See the math ↑</a></div>
-      <div class="pillar"><div class="ic">🛡️</div><h4>Smart Protection</h4><p>$2,000 of damage coverage on actual value — included free.</p><a href="#coverage">See what it pays ↑</a></div>
-      <div class="pillar"><div class="ic">🏆</div><h4>Smart Results</h4><p>100,000+ moves · 4.9/5 stars · 55+ awards.</p><a href="#proof">See the proof ↓</a></div>
+      <div class="pillar"><div class="pfear" hidden>&ldquo;Will they even show up?&rdquo;</div><div class="ic">📅</div><h4>Smart Scheduling</h4><p>Book in minutes — backed by our <b>On-Time Guarantee</b>: late = your move is discounted.</p></div>
+      <div class="pillar"><div class="pfear" hidden>&ldquo;Who&rsquo;s showing up at my door?&rdquo;</div><div class="ic">💪</div><h4>Smart Movers</h4><p>Background-checked W-2 crews you meet before move day.</p><a href="#movers">See how ↑</a></div>
+      <div class="pillar"><div class="pfear" hidden>&ldquo;Am I going to get ripped off?&rdquo;</div><div class="ic">💲</div><h4>Smart Pricing</h4><p>One all-inclusive hourly rate. No hidden fees.</p><a href="#pricing">See the math ↑</a></div>
+      <div class="pillar"><div class="pfear" hidden>&ldquo;What if they break my stuff?&rdquo;</div><div class="ic">🛡️</div><h4>Smart Protection</h4><p>$2,000 of damage coverage on actual value — included free.</p><a href="#coverage">See what it pays ↑</a></div>
+      <div class="pillar"><div class="pfear" hidden>&ldquo;Can I trust any of this?&rdquo;</div><div class="ic">🏆</div><h4>Smart Results</h4><p>100,000+ moves · 4.9/5 stars · 55+ awards.</p><a href="#proof">See the proof ↓</a></div>
     </div>
     <p class="sms-close rv">Every fear has an answer. <span class="smart">That&rsquo;s the Smart Move.</span></p>
   </div>
@@ -710,6 +711,10 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
     <button class="opt" data-v="orig" type="button">Original</button>
     <button class="opt" data-v="prop" type="button">Proposed</button>
   </div></div>
+  <div class="grp"><div class="lab">Pillar fears</div><div class="opts" id="wsFears">
+    <button class="opt" data-v="off" type="button">Off</button>
+    <button class="opt" data-v="on" type="button">On</button>
+  </div></div>
   <button class="share" id="wsShare" type="button">Copy setup link</button>
   <button class="share" id="wsNotes" type="button" style="margin-top:8px;background:#2A3742">📋 Copy workshop notes (0)</button>
   <button class="share" id="wsClear" type="button" style="margin-top:8px;background:transparent;border:1px solid #3A4956;font-weight:400">✕ Clear notes</button>
@@ -773,7 +778,7 @@ var HEADLINES = {
 var TW_WORDS = ['easy','honest','fast','fun','smart','refreshingly simple'];
 
 /* ---------- STATE ---------- */
-var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on', matters:'orig' };
+var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on', matters:'orig', fears:'off' };
 safe('loadState', function(){
   var saved = localStorage.getItem('ws-state-v2');
   if(saved){ var s = JSON.parse(saved); for(var k in state){ if(s[k]!==undefined) state[k]=s[k]; } }
@@ -829,16 +834,17 @@ function renderDisplays(){
   var mo = document.getElementById('mattersOrig'), mp = document.getElementById('mattersProp');
   if(mo) mo.hidden = state.matters!=='orig';
   if(mp) mp.hidden = state.matters!=='prop';
+  document.querySelectorAll('.pillar .pfear').forEach(function(el){ el.hidden = state.fears!=='on'; });
 }
 function comboString(){
-  return 'hero='+state.hero+'&tone='+state.tone+'&ph='+state.ph+'&ch='+state.ch+'&mh='+state.mh+'&cov='+state.cov+'&p2='+state.p2+'&wall='+state.wall+'&matters='+state.matters;
+  return 'hero='+state.hero+'&tone='+state.tone+'&ph='+state.ph+'&ch='+state.ch+'&mh='+state.mh+'&cov='+state.cov+'&p2='+state.p2+'&wall='+state.wall+'&matters='+state.matters+'&fears='+state.fears;
 }
 function renderPanel(){
   ['wsHeroC','wsHeroP'].forEach(function(id){
     var box = document.getElementById(id); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.v===state.hero ? 'true':'false'); });
   });
-  [['wsTone','tone'],['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters']].forEach(function(m){
+  [['wsTone','tone'],['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsFears','fears']].forEach(function(m){
     var box = document.getElementById(m[0]); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.v===String(state[m[1]]) ? 'true':'false'); });
   });
@@ -875,7 +881,7 @@ safe('cycleButtons', function(){
   });
 });
 safe('displayButtons', function(){
-  [['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters']].forEach(function(m){
+  [['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsFears','fears']].forEach(function(m){
     var box = document.getElementById(m[0]); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){
       b.addEventListener('click', function(){ state[m[1]]=b.dataset.v; renderAll(); });
