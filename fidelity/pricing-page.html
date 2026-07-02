@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<title>Honest, All-Inclusive Moving Prices | Einstein Moving (Pricing page draft)</title>
+<!--
+  PRICING PAGE DRAFT v1 — 2026-07-01. Supporting page #3 of 8 (blueprint: pg-straightforward-pricing).
+  The full version of the homepage's lead argument. Locked marketing table + B/D second part anchor it;
+  SURFACE RULE holds: no committed $/hr or dollar totals on this page — the quote form carries real numbers.
+  Metaphor homes: RESORT FEE + TAXI METER live here (wedding-ring lives on Coverage). Live-site pricing copy
+  (research/live-site-copy.md) = canonical source for KP's copy pass. FAQ mirrors JSON-LD.
+  DRAFT MARKERS: 25-50% asterisked; emoji icons placeholder; example savings framed without fake rates.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Do you require a deposit?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. No deposit to book, free cancellation, and your quote doesn't expire. Booking early costs you nothing." } },
+    { "@type": "Question", "name": "Is the rate I see the rate I pay?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes — one all-inclusive hourly rate that covers your movers, the truck, blankets, wrap, tools, taxes, and $2,000 of damage coverage. Your total is that rate times the time your move takes; nothing gets added at the bottom." } },
+    { "@type": "Question", "name": "Are there fuel, trip, or credit-card fees?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. $0 fuel surcharges, $0 trip fees inside your branch's service area, and $0 credit-card processing fees." } },
+    { "@type": "Question", "name": "How is damage coverage priced?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It isn't — $2,000 of damage coverage is included free on every move, and it pays on actual value, not 60 cents per pound." } },
+    { "@type": "Question", "name": "When does the clock start?",
+      "acceptedAnswer": { "@type": "Answer", "text": "At your door — not at our warehouse, not when we leave the lot." } }
+  ]
+}
+</script>
+<style>
+:root{
+  --navy-50:#EEF1F4; --navy-500:#27343D; --navy-700:#1A2329;
+  --orange-50:#FEF6EC; --orange-100:#FDE3C2; --orange-300:#F5A054; --orange-500:#EF8B22; --orange-700:#D96B10; --orange-900:#CC5500;
+  --blue-50:#EBF4FB; --blue-100:#C3DFEF; --blue-500:#0979C3; --blue-700:#065E9A;
+  --grey-50:#F4F5F5; --grey-100:#E2E3E4; --grey-500:#53575A;
+  --success-text:#3F7A33; --error:#CC0100; --star:#F5A623;
+  --radius:12px; --radius-btn:8px; --shadow-sm:0 2px 14px rgba(11,16,20,.05);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Roboto,system-ui,sans-serif;color:var(--navy-500);background:#fff;margin:0;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+h1,h2.sec{font-family:Lora,serif;font-weight:700;letter-spacing:-.01em}
+h2.sec{font-size:30px;line-height:1.16;text-align:center;margin:0 0 14px}
+h2.sec .a{color:var(--orange-900)}
+.sub{text-align:center;color:var(--grey-500);font-size:16.5px;max-width:680px;margin:0 auto 30px}
+.sub b{color:var(--navy-500)}
+.block{padding:66px 0}
+.btn-primary{display:inline-block;background:var(--blue-500);color:#fff;padding:16px 34px;border-radius:var(--radius-btn);font-weight:700;font-size:17px;text-decoration:none;box-shadow:0 4px 14px rgba(9,121,195,.28)}
+.btn-primary:hover{background:var(--blue-700)}
+.microproof{margin:14px 0 0;color:var(--grey-500);font-size:13.5px;text-align:center}
+a{color:var(--blue-500)}
+
+nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--grey-100)}
+.nav-in{max-width:1100px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:20px}
+.logo{font-weight:700;font-size:17px}.logo .head{color:var(--orange-900)}
+.logo a{color:var(--navy-500);text-decoration:none}
+.nav-links{display:flex;gap:22px;margin-left:auto}
+.nav-links a{color:var(--navy-500);text-decoration:none;font-weight:600;font-size:14.5px}
+.nav-links a:hover{color:var(--blue-500)}
+.nav-links a.on{color:var(--orange-900)}
+.btn-nav{display:inline-block;background:var(--orange-500);color:var(--navy-500);padding:12px 22px;border-radius:var(--radius-btn);font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.5px;text-decoration:none;white-space:nowrap}
+.btn-nav:hover{background:var(--orange-700)}
+@media(max-width:760px){.nav-links{display:none}}
+
+.hero{background:var(--orange-50);text-align:center;padding:62px 0 58px}
+.hero .ic{width:56px;height:56px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 16px}
+.hero h1{font-size:38px;line-height:1.12;margin:0 0 16px;max-width:780px;margin-left:auto;margin-right:auto}
+.hero h1 .a{color:var(--orange-900)}
+.hero .lead{font-size:18px;line-height:1.55;max-width:620px;margin:0 auto 26px}
+.hero .lead b{color:var(--navy-500)}
+@media(max-width:620px){.hero h1{font-size:28px}}
+
+.tblscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+.cmp thead th{background:var(--navy-500);color:#fff;text-align:left;font-size:13.5px;letter-spacing:.05em;text-transform:uppercase;padding:14px 18px;font-weight:700}
+.cmp thead th.us{background:var(--orange-900)}
+.cmp td{padding:14px 18px;border-top:1px solid var(--grey-100);font-size:14.5px;vertical-align:middle}
+.cmp td.item{font-weight:700}
+.cmp td.them{color:var(--error);font-weight:700}
+.cmp td.us{background:var(--orange-50);color:var(--success-text);font-weight:700}
+.cmp tr:first-child td{border-top:none}
+.x{color:var(--error);font-weight:700;margin-right:7px}
+.chk{color:var(--success-text);font-weight:700;margin-right:7px}
+.strike{text-decoration:line-through;text-decoration-color:rgba(204,1,0,.55)}
+.fb{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--navy-500);background:var(--orange-100);border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.cmp tr.bottom td{border-top:2px solid var(--navy-500);font-weight:700;padding-top:16px;padding-bottom:16px}
+.cmp tr.bottom td.item{color:var(--orange-900);text-transform:uppercase;letter-spacing:.05em;font-size:12.5px}
+.cmp tr.bottom td.them{color:var(--error)}
+.cmp tr.bottom td.us{color:var(--success-text)}
+.fineprint{text-align:center;color:var(--grey-500);font-size:12.5px;margin:12px auto 0;max-width:720px;line-height:1.5}
+.fineprint b{color:var(--navy-500)}
+
+.p2-headrow{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin:50px 0 20px}
+.p2-headrow h3{font-family:Lora,serif;font-size:24px;margin:0;text-align:center}
+.p2-headrow h3 .b{color:var(--blue-500)}
+.stamp{border:2.5px solid var(--orange-900);color:var(--orange-900);border-radius:10px;padding:6px 12px;font-weight:800;font-size:12.5px;line-height:1.1;text-align:center;letter-spacing:.04em;transform:rotate(-7deg);text-transform:uppercase;opacity:.9}
+.r2-card{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:22px 26px;max-width:620px;margin:0 auto;box-shadow:var(--shadow-sm)}
+.r2-line{display:flex;align-items:baseline;gap:8px;padding:9px 0;font-size:15px}
+.r2-note{color:var(--grey-500);font-size:12.5px}
+.r2-dots{flex:1;border-bottom:1px dotted var(--grey-100);transform:translateY(-3px)}
+.r2-zero{color:var(--blue-500);font-weight:700}
+.r2-inc{color:var(--success-text);font-weight:700}
+.r2-tot{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--navy-500);margin-top:8px;padding-top:14px;font-weight:700}
+.r2-big{font-size:26px;color:var(--blue-500);font-family:Lora,serif}
+
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:880px;margin:0 auto}
+.hstep{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:22px 20px;text-align:center}
+.hstep .n{font-family:Lora,serif;font-size:26px;color:var(--orange-900);font-weight:700}
+.hstep h4{margin:6px 0 6px;font-size:15.5px}
+.hstep p{margin:0;font-size:13.5px;color:var(--grey-500);line-height:1.55}
+@media(max-width:660px){.how{grid-template-columns:1fr}}
+.clockbanner{max-width:720px;margin:30px auto 0;background:var(--orange-50);border:1px solid var(--orange-100);border-radius:10px;padding:16px 20px;font-size:15px;display:flex;gap:12px;align-items:flex-start}
+.clockbanner .i{font-size:20px}
+.clockbanner b{color:var(--navy-500)}
+.metaphors{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:820px;margin:30px auto 0}
+.metaphor{background:#fff;border:1px solid var(--grey-100);border-left:4px solid var(--orange-500);border-radius:10px;padding:16px 20px;font-family:Lora,serif;font-size:16.5px;line-height:1.5}
+.metaphor b{color:var(--orange-900)}
+.metaphor .tag{display:block;font-family:Roboto,sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--grey-500);margin-bottom:6px}
+@media(max-width:660px){.metaphors{grid-template-columns:1fr}}
+
+.guarantee{background:var(--orange-500);padding:56px 0;text-align:center} /* the ONE sanctioned orange moment band */
+.guarantee h2{font-family:Lora,serif;color:var(--navy-500);font-size:28px;margin:0 0 10px}
+.guarantee p{color:var(--navy-700);font-size:16px;max-width:640px;margin:0 auto 8px;line-height:1.6}
+.guarantee p b{color:var(--navy-500)}
+.guarantee a.covlink{color:var(--navy-700);font-weight:700}
+
+.flex-band{text-align:center;max-width:640px;margin:0 auto}
+.flex-band .chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0 0}
+.flex-band .chip{background:var(--blue-50);border:1px solid var(--blue-100);color:var(--blue-700);border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:600}
+
+.faq-list{max-width:720px;margin:0 auto}
+.faq-item{width:100%;display:flex;justify-content:space-between;align-items:center;font:inherit;font-weight:600;font-size:15.5px;color:var(--navy-500);background:#fff;border:1px solid var(--grey-100);border-radius:10px;padding:16px 18px;margin-top:10px;cursor:pointer;text-align:left}
+.faq-item .t{color:var(--orange-900);font-size:18px;font-weight:700}
+.acc-answer{background:#fff;border:1px solid var(--grey-100);border-top:none;border-radius:0 0 10px 10px;padding:2px 18px 6px;font-size:14.5px;color:var(--grey-500)}
+
+.locations{background:var(--grey-50);padding:56px 0;text-align:center}
+.loc-grid{display:flex;gap:8px 14px;justify-content:center;flex-wrap:wrap;max-width:760px;margin:18px auto 0}
+.loc-grid a{background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:600;text-decoration:none;color:var(--navy-500)}
+.loc-grid a:hover{border-color:var(--blue-500);color:var(--blue-500)}
+.loc-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--grey-500);margin:16px 0 6px}
+
+footer{background:var(--navy-700);color:#B9C4CC;padding:44px 0 36px;font-size:13px;text-align:center}
+footer .canon{color:#EAEEF0;font-size:14.5px;max-width:680px;margin:0 auto 14px}
+footer .canon .smart{color:var(--orange-300)}
+footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
+</style></head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="logo"><a href="homepage-hybrid.html"><span class="head">🧠</span> Einstein Moving Co.</a></div>
+    <div class="nav-links">
+      <a href="#" class="on">Pricing</a>
+      <a href="coverage-page.html">Coverage</a>
+      <a href="claims-page.html">Claims</a>
+      <a href="homepage-hybrid.html#proof">Reviews</a>
+    </div>
+    <a class="btn-nav" href="https://www.einsteinmoving.com/quote/">See My Price</a>
+  </div>
+</nav>
+
+<!-- ============ 1. HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="ic">💲</div>
+    <h1><span class="a">Honest</span>, all-inclusive moving prices.<br>One hourly rate — no hidden fees.</h1>
+    <p class="lead">Upfront hourly rates across Texas and Tampa, FL. Your movers, the truck, blankets, wrap, tools, taxes, and <b>$2,000 of damage coverage</b> — all in one rate. <b>The rate you see is the whole rate.</b></p>
+    <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
+    <div class="microproof">Free quote in ~47 seconds · No phone calls · No deposit</div>
+  </div>
+</header>
+
+<!-- ============ 2. THE COMPARISON (locked table + B/D second part) ============ -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span></h2>
+    <p class="sub">A low hourly rate always looks cheaper — until the fees stack up on move day. It&rsquo;s the hotel that advertises $199 a night, then hits you with the <b>resort fee</b> at checkout. Here are the industry&rsquo;s usual add-ons, and what Einstein includes for <b>$0</b>.</p>
+    <div class="tblscroll">
+    <table class="cmp" aria-label="What typical movers charge extra for vs Einstein">
+      <thead><tr><th class="item">The fee</th><th class="them">Typical mover</th><th class="us">Einstein</th></tr></thead>
+      <tbody>
+        <tr><td class="item">When the clock starts</td><td class="them"><span class="x">✕</span>At their warehouse</td><td class="us"><span class="chk">✓</span>At your door</td></tr>
+        <tr><td class="item">Booking deposit</td><td class="them"><span class="x">✕</span>Required — often forfeited</td><td class="us"><span class="chk">✓</span>$0 · free cancellation</td></tr>
+        <tr><td class="item">Fuel / trip surcharge</td><td class="them"><span class="x">✕</span><span class="strike">+$50–250</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
+        <tr><td class="item">Credit-card fee</td><td class="them"><span class="x">✕</span><span class="strike">+2.5–3.5%</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
+        <tr><td class="item">Blankets, wrap &amp; supplies</td><td class="them"><span class="x">✕</span><span class="strike">+$65–135</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
+        <tr><td class="item">Stair / long-carry fees</td><td class="them"><span class="x">✕</span><span class="strike">+$100–250</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
+        <tr><td class="item">Damage coverage</td><td class="them"><span class="x">✕</span>60¢/lb — or pay to upgrade</td><td class="us"><span class="chk">✓</span>$2,000 · actual value<span class="fb">Free</span></td></tr>
+        <tr class="bottom"><td class="item">Bottom line</td><td class="them">25–50% more than quoted*</td><td class="us">Nothing added at the bottom</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="fineprint">Typical-mover fees shown are common industry ranges, not any one company — your Einstein rate varies by market, but the $0 columns never do. *Range based on published industry fee data; pending verification against our mystery-shop numbers.</p>
+
+    <div class="p2-headrow">
+      <h3>And the extras? <span class="b">Already on the receipt — at $0.</span></h3>
+      <div class="stamp">No<br>add-ons</div>
+    </div>
+    <div class="r2-card">
+      <div class="r2-line"><span>Furniture blankets, wrap &amp; supplies</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+      <div class="r2-line"><span>Furniture disassembly &amp; reassembly</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+      <div class="r2-line"><span>$2,000 damage coverage <span class="r2-note">· actual value</span></span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+      <div class="r2-line"><span>On-time guarantee <span class="r2-note">· late = your move is discounted</span></span><span class="r2-dots"></span><span class="r2-inc">Included</span></div>
+      <div class="r2-line"><span>Booking deposit</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+      <div class="r2-tot"><span>Everything most movers bill extra for</span><span class="r2-big">$0</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. HOW HOURLY PRICING WORKS ============ -->
+<section class="block" style="background:var(--grey-50)">
+  <div class="wrap">
+    <h2 class="sec">How our hourly pricing <span class="a">works.</span></h2>
+    <p class="sub">No mystery math. One rate, times the time your move actually takes.</p>
+    <div class="how">
+      <div class="hstep"><div class="n">1</div><h4>One all-inclusive rate</h4><p>Your quote shows one hourly rate. Movers, truck, blankets, wrap, tools, taxes, coverage — it&rsquo;s all in that number.</p></div>
+      <div class="hstep"><div class="n">2</div><h4>The clock starts at your door</h4><p>Not at our warehouse, not when we leave the lot. You pay for your move, not our commute.</p></div>
+      <div class="hstep"><div class="n">3</div><h4>Your total = rate × time</h4><p>Work fast, pay less. Your quote estimates the hours honestly — and nothing gets added at the bottom.</p></div>
+    </div>
+    <div class="clockbanner"><span class="i">ⓘ</span><span><b>&ldquo;When does the clock start?&rdquo;</b> — the #1 question, answered plainly: at your door. If a mover can&rsquo;t answer that in one sentence, that&rsquo;s your answer about them.</span></div>
+    <div class="metaphors">
+      <div class="metaphor"><span class="tag">Hidden fees, translated</span>Their hourly rate is like a hotel advertising $199/night… then hitting you with a <b>$75 resort fee</b> at checkout. Our rate is the rate.</div>
+      <div class="metaphor"><span class="tag">Portal-to-portal billing, translated</span>Some movers start the clock when they leave their warehouse. That&rsquo;s like a taxi <b>starting the meter at the driver&rsquo;s house</b> across town.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. THE GUARANTEES (the one orange moment band) ============ -->
+<section class="guarantee">
+  <div class="wrap">
+    <h2>Two guarantees with money behind them.</h2>
+    <p><b>On-Time Guarantee:</b> we commit to your arrival window — miss it and your move is discounted, and the longer we&rsquo;re late, the bigger the discount. We rarely need it.</p>
+    <p><b>$2,000 Damage Coverage:</b> included free on every move, paid on actual value — not 60¢ a pound. <a class="covlink" href="coverage-page.html">See exactly what it pays →</a></p>
+  </div>
+</section>
+
+<!-- ============ 5. FLEXIBLE DATES (honest savings, no fake numbers) ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="flex-band">
+      <h2 class="sec">Flexible on dates? <span class="a">It pays.</span></h2>
+      <p class="sub">The same move costs less on quieter days — and your quote shows your <b>whole week</b> side by side, so the savings are yours to grab, never a surge to dodge.</p>
+      <div class="chips"><span class="chip">Midweek → usually less</span><span class="chip">Mid-month → usually less</span><span class="chip">Your quote shows every day&rsquo;s rate</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. PRICING FAQ ============ -->
+<section class="block" style="background:var(--grey-50)" id="faq">
+  <div class="wrap">
+    <h2 class="sec">Fair questions. <span class="a">Straight answers.</span></h2>
+    <div class="faq-list" id="faqList">
+      <div>
+        <button class="faq-item" aria-expanded="false"><span>Do you require a deposit?</span><span class="t">+</span></button>
+        <div class="acc-answer" hidden><p>No. No deposit to book, free cancellation, and your quote doesn&rsquo;t expire. Booking early costs you nothing.</p></div>
+      </div>
+      <div>
+        <button class="faq-item" aria-expanded="false"><span>Is the rate I see the rate I pay?</span><span class="t">+</span></button>
+        <div class="acc-answer" hidden><p>Yes — one all-inclusive hourly rate, and nothing gets added at the bottom. Your total is that rate times the time your move takes; your quote estimates the hours honestly up front.</p></div>
+      </div>
+      <div>
+        <button class="faq-item" aria-expanded="false"><span>Are there fuel, trip, or credit-card fees?</span><span class="t">+</span></button>
+        <div class="acc-answer" hidden><p>No. $0 fuel surcharges, $0 trip fees inside your branch&rsquo;s service area, and $0 credit-card processing fees.</p></div>
+      </div>
+      <div>
+        <button class="faq-item" aria-expanded="false"><span>How is damage coverage priced?</span><span class="t">+</span></button>
+        <div class="acc-answer" hidden><p>It isn&rsquo;t — $2,000 of coverage is included free on every move, paid on actual value, not 60&#162; a pound. <a href="coverage-page.html">Full breakdown here →</a></p></div>
+      </div>
+      <div>
+        <button class="faq-item" aria-expanded="false"><span>When does the clock start?</span><span class="t">+</span></button>
+        <div class="acc-answer" hidden><p>At your door — not at our warehouse, not when we leave the lot.</p></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
+      <div class="microproof">No deposit · No hidden fees · <b>Nothing gets added at the bottom.</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. LOCATIONS ============ -->
+<section class="locations">
+  <div class="wrap">
+    <h2 class="sec">One honest rate, <span class="a">ten hometowns.</span></h2>
+    <p class="sub">Your rate varies by market — the honesty doesn&rsquo;t. Find yours:</p>
+    <div class="loc-label">Texas</div>
+    <div class="loc-grid">
+      <a href="https://www.einsteinmoving.com/locations/texas-movers/north-austin-movers/">North Austin movers</a>
+      <a href="https://www.einsteinmoving.com/locations/texas-movers/south-austin-movers/">South Austin movers</a>
+      <a href="https://www.einsteinmoving.com/locations/texas-movers/leander-movers/">Leander movers</a>
+      <a href="https://www.einsteinmoving.com/locations/texas-movers/san-antonio-movers/">San Antonio movers</a>
+      <a href="https://www.einsteinmoving.com/locations/texas-movers/houston-movers/">Houston movers</a>
+      <a href="https://www.einsteinmoving.com/locations/texas-movers/dallas-movers/">Dallas movers</a>
+      <a href="https://www.einsteinmoving.com/locations/texas-movers/fort-worth-movers/">Fort Worth movers</a>
+      <a href="https://www.einsteinmoving.com/locations/texas-movers/garland-movers/">Garland movers</a>
+      <a href="https://www.einsteinmoving.com/locations/texas-movers/mckinney-movers/">McKinney movers</a>
+    </div>
+    <div class="loc-label">Florida</div>
+    <div class="loc-grid"><a href="https://www.einsteinmoving.com/locations/florida-movers/tampa-movers/">Tampa movers</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don&rsquo;t earn numbers like those by nickel-and-diming people on moving day.</span></p>
+    <p>TX TxDMV #006604158C · US DOT #2193963 &nbsp;|&nbsp; FL Mover Reg. No. IM3621 · US DOT #3882313</p>
+    <p class="devnote">PRICING PAGE DRAFT v1 · 7/1/2026 — supporting page #3 of 8 (pg-straightforward-pricing blueprint). Locked marketing table + B/D second part; surface rule held (no committed $/hr — the quote form carries real numbers); resort-fee + taxi-meter metaphors live here; FAQ mirrored in JSON-LD. KP copy pass folds in live-site pricing copy (research/live-site-copy.md = canonical source).</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root = document.getElementById('faqList'); if(!root) return;
+  root.querySelectorAll('.faq-item').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var ans = btn.nextElementSibling; if(!ans) return;
+      var open = btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded', open?'false':'true');
+      ans.hidden = open;
+      var t = btn.querySelector('.t'); if(t) t.textContent = open ? '+' : '–';
+    });
+  });
+})();
+</script>
+</body></html>
