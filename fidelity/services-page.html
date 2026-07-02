@@ -1,0 +1,327 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<title>Moving Services in Texas &amp; Tampa, FL | Einstein Moving (Services hub draft)</title>
+<!--
+  SERVICES HUB DRAFT v1 — 2026-07-01. The /services/ hub (blueprint: pg-service, hub skeleton only; 7/1 ERRATA governs).
+  Per-service CHILD pages (residential / apartment / office-commercial / packing / storage / statewide) are a
+  KP-built repeatable template LATER — every "See what's included →" card link is intentionally "#" until then.
+  Inherits the homepage v2 / coverage-page design system verbatim (tokens, Lora h2.sec + .a orange-900 accents,
+  nav/footer chrome, feedback.js). Ledger shows the residential default; specialty note matches REAL policy
+  (400-lb limit, NO grand pianos — fixes the old blueprint's piano implication).
+  DRAFT MARKERS: emoji = placeholder icons; phone = dummy 737-555-0100; [VERIFY] tokens inline; city pills unwired.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Do you charge extra for stairs, elevators, or long walks?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. There are no stair fees, elevator fees, or long-carry fees. Apartment obstacles just take time, and time is billed at the same all-inclusive hourly rate you saw up front." } },
+    { "@type": "Question", "name": "Do you offer full and partial packing services?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Our packers handle full or partial packs, and we bring the boxes, paper, bubble wrap, and tape." } },
+    { "@type": "Question", "name": "Do you move pianos, safes, or other specialty items?",
+      "acceptedAnswer": { "@type": "Answer", "text": "We move items up to 400 pounds. We don't move grand or baby grand pianos, assembled pool tables, or vehicles of any kind. Upright pianos are fine as long as no stairwells are involved. If you're not sure about an item, ask us and we'll tell you straight." } },
+    { "@type": "Question", "name": "How far will you move us?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In Texas: statewide — from El Paso to Texarkana, or Dallas to Austin, with the same local crews and the same rate structure. In Florida, we serve Tampa and the surrounding area." } },
+    { "@type": "Question", "name": "What if something gets damaged?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Every move includes $2,000 of Smart Move Damage Coverage free, paid on actual value — not 60 cents per pound." } }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.einsteinmoving.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Moving Services", "item": "https://www.einsteinmoving.com/services/" }
+  ]
+}
+</script>
+<style>
+:root{
+  --navy-50:#EEF1F4; --navy-500:#27343D; --navy-700:#1A2329;
+  --orange-50:#FEF6EC; --orange-100:#FDE3C2; --orange-300:#F5A054; --orange-500:#EF8B22; --orange-700:#D96B10; --orange-900:#CC5500;
+  --blue-50:#EBF4FB; --blue-100:#C3DFEF; --blue-500:#0979C3; --blue-700:#065E9A;
+  --grey-50:#F4F5F5; --grey-100:#E2E3E4; --grey-500:#53575A;
+  --success-text:#3F7A33; --success-bg:#EFF5EC; --error:#CC0100; --error-bg:#FCF3F3; --paid:#B5651D; --star:#F5A623;
+  --radius:12px; --radius-btn:8px; --shadow-sm:0 2px 14px rgba(11,16,20,.05);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Roboto,system-ui,sans-serif;color:var(--navy-500);background:#fff;margin:0;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+h1,h2.sec{font-family:Lora,serif;font-weight:700;letter-spacing:-.01em}
+h2.sec{font-size:31px;line-height:1.16;text-align:center;margin:0 0 14px}
+h2.sec .a{color:var(--orange-900)}
+.sub{text-align:center;color:var(--grey-500);font-size:16.5px;max-width:680px;margin:0 auto 30px}
+.sub b{color:var(--navy-500)}
+.block{padding:68px 0}
+.btn-primary{display:inline-block;background:var(--blue-500);color:#fff;padding:16px 34px;border-radius:var(--radius-btn);font-weight:700;font-size:17px;text-decoration:none;box-shadow:0 4px 14px rgba(9,121,195,.28)}
+.btn-primary:hover{background:var(--blue-700)}
+.microproof{margin:14px 0 0;color:var(--grey-500);font-size:13.5px;text-align:center}
+a{color:var(--blue-500)}
+
+nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--grey-100)}
+.nav-in{max-width:1100px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:20px}
+.logo{font-weight:700;font-size:17px}.logo .head{color:var(--orange-900)}
+.logo a{color:var(--navy-500);text-decoration:none}
+.nav-links{display:flex;gap:22px;margin-left:auto}
+.nav-links a{color:var(--navy-500);text-decoration:none;font-weight:600;font-size:14.5px}
+.nav-links a:hover{color:var(--blue-500)}
+.nav-links a.on{color:var(--orange-900)}
+.btn-nav{display:inline-block;background:var(--orange-500);color:var(--navy-500);padding:12px 22px;border-radius:var(--radius-btn);font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.5px;text-decoration:none;white-space:nowrap}
+.btn-nav:hover{background:var(--orange-700)}
+@media(max-width:760px){.nav-links{display:none}}
+
+.hero{background:var(--orange-50);text-align:center;padding:64px 0 60px}
+.hero .chip{width:56px;height:56px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 16px}
+.hero h1{font-size:38px;line-height:1.14;margin:0 0 16px;max-width:820px;margin-left:auto;margin-right:auto}
+.hero h1 .a{color:var(--orange-900)}
+.hero .lead{font-size:18px;line-height:1.55;max-width:660px;margin:0 auto 26px}
+.hero .lead b{color:var(--navy-500)}
+.hero .second{display:block;margin-top:16px;font-weight:600;font-size:14.5px}
+.wink{display:inline-block;margin-top:14px;background:#fff;border:1px solid var(--orange-100);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--orange-900)}
+@media(max-width:620px){.hero h1{font-size:28px}}
+
+.truststrip{border-bottom:1px solid var(--grey-100);padding:16px 0;text-align:center;background:#fff}
+.truststrip .in{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;font-size:14px;color:var(--grey-500);font-weight:600}
+.truststrip .stars{color:var(--star);letter-spacing:1px}
+.truststrip .sep{color:var(--grey-100)}
+
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:960px;margin:26px auto 0}
+.svc{display:block;background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:24px 22px;text-decoration:none;color:var(--navy-500);box-shadow:var(--shadow-sm);transition:border-color .15s,transform .15s}
+.svc:hover{border-color:var(--blue-500);transform:translateY(-2px)}
+.svc .ic{width:46px;height:46px;border-radius:50%;background:var(--orange-50);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px}
+.svc h3{font-family:Lora,serif;font-size:18px;margin:0 0 8px;line-height:1.25}
+.svc p{margin:0 0 12px;font-size:13.5px;color:var(--grey-500);line-height:1.55}
+.svc .more{color:var(--blue-500);font-weight:700;font-size:13.5px}
+@media(max-width:860px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.svc-grid{grid-template-columns:1fr}}
+
+.r-card{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:22px 26px;max-width:620px;margin:26px auto 0;box-shadow:var(--shadow-sm)}
+.r-line{display:flex;align-items:baseline;gap:8px;padding:9px 0;font-size:15px}
+.r-note{color:var(--grey-500);font-size:12.5px}
+.r-dots{flex:1;border-bottom:1px dotted var(--grey-100);transform:translateY(-3px)}
+.r-inc{color:var(--success-text);font-weight:700;white-space:nowrap}
+.r-zero{color:var(--blue-500);font-weight:700;white-space:nowrap}
+.r-tot{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-top:2px solid var(--navy-500);margin-top:8px;padding-top:14px;font-weight:700}
+.r-tot .big{font-family:Lora,serif;font-size:19px;color:var(--orange-900)}
+.fineprint{text-align:center;color:var(--grey-500);font-size:12.5px;margin:14px auto 0;max-width:640px;line-height:1.5}
+.fineprint b{color:var(--navy-500)}
+
+.honest{max-width:720px;margin:40px auto 0;background:var(--orange-50);border:1px solid var(--orange-100);border-radius:10px;padding:18px 22px;font-size:14.5px;line-height:1.6}
+.honest b{color:var(--navy-500)}
+.honest .t{font-weight:700;color:var(--orange-900);text-transform:uppercase;letter-spacing:.05em;font-size:12px;display:block;margin-bottom:6px}
+
+.faq-list{max-width:720px;margin:0 auto}
+.faq-item{width:100%;display:flex;justify-content:space-between;align-items:center;font:inherit;font-weight:600;font-size:15.5px;color:var(--navy-500);background:#fff;border:1px solid var(--grey-100);border-radius:10px;padding:16px 18px;margin-top:10px;cursor:pointer;text-align:left}
+.faq-item .t{color:var(--orange-900);font-size:18px;font-weight:700}
+.acc-answer{background:#fff;border:1px solid var(--grey-100);border-top:none;border-radius:0 0 10px 10px;padding:2px 18px 6px;font-size:14.5px;color:var(--grey-500)}
+
+.proofband{background:var(--navy-50);padding:64px 0;text-align:center}
+.ramp{max-width:640px;margin:30px auto 0;background:#fff;border:1px solid var(--grey-100);border-radius:10px;padding:18px 22px;font-size:14.5px;line-height:1.6;text-align:center}
+.ramp b{color:var(--navy-500)}
+.loc-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--grey-500);margin:26px 0 6px}
+.loc-grid{display:flex;gap:8px 14px;justify-content:center;flex-wrap:wrap;max-width:760px;margin:0 auto}
+.loc-grid a{background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:600;text-decoration:none;color:var(--navy-500)}
+.loc-grid a:hover{border-color:var(--blue-500);color:var(--blue-500)}
+
+footer{background:var(--navy-700);color:#B9C4CC;padding:44px 0 36px;font-size:13px;text-align:center}
+footer .canon{color:#EAEEF0;font-size:14.5px;max-width:680px;margin:0 auto 14px}
+footer .canon .smart{color:var(--orange-300)}
+footer a{color:var(--blue-100)}
+footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
+</style></head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="logo"><a href="homepage-hybrid.html"><span class="head">🧠</span> Einstein Moving Co.</a></div>
+    <div class="nav-links">
+      <a href="#" class="on">Services</a>
+      <a href="pricing-page.html">Pricing</a>
+      <a href="coverage-page.html">Coverage</a>
+      <a href="why-us-page.html">Why Us</a>
+      <a href="about-page.html">About</a>
+    </div>
+    <a class="btn-nav" href="https://www.einsteinmoving.com/quote/">See My Price</a>
+  </div>
+</nav>
+
+<!-- ============ 1. HUB HERO — keyworded H1 + honest lead ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="chip">📦</div>
+    <h1>Moving Services in Texas &amp; Tampa, FL — <span class="a">One Honest Rate</span> for Every Kind of Move</h1>
+    <p class="lead">Apartments, whole houses, offices, packing days, storage unloads — every one of them runs on the same deal: <b>one all-inclusive hourly rate</b>, the same background-checked <b>W-2 crews</b>, and <b>$2,000 of damage coverage included free</b>. The rate you see is the whole rate, whichever move is yours.</p>
+    <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
+    <a class="second" href="#services">Which sounds like your move? ↓</a>
+    <div class="microproof">No deposit · Free cancellation · No hidden fees</div>
+    <span class="wink">Yes, even the 35th floor.</span>
+  </div>
+</header>
+
+<!-- ============ 2. TRUST STRIP — ambient proof canon ============ -->
+<div class="truststrip">
+  <div class="wrap">
+    <div class="in"><span class="stars">★★★★★</span> 4.9/5 · 8,100+ reviews <span class="sep">·</span> 55+ awards <span class="sep">·</span> 100,000+ moves <span class="sep">·</span> $2,000 coverage included</div>
+  </div>
+</div>
+
+<!-- ============ 3. SERVICE SELECTOR GRID — the expanded homepage services block ============ -->
+<!-- DEV: per-service CHILD pages = a KP-built repeatable template (later). Every card link is
+     intentionally "#" until that template exists. Emoji = placeholder icons (production = SVG set). -->
+<section class="block" id="services">
+  <div class="wrap">
+    <h2 class="sec">Which sounds like <span class="a">your move?</span></h2>
+    <p class="sub">Six kinds of moves, one honest rate structure. Pick yours — each page breaks down exactly what&rsquo;s included, no fine-print surprises.</p>
+    <div class="svc-grid">
+      <a class="svc" href="#">
+        <div class="ic">🏠</div>
+        <h3>Residential Movers</h3>
+        <p>Disassemble, protect, pack, unload, reassemble, smile. We make it as easy as that — let our movers do the hard work, big move or small.</p>
+        <span class="more">See what&rsquo;s included →</span>
+      </a>
+      <a class="svc" href="#">
+        <div class="ic">🏢</div>
+        <h3>Apartment Movers</h3>
+        <p>Be it the 1st, 3rd, or 35th floor, stairs are no match for our movers — and there&rsquo;s no stair or elevator fee hiding at the bottom of the bill.</p>
+        <span class="more">See what&rsquo;s included →</span>
+      </a>
+      <a class="svc" href="#">
+        <div class="ic">💼</div>
+        <h3>Office &amp; Commercial Movers</h3>
+        <p>Law offices. Engineering labs. No office is too big, too small, or too complicated — we&rsquo;ll get you back to work at your new place in no time.</p>
+        <span class="more">See what&rsquo;s included →</span>
+      </a>
+      <a class="svc" href="#">
+        <div class="ic">📦</div>
+        <h3>Packing Services</h3>
+        <p>We bring the boxes, paper, bubble wrap, and tape. You sit back while our expert packers box it up the right way — clothes, artwork, fine china, all of it.</p>
+        <span class="more">See what&rsquo;s included →</span>
+      </a>
+      <a class="svc" href="#">
+        <div class="ic">🚛</div>
+        <h3>Storage Moves</h3>
+        <p>Unloading a container or a rental truck? We bring the tools, the muscle, and the experience — so you don&rsquo;t lift a thing.</p>
+        <span class="more">See what&rsquo;s included →</span>
+      </a>
+      <a class="svc" href="#">
+        <div class="ic">🤠</div>
+        <h3>Statewide Texas Moves</h3>
+        <p>No contract workers. No long waits to get your furniture. No hassles. From El Paso to Texarkana, or Dallas to Austin — the same local service we&rsquo;re known for, all across the great state of Texas.</p>
+        <span class="more">See what&rsquo;s included →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. WHAT'S-INCLUDED LEDGER (residential default) + 5. SPECIALTY HONESTY ============ -->
+<section class="block" style="background:var(--grey-50)">
+  <div class="wrap">
+    <h2 class="sec">One rate. <span class="a">Everything on this list included.</span></h2>
+    <p class="sub">Shown for a <b>residential move</b> — the default. Every service page gets its own honest version of this list (packing adds a materials line, storage quotes off unit size). The rules never change: what&rsquo;s included is included, and what costs $0 costs $0.</p>
+    <div class="r-card" aria-label="What's included in your hourly rate">
+      <div class="r-line"><span>Your movers + a fully stocked truck</span><span class="r-dots"></span><span class="r-inc">Included</span></div>
+      <div class="r-line"><span>Furniture disassembly &amp; reassembly</span><span class="r-dots"></span><span class="r-inc">Included</span></div>
+      <div class="r-line"><span>Blankets, wrap, dollies &amp; tools</span><span class="r-dots"></span><span class="r-inc">Included</span></div>
+      <div class="r-line"><span>$2,000 damage coverage <span class="r-note">· actual value, <a href="coverage-page.html">not by the pound</a></span></span><span class="r-dots"></span><span class="r-inc">Included</span></div>
+      <div class="r-line"><span>Taxes</span><span class="r-dots"></span><span class="r-inc">Included</span></div>
+      <div class="r-line"><span>Trip &amp; fuel fees <span class="r-note">· inside your branch&rsquo;s service area</span></span><span class="r-dots"></span><span class="r-zero">$0</span></div>
+      <div class="r-line"><span>Credit-card processing fees</span><span class="r-dots"></span><span class="r-zero">$0</span></div>
+      <div class="r-line"><span>Deposit to book</span><span class="r-dots"></span><span class="r-zero">$0</span></div>
+      <div class="r-tot"><span>The bottom of the bill</span><span class="big">Nothing gets added.</span></div>
+    </div>
+    <p class="fineprint"><b>The rate you see is the whole rate.</b> Curious how other movers&rsquo; bills grow between the quote and the driveway? <a href="pricing-page.html">The full pricing breakdown lives here →</a></p>
+
+    <!-- SPECIALTY HONESTY — real policy (400-lb limit, NO grand pianos). Same disqualifier framing as the quote form. -->
+    <div class="honest">
+      <span class="t">The honest fine print — what we can&rsquo;t move</span>
+      A few things we&rsquo;ll turn down, and we&rsquo;d rather tell you here than on your driveway: anything over <b>400 pounds</b> (with rare exceptions — <i>[VERIFY: name the exceptions before a child page ships]</i>), <b>grand and baby grand pianos</b> (uprights are fine, as long as there are no stairwells involved), <b>pool tables</b> that haven&rsquo;t been disassembled with the slates removed, and <b>vehicles of any kind</b> — cars, golf carts, dirt bikes, riding mowers. Nothing hazardous, perishable, or illegal, either. Not sure whether your item makes the cut? Text or call us at <b>737-555-0100</b> and we&rsquo;ll tell you straight — we&rsquo;d rather lose a booking than fake the fit.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. SERVICE FAQ (mirrored in FAQPage JSON-LD) ============ -->
+<section class="block" id="faq">
+  <div class="wrap">
+    <h2 class="sec">Fair questions. <span class="a">Straight answers.</span></h2>
+    <div class="faq-list" id="faqList">
+      <div>
+        <button class="faq-item" aria-expanded="false"><span>Do you charge extra for stairs, elevators, or long walks?</span><span class="t">+</span></button>
+        <div class="acc-answer" hidden><p>No. There are no stair fees, elevator fees, or long-carry fees. Apartment obstacles just take time, and time is billed at the same all-inclusive hourly rate you saw up front. One pro tip from a few thousand apartment moves: if your building lets you reserve the elevator, do it — sharing one slows everything down.</p></div>
+      </div>
+      <div>
+        <button class="faq-item" aria-expanded="false"><span>Do you offer full and partial packing services?</span><span class="t">+</span></button>
+        <div class="acc-answer" hidden><p>Yes — full packs, partial packs, or just the fragile stuff. We bring the boxes, paper, bubble wrap, and tape. <i>[VERIFY: are materials included in the hourly rate or quoted as a separate materials line?]</i></p></div>
+      </div>
+      <div>
+        <button class="faq-item" aria-expanded="false"><span>Can you load or unload a POD, container, or rental truck?</span><span class="t">+</span></button>
+        <div class="acc-answer" hidden><p>Yes — we bring the crew and the tools, you keep the container. One honest note: our $2,000 damage coverage applies to moves on our trucks; for a container we load but don&rsquo;t drive, we can&rsquo;t cover what happens on the road. <i>[Carried from the live coverage FAQ — ops/legal confirm, same flag as the Coverage page]</i></p></div>
+      </div>
+      <div>
+        <button class="faq-item" aria-expanded="false"><span>Do you move pianos, safes, or other specialty items?</span><span class="t">+</span></button>
+        <div class="acc-answer" hidden><p>We move items up to 400 pounds. We don&rsquo;t move grand or baby grand pianos, assembled pool tables, or vehicles of any kind — upright pianos are fine as long as no stairwells are involved. The full honest list is right above this FAQ; when in doubt, text or call 737-555-0100 and ask.</p></div>
+      </div>
+      <div>
+        <button class="faq-item" aria-expanded="false"><span>How far will you move us?</span><span class="t">+</span></button>
+        <div class="acc-answer" hidden><p>In Texas: statewide — El Paso to Texarkana, Dallas to Austin, same local crews, same rate structure. In Florida: Tampa and the surrounding area. <i>[VERIFY: do we ever run Texas ↔ Florida moves? Currently scoped as no state-to-state.]</i></p></div>
+      </div>
+      <div>
+        <button class="faq-item" aria-expanded="false"><span>What if something gets damaged?</span><span class="t">+</span></button>
+        <div class="acc-answer" hidden><p>Every move includes $2,000 of Smart Move Damage Coverage, free — paid on what your stuff is actually worth, not 60&#162; a pound. <a href="coverage-page.html">Here&rsquo;s exactly how it works →</a></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. CTA CLOSE + exit ramp + cities ============ -->
+<section class="proofband">
+  <div class="wrap">
+    <h2 class="sec">That&rsquo;s the Smart Move. <span class="a">Now let&rsquo;s do yours.</span></h2>
+    <p class="sub">Whichever move is yours, the price works the same way. See your real price in about <b>47 seconds</b> — zero phone calls.</p>
+    <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
+    <div class="microproof">No deposit · Free cancellation · <b>Nothing gets added at the bottom.</b></div>
+    <div class="ramp">
+      <b>A move the form can&rsquo;t quite hold?</b> A lab, a warehouse, a four-stop shuffle — some moves need a human first. 💬 Text or 📞 call <b>737-555-0100</b>, or ✉️ email us, and a real person will scope it honestly.
+    </div>
+    <!-- DEV: wire city pills to the NEW branch pages in production (mockups historically point off-site). -->
+    <div class="loc-label">Texas</div>
+    <div class="loc-grid">
+      <a href="#">North Austin</a><a href="#">South Austin</a><a href="#">Leander</a><a href="#">San Antonio</a><a href="#">Houston</a><a href="#">Dallas</a><a href="#">Fort Worth</a><a href="#">Garland</a><a href="#">McKinney</a>
+    </div>
+    <div class="loc-label">Florida</div>
+    <div class="loc-grid">
+      <a href="#">Tampa</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don&rsquo;t earn numbers like those by nickel-and-diming people on moving day.</span></p>
+    <p>TX TxDMV #006604158C · US DOT #2193963 &nbsp;|&nbsp; FL Mover Reg. No. IM3621 · US DOT #3882313</p>
+    <p class="devnote">SERVICES HUB DRAFT v1 · 7/1/2026 — the /services/ hub (pg-service blueprint, hub skeleton only; 7/1 errata governs). Per-service child pages = KP-built template later — all card links + city pills are "#" placeholders. Specialty note matches real policy (400-lb limit, no grand pianos). Emoji = placeholder icons; FAQ mirrored in FAQPage JSON-LD (verified answers only); phone = dummy.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root = document.getElementById('faqList'); if(!root) return;
+  root.querySelectorAll('.faq-item').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var ans = btn.nextElementSibling; if(!ans) return;
+      var open = btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded', open?'false':'true');
+      ans.hidden = open;
+      var t = btn.querySelector('.t'); if(t) t.textContent = open ? '+' : '–';
+    });
+  });
+})();
+</script>
+<script src="feedback.js"></script>
+</body></html>

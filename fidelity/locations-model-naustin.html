@@ -1,0 +1,545 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<title>North Austin Movers — Einstein Moving Company (Locations template draft — N. Austin model)</title>
+<!--
+  LOCATIONS MODEL PAGE v1 — 2026-07-01. North Austin = THE TEMPLATE (1 of 10 branches).
+  KP stamps this template across all 10 cities from a per-branch data file. Every branch-specific
+  value is marked with a visible token comment:  [BRANCH-DATA: key]  — nothing untagged should vary by city.
+  Built off the pg-locations blueprint (build-plan/index.html) + the 7/1 ERRATA locks + live-site-copy.md
+  (North Austin capture = default carry, close to verbatim; adaptations marked inline with ADAPTED comments).
+  Inherits the coverage-page/homepage-v2 design system verbatim (tokens, Lora sections, nav/footer chrome).
+  TX page: footer shows the TX reg line ONLY. FL branches (Tampa) swap award frame, reg line, and legal notes.
+  PRODUCTION GAPS (devnoted): mobile hamburger nav · live GBP map embed + reviews-widget styling latitude ·
+  LocalBusiness + FAQPage JSON-LD generator · quote Step-0 city pre-fill · sticky bottom CTA bar.
+-->
+<!--
+  PRODUCTION JSON-LD TEMPLATE (emit per branch at build; kept commented in this draft):
+  <script type="application/ld+json">
+  { "@context":"https://schema.org", "@type":"MovingCompany",
+    "name":"Einstein Moving Company — [BRANCH-DATA: city]",
+    "address":{ "@type":"PostalAddress", "streetAddress":"[BRANCH-DATA: address]", "addressLocality":"[BRANCH-DATA: address-city]", "addressRegion":"[BRANCH-DATA: state]", "postalCode":"[BRANCH-DATA: zip]" },
+    "telephone":"[BRANCH-DATA: phone]",
+    "openingHours":"[BRANCH-DATA: hours]",
+    "aggregateRating":{ "@type":"AggregateRating", "ratingValue":"4.9", "reviewCount":"[BRANCH-DATA: reviews]" },
+    "sameAs":["[BRANCH-DATA: gbp-url]"] }
+  </script>
+  Plus FAQPage JSON-LD mirroring the visible FAQ below (localized Q uses the city name).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-50:#EEF1F4; --navy-500:#27343D; --navy-700:#1A2329;
+  --orange-50:#FEF6EC; --orange-100:#FDE3C2; --orange-300:#F5A054; --orange-500:#EF8B22; --orange-700:#D96B10; --orange-900:#CC5500;
+  --blue-50:#EBF4FB; --blue-100:#C3DFEF; --blue-500:#0979C3; --blue-700:#065E9A;
+  --grey-50:#F4F5F5; --grey-100:#E2E3E4; --grey-500:#53575A;
+  --success-text:#3F7A33; --success-bg:#EFF5EC; --error:#CC0100; --error-bg:#FCF3F3; --paid:#B5651D; --star:#F5A623;
+  --radius:12px; --radius-btn:8px; --shadow-sm:0 2px 14px rgba(11,16,20,.05);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Roboto,system-ui,sans-serif;color:var(--navy-500);background:#fff;margin:0;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+h1,h2.sec{font-family:Lora,serif;font-weight:700;letter-spacing:-.01em}
+h2.sec{font-size:31px;line-height:1.16;text-align:center;margin:0 0 14px}
+h2.sec .a{color:var(--orange-900)}
+.sub{text-align:center;color:var(--grey-500);font-size:16.5px;max-width:680px;margin:0 auto 30px}
+.sub b{color:var(--navy-500)}
+.block{padding:68px 0}
+.btn-primary{display:inline-block;background:var(--blue-500);color:#fff;padding:16px 34px;border-radius:var(--radius-btn);font-weight:700;font-size:17px;text-decoration:none;box-shadow:0 4px 14px rgba(9,121,195,.28)}
+.btn-primary:hover{background:var(--blue-700)}
+.microproof{margin:14px 0 0;color:var(--grey-500);font-size:13.5px;text-align:center}
+a{color:var(--blue-500)}
+
+nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--grey-100)}
+.nav-in{max-width:1100px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:20px}
+.logo{font-weight:700;font-size:17px}.logo .head{color:var(--orange-900)}
+.logo a{color:var(--navy-500);text-decoration:none}
+.nav-links{display:flex;gap:22px;margin-left:auto}
+.nav-links a{color:var(--navy-500);text-decoration:none;font-weight:600;font-size:14.5px}
+.nav-links a:hover{color:var(--blue-500)}
+.nav-links a.on{color:var(--orange-900)}
+.btn-nav{display:inline-block;background:var(--orange-500);color:var(--navy-500);padding:12px 22px;border-radius:var(--radius-btn);font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.5px;text-decoration:none;white-space:nowrap}
+.btn-nav:hover{background:var(--orange-700)}
+@media(max-width:760px){.nav-links{display:none}} /* PRODUCTION GAP: add hamburger below 760px */
+
+.hero{background:var(--orange-50);text-align:center;padding:60px 0 56px}
+.hero .geochip{display:inline-block;background:#fff;border:1px solid var(--orange-100);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--grey-500);margin-bottom:18px}
+.hero .geochip a{font-weight:700}
+.hero h1{font-size:40px;line-height:1.12;margin:0 0 10px;max-width:820px;margin-left:auto;margin-right:auto}
+.hero h1 .a{color:var(--orange-900)}
+.awardline{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:7px 16px;font-size:13.5px;font-weight:700;margin:6px 0 18px}
+.awardline .yrs{font-weight:400;color:var(--grey-500)}
+.hero .lead{font-size:18px;line-height:1.55;max-width:640px;margin:0 auto 20px}
+.hero .lead b{color:var(--navy-500)}
+.hero-bullets{list-style:none;padding:0;margin:0 auto 24px;max-width:460px;text-align:left;font-size:16px}
+.hero-bullets li{padding:5px 0 5px 30px;position:relative}
+.hero-bullets li::before{content:"✓";position:absolute;left:0;color:var(--success-text);font-weight:700}
+.hero-bullets b{color:var(--navy-500)}
+@media(max-width:620px){.hero h1{font-size:29px}}
+
+.trustband{background:#fff;border-bottom:1px solid var(--grey-100);padding:26px 0}
+.tcells{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:920px;margin:0 auto}
+.tcell{text-align:center;padding:10px 14px;border-left:1px solid var(--grey-100)}
+.tcell:first-child{border-left:none}
+.tcell .scope{display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--orange-900);margin-bottom:4px}
+.tcell .big{font-size:16px;font-weight:700}
+.tcell .m{display:block;font-size:12.5px;color:var(--grey-500);margin-top:2px}
+.tcell .stars{color:var(--star);letter-spacing:1px}
+@media(max-width:660px){.tcells{grid-template-columns:1fr}.tcell{border-left:none;border-top:1px solid var(--grey-100);padding-top:14px}.tcell:first-child{border-top:none}}
+
+.nd{max-width:820px;margin:0 auto;background:#fff;border:1px solid var(--grey-100);border-left:4px solid var(--orange-500);border-radius:var(--radius);padding:26px 28px;display:flex;gap:22px;align-items:center;box-shadow:var(--shadow-sm)}
+.nd .badge{flex:0 0 110px;text-align:center;background:var(--orange-50);border-radius:10px;padding:16px 8px}
+.nd .badge .ic{font-size:32px}
+.nd .badge .t{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--orange-900);margin-top:6px;line-height:1.3}
+.nd h3{margin:0 0 6px;font-family:Lora,serif;font-size:20px}
+.nd p{margin:0;font-size:15px;color:var(--grey-500);line-height:1.6}
+.nd p b{color:var(--navy-500)}
+@media(max-width:620px){.nd{flex-direction:column;text-align:center}}
+
+.proof{display:grid;grid-template-columns:52px 1fr;gap:18px;max-width:820px;margin:0 auto 22px;background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:24px 26px;box-shadow:var(--shadow-sm)}
+.proof .pic{width:52px;height:52px;border-radius:50%;background:var(--orange-50);display:flex;align-items:center;justify-content:center;font-size:24px}
+.proof .kick{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--orange-900);margin-bottom:3px}
+.proof h3{margin:0 0 8px;font-family:Lora,serif;font-size:20px}
+.proof p{margin:0 0 10px;font-size:15px;line-height:1.6;color:var(--navy-500)}
+.proof p.mut{color:var(--grey-500)}
+.proof .go{font-weight:700;font-size:14.5px}
+.incl{list-style:none;padding:0;margin:8px 0 12px;display:grid;grid-template-columns:1fr 1fr;gap:3px 18px;font-size:13.5px;color:var(--navy-500)}
+.incl li{padding:3px 0 3px 22px;position:relative}
+.incl li::before{content:"✓";position:absolute;left:0;color:var(--success-text);font-weight:700}
+.zeros{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 12px}
+.zeros span{background:var(--success-bg);color:var(--success-text);font-weight:700;font-size:12.5px;border-radius:999px;padding:4px 12px}
+@media(max-width:620px){.proof{grid-template-columns:1fr}.incl{grid-template-columns:1fr}}
+
+.bm{display:flex;gap:18px;align-items:flex-start;background:var(--orange-50);border:1px solid var(--orange-100);border-radius:10px;padding:16px 18px;margin:12px 0}
+.bm .face{flex:0 0 64px;width:64px;height:64px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:28px}
+.bm .who{font-weight:700;font-size:15px}
+.bm .who .role{font-weight:400;color:var(--grey-500);font-size:13px}
+.bm p{margin:4px 0 0;font-size:13.5px;color:var(--grey-500);line-height:1.55}
+.crewrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+.crew{background:#fff;border:1px solid var(--grey-100);border-radius:10px;padding:12px 14px;font-size:12.5px;color:var(--grey-500);line-height:1.5}
+.crew b{display:block;color:var(--navy-500);font-size:13.5px;margin-bottom:2px}
+@media(max-width:620px){.crewrow{grid-template-columns:1fr}}
+
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto}
+.card{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:22px 20px;text-align:center}
+.card .ic{width:46px;height:46px;border-radius:50%;background:var(--orange-50);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 12px}
+.card h4{margin:0 0 5px;font-size:15.5px;color:var(--orange-900)}
+.card p{margin:0;font-size:13.5px;color:var(--grey-500);line-height:1.5}
+@media(max-width:660px){.cards{grid-template-columns:1fr}}
+
+.hoods{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:900px;margin:0 auto}
+.hood{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:18px 18px 16px}
+.hood h4{margin:0 0 4px;font-size:15.5px}
+.hood h4 .pin{color:var(--orange-900)}
+.hood p{margin:0 0 8px;font-size:13px;color:var(--grey-500);line-height:1.5}
+.hood a{font-weight:700;font-size:13px;text-decoration:none}
+@media(max-width:660px){.hoods{grid-template-columns:1fr}}
+
+.logi{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:900px;margin:0 auto}
+.napcard,.mapcard{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:22px 24px;font-size:14.5px;line-height:1.7}
+.napcard b.h{display:block;font-family:Lora,serif;font-size:17px;margin-bottom:8px}
+.napcard .lbl2{display:inline-block;min-width:72px;color:var(--grey-500);font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.mapcard{display:flex;align-items:center;justify-content:center;border-style:dashed;color:var(--grey-500);text-align:center;font-size:13.5px;min-height:220px}
+.honest{max-width:900px;margin:16px auto 0;background:var(--orange-50);border:1px solid var(--orange-100);border-radius:10px;padding:18px 22px;font-size:14.5px;line-height:1.6}
+.honest b{color:var(--navy-500)}
+.honest .t{font-weight:700;color:var(--orange-900);text-transform:uppercase;letter-spacing:.05em;font-size:12px;display:block;margin-bottom:6px}
+@media(max-width:660px){.logi{grid-template-columns:1fr}}
+
+.faq{max-width:760px;margin:0 auto}
+.faq details{background:#fff;border:1px solid var(--grey-100);border-radius:10px;margin-bottom:10px;padding:0 20px}
+.faq summary{cursor:pointer;font-weight:700;font-size:15.5px;padding:16px 0;list-style:none;position:relative;padding-right:28px}
+.faq summary::after{content:"+";position:absolute;right:2px;top:14px;color:var(--orange-900);font-size:20px;font-weight:400}
+.faq details[open] summary::after{content:"–"}
+.faq .ans{padding:0 0 16px;font-size:14.5px;color:var(--grey-500);line-height:1.65}
+.faq .ans b{color:var(--navy-500)}
+.faq .ans ul{margin:8px 0 0;padding-left:20px}
+
+.guide{max-width:760px;margin:0 auto;background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:26px 28px;box-shadow:var(--shadow-sm)}
+.guide h3{font-family:Lora,serif;margin:0 0 10px;font-size:20px}
+.guide ul{margin:0;padding-left:4px;list-style:none}
+.guide li{font-size:14.5px;color:var(--grey-500);line-height:1.6;padding:6px 0}
+.guide li b{color:var(--navy-500)}
+.resrow{max-width:760px;margin:18px auto 0;text-align:center;font-size:13.5px;color:var(--grey-500)}
+.resrow a{font-weight:600;white-space:nowrap}
+
+.cities{max-width:900px;margin:0 auto}
+.cities .grp{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--orange-900);margin:18px 0 10px;text-align:center}
+.citygrid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.citygrid a{background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:9px 18px;font-size:14px;font-weight:600;color:var(--navy-500);text-decoration:none}
+.citygrid a:hover{border-color:var(--blue-500);color:var(--blue-500)}
+
+.proofband{background:var(--navy-50);padding:64px 0;text-align:center}
+.trust-row{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;font-size:14px;color:var(--grey-500);font-weight:600;margin-bottom:22px}
+.trust-row .stars{color:var(--star);letter-spacing:1px}
+.trust-row .sep{color:var(--grey-100)}
+.quoteph{max-width:560px;margin:0 auto 26px;background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:20px 24px;font-size:15px;font-style:italic;color:var(--navy-500)}
+.quoteph .who{display:block;margin-top:8px;font-style:normal;font-size:12.5px;color:var(--grey-500)}
+.smallline{margin-top:22px;font-size:13px;color:var(--grey-500)}
+.smallline a{font-weight:600}
+
+footer{background:var(--navy-700);color:#B9C4CC;padding:44px 0 36px;font-size:13px;text-align:center}
+footer .canon{color:#EAEEF0;font-size:14.5px;max-width:680px;margin:0 auto 14px}
+footer .canon .smart{color:var(--orange-300)}
+footer a{color:var(--blue-100)}
+footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
+</style></head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="logo"><a href="homepage-hybrid.html"><span class="head">🧠</span> Einstein Moving Co.</a></div>
+    <div class="nav-links">
+      <a href="pricing-page.html">Pricing</a>
+      <a href="coverage-page.html">Coverage</a>
+      <a href="why-us-page.html">Why Us</a>
+      <a href="about-page.html">About</a>
+      <a href="#" class="on">Locations</a>
+    </div>
+    <a class="btn-nav" href="https://www.einsteinmoving.com/quote/">See My Price</a>
+  </div>
+</nav>
+
+<!-- ============ 1. GEO HERO — H1 city+movers, verified award proofline ============ -->
+<header class="hero">
+  <div class="wrap">
+    <!-- [BRANCH-DATA: city] value="North Austin" — drives geochip, H1, subhead, CTA label -->
+    <div class="geochip">📍 You&rsquo;re looking at our North Austin branch — <a href="#cities">not your city? Pick yours ↓</a></div>
+    <h1>North Austin Movers — <span class="a">voted Austin&rsquo;s best, ten times.</span></h1>
+    <!-- [BRANCH-DATA: hero-award] value="10x Best of Austin · Austin Chronicle · 2016–2026" — verified 7/1 canon.
+         ADAPTED: live page said "9 Years Running / 2017→2025"; updated to the 10x canon. FL pages (Tampa) swap
+         to their real honor (e.g. Neighborhood Favorite) — NEVER reuse a TX award on an FL page. -->
+    <div class="awardline">🏆 10x Best of Austin <span class="yrs">· Austin Chronicle · 2016–2026</span></div>
+    <!-- Carried from live hero + keyworded subhead per blueprint FIX 1. [BRANCH-DATA: hero-localities] -->
+    <p class="lead">North Austin&rsquo;s most trusted moving team since 2012. From Pflugerville to The Domain, we&rsquo;re the home &amp; apartment movers who make moving day feel easy — with:</p>
+    <!-- Hero bullets carried near-verbatim from live — they already match the 3 locked leads -->
+    <ul class="hero-bullets">
+      <li><b>Zero hidden fees.</b> The rate you see is the whole rate.</li>
+      <li><b>$2,000 of damage coverage.</b> For free — and not by the pound.</li>
+      <li><b>A trusted, internal team</b> of background-checked movers you&rsquo;ll meet before move day.</li>
+    </ul>
+    <p class="lead" style="margin-bottom:22px">Let us take the guesswork out of moving day.</p>
+    <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real North Austin price →</a>
+    <div class="microproof">No deposit · Free cancellation · Instant online quote</div>
+  </div>
+</header>
+
+<!-- ============ 2. BRANCH TRUST STRIP — scope-labeled so local vs company numbers never blur ============ -->
+<section class="trustband">
+  <div class="wrap">
+    <div class="tcells">
+      <div class="tcell">
+        <span class="scope">This branch</span>
+        <!-- [BRANCH-DATA: reviews] value="1,400+" — [VERIFY current count — pull from N. Austin GBP before ship] -->
+        <span class="big"><span class="stars">★★★★★</span> 4.9 · 1,400+ Google reviews</span>
+        <span class="m">Real, verified North Austin reviewers</span>
+      </div>
+      <div class="tcell">
+        <span class="scope">This market</span>
+        <!-- [BRANCH-DATA: market-awards] value="10x Best of Austin (2016–2026)" -->
+        <span class="big">🏆 10x Best of Austin</span>
+        <span class="m">Austin Chronicle, voted by real Austinites — plus 7x Inc. 5000 (2018–2024) company-wide</span>
+      </div>
+      <div class="tcell">
+        <span class="scope">Company-wide</span>
+        <span class="big">8,100+ reviews · 55+ awards</span>
+        <span class="m">100,000+ moves across Texas &amp; Tampa, FL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. NEXTDOOR NEIGHBORHOOD FAVORITE — designated home per 7/1 decision ============ -->
+<section class="block" style="padding:56px 0">
+  <div class="wrap">
+    <h2 class="sec">Your neighbors <span class="a">already voted.</span></h2>
+    <div class="nd">
+      <div class="badge">
+        <div class="ic">🏆</div>
+        <!-- [BRANCH-DATA: nextdoor] — [VERIFY which years the N. Austin branch won Nextdoor Neighborhood Favorite] -->
+        <div class="t">Nextdoor<br>Neighborhood<br>Favorite</div>
+      </div>
+      <div>
+        <h3>Voted your neighbors&rsquo; favorite movers</h3>
+        <!-- Carried verbatim from live trust card -->
+        <p>Your neighbors voted. Not strangers, not bots, but <b>the actual people on your street</b> who&rsquo;ve watched our trucks pull up and our crews get to work. Nextdoor&rsquo;s Neighborhood Favorite award only counts votes from verified locals — which is exactly the kind of review we like.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. THE 3-PROOF RECAP — pricing / coverage / movers (teasers → link, never duplicate) ============ -->
+<section class="block" style="background:var(--grey-50)">
+  <div class="wrap">
+    <h2 class="sec">Same honest deal in North Austin <span class="a">as everywhere we operate.</span></h2>
+    <p class="sub">Ten branches, one system. Here&rsquo;s the short version of why your neighbors keep hiring us — each one has a whole page of receipts behind it.</p>
+
+    <!-- Proof 1: PRICING HONESTY — live pricing section carried; dollar receipts stay on the quote page -->
+    <div class="proof">
+      <div class="pic">💰</div>
+      <div>
+        <span class="kick">Pricing honesty</span>
+        <h3>Straightforward hourly rates. No hidden fees. No move-day surprises.</h3>
+        <!-- ADAPTED: live "What we quote is what you pay" → rate-level phrasing per honesty lock -->
+        <p>Wondering what movers actually cost? We bill by the hour, and we&rsquo;ll give you a clear rate before anything is scheduled. No lowball rates designed to look good and hurt later — <b>the rate you see is the whole rate. Nothing gets added at the bottom.</b></p>
+        <div class="zeros"><span>Deposit: $0</span><span>Fuel surcharge: $0</span><span>Card fee: $0</span><span>Wraps &amp; pads: $0</span></div>
+        <p class="mut" style="font-size:13.5px;margin-bottom:6px"><b style="color:var(--navy-500)">What&rsquo;s included in your hourly rate, every move:</b></p>
+        <!-- Inclusions checklist carried from live (9 items; "standard insurance" line reworded — coverage, never "insured") -->
+        <ul class="incl">
+          <li>2+ trained &amp; vetted movers (you meet beforehand!)</li>
+          <li>A fully equipped moving truck — and gas, inside the free service area</li>
+          <li>Loading and unloading of belongings</li>
+          <li>Assembly &amp; disassembly of standard furniture</li>
+          <li>$2,000 damage coverage, for FREE</li>
+          <li>Wraps, pads &amp; protection equipment at no extra cost</li>
+          <li>An arrival window of 2 hours or less (guaranteed)</li>
+          <li>Taxes — already in the rate</li> <!-- ADAPTED: live said "Taxes and standard insurance included" -->
+          <li>Fuel surcharges &amp; credit card fees — already accounted for</li>
+        </ul>
+        <a class="go" href="pricing-page.html">Why most movers&rsquo; low rate is like a resort&rsquo;s room rate — the full pricing breakdown →</a>
+      </div>
+    </div>
+
+    <!-- Proof 2: COVERAGE — killer stat only; the wedding-ring metaphor + payout table live on the Coverage page -->
+    <div class="proof">
+      <div class="pic">🛡️</div>
+      <div>
+        <span class="kick">Damage coverage</span>
+        <h3>$2,000 of coverage on every move. Free. And not by the pound.</h3>
+        <!-- Carried from live FAQ "What if something breaks?" -->
+        <p>The industry default is 60&#162; per pound — that&rsquo;s like getting a <b>$30 check for a broken $1,000 TV.</b> We cover your belongings for what they&rsquo;re actually worth, on every single move, at no extra cost. Your floors, walls, and doorframes too.</p>
+        <a class="go" href="coverage-page.html">See exactly what&rsquo;s covered (and the honest edges) →</a>
+      </div>
+    </div>
+
+    <!-- Proof 3: MEET YOUR MOVERS — BM/crew slot. [VERIFY: N. Austin manager face — Calvin Hughes transitioning
+         to remote-flex manager; N. Austin BM posting open. Confirm the face before this page ships.] -->
+    <div class="proof">
+      <div class="pic">👋</div>
+      <div>
+        <span class="kick">Meet your movers</span>
+        <h3>Get to know who&rsquo;s moving you.</h3>
+        <!-- Carried verbatim from live team intro -->
+        <p>No random strangers at your door. Before move day, we send you photos and bios of your crew. Everyone&rsquo;s background-checked, fully trained, and actually good at this.</p>
+        <div class="bm">
+          <div class="face">🧑‍💼</div> <!-- devnote: emoji = placeholder; production = real headshot -->
+          <div>
+            <!-- [BRANCH-DATA: manager] value="Calvin H." — [VERIFY before ship: Calvin → remote-flex; BM posting open] -->
+            <div class="who">Calvin H. <span class="role">— North Austin Management</span></div>
+            <!-- Condensed from Calvin's live bio -->
+            <p>Raised on a New Hampshire dairy farm, landed in Austin in 2012 for the music scene, and has run moves here for 5+ years. Working on his first novel — very slowly. Runs this branch — not slowly at all.</p>
+          </div>
+        </div>
+        <div class="crewrow">
+          <!-- Crew teasers condensed from live roster bios; full roster = production decision (see devnote) -->
+          <div class="crew"><b>Andrew M. — Mover</b> Does stand-up all over Austin — anywhere with a microphone that isn&rsquo;t an active crime scene.</div>
+          <div class="crew"><b>Adam H. — Mover</b> Determined to work his hardest every day and rave to the grave.</div>
+          <div class="crew"><b>+ 50 more</b> Every North Austin mover has a real photo and bio you&rsquo;ll see before move day.</div>
+        </div>
+        <a class="go" href="why-us-page.html" style="display:inline-block;margin-top:10px">How we pick these people (fewer than 1 in 100 make it) →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. SERVICES GRID — Elizabeth's must-add; live 6 cards carried verbatim ============ -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">Our North Austin full-service <span class="a">moving services.</span></h2>
+    <!-- [BRANCH-DATA: city] in heading + card copy localities -->
+    <p class="sub">Full-service moving means exactly that. Disassembly, packing, loading, driving, unloading, reassembly — homes, apartments, offices, local or long-distance. <b>One team, one plan, zero chaos.</b></p>
+    <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+      <!-- [BRANCH-DATA: service-localities] — per-card neighborhood names swap per branch -->
+      <div class="card"><div class="ic">🏠</div><h4>Residential Moves</h4><p>From first homes in Pflugerville to fresh starts in Cedar Park. We handle the heavy lifting with care.</p></div>
+      <div class="card"><div class="ic">🏢</div><h4>Apartment Moves</h4><p>Third-floor walk-up in Hyde Park? We bring expert stair skills and calm confidence to every apartment.</p></div>
+      <div class="card"><div class="ic">💼</div><h4>Office Moves</h4><p>Relocating to Downtown Austin? We get you there with minimal downtime and your team back to business fast.</p></div>
+      <div class="card"><div class="ic">📦</div><h4>Expert Packing Services</h4><p>Short on time? Need help with fragile stuff? We pack like pros, so you don&rsquo;t have to.</p></div>
+      <div class="card"><div class="ic">🚛</div><h4>Portable &amp; Storage Moves</h4><p>Renovating, relocating, or just making space? We&rsquo;ll move your stuff into or out of storage with care.</p></div>
+      <div class="card"><div class="ic">🗺️</div><h4>Long Distance Moves in Texas</h4><p>Heading from North Austin to Dallas, Houston, or anywhere else in the Lone Star State? We&rsquo;ve got your long-distance move covered.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. NEIGHBORHOODS SERVED — live service-area list as tiles ============ -->
+<section class="block" style="background:var(--grey-50)">
+  <div class="wrap">
+    <h2 class="sec">Moving around North Austin? <span class="a">We know the block.</span></h2>
+    <p class="sub">We proudly service these communities and beyond — same crew standard, same rate honesty, every zip code.</p>
+    <!-- [BRANCH-DATA: neighborhoods] value="Coupland · Elgin · Georgetown · Hutto · Manor · Pflugerville · Round Rock"
+         Carried from the live service-areas list. [VERIFY: Georgetown appears in the live service-area list but NOT in
+         the live contact block's supported-areas list — confirm N. Austin (vs Leander) actually owns Georgetown.]
+         Tile flavor lines = NEW template copy (live only listed names) — stamp per branch from the data file. -->
+    <div class="hoods">
+      <div class="hood"><h4><span class="pin">📍</span> Pflugerville</h4><p>Fast-growing, family-heavy, and half our repeat customers. We know the subdivisions by name.</p><a href="https://www.einsteinmoving.com/quote/">See my real price →</a></div>
+      <div class="hood"><h4><span class="pin">📍</span> Round Rock</h4><p>From starter homes to the big backyard upgrade — Round Rock moves are our bread and butter.</p><a href="https://www.einsteinmoving.com/quote/">See my real price →</a></div>
+      <div class="hood"><h4><span class="pin">📍</span> Georgetown</h4><p>Square-adjacent charm, growing fast. We handle the trip planning; you handle the housewarming.</p><a href="https://www.einsteinmoving.com/quote/">See my real price →</a></div>
+      <div class="hood"><h4><span class="pin">📍</span> Hutto</h4><p>Hippo country. Our crews have moved more Hutto families every year since the boom started.</p><a href="https://www.einsteinmoving.com/quote/">See my real price →</a></div>
+      <div class="hood"><h4><span class="pin">📍</span> Manor</h4><p>Minutes from the branch, so arrival windows here are almost unfairly easy to hit.</p><a href="https://www.einsteinmoving.com/quote/">See my real price →</a></div>
+      <div class="hood"><h4><span class="pin">📍</span> Elgin &amp; Coupland</h4><p>Sausage capital and quiet country roads — yes, we come out this far, and yes, we&rsquo;ll tell you the trip cost upfront.</p><a href="https://www.einsteinmoving.com/quote/">See my real price →</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. LOCAL LOGISTICS — NAP + service radius + trip-fee disclosure + GBP map ============ -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">The branch itself — <span class="a">where we are, when we work.</span></h2>
+    <div class="logi">
+      <div class="napcard">
+        <b class="h">Einstein Moving Company — North Austin</b>
+        <!-- [BRANCH-DATA: address] value="9200 Brown Lane, Suite A, Austin, TX 78754" -->
+        <div><span class="lbl2">Address</span> 9200 Brown Lane, Suite A, Austin, TX 78754</div>
+        <!-- [BRANCH-DATA: phone] — dummy per draft lock; live N. Austin number = 737.377.4537, stamp at build -->
+        <div><span class="lbl2">Phone</span> <a href="tel:7375550100">737-555-0100</a></div>
+        <!-- [BRANCH-DATA: hours] -->
+        <div><span class="lbl2">Hours</span> Mon–Fri 8:00 AM – 5:30 PM · Sat–Sun 8:30 AM – 4:30 PM</div>
+        <!-- Payment policy carried from live contact block -->
+        <div style="margin-top:10px;font-size:13px;color:var(--grey-500)"><b style="color:var(--navy-500)">Payment:</b> We accept all major credit cards but do not accept cash or checks. Companies needing to pay by check for an office move can contact our office to confirm a check is acceptable.</div>
+      </div>
+      <div class="mapcard">
+        <!-- [BRANCH-DATA: gbp-embed] — PRODUCTION: live Google Business Profile map embed for this branch.
+             Also confirm GatherUp/GBP reviews-widget restyle latitude (Elizabeth's open question). -->
+        <div>🗺️<br><b>Google Business Profile map embed</b><br>(placeholder — production wires the live GBP embed per branch)</div>
+      </div>
+    </div>
+    <div class="honest">
+      <span class="t">The trip-fee straight talk</span>
+      <!-- [BRANCH-DATA: service-radius + trip-fee] — [VERIFY exact free-radius miles + trip-fee mechanics per branch] -->
+      Moves inside our free service area (roughly <b>10–15 miles of the branch</b> <i>[VERIFY exact radius]</i>) include the truck, gas, and drive time in your hourly rate — no extra line. Outside that radius, there&rsquo;s a one-time trip fee — and here&rsquo;s the part that makes us weird in this industry: <b>it&rsquo;s on your quote before you book,</b> not discovered on the invoice. If we&rsquo;re driving to Coupland, you&rsquo;ll know what that costs before we do.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. LOCAL FAQ — carried from live (10 highest-value Qs, near-verbatim) ============ -->
+<section class="block" style="background:var(--grey-50)">
+  <div class="wrap">
+    <h2 class="sec">Fair questions. <span class="a">Straight answers.</span></h2>
+    <div class="faq">
+      <details>
+        <summary>What if my movers are late?</summary>
+        <div class="ans">If your movers are late, you get a discount! Most movers give you a 4–8 hour arrival window and hope for the best. We commit to a <b>2-hour window</b>. If we miss it, you get a discount that grows the longer you wait. We call it our On-Time Guarantee, and we rarely need it.</div>
+      </details>
+      <details>
+        <summary>What if something breaks?</summary>
+        <div class="ans">$2,000 damage coverage. Included. Free. The industry default is 60 cents per pound — that&rsquo;s like giving $30 for breaking a $1,000 TV. We cover your belongings the way they should be covered, on every single move, at no extra cost. <a href="coverage-page.html">Exactly what&rsquo;s covered (and the honest edges) is all on our Coverage page →</a></div>
+      </details>
+      <details>
+        <summary>How long does moving in North Austin take?</summary>
+        <!-- [BRANCH-DATA: move-duration] value="2.5 hrs min / 7 hrs avg" — [VERIFY current per-branch figures] -->
+        <div class="ans">Moves in North Austin take either 2.5 hours minimum or 7 hours on average. Larger moves, longer timelines. Move time depends on size, distance, and the number of stops. We&rsquo;ll give you a realistic estimate upfront so there&rsquo;s no guessing games!</div>
+      </details>
+      <details>
+        <summary>Who&rsquo;s showing up at my door?</summary>
+        <div class="ans">No strangers showing up unannounced. A few days before your move, we send your crew&rsquo;s names, photos, and bios. All background-checked, all pros.</div>
+      </details>
+      <details>
+        <summary>Can I cancel my move?</summary>
+        <div class="ans">Yes, free cancellation. No deposit required to book. Plans change, we get it. Just give us as much notice as you can.</div>
+      </details>
+      <details>
+        <summary>How can I save money when hiring movers?</summary>
+        <div class="ans">The best way to save money on a move is to reduce what moving crews have to handle. The more prep you do before move day, the faster the move, and the lower the bill.
+          <ul>
+            <li>Disassemble complex furniture like bunk beds or workout equipment ahead of time.</li>
+            <li>Box up as much as possible before we arrive.</li>
+            <li>Move small misc items (lamps, wall art, garage items) yourself in your own car.</li>
+            <li>Declutter first — don&rsquo;t pay to move things you don&rsquo;t need!</li>
+            <li>Take advantage of free boxes.</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>What if my new place has stairs, a freight elevator, or tricky access?</summary>
+        <div class="ans">No worries, our crews are trained for stairs and places with tricky access. Just mention any access quirks (narrow hallways, walk-up floors, parking restrictions) when you book so we can plan ahead and avoid any surprises on move day.</div>
+      </details>
+      <details>
+        <summary>Do you move specialty items like pianos, safes, or large furniture?</summary>
+        <div class="ans">Due to liability concerns, we&rsquo;re unable to move items that weigh more than <b>400 lbs</b> (with certain exceptions), and we don&rsquo;t move grand or baby grand pianos. Upright pianos are fine as long as they&rsquo;re not going up or down stairwells. Pool tables must be disassembled with the slates removed. No vehicle transport (cars, golf carts, dirt bikes, riding mowers), and nothing perishable, prohibited, or hazardous. Unsure about your item? Contact us and we&rsquo;ll help.</div>
+      </details>
+      <details>
+        <summary>Are packing materials included?</summary>
+        <div class="ans">We can provide boxes, wrapping paper, bubble wrap, and tape — we do charge for these, but since we buy in bulk, our pricing often beats anything you&rsquo;ll find elsewhere. If we&rsquo;re doing the packing, we bring the supplies on move day and you just pay for what we used. We don&rsquo;t deliver boxes, but you&rsquo;re welcome to come by the branch and buy them from our wonderful staff. Your own supplies? Happy to use them, as long as they&rsquo;re new or gently used (emphasis on gently).</div>
+      </details>
+      <details>
+        <summary>How do I know you&rsquo;re legit?</summary>
+        <!-- ADAPTED: live Q was "Do you have moving insurance?" — reworded to registration/verification framing
+             per the coverage-never-"insured" lock; verification numbers carried from live. -->
+        <div class="ans">Fair question — this industry earned the skepticism. Every Texas mover is required to register with the Texas Department of Motor Vehicles and carry liability for damaged or lost goods. Don&rsquo;t take our word for it: look us up in the TxDMV database with our USDOT number, <b>2193963</b>. (Florida folks: our FL USDOT is 3882313.)</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. LOCAL LIVING GUIDE — carried compact from live ============ -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">So you&rsquo;re moving to North Austin? <span class="a">Here&rsquo;s what the locals already know.</span></h2>
+    <!-- [BRANCH-DATA: living-guide] — full per-city guide content stamps from the data file -->
+    <div class="guide">
+      <ul>
+        <li>🏫 <b>Schools:</b> North Austin is home to some of Austin&rsquo;s highest-rated school districts. If you have kids, research Round Rock ISD and Pflugerville ISD early — neighborhoods fill up fast.</li>
+        <li>🛍️ <b>Your new weekend routine:</b> The Domain and The Arboretum cover just about everything you need for shopping, dining, and people-watching. Block off your first Saturday and explore.</li>
+        <li>🚴 <b>Get outside early:</b> Walnut Creek Park and Brushy Creek Trail are gems. Hit them on a weekday morning before the crowds show up.</li>
+        <li>🍽️ <b>Bookmark Burnet Road:</b> New restaurants open here constantly. Follow a few local Austin food blogs to stay ahead of what&rsquo;s new.</li>
+        <li>💼 <b>The job market is real:</b> Clean energy, tech, and advanced manufacturing are booming here. If you&rsquo;re still job hunting, North Austin is worth exploring before you&rsquo;ve even unpacked.</li>
+      </ul>
+    </div>
+    <!-- Resource cross-links carried slim from live "More Tips For A Stress-Free Move" -->
+    <p class="resrow">We&rsquo;re not just movers — we&rsquo;re great writers, too: <a href="#">How to Choose a Good Moving Company</a> · <a href="#">The Smart Move Checklist</a> · <a href="#">Moving Budget Template</a> · <a href="#">Smart Guide to Moving</a> <!-- [VERIFY live article URLs at build] --></p>
+  </div>
+</section>
+
+<!-- ============ 10. OTHER CITIES — 9 remaining branches, TX/FL separated ============ -->
+<section class="block" id="cities" style="background:var(--grey-50);padding:56px 0">
+  <div class="wrap">
+    <h2 class="sec">Not in North Austin? <span class="a">We&rsquo;ve got nine more front doors.</span></h2>
+    <p class="sub">Same system, same coverage, same rate honesty — with a local crew that knows your streets.</p>
+    <div class="cities">
+      <!-- [BRANCH-DATA: sibling-branches] — grid excludes the CURRENT city; TX and FL always visually separated -->
+      <div class="grp">Texas</div>
+      <div class="citygrid">
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/south-austin-movers/">South Austin</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/leander-movers/">Leander</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/san-antonio-movers/">San Antonio</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/houston-movers/">Houston</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/dallas-movers/">Dallas</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/fort-worth-movers/">Fort Worth</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/garland-movers/">Garland</a>
+        <a href="https://www.einsteinmoving.com/locations/texas-movers/mckinney-movers/">McKinney</a>
+      </div>
+      <div class="grp">Florida</div>
+      <div class="citygrid">
+        <a href="https://www.einsteinmoving.com/locations/florida-movers/tampa-movers/">Tampa</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. CTA CLOSE — local proof + exit ramp ============ -->
+<section class="proofband">
+  <div class="wrap">
+    <!-- [BRANCH-DATA: reviews] repeated here, scope-labeled local -->
+    <div class="trust-row"><span class="stars">★★★★★</span> 4.9 · 1,400+ North Austin reviews <span class="sep">·</span> 10x Best of Austin <span class="sep">·</span> Company-wide: 100,000+ moves</div>
+    <div class="quoteph">&ldquo;[CARRY VERBATIM — pull a real named North Austin Google review before ship; pick one that mentions the crew by name or the bill matching the rate]&rdquo;<span class="who">Real reviewer name · North Austin</span></div>
+    <h2 class="sec">That&rsquo;s the Smart Move. <span class="a">Now let&rsquo;s do yours.</span></h2>
+    <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real North Austin price →</a>
+    <div class="microproof">No deposit · Free cancellation · Instant online quote</div>
+    <!-- Environmental commitment demoted from full live section to one ambient line (four-trees = cut from lead per 7/1 positioning) -->
+    <p class="smallline">🌳 Every move we complete plants four trees, through Eden: People + Planet. &nbsp;·&nbsp; Owned since day one by <a href="about-page.html">Cameron Brown &amp; Paul Morin — two kindergarten friends who thought moving could suck less</a>.</p>
+    <p class="smallline">Big, weird, or complicated move? Skip the form — call or text <a href="tel:7375550100">737-555-0100</a> <!-- [BRANCH-DATA: phone] --> and a real North Austin human will figure it out with you.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don&rsquo;t earn numbers like those by nickel-and-diming people on moving day.</span></p>
+    <!-- [BRANCH-DATA: reg-line] — REGION RULE: TX branches show the TX line ONLY; Tampa/FL pages swap to
+         "FL Mover Reg. No. IM3621 · US DOT #3882313" and drop the TX line. Never stack both on a branch page. -->
+    <p>TX TxDMV #006604158C · US DOT #2193963</p>
+    <p class="devnote">LOCATIONS MODEL PAGE v1 · 7/1/2026 — North Austin = the template KP stamps across all 10 branches from a per-branch data file (every city-specific value carries a [BRANCH-DATA] comment in source). Built off the pg-locations blueprint + 7/1 errata locks + live N. Austin copy (default carry). Emoji = placeholder icons; headshots = placeholders; phone = dummy; GBP map = placeholder. [VERIFY] before ship: branch review count · Nextdoor win years · N. Austin manager face (Calvin → remote-flex) · free-radius miles + trip fee · Georgetown ownership · move-duration figures. Production adds: mobile hamburger · live GBP embed · LocalBusiness + FAQPage JSON-LD (template in head comment) · quote Step-0 city pre-fill · sticky bottom CTA bar. Full 60-bio team roster from the live page = open decision (branch crew page vs. on-page).</p>
+  </div>
+</footer>
+
+<script src="feedback.js"></script>
+</body></html>

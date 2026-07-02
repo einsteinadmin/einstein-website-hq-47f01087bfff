@@ -1,0 +1,384 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<title>Einstein Moving Reviews &amp; Awards — 4.9 Stars, 8,100+ Reviews, 55+ Awards (Awards &amp; Reviews page draft)</title>
+<!--
+  AWARDS & REVIEWS PAGE DRAFT v1 — 2026-07-01. The proof page (blueprint: build-plan pg-awards, ERRATA-governed).
+  WORKSHOP DECISION PENDING: may fold into Why Us — built so the choice is real, not forced.
+  Award counts = the VERIFIED 7/1 canon ONLY (blueprint's counts were stale). NextDoor deliberately absent (location pages only).
+  DRAFT MARKERS: badge logos / influencer videos / customer photos = ASSET-GATED; GBP links = placeholder hrefs;
+  DFW award years + Tampa-market awards + Aggie 100 = [VERIFY]; emoji = placeholder icons; phone dummy.
+  Production (post-workshop): add AggregateRating + Review JSON-LD once the page is indexable.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-50:#EEF1F4; --navy-500:#27343D; --navy-700:#1A2329;
+  --orange-50:#FEF6EC; --orange-100:#FDE3C2; --orange-300:#F5A054; --orange-500:#EF8B22; --orange-700:#D96B10; --orange-900:#CC5500;
+  --blue-50:#EBF4FB; --blue-100:#C3DFEF; --blue-500:#0979C3; --blue-700:#065E9A;
+  --grey-50:#F4F5F5; --grey-100:#E2E3E4; --grey-500:#53575A;
+  --success-text:#3F7A33; --success-bg:#EFF5EC; --error:#CC0100; --error-bg:#FCF3F3; --paid:#B5651D; --star:#F5A623;
+  --radius:12px; --radius-btn:8px; --shadow-sm:0 2px 14px rgba(11,16,20,.05);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Roboto,system-ui,sans-serif;color:var(--navy-500);background:#fff;margin:0;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+h1,h2.sec{font-family:Lora,serif;font-weight:700;letter-spacing:-.01em}
+h2.sec{font-size:31px;line-height:1.16;text-align:center;margin:0 0 14px}
+h2.sec .a{color:var(--orange-900)}
+.sub{text-align:center;color:var(--grey-500);font-size:16.5px;max-width:680px;margin:0 auto 30px}
+.sub b{color:var(--navy-500)}
+.block{padding:68px 0}
+.btn-primary{display:inline-block;background:var(--blue-500);color:#fff;padding:16px 34px;border-radius:var(--radius-btn);font-weight:700;font-size:17px;text-decoration:none;box-shadow:0 4px 14px rgba(9,121,195,.28)}
+.btn-primary:hover{background:var(--blue-700)}
+.microproof{margin:14px 0 0;color:var(--grey-500);font-size:13.5px;text-align:center}
+a{color:var(--blue-500)}
+
+nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--grey-100)}
+.nav-in{max-width:1100px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:20px}
+.logo{font-weight:700;font-size:17px}.logo .head{color:var(--orange-900)}
+.logo a{color:var(--navy-500);text-decoration:none}
+.nav-links{display:flex;gap:22px;margin-left:auto}
+.nav-links a{color:var(--navy-500);text-decoration:none;font-weight:600;font-size:14.5px}
+.nav-links a:hover{color:var(--blue-500)}
+.nav-links a.on{color:var(--orange-900)}
+.btn-nav{display:inline-block;background:var(--orange-500);color:var(--navy-500);padding:12px 22px;border-radius:var(--radius-btn);font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.5px;text-decoration:none;white-space:nowrap}
+.btn-nav:hover{background:var(--orange-700)}
+@media(max-width:760px){.nav-links{display:none}}
+
+.hero{background:var(--orange-50);text-align:center;padding:64px 0 60px}
+.hero .trophy{width:56px;height:56px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 16px}
+.hero h1{font-size:40px;line-height:1.12;margin:0 0 16px;max-width:820px;margin-left:auto;margin-right:auto}
+.hero h1 .a{color:var(--orange-900)}
+.hero .lead{font-size:18px;line-height:1.55;max-width:660px;margin:0 auto 26px}
+.hero .lead b{color:var(--navy-500)}
+.hero .second{display:block;margin-top:16px;font-weight:600;font-size:14.5px}
+@media(max-width:620px){.hero h1{font-size:29px}}
+
+.truststrip{border-top:1px solid var(--grey-100);border-bottom:1px solid var(--grey-100);background:#fff}
+.truststrip .in{max-width:960px;margin:0 auto;padding:14px 22px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 26px;font-size:13.5px;font-weight:600;color:var(--grey-500)}
+.truststrip .in b{color:var(--navy-500)}
+.truststrip .stars{color:var(--star);letter-spacing:1px}
+
+.badges{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:26px auto 0}
+.badge{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:20px 18px;text-align:center;box-shadow:var(--shadow-sm)}
+.badge .logo-ph{height:74px;border:2px dashed var(--grey-100);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--grey-500);font-size:11px;line-height:1.4;padding:6px;margin-bottom:12px;background:var(--grey-50)}
+.badge .count{font-family:Lora,serif;font-size:30px;font-weight:700;color:var(--orange-900);line-height:1}
+.badge h4{margin:6px 0 3px;font-size:15.5px;color:var(--navy-500)}
+.badge .issuer{font-size:12.5px;color:var(--grey-500)}
+.badge .issuer b{color:var(--navy-500)}
+@media(max-width:660px){.badges{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.badges{grid-template-columns:1fr}}
+
+.mkt{max-width:820px;margin:26px auto 0}
+.mkt .grp{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--grey-500);margin:26px 0 8px;border-bottom:2px solid var(--navy-500);padding-bottom:6px}
+.mkt .grp:first-child{margin-top:0}
+.row{display:flex;gap:16px;align-items:baseline;justify-content:space-between;flex-wrap:wrap;background:#fff;border:1px solid var(--grey-100);border-radius:10px;padding:16px 20px;margin-bottom:10px}
+.row .claim{font-weight:700;font-size:16px}
+.row .claim .m{display:block;font-weight:400;color:var(--grey-500);font-size:13px;margin-top:3px;max-width:460px}
+.row .scope{text-align:right;font-size:13px;color:var(--grey-500);min-width:180px}
+.row .scope b{color:var(--navy-500);display:block;font-size:13.5px}
+.yrs{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end;margin-top:6px}
+.yrs span{font-size:11px;font-weight:700;background:var(--orange-50);border:1px solid var(--orange-100);color:var(--orange-900);border-radius:999px;padding:2px 8px}
+.verify{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.03em;color:var(--error);background:var(--error-bg);border-radius:999px;padding:2px 8px;text-transform:uppercase}
+@media(max-width:620px){.row .scope{text-align:left;min-width:0}.yrs{justify-content:flex-start}}
+
+.anchorband{background:#fff;text-align:center;padding:48px 0}
+.anchorband .k{font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--orange-900);margin-bottom:10px}
+.anchorband p.big{font-family:Lora,serif;font-size:24px;line-height:1.35;font-weight:700;max-width:740px;margin:0 auto}
+.anchorband p.big .a{color:var(--orange-900)}
+@media(max-width:620px){.anchorband p.big{font-size:19px}}
+
+.chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:0 0 26px}
+.chip{background:#fff;border:2px solid var(--grey-100);border-radius:999px;padding:8px 18px;font-size:13.5px;font-weight:700;color:var(--navy-500);cursor:pointer;font-family:inherit}
+.chip:hover{border-color:var(--orange-300)}
+.chip.on{border-color:var(--orange-500);color:var(--orange-900);background:var(--orange-50)}
+.wall{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:960px;margin:0 auto}
+.rev{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+.rev .stars{color:var(--star);letter-spacing:2px;font-size:14px;margin-bottom:10px}
+.rev p.q{margin:0 0 14px;font-size:14.5px;line-height:1.6;font-style:italic;flex:1}
+.rev .who{font-weight:700;font-size:14px}
+.rev .ctx{font-size:12px;color:var(--grey-500);margin-top:2px}
+.mediaph{border:2px dashed var(--grey-100);border-radius:var(--radius);background:var(--grey-50);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--grey-500);font-size:12px;line-height:1.5;padding:20px;min-height:180px}
+.mediaph .ic{font-size:30px;margin-bottom:8px}
+.mediaph b{color:var(--navy-500);font-size:12.5px}
+@media(max-width:820px){.wall{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.wall{grid-template-columns:1fr}}
+
+.gbp{background:var(--navy-50);padding:64px 0;text-align:center}
+.gbp .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:26px 0 8px}
+.btn-ghost{display:inline-block;background:#fff;color:var(--navy-500);border:2px solid var(--grey-100);padding:14px 28px;border-radius:var(--radius-btn);font-weight:700;font-size:15.5px;text-decoration:none}
+.btn-ghost:hover{border-color:var(--blue-500);color:var(--blue-500)}
+.citychips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:720px;margin:22px auto 0}
+.citychips a{font-size:12.5px;font-weight:600;color:var(--navy-500);background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:6px 14px;text-decoration:none}
+.citychips a:hover{border-color:var(--blue-500);color:var(--blue-500)}
+.gbp .tip{max-width:620px;margin:26px auto 0;background:#fff;border:1px solid var(--grey-100);border-left:4px solid var(--orange-500);border-radius:10px;padding:16px 22px;font-size:14.5px;line-height:1.6;text-align:left}
+.gbp .tip b{color:var(--navy-500)}
+
+.closeband{background:var(--orange-50);text-align:center;padding:64px 0}
+.exit{margin-top:22px;font-size:14.5px;color:var(--grey-500)}
+.exit b{color:var(--navy-500)}
+
+footer{background:var(--navy-700);color:#B9C4CC;padding:44px 0 36px;font-size:13px;text-align:center}
+footer .canon{color:#EAEEF0;font-size:14.5px;max-width:680px;margin:0 auto 14px}
+footer .canon .smart{color:var(--orange-300)}
+footer a{color:var(--blue-100)}
+footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
+</style></head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="logo"><a href="homepage-hybrid.html"><span class="head">🧠</span> Einstein Moving Co.</a></div>
+    <div class="nav-links">
+      <a href="pricing-page.html">Pricing</a>
+      <a href="coverage-page.html">Coverage</a>
+      <a href="why-us-page.html">Why Us</a>
+      <a href="#" class="on">Reviews</a>
+      <a href="about-page.html">About</a>
+    </div>
+    <a class="btn-nav" href="https://www.einsteinmoving.com/quote/">See My Price</a>
+  </div>
+</nav>
+
+<!-- ============ 1. HERO — the shelf-space claim (estimate-page voice, carried) ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="trophy">🏆</div>
+    <h1>The most awarded moving company <span class="a">EVER.</span></h1>
+    <p class="lead">Seriously — we&rsquo;re running out of shelf space. <b>55+ awards. 4.9 stars across 8,100+ reviews. 100,000+ moves.</b> And because &ldquo;most awarded&rdquo; is exactly the kind of claim a moving company would make up, this page is the receipt: every award, every issuer, every year — scope-labeled and checkable.</p>
+    <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
+    <a class="second" href="#reviews">Skip the trophies, show me the reviews ↓</a>
+    <div class="microproof">No deposit required · Free cancellation · $2,000 damage coverage included</div>
+  </div>
+</header>
+
+<!-- ============ 2. SCOPE-LABELED TRUST STRIP — labels are load-bearing on a proof page ============ -->
+<div class="truststrip">
+  <div class="in">
+    <span><span class="stars">★★★★★</span> <b>4.9/5</b> company-wide</span>
+    <span><b>8,100+ reviews</b> across 10 branches</span>
+    <span><b>55+ awards</b> — the big ones listed below</span>
+    <span><b>100,000+ moves</b> since 2012</span>
+  </div>
+</div>
+
+<!-- ============ 3. THE VERIFIED BADGE WALL — canon counts + issuer + years ============ -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">Every trophy, <span class="a">with its name tag on.</span></h2>
+    <p class="sub">Award claims are easy to make and boring to check. So we checked them for you — <b>who gave it, how many times, and when.</b> No blurring city wins into company totals.</p>
+    <div class="badges">
+      <div class="badge">
+        <div class="logo-ph">[ASSET-GATED: real Best of Austin badge tile]</div>
+        <div class="count">10×</div><h4>Best of Austin</h4>
+        <div class="issuer"><b>Austin Chronicle</b> readers&rsquo; poll · 2016&ndash;2026</div>
+      </div>
+      <div class="badge">
+        <div class="logo-ph">[ASSET-GATED: real Best in DFW badge tile]</div>
+        <div class="count">5×</div><h4>Best in DFW</h4>
+        <div class="issuer"><b>Dallas Morning News</b> · <span class="verify">[VERIFY years]</span></div>
+      </div>
+      <div class="badge">
+        <div class="logo-ph">[ASSET-GATED: real Best of San Antonio badge tile]</div>
+        <div class="count">4×</div><h4>Best of San Antonio</h4>
+        <div class="issuer"><b>San Antonio Current</b> · 2022&ndash;2025</div>
+      </div>
+      <div class="badge">
+        <div class="logo-ph">[ASSET-GATED: real Best of the Best badge tile]</div>
+        <div class="count">3×</div><h4>Best of the Best, Houston</h4>
+        <div class="issuer"><b>Houston Chronicle</b> · 2022&ndash;2024</div>
+      </div>
+      <div class="badge">
+        <div class="logo-ph">[ASSET-GATED: real Inc. 5000 badge tile]</div>
+        <div class="count">7×</div><h4>Inc. 5000</h4>
+        <div class="issuer"><b>America&rsquo;s fastest-growing companies</b> · 2018&ndash;2024</div>
+      </div>
+      <div class="badge">
+        <div class="logo-ph">[ASSET-GATED: real Forbes Home feature tile]</div>
+        <div class="count">📰</div><h4>Featured in Forbes Home</h4>
+        <div class="issuer"><b>Featured — not first.</b> We only put claims on this page we can show you.</div>
+      </div>
+    </div>
+    <p class="microproof">&ldquo;55+ awards&rdquo; is the whole shelf. These are the ones you&rsquo;d actually recognize — your city&rsquo;s page carries the local hardware.</p>
+  </div>
+</section>
+
+<!-- ============ 4. FULL HISTORY — specific beats aggregate: grouped-by-market rows w/ outlets ============ -->
+<section class="block" style="background:var(--grey-50);padding-top:60px">
+  <div class="wrap">
+    <h2 class="sec">Anyone can say &ldquo;award-winning.&rdquo;<br><span class="a">Here&rsquo;s the year-by-year.</span></h2>
+    <p class="sub">One award is a good year. A decade of them, voted by <b>the actual people we moved</b>, in four different markets, judged by four different newspapers? That&rsquo;s a pattern.</p>
+    <div class="mkt">
+      <div class="grp">Texas</div>
+      <div class="row">
+        <div class="claim">Best of Austin — 10 wins<span class="m">Austin locals have voted us their best movers ten times since 2016. A readers&rsquo; poll — not a panel, not a paid placement.</span></div>
+        <div class="scope"><b>Austin Chronicle</b>2016&ndash;2026 · <span class="verify">[VERIFY: exact win years for a year-strip — 10 wins across an 11-year span]</span></div>
+      </div>
+      <div class="row">
+        <div class="claim">Best in DFW — 5 wins<span class="m">Real DFW residents have voted us best movers five times.</span></div>
+        <div class="scope"><b>Dallas Morning News</b><span class="verify">[VERIFY years]</span></div>
+      </div>
+      <div class="row">
+        <div class="claim">Best of San Antonio — 4 straight<span class="m">SA Current readers, four years running.</span></div>
+        <div class="scope"><b>San Antonio Current</b><div class="yrs"><span>2022</span><span>2023</span><span>2024</span><span>2025</span></div></div>
+      </div>
+      <div class="row">
+        <div class="claim">Best of the Best, Houston — 3 straight<span class="m">Houston Chronicle&rsquo;s readers voted us best movers three years in a row.</span></div>
+        <div class="scope"><b>Houston Chronicle</b><div class="yrs"><span>2022</span><span>2023</span><span>2024</span></div></div>
+      </div>
+      <div class="grp">Florida</div>
+      <div class="row">
+        <div class="claim">Tampa — the newest shelf<span class="m">Tampa is our newest market, so the trophy shelf here is still filling up. The local recognitions live on the Tampa page. <span class="verify">[VERIFY: Tampa-market awards before ship]</span></span></div>
+        <div class="scope"><b>Tampa, FL</b>Local proof → Tampa branch page</div>
+      </div>
+      <div class="grp">National</div>
+      <div class="row">
+        <div class="claim">Inc. 5000 — 7 straight years<span class="m">Seven consecutive years on America&rsquo;s fastest-growing companies list. You don&rsquo;t grow like that on hidden fees.</span></div>
+        <div class="scope"><b>Inc. Magazine</b><div class="yrs"><span>2018</span><span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span></div></div>
+      </div>
+      <div class="row">
+        <div class="claim">Featured in Forbes Home<span class="m">Forbes Home featured us in their best-movers coverage. Featured, not first — and we&rsquo;re telling you that ourselves, because that&rsquo;s the whole point of this page.</span></div>
+        <div class="scope"><b>Forbes Home</b>Editorial feature</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. THE REVIEW REALITY — transition band (awards → reviews) ============ -->
+<section class="anchorband">
+  <div class="wrap">
+    <div class="k">Okay, but awards are once a year</div>
+    <p class="big">4.9 stars. 8,100+ reviews. <span class="a">Real names, real moves — not a hand-picked carousel.</span></p>
+  </div>
+</section>
+
+<!-- ============ 6. REVIEW WALL — real captured quotes + filter chips + media placeholders ============ -->
+<section class="block" id="reviews" style="background:var(--grey-50);padding-top:60px">
+  <div class="wrap">
+    <h2 class="sec">We&rsquo;re not happy unless you&rsquo;re <span class="a">THIS happy.</span></h2>
+    <p class="sub">Pick the fear you came here with — there&rsquo;s a review for it. Quotes carried verbatim from real reviews (typos and all — we don&rsquo;t edit these).</p>
+    <div class="chips" role="group" aria-label="Filter reviews">
+      <button class="chip on" data-f="all" aria-pressed="true">All</button>
+      <button class="chip" data-f="pricing" aria-pressed="false">Pricing honesty</button>
+      <button class="chip" data-f="repeat" aria-pressed="false">Repeat customers</button>
+      <button class="chip" data-f="first" aria-pressed="false">First-timers</button>
+      <button class="chip" data-f="care" aria-pressed="false">Crew &amp; care</button>
+    </div>
+    <div class="wall">
+      <div class="rev" data-t="pricing repeat">
+        <div class="stars">★★★★★</div>
+        <p class="q">&ldquo;&hellip;I was billed exactly what I was quoted, which unfortunately is not common in this industry. I will definitely use them for move 14 and beyond.&rdquo;</p>
+        <div class="who">Patrick H.</div><div class="ctx">Repeat customer — 13 Einstein moves so far</div>
+      </div>
+      <div class="rev" data-t="care">
+        <div class="stars">★★★★★</div>
+        <p class="q">&ldquo;Can&rsquo;t recommend Einstein movers enough! Corey and Christoper helped us do a 2 stop move, and got the whole thing done 2 hours under the estimated time. They made the day go as smoothly as possible, and took great care of all of our furniture. Will absolutely be using Einstein again next time I move.&rdquo;</p>
+        <div class="who">Lyndsay M.</div><div class="ctx">Completed a 2-stop move in April, 2026</div>
+      </div>
+      <div class="mediaph" data-t="media">
+        <div class="ic">🎬</div>
+        <b>[ASSET-GATED: influencer video slot #1]</b>
+        Real move-day video — embeds here when footage lands. Tap/Enter to play only; no hover-autoplay.
+      </div>
+      <div class="rev" data-t="first">
+        <div class="stars">★★★★★</div>
+        <p class="q">&ldquo;First time using professional movers, and I gotta say I&rsquo;m hooked. Ben and Thomas were nothing short of perfect, and were speedy and efficient! If I move again I&rsquo;ll 100% be requesting them again!&rdquo;</p>
+        <div class="who">Bear B.</div><div class="ctx">First time hiring professional movers</div>
+      </div>
+      <div class="rev" data-t="repeat care">
+        <div class="stars">★★★★★</div>
+        <p class="q">&ldquo;Believe everything you read about Einstein Moving Company. It&rsquo;s all true!! This is our second move with Einstein and they were absolutely wonderful. &hellip;We had Ryan and Crawfish and it felt like they were just some of our friends, not just movers. &hellip;WE have zero complaints about Einstein and will continue to refer them to anyone we know who is moving!&rdquo;</p>
+        <div class="who">Eric T.</div><div class="ctx">Moved into a new home with us in May, 2026 · excerpted</div>
+      </div>
+      <div class="rev" data-t="pricing">
+        <div class="stars">★★★★★</div>
+        <p class="q">&ldquo;&hellip;Einstein&rsquo;s pricing was fair and transparent, and my total price was very close to my estimate. Couldn&rsquo;t recommend more!!&rdquo;</p>
+        <div class="who">Abigail S.</div><div class="ctx">On the estimate matching the bill</div>
+      </div>
+      <div class="mediaph" data-t="media">
+        <div class="ic">📸</div>
+        <b>[ASSET-GATED: customer photo slot]</b>
+        Real customer + crew photo, captioned in voice. Real photography only — no stock.
+      </div>
+      <div class="rev" data-t="pricing">
+        <div class="stars">★★★★★</div>
+        <p class="q">&ldquo;Great moving experience. Not too expensive, and they were transparent about the costs/quote. Ralph walked me through the whole quoting process and explained everything in detail&hellip;&rdquo;</p>
+        <div class="who">Haley F.</div><div class="ctx">On the quoting process</div>
+      </div>
+      <div class="mediaph" data-t="media">
+        <div class="ic">🎬</div>
+        <b>[ASSET-GATED: influencer video slot #2]</b>
+        Second creator/testimonial video slot — Austin L&rsquo;s curated-filming pipeline feeds this.
+      </div>
+    </div>
+    <p class="microproof">Wondering what &ldquo;transparent about the costs&rdquo; looks like in practice? <a href="pricing-page.html" style="font-weight:600">One all-inclusive hourly rate — here&rsquo;s exactly what that covers →</a></p>
+  </div>
+</section>
+
+<!-- ============ 7. GBP LINKS — leave us one / read them all ============ -->
+<section class="gbp">
+  <div class="wrap">
+    <h2 class="sec">Still don&rsquo;t believe us? <span class="a">Good.</span></h2>
+    <p class="sub">Healthy skepticism is exactly how you should shop for a mover. So don&rsquo;t take our word for any of this — the reviews live on Google, under real names, <b>where we can&rsquo;t edit them.</b></p>
+    <div class="btns">
+      <a class="btn-ghost" href="#" title="[PLACEHOLDER — wire to Google Business Profile reviews]">Read all 8,100+ reviews on Google →</a>
+      <a class="btn-ghost" href="#" title="[PLACEHOLDER — wire to Google review form]">Had a great move? Leave us one ⭐</a>
+    </div>
+    <p class="microproof">[DEV: reviews live per-branch on Google — wire each city chip to its branch&rsquo;s Google profile]</p>
+    <div class="citychips">
+      <a href="#">North Austin</a><a href="#">South Austin</a><a href="#">Leander</a><a href="#">San Antonio</a><a href="#">Houston</a><a href="#">Dallas</a><a href="#">Fort Worth</a><a href="#">Garland</a><a href="#">McKinney</a><a href="#">Tampa, FL</a>
+    </div>
+    <div class="tip"><b>Pro tip (use it on anyone, including us):</b> before you book with any mover, check their reviews for comments about &ldquo;misquoted moves&rdquo; or &ldquo;surprise charges.&rdquo; Go ahead — check ours. We&rsquo;ll wait.</div>
+  </div>
+</section>
+
+<!-- ============ 8. HONESTY PAYOFF — the proof anchor ============ -->
+<section class="anchorband" style="padding:56px 0">
+  <div class="wrap">
+    <div class="k">What all of this actually means</div>
+    <p class="big">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="a">You don&rsquo;t earn numbers like those by nickel-and-diming people on moving day.</span></p>
+  </div>
+</section>
+
+<!-- ============ 9. CTA CLOSE ============ -->
+<section class="closeband">
+  <div class="wrap">
+    <h2 class="sec">You&rsquo;ve seen the receipts. <span class="a">Let&rsquo;s do your move.</span></h2>
+    <p class="sub">A real, accurate quote in about 47 seconds — <b>0 phone calls required.</b> The rate you see is the whole rate; nothing gets added at the bottom.</p>
+    <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
+    <div class="microproof">No deposit required · Free cancellation · $2,000 damage coverage included</div>
+    <p class="exit">Rather talk it through with a human? Call or text <b>737-555-0100</b> — texting is fastest.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don&rsquo;t earn numbers like those by nickel-and-diming people on moving day.</span></p>
+    <p>TX TxDMV #006604158C · US DOT #2193963 &nbsp;|&nbsp; FL Mover Reg. No. IM3621 · US DOT #3882313</p>
+    <p class="devnote">AWARDS &amp; REVIEWS PAGE DRAFT v1 · 7/1/2026 — WORKSHOP DECISION PENDING: may fold into Why Us — built so the choice is real, not forced. Award counts = verified 7/1 canon only (NextDoor lives on location pages; Aggie 100 dropped pending verification). Emoji = placeholder icons; badge logos, influencer videos + photos = ASSET-GATED; GBP + city links = placeholder hrefs; production adds AggregateRating/Review JSON-LD once indexable.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var chips=document.querySelectorAll('.chip');
+  var cards=document.querySelectorAll('.wall [data-t]');
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      chips.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-pressed','false');});
+      c.classList.add('on');c.setAttribute('aria-pressed','true');
+      var f=c.getAttribute('data-f');
+      cards.forEach(function(card){
+        var tags=card.getAttribute('data-t').split(' ');
+        var show = (f==='all') ? true : tags.indexOf(f)>-1; /* media placeholders show under All only */
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+<script src="feedback.js"></script>
+</body></html>
