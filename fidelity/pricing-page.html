@@ -205,7 +205,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </nav>
 
 <!-- ============ 1. HERO ============ -->
-<header class="hero">
+<header class="hero" id="hero">
   <div class="wrap">
     <div class="ic">💲</div>
     <h1 id="heroH1"><span class="a">Honest</span>, all-inclusive moving prices.<br>One hourly rate — no hidden fees.</h1>
@@ -216,7 +216,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </header>
 
 <!-- ============ 2. HOW HOURLY PRICING WORKS ============ -->
-<section class="block" style="background:var(--grey-50)">
+<section class="block" style="background:var(--grey-50)" id="how-hourly-works">
   <div class="wrap">
     <h2 class="sec">No mystery <span class="a">math.</span></h2>
     <p class="sub">One rate, times the time your move actually takes.</p>
@@ -234,7 +234,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </section>
 
 <!-- ============ 3. THE COMPARISON (locked table + B/D second part) ============ -->
-<section class="block">
+<section class="block" id="fee-comparison">
   <div class="wrap">
     <h2 class="sec">The industry&rsquo;s add-on list, in full. <span class="a">Ours reads $0, top to bottom.</span></h2>
     <p class="sub">A low hourly rate always looks cheaper — until the fees stack up on move day.</p>
@@ -272,7 +272,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </section>
 
 <!-- ============ 4. THE GUARANTEES (the one orange moment band) ============ -->
-<section class="guarantee">
+<section class="guarantee" id="guarantees">
   <div class="wrap">
     <h2>Two guarantees with money behind them.</h2>
     <p><b>On-Time Guarantee:</b> we commit to your arrival window — miss it and your move is discounted, and the longer we&rsquo;re late, the bigger the discount. We rarely need it.</p>
@@ -281,7 +281,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </section>
 
 <!-- ============ 5. FLEXIBLE DATES (honest savings, no fake numbers) ============ -->
-<section class="block">
+<section class="block" id="flexible-dates">
   <div class="wrap">
     <div class="flex-band">
       <h2 class="sec">Flexible on dates? <span class="a">It pays.</span></h2>
@@ -342,7 +342,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </section>
 
 <!-- ============ 7. LOCATIONS ============ -->
-<section class="locations">
+<section class="locations" id="locations">
   <div class="wrap">
     <h2 class="sec">One honest rate, <span class="a">ten hometowns.</span></h2>
     <p class="sub">Your rate varies by market — the honesty doesn&rsquo;t. Find yours:</p>
@@ -401,7 +401,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   ];
   var idx = 0;
   try{ if(localStorage.getItem('emc-pricing-h1')==='proposed') idx = 1; }catch(e){}
-  function apply(){ h1.innerHTML = V[idx].h1; lead.innerHTML = V[idx].lead; btn.textContent = '⇄ H1 · ' + (idx===0?'original':'proposed'); }
+  function apply(){ h1.innerHTML = V[idx].h1; lead.innerHTML = V[idx].lead; btn.textContent = '⇄ Headline · ' + (idx===0?'original':'proposed'); }
   var btn = document.createElement('button');
   btn.className = 'h1-toggle'; btn.type = 'button'; btn.title = 'Workshop control: cycle hero H1 variants';
   btn.addEventListener('click', function(){
@@ -434,7 +434,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   }
 })();
 </script>
-<script src="feedback.js"></script>
+<script src="feedback.js?v=20260702"></script>
 <script>
 (function(){
   var ham = document.getElementById('ham'), links = document.getElementById('navLinks');

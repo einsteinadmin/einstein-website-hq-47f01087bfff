@@ -629,7 +629,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <div class="wrap">
     <div class="exit-ramp rv">
       <h2>Ready to move?</h2>
-      <p>Give us a call, shoot us a text, start a chat — whatever&rsquo;s easiest for you. You&rsquo;ve done enough thinking about this move. <b>That&rsquo;s our department now.</b> 🧠</p>
+      <p>Give us a call, shoot us a text, start a chat — whatever&rsquo;s easiest for you. <span id="exitDept">You&rsquo;ve done enough thinking about this move. <b>That&rsquo;s our department now.</b> 🧠</span><span id="exitEasiest" hidden><b>Easiest is kind of our whole thing.</b></span><span id="exitClassic" hidden>We&rsquo;ll handle the heavy lifting. <b>Literally.</b></span></p>
       <div class="exit-actions">
         <!-- DUMMY phone — real number is location-dependent -->
         <a class="btn-secondary" href="tel:7375550100">📞 Call us</a>
@@ -719,10 +719,16 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <button class="opt" data-v="off" type="button">Off</button>
     <button class="opt" data-v="on" type="button">On</button>
   </div></div>
+  <div class="grp"><div class="lab">Exit line</div><div class="opts" id="wsExit">
+    <button class="opt" data-v="dept" type="button">Our department 🧠</button>
+    <button class="opt" data-v="easiest" type="button">Easiest = our thing</button>
+    <button class="opt" data-v="classic" type="button">Heavy lifting pun</button>
+  </div></div>
   <button class="share" id="wsShare" type="button">Copy setup link</button>
-  <button class="share" id="wsNotes" type="button" style="margin-top:8px;background:#2A3742">📋 Copy workshop notes (0)</button>
+  <button class="share" id="wsReset" type="button" style="margin-top:8px;background:#2A3742">↺ Reset to draft defaults</button>
+  <button class="share" id="wsNotes" type="button" style="margin-top:8px;background:#2A3742">📋 Copy ♥ notes only (0)</button>
   <button class="share" id="wsClear" type="button" style="margin-top:8px;background:transparent;border:1px solid #3A4956;font-weight:400">✕ Clear notes</button>
-  <div class="note">State saves to the URL + this browser. Share the link and the team sees this exact combo. Headline tone auto-matches the hero family unless overridden. <b>♥ pins</b> (top-right of each section) collect notes — each note records which combo was active.</div>
+  <div class="note">State saves to the URL + this browser — <b>↺ Reset</b> brings back the locked draft defaults. Share the setup link and the team sees this exact combo. Headline tone auto-matches the hero family unless overridden. <b>♥ pins</b> (top-right of each section) collect notes stamped with the active combo. For your full review export use the <b>📝 Notes panel (bottom-left)</b> → "Copy ALL feedback (for Albert)" — it includes these ♥ notes.</div>
 </div>
 
 <script>
@@ -782,7 +788,7 @@ var HEADLINES = {
 var TW_WORDS = ['easy','honest','fast','fun','smart','refreshingly simple'];
 
 /* ---------- STATE ---------- */
-var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on', matters:'orig', fears:'off' };
+var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on', matters:'orig', fears:'off', exit:'dept' };
 safe('loadState', function(){
   var saved = localStorage.getItem('ws-state-v2');
   if(saved){ var s = JSON.parse(saved); for(var k in state){ if(s[k]!==undefined) state[k]=s[k]; } }
@@ -839,16 +845,20 @@ function renderDisplays(){
   if(mo) mo.hidden = state.matters!=='orig';
   if(mp) mp.hidden = state.matters!=='prop';
   document.querySelectorAll('.pillar .pfear').forEach(function(el){ el.hidden = state.fears!=='on'; });
+  var xd = document.getElementById('exitDept'), xe = document.getElementById('exitEasiest'), xc = document.getElementById('exitClassic');
+  if(xd) xd.hidden = state.exit!=='dept';
+  if(xe) xe.hidden = state.exit!=='easiest';
+  if(xc) xc.hidden = state.exit!=='classic';
 }
 function comboString(){
-  return 'hero='+state.hero+'&tone='+state.tone+'&ph='+state.ph+'&ch='+state.ch+'&mh='+state.mh+'&cov='+state.cov+'&p2='+state.p2+'&wall='+state.wall+'&matters='+state.matters+'&fears='+state.fears;
+  return 'hero='+state.hero+'&tone='+state.tone+'&ph='+state.ph+'&ch='+state.ch+'&mh='+state.mh+'&cov='+state.cov+'&p2='+state.p2+'&wall='+state.wall+'&matters='+state.matters+'&fears='+state.fears+'&exit='+state.exit;
 }
 function renderPanel(){
   ['wsHeroC','wsHeroP'].forEach(function(id){
     var box = document.getElementById(id); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.v===state.hero ? 'true':'false'); });
   });
-  [['wsTone','tone'],['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsFears','fears']].forEach(function(m){
+  [['wsTone','tone'],['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsFears','fears'],['wsExit','exit']].forEach(function(m){
     var box = document.getElementById(m[0]); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.v===String(state[m[1]]) ? 'true':'false'); });
   });
@@ -885,7 +895,7 @@ safe('cycleButtons', function(){
   });
 });
 safe('displayButtons', function(){
-  [['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsFears','fears']].forEach(function(m){
+  [['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsFears','fears'],['wsExit','exit']].forEach(function(m){
     var box = document.getElementById(m[0]); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){
       b.addEventListener('click', function(){ state[m[1]]=b.dataset.v; renderAll(); });
@@ -898,6 +908,15 @@ safe('fab', function(){
   fab.addEventListener('click', function(){
     var open = panel.classList.toggle('open');
     fab.setAttribute('aria-expanded', open?'true':'false');
+  });
+});
+safe('reset', function(){
+  var b = document.getElementById('wsReset'); if(!b) return;
+  b.addEventListener('click', function(){
+    state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on', matters:'orig', fears:'off', exit:'dept' };
+    renderAll();
+    b.textContent = 'Defaults restored ✓';
+    setTimeout(function(){ b.textContent = '↺ Reset to draft defaults'; }, 1400);
   });
 });
 safe('share', function(){
@@ -977,7 +996,7 @@ safe('pins', function(){
       btn.classList.toggle('has', n>0);
     });
     var nb = document.getElementById('wsNotes');
-    if(nb) nb.textContent = '📋 Copy workshop notes ('+list.length+')';
+    if(nb) nb.textContent = '📋 Copy ♥ notes only ('+list.length+')';
   }
   SECTIONS.forEach(function(id){
     var sec = document.getElementById(id); if(!sec) return;
@@ -1047,5 +1066,5 @@ safe('reveal', function(){
 renderAll();
 })();
 </script>
-<script src="feedback.js"></script>
+<script src="feedback.js?v=20260702"></script>
 </body></html>

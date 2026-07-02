@@ -213,7 +213,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </nav>
 
 <!-- ============ 1. GEO HERO — H1 city+movers, verified award proofline ============ -->
-<header class="hero">
+<header class="hero" id="hero">
   <div class="wrap">
     <!-- [BRANCH-DATA: city] value="North Austin" — drives geochip, H1, subhead, CTA label -->
     <div class="geochip">📍 You&rsquo;re looking at our North Austin branch — <a href="#cities">not your city? Pick yours ↓</a></div>
@@ -236,7 +236,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </header>
 
 <!-- ============ 2. BRANCH TRUST STRIP — scope-labeled so local vs company numbers never blur ============ -->
-<section class="trustband">
+<section class="trustband" id="trust-strip">
   <div class="wrap">
     <div class="tcells">
       <div class="tcell">
@@ -261,7 +261,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </section>
 
 <!-- ============ 3. NEXTDOOR NEIGHBORHOOD FAVORITE — designated home per 7/1 decision ============ -->
-<section class="block" style="padding:56px 0">
+<section class="block" id="nextdoor-favorite" style="padding:56px 0">
   <div class="wrap">
     <h2 class="sec">Your neighbors <span class="a">already voted.</span></h2>
     <div class="nd">
@@ -280,7 +280,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </section>
 
 <!-- ============ 4. THE 3-PROOF RECAP — pricing / coverage / movers (teasers → link, never duplicate) ============ -->
-<section class="block" style="background:var(--grey-50)">
+<section class="block" id="three-proofs" style="background:var(--grey-50)">
   <div class="wrap">
     <h2 class="sec">Same deal in North Austin as the other nine branches. <span class="a">That&rsquo;s the point.</span></h2>
     <p class="sub">Ten branches, one system. Here&rsquo;s the short version of why your neighbors keep hiring us — each one has a whole page of receipts behind it.</p>
@@ -353,12 +353,12 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </section>
 
 <!-- ============ 5. SERVICES GRID — Elizabeth's must-add; live 6 cards carried verbatim ============ -->
-<section class="block">
+<section class="block" id="services">
   <div class="wrap">
     <h2 class="sec">Our North Austin full-service <span class="a">moving services.</span></h2>
     <!-- [BRANCH-DATA: city] in heading + card copy localities -->
     <p class="sub">Full-service moving means exactly that. Disassembly, packing, loading, driving, unloading, reassembly — homes, apartments, offices, local or long-distance. <b>One team, one plan, zero chaos.</b></p>
-    <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="cards">
       <!-- [BRANCH-DATA: service-localities] — per-card neighborhood names swap per branch -->
       <div class="card"><div class="ic">🏠</div><h4>Residential Moves</h4><p>From first homes in Pflugerville to fresh starts in Cedar Park. We handle the heavy lifting with care.</p></div>
       <div class="card"><div class="ic">🏢</div><h4>Apartment Moves</h4><p>Third-floor walk-up in Hyde Park? We bring expert stair skills and calm confidence to every apartment.</p></div>
@@ -371,7 +371,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </section>
 
 <!-- ============ 6. NEIGHBORHOODS SERVED — live service-area list as tiles ============ -->
-<section class="block" style="background:var(--grey-50)">
+<section class="block" id="neighborhoods" style="background:var(--grey-50)">
   <div class="wrap">
     <h2 class="sec">Moving around North Austin? <span class="a">We know the block.</span></h2>
     <p class="sub">We proudly service these communities and beyond — same crew standard, same rate honesty, every zip code.</p>
@@ -391,7 +391,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </section>
 
 <!-- ============ 7. LOCAL LOGISTICS — NAP + service radius + trip-fee disclosure + GBP map ============ -->
-<section class="block">
+<section class="block" id="branch-info">
   <div class="wrap">
     <h2 class="sec">The branch itself — <span class="a">where we are, when we work.</span></h2>
     <div class="logi">
@@ -421,7 +421,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </section>
 
 <!-- ============ 8. LOCAL FAQ — carried from live (10 highest-value Qs, near-verbatim) ============ -->
-<section class="block" style="background:var(--grey-50)">
+<section class="block" id="faq" style="background:var(--grey-50)">
   <div class="wrap">
     <h2 class="sec">Fair questions. <span class="a">Straight answers.</span></h2>
     <div class="faq">
@@ -481,7 +481,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </section>
 
 <!-- ============ 9. LOCAL LIVING GUIDE — carried compact from live ============ -->
-<section class="block">
+<section class="block" id="living-guide">
   <div class="wrap">
     <h2 class="sec">So you&rsquo;re moving to North Austin? <span class="a">Here&rsquo;s what the locals already know.</span></h2>
     <!-- [BRANCH-DATA: living-guide] — full per-city guide content stamps from the data file.
@@ -529,7 +529,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </section>
 
 <!-- ============ 11. CTA CLOSE — local proof + exit ramp ============ -->
-<section class="proofband">
+<section class="proofband" id="cta-close">
   <div class="wrap">
     <!-- [BRANCH-DATA: reviews] repeated here, scope-labeled local -->
     <div class="trust-row"><span class="stars">★★★★★</span> 4.9 · 1,400+ North Austin reviews <span class="sep">·</span> 10x Best of Austin <span class="sep">·</span> Company-wide: 100,000+ moves</div>
@@ -555,7 +555,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   </div>
 </footer>
 
-<script src="feedback.js"></script>
+<script src="feedback.js?v=20260702"></script>
 <script>
 (function(){
   var ham = document.getElementById('ham'), links = document.getElementById('navLinks');

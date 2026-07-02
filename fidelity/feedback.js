@@ -56,13 +56,19 @@ panel.querySelector('.fbk-copy').addEventListener('click',function(){
   if(!l.length && !pins.length){ this.textContent='Nothing yet'; var b=this; setTimeout(function(){b.textContent='📋 Copy ALL feedback (for Albert)';},1200); return; }
   var lines=['EINSTEIN DRAFT FEEDBACK — '+new Date().toLocaleString()+' — paste this to Albert'];
   l.forEach(function(e){ lines.push('• ['+e.page+(e.sec?' → '+e.sec:'')+'] '+(e.quote?'RE: "'+e.quote+'" — ':'')+e.note+(e.combo?'  (combo: '+e.combo+')':'')); });
-  pins.forEach(function(p){ lines.push('• [homepage → '+p.sec+'] '+(p.note||'♥ loved it')+'  (combo: '+p.combo+')'); });
+  pins.forEach(function(p){ lines.push('• [homepage-hybrid → '+p.sec+'] '+(p.note||'♥ loved it')+'  (combo: '+p.combo+')'); });
   var txt=lines.join('\n'), b=this;
   if(navigator.clipboard){ navigator.clipboard.writeText(txt); b.textContent='Copied ✓'; setTimeout(function(){b.textContent='📋 Copy ALL feedback (for Albert)';},1400); }
   else prompt('Copy:',txt);
 });
 panel.querySelector('.fbk-clear').addEventListener('click',function(){
-  if(confirm('Clear ALL draft feedback on this browser (all pages)?')){ save([]); refresh(); }
+  if(confirm('Clear ALL draft feedback on this browser (all pages, incl. homepage ♥ notes)?')){
+    save([]);
+    try{ localStorage.removeItem('ws-pins-v2'); }catch(e){}
+    document.querySelectorAll('.pin.has').forEach(function(p){ p.classList.remove('has'); p.textContent='♡'; });
+    var nb=document.getElementById('wsNotes'); if(nb) nb.textContent='📋 Copy ♥ notes only (0)';
+    refresh();
+  }
 });
 
 /* ---- selection commenting ---- */
@@ -93,7 +99,7 @@ bub.addEventListener('click',function(){
 
 /* ---- section pins (skip sections that already have homepage ♥ pins) ---- */
 document.querySelectorAll('section[id],header[id]').forEach(function(sec){
-  if(sec.querySelector('.pin')) return;
+  if(sec.querySelector('button.pin')) return;
   if(getComputedStyle(sec).position==='static') sec.style.position='relative';
   var p=document.createElement('button'); p.type='button'; p.className='fbk-pin'; p.dataset.sec=sec.id; p.textContent='💬';
   p.setAttribute('aria-label','Leave a note on the '+sec.id+' section');
