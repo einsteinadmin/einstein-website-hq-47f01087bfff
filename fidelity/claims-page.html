@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<title>Claims — You're Already Covered | Einstein Moving (Claims page draft)</title>
+<!--
+  CLAIMS PAGE DRAFT v1 — 2026-07-01. Supporting page #2 of 8 (blueprint: build-plan pg-claims).
+  The REASSURANCE engine — pairs bidirectionally with the Coverage page (the persuasion engine).
+  Strategy: surface the free-flat-coverage strength at PEAK ANXIETY — the exact spot competitors bury per-pound limits.
+  DRAFT MARKERS: SLA + resolution window + named claims owner = [VERIFY w/ Amanda/Carly]; TX/FL regulatory
+  copy = placeholder for counsel; intake form is NOT wired (draft); phone dummy.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-50:#EEF1F4; --navy-500:#27343D; --navy-700:#1A2329;
+  --orange-50:#FEF6EC; --orange-100:#FDE3C2; --orange-300:#F5A054; --orange-500:#EF8B22; --orange-700:#D96B10; --orange-900:#CC5500;
+  --blue-50:#EBF4FB; --blue-100:#C3DFEF; --blue-500:#0979C3; --blue-700:#065E9A;
+  --grey-50:#F4F5F5; --grey-100:#E2E3E4; --grey-500:#53575A;
+  --success-text:#3F7A33; --star:#F5A623;
+  --radius:12px; --radius-btn:8px; --shadow-sm:0 2px 14px rgba(11,16,20,.05);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Roboto,system-ui,sans-serif;color:var(--navy-500);background:#fff;margin:0;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+h1,h2.sec{font-family:Lora,serif;font-weight:700;letter-spacing:-.01em}
+h2.sec{font-size:30px;line-height:1.16;text-align:center;margin:0 0 14px}
+h2.sec .a{color:var(--orange-900)}
+.sub{text-align:center;color:var(--grey-500);font-size:16.5px;max-width:660px;margin:0 auto 30px}
+.sub b{color:var(--navy-500)}
+.block{padding:64px 0}
+.btn-primary{display:inline-block;background:var(--blue-500);color:#fff;padding:16px 34px;border-radius:var(--radius-btn);font-weight:700;font-size:17px;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 14px rgba(9,121,195,.28)}
+.btn-primary:hover{background:var(--blue-700)}
+.microproof{margin:14px 0 0;color:var(--grey-500);font-size:13.5px;text-align:center}
+a{color:var(--blue-500)}
+
+nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--grey-100)}
+.nav-in{max-width:1100px;margin:0 auto;padding:14px 22px;display:flex;align-items:center;gap:20px}
+.logo{font-weight:700;font-size:17px}.logo .head{color:var(--orange-900)}
+.logo a{color:var(--navy-500);text-decoration:none}
+.nav-links{display:flex;gap:22px;margin-left:auto}
+.nav-links a{color:var(--navy-500);text-decoration:none;font-weight:600;font-size:14.5px}
+.nav-links a:hover{color:var(--blue-500)}
+.nav-links a.on{color:var(--orange-900)}
+.btn-nav{display:inline-block;background:var(--orange-500);color:var(--navy-500);padding:12px 22px;border-radius:var(--radius-btn);font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.5px;text-decoration:none;white-space:nowrap}
+.btn-nav:hover{background:var(--orange-700)}
+@media(max-width:760px){.nav-links{display:none}}
+
+.hero{background:var(--orange-50);text-align:center;padding:60px 0 56px}
+.hero .ic{width:56px;height:56px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 16px}
+.hero h1{font-size:36px;line-height:1.15;margin:0 0 16px;max-width:760px;margin-left:auto;margin-right:auto}
+.hero h1 .a{color:var(--orange-900)}
+.hero .lead{font-size:17.5px;line-height:1.6;max-width:620px;margin:0 auto}
+.hero .lead b{color:var(--navy-500)}
+@media(max-width:620px){.hero h1{font-size:27px}}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:920px;margin:0 auto}
+.step{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:20px 16px;text-align:center}
+.step .n{font-family:Lora,serif;font-size:24px;color:var(--orange-900);font-weight:700}
+.step h4{margin:6px 0 6px;font-size:14.5px}
+.step p{margin:0;font-size:13px;color:var(--grey-500);line-height:1.5}
+.step p i{color:var(--orange-900);font-size:11.5px}
+@media(max-width:760px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
+
+.formcard{max-width:620px;margin:0 auto;background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow-sm)}
+.formcard .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.formcard label{display:block;font-size:12.5px;font-weight:700;color:var(--navy-500);margin:12px 0 4px}
+.formcard input,.formcard textarea{width:100%;font:inherit;font-size:14.5px;background:var(--grey-50);border:1px solid var(--grey-100);border-radius:8px;padding:11px 12px;color:var(--navy-500)}
+.formcard input:focus,.formcard textarea:focus{outline:2px solid var(--blue-500);background:#fff}
+.formcard .opt{color:var(--grey-500);font-weight:400}
+.formcard .conf{margin-top:16px;background:var(--orange-50);border:1px solid var(--orange-100);border-radius:8px;padding:12px 14px;font-size:13px;color:var(--grey-500)}
+.formcard .conf b{color:var(--navy-500)}
+.formcard .btn-primary{width:100%;margin-top:16px;text-align:center}
+@media(max-width:560px){.formcard .row{grid-template-columns:1fr}}
+
+.recap{max-width:720px;margin:0 auto;text-align:center;font-size:16px;line-height:1.65}
+.recap b{color:var(--navy-500)}
+.recap .backlink{display:inline-block;margin-top:14px;font-weight:600}
+
+.regnote{max-width:720px;margin:0 auto;background:var(--grey-50);border:1px solid var(--grey-100);border-radius:10px;padding:18px 22px;font-size:13.5px;color:var(--grey-500);line-height:1.6}
+.regnote b{color:var(--navy-500)}
+.regnote .t{font-weight:700;color:var(--orange-900);text-transform:uppercase;letter-spacing:.05em;font-size:11.5px;display:block;margin-bottom:6px}
+
+.contact{background:var(--navy-50);padding:64px 0;text-align:center}
+.contact-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:20px 0 6px}
+.btn-secondary{display:inline-block;background:#fff;color:var(--navy-500);border:1px solid var(--grey-100);padding:13px 20px;border-radius:var(--radius-btn);font-weight:700;font-size:14.5px;text-decoration:none}
+.btn-secondary:hover{border-color:var(--blue-500);color:var(--blue-500)}
+.humanline{margin:18px 0 0;font-family:Lora,serif;font-size:18px}
+.humanline .a{color:var(--orange-900)}
+
+footer{background:var(--navy-700);color:#B9C4CC;padding:44px 0 36px;font-size:13px;text-align:center}
+footer .canon{color:#EAEEF0;font-size:14.5px;max-width:680px;margin:0 auto 14px}
+footer .canon .smart{color:var(--orange-300)}
+footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
+</style></head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <div class="logo"><a href="homepage-hybrid.html"><span class="head">🧠</span> Einstein Moving Co.</a></div>
+    <div class="nav-links">
+      <a href="homepage-hybrid.html#pricing">Pricing</a>
+      <a href="coverage-page.html">Coverage</a>
+      <a href="#" class="on">Claims</a>
+      <a href="homepage-hybrid.html#proof">Reviews</a>
+    </div>
+    <a class="btn-nav" href="https://www.einsteinmoving.com/quote/">See My Price</a>
+  </div>
+</nav>
+
+<!-- ============ 1. CALM HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="ic">🤝</div>
+    <h1>Something got damaged? <span class="a">You&rsquo;re already covered.</span><br>Here&rsquo;s exactly what happens next.</h1>
+    <p class="lead">Damage is rare — but if it happens, your move already includes <b>$2,000 of coverage at no cost</b>. No upsell, no fine print, no claims maze. A real person, a short process, and real money already behind it. Here&rsquo;s the whole thing.</p>
+  </div>
+</header>
+
+<!-- ============ 2. THE 4 STEPS ============ -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">Four steps. <span class="a">That&rsquo;s the whole process.</span></h2>
+    <p class="sub">An honest timeline beats a fake &ldquo;instant.&rdquo; Here&rsquo;s how it actually goes:</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>Tell us what happened</h4><p>The short form below, or email us — whichever&rsquo;s easier.</p></div>
+      <div class="step"><div class="n">2</div><h4>Send a few photos</h4><p>Phone pics are perfect. That&rsquo;s all the &ldquo;paperwork&rdquo; there is.</p></div>
+      <div class="step"><div class="n">3</div><h4>A real person picks it up</h4><p>A claims coordinator opens your file and gets back to you fast. <i>[VERIFY SLA — target: within 1 business day]</i></p></div>
+      <div class="step"><div class="n">4</div><h4>We make it right</h4><p>Repair, replace, or a check — with a timeline we tell you up front. <i>[VERIFY typical resolution window]</i></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. MINIMAL INTAKE FORM (draft — not wired) ============ -->
+<section class="block" style="background:var(--grey-50)" id="file">
+  <div class="wrap">
+    <h2 class="sec">Start your claim</h2>
+    <p class="sub">Seven quick fields. No account, no PDFs, no legalese.</p>
+    <div class="formcard">
+      <form onsubmit="event.preventDefault(); alert('Draft page — the form isn\'t wired yet. In production this submits to the claims team.');">
+        <div class="row">
+          <div><label for="cn">Your name</label><input id="cn" name="name" autocomplete="name"></div>
+          <div><label for="cd">Move date</label><input id="cd" name="movedate" placeholder="MM/DD/YYYY"></div>
+        </div>
+        <div class="row">
+          <div><label for="ce">Email or phone</label><input id="ce" name="contact" autocomplete="email"></div>
+          <div><label for="cl">Crew lead <span class="opt">(if you remember)</span></label><input id="cl" name="crewlead"></div>
+        </div>
+        <label for="ci">What was damaged?</label><input id="ci" name="item" placeholder="e.g., coffee table — glass top">
+        <label for="cw">What happened?</label><textarea id="cw" name="what" rows="3" placeholder="A couple of sentences is plenty."></textarea>
+        <label for="cp">Photos <span class="opt">(optional — you can also text them to us)</span></label><input id="cp" type="file" multiple>
+        <button class="btn-primary" type="submit">Submit my claim →</button>
+        <div class="conf"><b>What happens when you hit submit:</b> you&rsquo;re covered up to $2,000 on actual value — a claims coordinator will confirm receipt and take it from there. You don&rsquo;t need to do anything else.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. WHAT'S COVERED — recap + bidirectional link ============ -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="sec">A reminder of what you&rsquo;re <span class="a">working with.</span></h2>
+    <p class="recap">Every Einstein move includes <b>$2,000 of damage coverage, free</b> — paid on <b>actual value</b>, not 60&#162; a pound. That covers your things <b>and your home</b> (floors, walls, doorframes). No deductible, no upgrade you were supposed to have bought.
+    <br><a class="backlink" href="coverage-page.html">See the full coverage breakdown — payouts, examples, the honest edges →</a></p>
+  </div>
+</section>
+
+<!-- ============ 5. REGULATORY NOTE (market-specific — counsel placeholder) ============ -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="regnote">
+      <span class="t">Your rights, for the record</span>
+      <b>Texas moves:</b> [DRAFT — counsel to finalize: TxDMV consumer-protection summary — payment-deadline rules + free mediation rights for moving disputes.] &nbsp; <b>Florida moves:</b> [DRAFT — separate FL version, never reuse TX copy: FDACS mover regulations + complaint process.] We&rsquo;re required to tell you this — and honestly, we&rsquo;d want you to know it anyway.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. CONTACT + REASSURANCE CLOSE ============ -->
+<section class="contact">
+  <div class="wrap">
+    <h2 class="sec">Rather talk to a person?</h2>
+    <p class="sub">No one gets trapped in a form. Pick whatever channel feels easiest.</p>
+    <div class="contact-actions">
+      <!-- DUMMY phone — real number is location-dependent -->
+      <a class="btn-secondary" href="sms:7375550100">💬 Text us</a>
+      <a class="btn-secondary" href="tel:7375550100">📞 Call us</a>
+      <a class="btn-secondary" href="mailto:claims@einsteinmoving.com">✉️ claims@einsteinmoving.com</a>
+    </div>
+    <p class="humanline">A real person, a real number, <span class="a">real money already behind it.</span></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don&rsquo;t earn numbers like those by leaving people hanging when something breaks.</span></p>
+    <p>TX TxDMV #006604158C · US DOT #2193963 &nbsp;|&nbsp; FL Mover Reg. No. IM3621 · US DOT #3882313</p>
+    <p class="devnote">CLAIMS PAGE DRAFT v1 · 7/1/2026 — supporting page #2 of 8, built off the pg-claims blueprint; the reassurance twin of the Coverage page (bidirectional links live). Form NOT wired; SLA/resolution window/named owner/regulatory copy = [VERIFY]. claims@ email = assumed, confirm it exists.</p>
+  </div>
+</footer>
+
+</body></html>
