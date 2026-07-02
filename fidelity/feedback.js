@@ -29,8 +29,45 @@ css.textContent =
 '.fbk-panel .tip{font-size:10.5px;color:#8CA0AC;line-height:1.5;margin-top:8px}' +
 '.fbk-bubble{position:absolute;z-index:402;background:#27343D;color:#fff;border:none;border-radius:999px;padding:7px 13px;font:600 12.5px Roboto,sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(11,16,20,.3)}' +
 '.fbk-pin{position:absolute;top:14px;left:14px;z-index:5;background:#fff;border:1px solid #E2E3E4;border-radius:999px;padding:6px 10px;font:600 12.5px Roboto,sans-serif;color:#53575A;cursor:pointer;opacity:.7;box-shadow:0 2px 14px rgba(11,16,20,.05)}' +
-'.fbk-pin:hover{opacity:1}.fbk-pin.has{background:#EBF4FB;border-color:#88C0E4;color:#065E9A;opacity:1}';
+'.fbk-pin:hover{opacity:1}.fbk-pin.has{background:#EBF4FB;border-color:#88C0E4;color:#065E9A;opacity:1}' +
+'.fbk-modal{position:fixed;inset:0;z-index:600;background:rgba(11,16,20,.4);display:flex;align-items:flex-start;justify-content:center;padding:10vh 16px 0}' +
+'.fbk-card{background:#1A2329;color:#EAEEF0;border-radius:14px;padding:18px;width:min(460px,100%);box-shadow:0 12px 40px rgba(11,16,20,.45);font:13px Roboto,sans-serif}' +
+'.fbk-mtitle{font-size:12.5px;color:#9AADB7;line-height:1.5;margin-bottom:10px;max-height:76px;overflow:hidden}' +
+'.fbk-card textarea{width:100%;box-sizing:border-box;background:#27343D;color:#fff;border:1px solid #3A4956;border-radius:8px;padding:10px 12px;font:14px/1.55 Roboto,sans-serif;resize:vertical;min-height:96px}' +
+'.fbk-card textarea:focus{outline:2px solid #0979C3;outline-offset:1px}' +
+'.fbk-mrow{display:flex;gap:8px;margin-top:10px}' +
+'.fbk-mrow button{flex:1;font:600 12.5px Roboto,sans-serif;border:none;border-radius:8px;padding:9px;cursor:pointer}' +
+'.fbk-msave{background:#0979C3;color:#fff}.fbk-mcancel{background:transparent;color:#9AADB7;border:1px solid #3A4956}' +
+'.fbk-mhint{margin-top:8px;font-size:10.5px;color:#8CA0AC;text-align:center}';
 document.head.appendChild(css);
+
+/* ---- note modal (replaces prompt(); multi-line, Esc cancels, Cmd/Ctrl+Enter saves) ---- */
+function askNote(title, cb, opts){
+  opts = opts || {};
+  var old = document.querySelector('.fbk-modal'); if(old) old.remove();
+  var m = document.createElement('div'); m.className='fbk-modal';
+  m.innerHTML = '<div class="fbk-card" role="dialog" aria-modal="true" aria-label="Feedback note">'+
+    '<div class="fbk-mtitle"></div>'+
+    '<textarea rows="5" placeholder="Your note…"></textarea>'+
+    '<div class="fbk-mrow"><button type="button" class="fbk-msave"></button><button type="button" class="fbk-mcancel">Cancel</button></div>'+
+    '<div class="fbk-mhint">Esc to cancel · ⌘↩ to save</div></div>';
+  m.querySelector('.fbk-mtitle').textContent = title;
+  m.querySelector('.fbk-msave').textContent = opts.saveLabel || 'Save note';
+  document.body.appendChild(m);
+  var ta = m.querySelector('textarea');
+  function close(){ m.remove(); document.removeEventListener('keydown', onKey, true); }
+  function saveIt(){ var v = ta.value.trim(); if(!v && !opts.allowEmpty){ ta.focus(); return; } close(); cb(v); }
+  function onKey(e){
+    if(e.key==='Escape'){ e.stopPropagation(); close(); }
+    else if((e.metaKey||e.ctrlKey) && e.key==='Enter'){ e.preventDefault(); saveIt(); }
+  }
+  document.addEventListener('keydown', onKey, true);
+  m.querySelector('.fbk-msave').addEventListener('click', saveIt);
+  m.querySelector('.fbk-mcancel').addEventListener('click', close);
+  m.addEventListener('mousedown', function(e){ if(e.target===m) close(); });
+  setTimeout(function(){ ta.focus(); }, 30);
+}
+window.emcAskNote = askNote;
 
 /* ---- FAB + panel ---- */
 var fab=document.createElement('button'); fab.className='fbk-fab'; fab.type='button';
@@ -92,9 +129,10 @@ document.addEventListener('mouseup',onSel);
 document.addEventListener('touchend',onSel);
 bub.addEventListener('click',function(){
   bub.style.display='none';
-  var note=prompt('Your note on:\n"'+selText+'"');
-  if(note===null||!note.trim()) return;
-  var l=load(); l.push({page:PAGE,sec:selSec,quote:selText,note:note.trim(),combo:combo(),ts:new Date().toLocaleString()}); save(l); refresh();
+  var q=selText, s=selSec;
+  askNote('RE: “'+q+'”', function(note){
+    var l=load(); l.push({page:PAGE,sec:s,quote:q,note:note,combo:combo(),ts:new Date().toLocaleString()}); save(l); refresh();
+  });
 });
 
 /* ---- section pins (skip sections that already have homepage ♥ pins) ---- */
@@ -104,9 +142,9 @@ document.querySelectorAll('section[id],header[id]').forEach(function(sec){
   var p=document.createElement('button'); p.type='button'; p.className='fbk-pin'; p.dataset.sec=sec.id; p.textContent='💬';
   p.setAttribute('aria-label','Leave a note on the '+sec.id+' section');
   p.addEventListener('click',function(){
-    var note=prompt('Note on the "'+sec.id+'" section:');
-    if(note===null||!note.trim()) return;
-    var l=load(); l.push({page:PAGE,sec:sec.id,quote:'',note:note.trim(),combo:combo(),ts:new Date().toLocaleString()}); save(l); refresh();
+    askNote('Note on the “'+sec.id+'” section', function(note){
+      var l=load(); l.push({page:PAGE,sec:sec.id,quote:'',note:note,combo:combo(),ts:new Date().toLocaleString()}); save(l); refresh();
+    });
   });
   sec.appendChild(p);
 });

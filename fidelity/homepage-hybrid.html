@@ -231,7 +231,9 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .chapter-chip.pulse{animation:chipPulse .18s ease-out}
 @keyframes echoIn{from{opacity:0}to{opacity:1}}
 .chapter-echo.fade{animation:echoIn .25s ease-out .12s both}
-@media(prefers-reduced-motion:reduce){.chapter-chip.pulse,.chapter-echo.fade{animation:none}}
+.chapter-cta{margin:24px 0 0}
+.chapter-cta.fade{animation:echoIn .25s ease-out .18s both}
+@media(prefers-reduced-motion:reduce){.chapter-chip.pulse,.chapter-echo.fade,.chapter-cta.fade{animation:none}}
 
 /* ================= PROOF PEAK (awards + review wall) ================= */
 .proof{background:var(--navy-50);padding:72px 0}
@@ -538,6 +540,10 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
       <button class="chapter-chip" type="button" data-echo="Sometimes a change is the whole point. Good for you." data-cta="See my price for the fresh start →" aria-pressed="false">Just making a change</button>
     </div>
     <div class="chapter-echo" id="chapterEcho" aria-live="polite">Which one&rsquo;s yours? (Tap it — this page is about you.)</div>
+    <!-- personalized CTA: hidden until a chip is picked, then fades in with the chip's cta text (the far bookCta personalizes too) -->
+    <div class="chapter-cta" id="chapterCta" hidden>
+      <a class="btn-primary" id="chapterCtaBtn" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
+    </div>
   </div>
 </section>
 
@@ -966,6 +972,15 @@ safe('chips', function(){
       /* personalize IN-FLOW closing CTA only — never the sticky (mobile overflow) */
       var book = document.getElementById('bookCta');
       if(book && chip.dataset.cta) book.textContent = chip.dataset.cta;
+      /* visible payoff: personalized CTA fades in right under the echo (7/2 — the far bookCta alone was invisible from here) */
+      var cc = document.getElementById('chapterCta'), ccb = document.getElementById('chapterCtaBtn');
+      if(cc && ccb && chip.dataset.cta){
+        ccb.textContent = chip.dataset.cta;
+        cc.hidden = false;
+        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+          cc.classList.remove('fade'); void cc.offsetWidth; cc.classList.add('fade');
+        }
+      }
     });
   });
 });
@@ -1006,11 +1021,13 @@ safe('pins', function(){
     btn.setAttribute('aria-label', 'Leave a workshop note on the '+id+' section');
     btn.textContent = '♡';
     btn.addEventListener('click', function(){
-      var note = prompt('Note for the "'+id+'" section (empty = just a ♥):');
-      if(note === null) return;
-      var list = load();
-      list.push({ sec:id, note:note.trim(), combo:comboString(), ts:new Date().toLocaleString() });
-      save(list); refresh();
+      function store(note){
+        var list = load();
+        list.push({ sec:id, note:(note||'').trim(), combo:comboString(), ts:new Date().toLocaleString() });
+        save(list); refresh();
+      }
+      if(window.emcAskNote){ window.emcAskNote('♥ note for the “'+id+'” section — save empty for just a ♥', store, { allowEmpty:true, saveLabel:'Save ♥' }); }
+      else { var note = prompt('Note for the "'+id+'" section (empty = just a ♥):'); if(note !== null) store(note); }
     });
     sec.appendChild(btn);
   });
@@ -1066,5 +1083,5 @@ safe('reveal', function(){
 renderAll();
 })();
 </script>
-<script src="feedback.js?v=20260702"></script>
+<script src="feedback.js?v=20260702b"></script>
 </body></html>
