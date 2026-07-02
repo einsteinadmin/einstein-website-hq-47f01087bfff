@@ -85,7 +85,16 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .cmp tr:first-child td{border-top:none}
 .x{color:var(--error);font-weight:700;margin-right:7px}
 .chk{color:var(--success-text);font-weight:700;margin-right:7px}
-.strike{text-decoration:line-through;text-decoration-color:rgba(204,1,0,.55)}
+.strike{position:relative;text-decoration:none}
+.strike::after{content:"";position:absolute;left:0;right:0;top:55%;height:2px;background:rgba(204,1,0,.55);transform:scaleX(1);transform-origin:left;transition:transform .35s ease-out}
+.cmp.animate .strike::after{transform:scaleX(0)}
+.cmp.animate.in .strike::after{transform:scaleX(1);transition-delay:calc(var(--i,0)*90ms)}
+.cmp.animate .fb{transform:scale(.5);opacity:0;transition:transform .2s ease-out,opacity .2s ease-out}
+.cmp.animate.in .fb{transform:scale(1);opacity:1;transition-delay:calc(var(--i,0)*60ms + .7s)}
+@media(prefers-reduced-motion:reduce){
+  .cmp.animate .strike::after,.cmp.animate.in .strike::after{transform:scaleX(1);transition:none}
+  .cmp.animate .fb,.cmp.animate.in .fb{transform:none;opacity:1;transition:none}
+}
 .fb{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--navy-500);background:var(--orange-100);border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
 .cmp tr.bottom td{border-top:2px solid var(--navy-500);font-weight:700;padding-top:16px;padding-bottom:16px}
 .cmp tr.bottom td.item{color:var(--orange-900);text-transform:uppercase;letter-spacing:.05em;font-size:12.5px}
@@ -93,11 +102,20 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .cmp tr.bottom td.us{color:var(--success-text)}
 .fineprint{text-align:center;color:var(--grey-500);font-size:12.5px;margin:12px auto 0;max-width:720px;line-height:1.5}
 .fineprint b{color:var(--navy-500)}
+@media(max-width:640px){ /* keep it a TABLE — fits 375px, Einstein column visible, no h-scroll */
+  table.cmp{min-width:0}
+  .cmp thead th{font-size:11.5px;letter-spacing:.02em;padding:10px 6px;white-space:normal}
+  .cmp td{font-size:13px;padding:8px 6px;white-space:normal;overflow-wrap:break-word}
+}
 
 .p2-headrow{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin:50px 0 20px}
 .p2-headrow h3{font-family:Lora,serif;font-size:24px;margin:0;text-align:center}
 .p2-headrow h3 .b{color:var(--blue-500)}
 .stamp{border:2.5px solid var(--orange-900);color:var(--orange-900);border-radius:10px;padding:6px 12px;font-weight:800;font-size:12.5px;line-height:1.1;text-align:center;letter-spacing:.04em;transform:rotate(-7deg);text-transform:uppercase;opacity:.9}
+@keyframes stampIn{0%{transform:rotate(-7deg) scale(2.4);opacity:0}70%{transform:rotate(-7deg) scale(.95);opacity:1}100%{transform:rotate(-7deg) scale(1);opacity:.9}}
+.stamp.pre{opacity:0}
+.stamp.go{animation:stampIn .32s cubic-bezier(.2,.9,.3,1.2) both}
+@media(prefers-reduced-motion:reduce){.stamp.pre{opacity:.9}.stamp.go{animation:none;opacity:.9;transform:rotate(-7deg)}}
 .r2-card{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:22px 26px;max-width:620px;margin:0 auto;box-shadow:var(--shadow-sm)}
 .r2-line{display:flex;align-items:baseline;gap:8px;padding:9px 0;font-size:15px}
 .r2-note{color:var(--grey-500);font-size:12.5px}
@@ -131,6 +149,17 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .flex-band{text-align:center;max-width:640px;margin:0 auto}
 .flex-band .chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0 0}
 .flex-band .chip{background:var(--blue-50);border:1px solid var(--blue-100);color:var(--blue-700);border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:600}
+.weekstrip{display:flex;gap:8px;justify-content:center;align-items:flex-end;flex-wrap:wrap;margin:22px 0 0}
+.ws-day{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;background:var(--blue-50);border:1px solid var(--blue-100);border-radius:12px;padding:10px 8px 8px;min-width:52px}
+.ws-day span{font-size:12.5px;font-weight:700;color:var(--blue-700)}
+.ws-bar{width:14px;border-radius:4px 4px 2px 2px;background:var(--blue-100)}
+.ws-day.cheap{border-color:var(--success-text);background:#fff}
+.ws-day.cheap span{color:var(--success-text)}
+.ws-day.cheap .ws-bar{background:rgba(63,122,51,.28)}
+.ws-caption{text-align:center;color:var(--grey-500);font-size:13.5px;margin:14px 0 0}
+
+.h1-toggle{position:fixed;left:14px;bottom:14px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
+.h1-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
 
 .faq-list{max-width:720px;margin:0 auto}
 .faq-item{width:100%;display:flex;justify-content:space-between;align-items:center;font:inherit;font-weight:600;font-size:15.5px;color:var(--navy-500);background:#fff;border:1px solid var(--grey-100);border-radius:10px;padding:16px 18px;margin-top:10px;cursor:pointer;text-align:left}
@@ -154,10 +183,11 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
   <div class="nav-in">
     <div class="logo"><a href="homepage-hybrid.html"><span class="head">🧠</span> Einstein Moving Co.</a></div>
     <div class="nav-links">
-      <a href="#" class="on">Pricing</a>
+      <a href="pricing-page.html" class="on">Pricing</a>
       <a href="coverage-page.html">Coverage</a>
       <a href="why-us-page.html">Why Us</a>
       <a href="about-page.html">About</a>
+      <a href="awards-reviews-page.html">Reviews</a>
     </div>
     <a class="btn-nav" href="https://www.einsteinmoving.com/quote/">See My Price</a>
   </div>
@@ -167,30 +197,48 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
 <header class="hero">
   <div class="wrap">
     <div class="ic">💲</div>
-    <h1><span class="a">Honest</span>, all-inclusive moving prices.<br>One hourly rate — no hidden fees.</h1>
-    <p class="lead">Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. One upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b></p>
+    <h1 id="heroH1"><span class="a">Honest</span>, all-inclusive moving prices.<br>One hourly rate — no hidden fees.</h1>
+    <p class="lead" id="heroLead">Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. One upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b></p>
     <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
     <div class="microproof">Free quote in ~47 seconds · No phone calls · No deposit</div>
   </div>
 </header>
 
-<!-- ============ 2. THE COMPARISON (locked table + B/D second part) ============ -->
+<!-- ============ 2. HOW HOURLY PRICING WORKS ============ -->
+<section class="block" style="background:var(--grey-50)">
+  <div class="wrap">
+    <h2 class="sec">No mystery <span class="a">math.</span></h2>
+    <p class="sub">One rate, times the time your move actually takes.</p>
+    <div class="how">
+      <div class="hstep"><div class="n">1</div><h4>One all-inclusive rate</h4><p>Your quote shows one hourly rate — everything&rsquo;s in that number.</p></div>
+      <div class="hstep"><div class="n">2</div><h4>The clock starts at your door</h4><p>Not at our warehouse, not when we leave the lot. You pay for your move, not our commute.</p></div>
+      <div class="hstep"><div class="n">3</div><h4>Your total = rate × time</h4><p>Work fast, pay less. Your quote estimates the hours honestly — and nothing gets added at the bottom.</p></div>
+    </div>
+    <div class="clockbanner"><span class="i">🗺️</span><span><b>The one fee that can exist — named up front.</b> Every branch has a free service area (roughly a 10–15 mile radius). Moving outside it? A trip fee applies — and we tell you the exact amount <b>before you book</b>, never on the bill. That&rsquo;s the whole list of surprises: one, and it&rsquo;s disclosed.</span></div>
+    <div class="metaphors">
+      <div class="metaphor"><span class="tag">Hidden fees, translated</span>Their hourly rate is like a hotel advertising $199/night… then hitting you with a <b>$75 resort fee</b> at checkout. Our rate is the rate.</div>
+      <div class="metaphor"><span class="tag">Portal-to-portal billing, translated</span>Some movers start the clock when they leave their warehouse. That&rsquo;s like a taxi <b>starting the meter at the driver&rsquo;s house</b> across town.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. THE COMPARISON (locked table + B/D second part) ============ -->
 <section class="block">
   <div class="wrap">
-    <h2 class="sec">Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span></h2>
-    <p class="sub">A low hourly rate always looks cheaper — until the fees stack up on move day. It&rsquo;s the hotel that advertises $199 a night, then hits you with the <b>resort fee</b> at checkout. Here are the industry&rsquo;s usual add-ons, and what Einstein includes for <b>$0</b>.</p>
+    <h2 class="sec">The add-on list, in full. <span class="a">Every fee we charge $0 for.</span></h2>
+    <p class="sub">A low hourly rate always looks cheaper — until the fees stack up on move day. Here are the industry&rsquo;s usual add-ons — and what Einstein includes for <b>$0</b>.</p>
     <div class="tblscroll">
     <table class="cmp" aria-label="What typical movers charge extra for vs Einstein">
       <thead><tr><th class="item">The fee</th><th class="them">Typical mover</th><th class="us">Einstein</th></tr></thead>
       <tbody>
-        <tr><td class="item">When the clock starts</td><td class="them"><span class="x">✕</span>At their warehouse</td><td class="us"><span class="chk">✓</span>At your door</td></tr>
-        <tr><td class="item">Booking deposit</td><td class="them"><span class="x">✕</span>Required — often forfeited</td><td class="us"><span class="chk">✓</span>$0 · free cancellation</td></tr>
-        <tr><td class="item">Fuel / trip surcharge</td><td class="them"><span class="x">✕</span><span class="strike">+$50–250</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
-        <tr><td class="item">Credit-card fee</td><td class="them"><span class="x">✕</span><span class="strike">+2.5–3.5%</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
-        <tr><td class="item">Blankets, wrap &amp; supplies</td><td class="them"><span class="x">✕</span><span class="strike">+$65–135</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
-        <tr><td class="item">Stair / long-carry fees</td><td class="them"><span class="x">✕</span><span class="strike">+$100–250</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
-        <tr><td class="item">Damage coverage</td><td class="them"><span class="x">✕</span>60¢/lb — or pay to upgrade</td><td class="us"><span class="chk">✓</span>$2,000 · actual value<span class="fb">Free</span></td></tr>
-        <tr class="bottom"><td class="item">Bottom line</td><td class="them">25–50% more than quoted*</td><td class="us">Nothing added at the bottom</td></tr>
+        <tr style="--i:0"><td class="item">When the clock starts</td><td class="them"><span class="x">✕</span>At their warehouse</td><td class="us"><span class="chk">✓</span>At your door</td></tr>
+        <tr style="--i:1"><td class="item">Booking deposit</td><td class="them"><span class="x">✕</span>Required — often forfeited</td><td class="us"><span class="chk">✓</span>$0 · free cancellation</td></tr>
+        <tr style="--i:2"><td class="item">Fuel / trip surcharge</td><td class="them"><span class="x">✕</span><span class="strike">+$50–250</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
+        <tr style="--i:3"><td class="item">Credit-card fee</td><td class="them"><span class="x">✕</span><span class="strike">+2.5–3.5%</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
+        <tr style="--i:4"><td class="item">Blankets, wrap &amp; supplies</td><td class="them"><span class="x">✕</span><span class="strike">+$65–135</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
+        <tr style="--i:5"><td class="item">Stair / long-carry / heavy-item fees</td><td class="them"><span class="x">✕</span><span class="strike">+$100–250</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
+        <tr style="--i:6"><td class="item">Damage coverage</td><td class="them"><span class="x">✕</span>60¢/lb — or pay to upgrade</td><td class="us"><span class="chk">✓</span>$2,000 · actual value<span class="fb">Free</span></td></tr>
+        <tr class="bottom" style="--i:7"><td class="item">Bottom line</td><td class="them">25–50% more than quoted*</td><td class="us">Nothing added at the bottom</td></tr>
       </tbody>
     </table>
     </div>
@@ -202,30 +250,12 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
     </div>
     <div class="r2-card">
       <div class="r2-line"><span>Furniture blankets, wrap &amp; supplies</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+      <div class="r2-line"><span>TV boxes (&times;2)</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
       <div class="r2-line"><span>Furniture disassembly &amp; reassembly</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
       <div class="r2-line"><span>$2,000 damage coverage <span class="r2-note">· actual value</span></span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
       <div class="r2-line"><span>On-time guarantee <span class="r2-note">· late = your move is discounted</span></span><span class="r2-dots"></span><span class="r2-inc">Included</span></div>
       <div class="r2-line"><span>Booking deposit</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
       <div class="r2-tot"><span>Everything most movers bill extra for</span><span class="r2-big">$0</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 3. HOW HOURLY PRICING WORKS ============ -->
-<section class="block" style="background:var(--grey-50)">
-  <div class="wrap">
-    <h2 class="sec">How our hourly pricing <span class="a">works.</span></h2>
-    <p class="sub">No mystery math. One rate, times the time your move actually takes.</p>
-    <div class="how">
-      <div class="hstep"><div class="n">1</div><h4>One all-inclusive rate</h4><p>Your quote shows one hourly rate. Movers, truck, blankets, wrap, tools, taxes, coverage — it&rsquo;s all in that number.</p></div>
-      <div class="hstep"><div class="n">2</div><h4>The clock starts at your door</h4><p>Not at our warehouse, not when we leave the lot. You pay for your move, not our commute.</p></div>
-      <div class="hstep"><div class="n">3</div><h4>Your total = rate × time</h4><p>Work fast, pay less. Your quote estimates the hours honestly — and nothing gets added at the bottom.</p></div>
-    </div>
-    <div class="clockbanner"><span class="i">ⓘ</span><span><b>&ldquo;When does the clock start?&rdquo;</b> — the #1 question, answered plainly: at your door. If a mover can&rsquo;t answer that in one sentence, that&rsquo;s your answer about them.</span></div>
-    <div class="clockbanner"><span class="i">🗺️</span><span><b>The one fee that can exist — named up front.</b> Every branch has a free service area (roughly a 10–15 mile radius). Moving outside it? A trip fee applies — and we tell you the exact amount <b>before you book</b>, never on the bill. That&rsquo;s the whole list of surprises: one, and it&rsquo;s disclosed.</span></div>
-    <div class="metaphors">
-      <div class="metaphor"><span class="tag">Hidden fees, translated</span>Their hourly rate is like a hotel advertising $199/night… then hitting you with a <b>$75 resort fee</b> at checkout. Our rate is the rate.</div>
-      <div class="metaphor"><span class="tag">Portal-to-portal billing, translated</span>Some movers start the clock when they leave their warehouse. That&rsquo;s like a taxi <b>starting the meter at the driver&rsquo;s house</b> across town.</div>
     </div>
   </div>
 </section>
@@ -245,7 +275,16 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
     <div class="flex-band">
       <h2 class="sec">Flexible on dates? <span class="a">It pays.</span></h2>
       <p class="sub">The same move costs less on quieter days — and your quote shows your <b>whole week</b> side by side, so the savings are yours to grab, never a surge to dodge.</p>
-      <div class="chips"><span class="chip">Midweek → usually less</span><span class="chip">Mid-month → usually less</span><span class="chip">Your quote shows every day&rsquo;s rate</span></div>
+      <div class="weekstrip" role="img" aria-label="Relative price by day of week — midweek days usually cost less. No dollar amounts shown; your quote carries the real rates.">
+        <div class="ws-day"><div class="ws-bar" style="height:26px"></div><span>Mon</span></div>
+        <div class="ws-day cheap"><div class="ws-bar" style="height:16px"></div><span>Tue</span></div>
+        <div class="ws-day cheap"><div class="ws-bar" style="height:14px"></div><span>Wed</span></div>
+        <div class="ws-day cheap"><div class="ws-bar" style="height:18px"></div><span>Thu</span></div>
+        <div class="ws-day"><div class="ws-bar" style="height:32px"></div><span>Fri</span></div>
+        <div class="ws-day"><div class="ws-bar" style="height:38px"></div><span>Sat</span></div>
+        <div class="ws-day"><div class="ws-bar" style="height:30px"></div><span>Sun</span></div>
+      </div>
+      <p class="ws-caption">Your quote shows every day&rsquo;s rate — pick your price.</p>
     </div>
   </div>
 </section>
@@ -273,7 +312,7 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
       </div>
       <div>
         <button class="faq-item" aria-expanded="false"><span>When does the clock start?</span><span class="t">+</span></button>
-        <div class="acc-answer" hidden><p>At your door — not at our warehouse, not when we leave the lot.</p></div>
+        <div class="acc-answer" hidden><p>At your door — not at our warehouse, not when we leave the lot. If a mover can&rsquo;t answer that in one sentence, that&rsquo;s your answer about them.</p></div>
       </div>
       <div>
         <button class="faq-item" aria-expanded="false"><span>Do I need to tip my movers?</span><span class="t">+</span></button>
@@ -315,8 +354,9 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
 
 <footer>
   <div class="wrap">
-    <p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don&rsquo;t earn numbers like those by nickel-and-diming people on moving day.</span></p>
+    <p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don&rsquo;t earn numbers like those by surprising people at the bottom of the receipt.</span></p>
     <p>TX TxDMV #006604158C · US DOT #2193963 &nbsp;|&nbsp; FL Mover Reg. No. IM3621 · US DOT #3882313</p>
+    <p style="font-size:11px;color:#9AA3AA;margin-top:10px">P.S. You made it to the fine print. We like you already.</p>
     <p class="devnote">PRICING PAGE DRAFT v1 · 7/1/2026 — supporting page #3 of 8 (pg-straightforward-pricing blueprint). Locked marketing table + B/D second part; surface rule held (no committed $/hr — the quote form carries real numbers); resort-fee + taxi-meter metaphors live here; FAQ mirrored in JSON-LD. KP copy pass folds in live-site pricing copy (research/live-site-copy.md = canonical source).</p>
   </div>
 </footer>
@@ -333,6 +373,53 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
       var t = btn.querySelector('.t'); if(t) t.textContent = open ? '+' : '–';
     });
   });
+})();
+
+/* Workshop H1 toggle — ORIGINAL vs PROPOSED hero (persisted: emc-pricing-h1) */
+(function(){
+  var h1 = document.getElementById('heroH1'), lead = document.getElementById('heroLead');
+  if(!h1 || !lead) return;
+  var V = [
+    { id:'original',
+      h1:'<span class="a">Honest</span>, all-inclusive moving prices.<br>One hourly rate — no hidden fees.',
+      lead:'Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. One upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b>' },
+    { id:'proposed',
+      h1:'“Am I going to get ripped off?”<br><span class="a">Not here — and this page is the receipt.</span>',
+      lead:'One upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b>' }
+  ];
+  var idx = 0;
+  try{ if(localStorage.getItem('emc-pricing-h1')==='proposed') idx = 1; }catch(e){}
+  function apply(){ h1.innerHTML = V[idx].h1; lead.innerHTML = V[idx].lead; btn.textContent = '⇄ H1 · ' + (idx===0?'original':'proposed'); }
+  var btn = document.createElement('button');
+  btn.className = 'h1-toggle'; btn.type = 'button'; btn.title = 'Workshop control: cycle hero H1 variants';
+  btn.addEventListener('click', function(){
+    idx = (idx+1) % V.length;
+    try{ localStorage.setItem('emc-pricing-h1', V[idx].id); }catch(e){}
+    apply();
+  });
+  document.body.appendChild(btn);
+  apply();
+})();
+
+/* Scroll-in animations: strike-draw + $0 pill pop (comparison table) and stamp thunk.
+   Reduced-motion fallbacks render final states statically (see CSS). */
+(function(){
+  var tbl = document.querySelector('table.cmp');
+  var headrow = document.querySelector('.p2-headrow');
+  var stamp = headrow ? headrow.querySelector('.stamp') : null;
+  if(!('IntersectionObserver' in window)) return; // no-JS/old-browser: everything already renders in final state
+  if(tbl){
+    tbl.classList.add('animate');
+    new IntersectionObserver(function(entries, io){
+      entries.forEach(function(e){ if(e.isIntersecting){ tbl.classList.add('in'); io.disconnect(); } });
+    }, {threshold:.35}).observe(tbl);
+  }
+  if(stamp){
+    stamp.classList.add('pre');
+    new IntersectionObserver(function(entries, io){
+      entries.forEach(function(e){ if(e.isIntersecting){ stamp.classList.remove('pre'); stamp.classList.add('go'); io.disconnect(); } });
+    }, {threshold:.6}).observe(headrow);
+  }
 })();
 </script>
 <script src="feedback.js"></script>

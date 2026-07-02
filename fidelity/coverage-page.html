@@ -82,6 +82,24 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .fineprint{text-align:center;color:var(--grey-500);font-size:12.5px;margin:12px auto 0;max-width:720px;line-height:1.5}
 .fineprint b{color:var(--navy-500)}
 
+/* Einstein-column pill pop on scroll-in (JS adds .anim on load, .in via IntersectionObserver) */
+table.cmp.anim .fb{transform:scale(.5);opacity:0;transition:transform .2s ease-out,opacity .2s ease-out;transition-delay:calc(var(--i,0)*60ms)}
+table.cmp.anim.in .fb{transform:scale(1);opacity:1}
+@media(prefers-reduced-motion:reduce){
+  table.cmp.anim .fb{transform:none;opacity:1;transition:none;transition-delay:0s}
+}
+
+/* Mobile: keep it a table — fit 375px, Einstein column fully visible, no horizontal scroll */
+@media(max-width:640px){
+  .tblscroll{overflow-x:visible}
+  table.cmp{min-width:0;font-size:13px}
+  .cmp thead th,.cmp td{padding:8px 6px;white-space:normal;font-size:13px}
+  .cmp thead th .hn{font-size:10.5px}
+  .cmp td.item .m,.cmp td.them .note{font-size:10.5px}
+  /* hide the middle paid-tier column: reads item | worst-case | Einstein */
+  .cmp th:nth-child(3),.cmp td:nth-child(3){display:none}
+}
+
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto}
 .card{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:22px 20px;text-align:center}
 .card .ic{width:46px;height:46px;border-radius:50%;background:var(--orange-50);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 12px}
@@ -122,10 +140,11 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
     <div class="logo"><a href="homepage-hybrid.html"><span class="head">🧠</span> Einstein Moving Co.</a></div>
     <div class="nav-links">
       <a href="pricing-page.html">Pricing</a>
-      <a href="#" class="on">Coverage</a>
-      <a href="claims-page.html">Claims</a>
+      <a href="coverage-page.html" class="on">Coverage</a>
       <a href="why-us-page.html">Why Us</a>
       <a href="about-page.html">About</a>
+      <a href="awards-reviews-page.html">Reviews</a>
+      <a href="claims-page.html">Claims</a>
     </div>
     <a class="btn-nav" href="https://www.einsteinmoving.com/quote/">See My Price</a>
   </div>
@@ -136,7 +155,7 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
   <div class="wrap">
     <div class="shield">🛡️</div>
     <h1>Smart Move Damage Coverage: $2,000 on every move, free — <span class="a">and not by the pound.</span></h1>
-    <p class="lead">Every Einstein move includes <b>$2,000 of damage coverage at no charge</b> — and it pays on what your stuff is <b>actually worth</b>, not what it weighs. Most movers cover your belongings by the pound, at the legal minimum of 60&#162;/lb. We don&rsquo;t.</p>
+    <p class="lead">Most movers cover your belongings at the legal minimum — <b>60&#162; a pound</b>. We pay what your stuff is <b>actually worth</b>.</p>
     <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">Get my quote — coverage included →</a>
     <a class="second" href="#claims">How a claim actually works ↓</a>
     <div class="microproof">Included free · No deductible · No upgrade to buy</div>
@@ -148,8 +167,8 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
   <div class="wrap">
     <h2 class="sec">What &ldquo;60&#162; a pound&rdquo; <span class="a">really means.</span></h2>
     <div class="trap">
-      <p>Here&rsquo;s how the industry actually works: by law, a mover only owes you <b>60 cents per pound</b> if they break something. It&rsquo;s called released-value coverage, it&rsquo;s the legal minimum, and it has nothing to do with what your things are worth. A 150-pound sofa? <b>That&rsquo;s a $90 check</b> — no matter what the sofa cost.</p>
-      <p>Most movers will sell you an upgrade — often around $200. But read the fine print: <b>most paid upgrades are still per-pound.</b> Your $1,500 laptop weighs five pounds. Even on a paid tier, that&rsquo;s about $15. You paid extra to still be underpaid.</p>
+      <p>Here&rsquo;s how the industry actually works: by law, a mover only owes you <b>60 cents per pound</b> if they break something. It&rsquo;s called released-value coverage, it&rsquo;s the legal minimum, and it has nothing to do with what your things are worth.</p>
+      <p>Most movers will sell you an upgrade — often around $200. But read the fine print: <b>most paid upgrades are still per-pound.</b> You paid extra to still be underpaid.</p>
       <p>This isn&rsquo;t an attack — it&rsquo;s just the math nobody shows you before move day. So we will:</p>
     </div>
     <div class="metaphor">Covering your things by the pound is like insuring your <b>wedding ring by how much it weighs</b> — not what it&rsquo;s worth.</div>
@@ -203,12 +222,7 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
 <section class="block" id="claims" style="background:var(--grey-50)">
   <div class="wrap">
     <h2 class="sec">If something breaks, <span class="a">here&rsquo;s exactly what happens.</span></h2>
-    <p class="sub">No maze, no runaround — a short process with a real person on the other end.</p>
-    <div class="steps">
-      <div class="step"><div class="n">1</div><h4>Tell us what happened</h4><p>A short form or a quick email — with a couple of photos if you have them.</p></div>
-      <div class="step"><div class="n">2</div><h4>A real person picks it up</h4><p>A claims coordinator opens your file and gets back to you fast <i>[VERIFY SLA — target: within 1 business day]</i>.</p></div>
-      <div class="step"><div class="n">3</div><h4>We make it right</h4><p>Repair, replace, or a check — handled honestly, with a timeline we actually tell you up front.</p></div>
-    </div>
+    <p class="sub" style="max-width:720px">If something breaks: tell us, a real person picks it up <i>[VERIFY SLA — target: within 1 business day]</i>, and we make it right — repair, replace, or a check.</p>
     <p class="moneyline">There&rsquo;s real money behind the claim <span class="a">before you even file.</span></p>
     <p class="microproof"><a href="claims-page.html" style="font-weight:600">See the full claims walkthrough — and file one if you need to →</a></p>
   </div>
@@ -226,11 +240,30 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
 
 <footer>
   <div class="wrap">
-    <p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don&rsquo;t earn numbers like those by nickel-and-diming people on moving day.</span></p>
+    <p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don&rsquo;t earn numbers like those by paying people by the pound.</span></p>
     <p>TX TxDMV #006604158C · US DOT #2193963 &nbsp;|&nbsp; FL Mover Reg. No. IM3621 · US DOT #3882313</p>
+    <p style="font-size:11px;color:#9AA3AA;margin-top:10px">P.S. You made it to the fine print. We like you already.</p>
     <p class="devnote">COVERAGE PAGE DRAFT v1 · 7/1/2026 — supporting page #1 of 8, built off the pg-coverage blueprint + the homepage v2 design system. Pairs with the Claims page (next). Emoji = placeholder icons; review quote = sample; claims SLA = [VERIFY].</p>
   </div>
 </footer>
 
+<script>
+/* Payout-table pill pop: pills arrive hidden only once .anim is set (no-JS = static), then pop on scroll-in. */
+(function(){
+  var t = document.querySelector('table.cmp');
+  if(!t) return;
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return; /* static final state */
+  t.classList.add('anim');
+  var rows = t.querySelectorAll('tbody tr');
+  for(var i=0;i<rows.length;i++){ rows[i].style.setProperty('--i', i); }
+  if(!('IntersectionObserver' in window)){ t.classList.add('in'); return; }
+  var o = new IntersectionObserver(function(entries){
+    for(var j=0;j<entries.length;j++){
+      if(entries[j].isIntersecting){ t.classList.add('in'); o.disconnect(); break; }
+    }
+  }, {threshold:.35});
+  o.observe(t);
+})();
+</script>
 <script src="feedback.js"></script>
 </body></html>

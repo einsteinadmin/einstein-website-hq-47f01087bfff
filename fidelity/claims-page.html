@@ -72,7 +72,14 @@ nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-
 .formcard .opt{color:var(--grey-500);font-weight:400}
 .formcard .conf{margin-top:16px;background:var(--orange-50);border:1px solid var(--orange-100);border-radius:8px;padding:12px 14px;font-size:13px;color:var(--grey-500)}
 .formcard .conf b{color:var(--navy-500)}
-.formcard .btn-primary{width:100%;margin-top:16px;text-align:center}
+.formcard .btn-primary{width:100%;margin-top:16px;text-align:center;transition:background .25s ease}
+.formcard .btn-primary.sent{background:#3F7A33;box-shadow:none;cursor:default}
+@keyframes confPulse{0%{border-color:var(--orange-100)}50%{border-color:var(--orange-300)}100%{border-color:var(--orange-100)}}
+.formcard .conf.pulse{animation:confPulse .6s ease}
+@media(prefers-reduced-motion:reduce){
+  .formcard .btn-primary{transition:none}
+  .formcard .conf.pulse{animation:none}
+}
 @media(max-width:560px){.formcard .row{grid-template-columns:1fr}}
 
 .recap{max-width:720px;margin:0 auto;text-align:center;font-size:16px;line-height:1.65}
@@ -103,9 +110,10 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
     <div class="nav-links">
       <a href="pricing-page.html">Pricing</a>
       <a href="coverage-page.html">Coverage</a>
-      <a href="#" class="on">Claims</a>
       <a href="why-us-page.html">Why Us</a>
       <a href="about-page.html">About</a>
+      <a href="awards-reviews-page.html">Reviews</a>
+      <a href="claims-page.html" class="on">Claims</a>
     </div>
     <a class="btn-nav" href="https://www.einsteinmoving.com/quote/">See My Price</a>
   </div>
@@ -124,7 +132,6 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
 <section class="block">
   <div class="wrap">
     <h2 class="sec">Four steps. <span class="a">That&rsquo;s the whole process.</span></h2>
-    <p class="sub">An honest timeline beats a fake &ldquo;instant.&rdquo; Here&rsquo;s how it actually goes:</p>
     <div class="steps">
       <div class="step"><div class="n">1</div><h4>Tell us what happened</h4><p>The short form below, or email us — whichever&rsquo;s easier.</p></div>
       <div class="step"><div class="n">2</div><h4>Send a few photos</h4><p>Phone pics are perfect. That&rsquo;s all the &ldquo;paperwork&rdquo; there is.</p></div>
@@ -140,7 +147,8 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
     <h2 class="sec">Start your claim</h2>
     <p class="sub">Seven quick fields. No account, no PDFs, no legalese.</p>
     <div class="formcard">
-      <form onsubmit="event.preventDefault(); alert('Draft page — the form isn\'t wired yet. In production this submits to the claims team.');">
+      <!-- DEVNOTE: form is NOT wired (draft) — submit is a calm inline confirmation only; in production this submits to the claims team. -->
+      <form onsubmit="claimSubmit(event)">
         <div class="row">
           <div><label for="cn">Your name</label><input id="cn" name="name" autocomplete="name"></div>
           <div><label for="cd">Move date</label><input id="cd" name="movedate" placeholder="MM/DD/YYYY"></div>
@@ -152,7 +160,7 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
         <label for="ci">What was damaged?</label><input id="ci" name="item" placeholder="e.g., coffee table — glass top">
         <label for="cw">What happened?</label><textarea id="cw" name="what" rows="3" placeholder="A couple of sentences is plenty."></textarea>
         <label for="cp">Photos <span class="opt">(optional — you can also text them to us)</span></label><input id="cp" type="file" multiple>
-        <button class="btn-primary" type="submit">Submit my claim →</button>
+        <button class="btn-primary" type="submit">Send it in →</button>
         <div class="conf"><b>What happens when you hit submit:</b> you&rsquo;re covered up to $2,000 on actual value — a claims coordinator will confirm receipt and take it from there. You don&rsquo;t need to do anything else.</div>
       </form>
     </div>
@@ -162,8 +170,8 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
 <!-- ============ 4. WHAT'S COVERED — recap + bidirectional link ============ -->
 <section class="block">
   <div class="wrap">
-    <h2 class="sec">A reminder of what you&rsquo;re <span class="a">working with.</span></h2>
-    <p class="recap">Every Einstein move includes <b>$2,000 of damage coverage, free</b> — paid on <b>actual value</b>, not 60&#162; a pound. That covers your things <b>and your home</b> (floors, walls, doorframes). No deductible, no upgrade you were supposed to have bought.
+    <h2 class="sec">A reminder: <span class="a">your move came pre-covered.</span></h2>
+    <p class="recap">Quick recap: $2,000, free, paid on actual value — your things and your home. No deductible.
     <br><a class="backlink" href="coverage-page.html">See the full coverage breakdown — payouts, examples, the honest edges →</a></p>
   </div>
 </section>
@@ -197,9 +205,28 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
   <div class="wrap">
     <p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don&rsquo;t earn numbers like those by leaving people hanging when something breaks.</span></p>
     <p>TX TxDMV #006604158C · US DOT #2193963 &nbsp;|&nbsp; FL Mover Reg. No. IM3621 · US DOT #3882313</p>
+    <p style="font-size:11px;color:#9AA3AA;margin-top:10px">P.S. You made it to the fine print. We like you already.</p>
     <p class="devnote">CLAIMS PAGE DRAFT v1 · 7/1/2026 — supporting page #2 of 8, built off the pg-claims blueprint; the reassurance twin of the Coverage page (bidirectional links live). Form NOT wired; SLA/resolution window/named owner/regulatory copy = [VERIFY]. claims@ email = assumed, confirm it exists.</p>
   </div>
 </footer>
 
+<script>
+function claimSubmit(e){
+  e.preventDefault(); // form is unwired (draft) — see devnote above the <form>
+  var form=e.target, btn=form.querySelector('.btn-primary'), conf=form.querySelector('.conf');
+  if(btn.disabled)return;
+  btn.textContent='✓ Got it — we’re on it.';
+  btn.classList.add('sent');
+  btn.disabled=true;
+  var line=document.createElement('div');
+  line.style.marginTop='8px';
+  line.textContent='Take a breath — this is now our problem, not yours.';
+  conf.appendChild(line);
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    conf.classList.add('pulse');
+    conf.addEventListener('animationend',function(){conf.classList.remove('pulse');},{once:true});
+  }
+}
+</script>
 <script src="feedback.js"></script>
 </body></html>

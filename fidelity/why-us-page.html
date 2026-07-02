@@ -71,6 +71,12 @@ nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-
 .disq h3{font-family:Lora,serif;font-size:22px;margin:0 0 8px}
 .disq p{margin:0;font-size:15px;color:var(--grey-500);line-height:1.6}
 .disq b{color:var(--navy-500)}
+.comm-steps{display:flex;gap:10px;justify-content:center;align-items:stretch;flex-wrap:nowrap;max-width:760px;margin:22px auto 0}
+.comm-step{flex:1;min-width:0;background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:14px 10px;box-shadow:var(--shadow-sm);text-align:center}
+.comm-step .ic{font-size:20px;line-height:1;margin-bottom:6px}
+.comm-step .lb{font-size:13px;font-weight:600;color:var(--navy-500);line-height:1.35}
+.comm-arrow{align-self:center;color:var(--grey-500);font-size:15px;flex:0 0 auto}
+@media(max-width:640px){.comm-steps{flex-direction:column;align-items:stretch;max-width:300px}.comm-arrow{transform:rotate(90deg)}}
 .proofband{background:var(--navy-50);padding:56px 0;text-align:center}
 .trust-row{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;font-size:14px;color:var(--grey-500);font-weight:600;margin-bottom:20px}
 .trust-row .stars{color:var(--star);letter-spacing:1px}.trust-row .sep{color:var(--grey-100)}
@@ -84,14 +90,14 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
   <div class="logo"><a href="homepage-hybrid.html"><span class="head">🧠</span> Einstein Moving Co.</a></div>
   <div class="nav-links">
     <a href="pricing-page.html">Pricing</a><a href="coverage-page.html">Coverage</a>
-    <a href="#" class="on">Why Us</a><a href="about-page.html">About</a>
+    <a href="why-us-page.html" class="on">Why Us</a><a href="about-page.html">About</a><a href="awards-reviews-page.html">Reviews</a>
   </div>
   <a class="btn-nav" href="https://www.einsteinmoving.com/quote/">See My Price</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
   <h1>Why Einstein is <span class="a">the Smart Move</span>.</h1>
-  <p class="wink">Honest to a fault — and we can prove every word of it.</p>
+  <p class="wink">Big claim. Below: the proof, question by question.</p>
   <!-- WORKSHOP TOGGLE ALT (Cameron 7/1: consider at workshop): "Not the cheapest. The most honest — and we can prove it." -->
   <div class="videobox">
     <div class="vph">▶ &ldquo;How to Choose the Right Moving Company&rdquo;<br><span style="font-size:11px">embed youtu.be/pj_dJsc5QCc — the real video, already produced</span></div>
@@ -130,12 +136,18 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
   <span class="qnum">Question 3</span>
   <h2 class="sec">&ldquo;Who are the movers <span class="a">showing up at my door?</span>&rdquo;</h2>
   <p class="bigline">You&rsquo;ll know their names <span class="a">before they know your address.</span></p>
-  <p class="sub">Every Einstein mover is a <b>background-checked, W-2 employee</b> vetted through a five-step hiring process — <b>fewer than 1% of applicants make it</b>. Days before your move, your crew&rsquo;s photos and bios land in your inbox. Move day starts with a handshake, not a question mark.</p>
+  <p class="sub">Every Einstein mover is a <b>background-checked, W-2 employee</b> vetted through a five-step hiring process — <b>fewer than 1% of applicants make it</b>. Days before your move, your crew&rsquo;s photos and bios land in your inbox.</p>
   <div class="crew-cards">
     <div class="crew-card"><div class="avatar">Real crew photo (never stock)</div><div class="cname">Marcus R.</div><div class="crole">Crew Lead · 4 yrs</div></div>
     <div class="crew-card"><div class="avatar">Real crew photo (never stock)</div><div class="cname">Diego M.</div><div class="crole">Mover · 2 yrs</div></div>
     <div class="crew-card"><div class="avatar">Real crew photo (never stock)</div><div class="cname">Tay W.</div><div class="crole">Mover · 3 yrs</div></div>
   </div>
+</div></section>
+
+<!-- MID-PAGE CONVERSION MOMENT (after MYM showcase) -->
+<section class="block" style="padding:38px 0"><div class="wrap" style="text-align:center">
+  <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
+  <div class="microproof">Meet your crew before move day.</div>
 </div></section>
 
 <!-- Q4 — ON TIME + REPUTATION (guarantees cluster) -->
@@ -145,7 +157,7 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
   <p class="sub">Anyone can promise. We put <b>money behind it</b> — and 100,000 moves on the record.</p>
   <div class="gcluster">
     <div class="gcard"><h4>⏱️ On-Time Guarantee</h4><p>We commit to your arrival window. Miss it and your move is discounted — the longer we&rsquo;re late, the bigger the discount. We rarely need it.</p></div>
-    <div class="gcard"><h4>🏆 The reputation, in numbers</h4><p>4.9/5 across 8,100+ reviews · 10× Best of Austin · 5× Best in DFW · 4× Best of San Antonio · 3× Best of the Best Houston · 7× Inc. 5000 · featured in Forbes Home.</p></div>
+    <div class="gcard"><h4>🏆 The reputation, in numbers</h4><p>4.9/5 across 8,100+ reviews · 10× Best of Austin · 5× Best in DFW · 4× Best of San Antonio · 3× Best of the Best Houston · 7× Inc. 5000 · featured in Forbes Home. Seriously — we&rsquo;re running out of shelf space. <a href="awards-reviews-page.html">The full year-by-year, every trophy with its name tag on →</a></p></div>
   </div>
 </div></section>
 
@@ -154,6 +166,15 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
   <span class="qnum">Question 6</span>
   <h2 class="sec">&ldquo;Will I know <span class="a">what&rsquo;s going on?</span>&rdquo;</h2>
   <p class="sub"><b>Constant communication</b> — from booking confirmation to &ldquo;we&rsquo;re on the way&rdquo; texts to the final walkthrough, we check in so regularly you&rsquo;ll never wonder what&rsquo;s next. You might wonder about other things. Life, the universe. Not your move.</p>
+  <div class="comm-steps">
+    <div class="comm-step"><div class="ic">✓</div><div class="lb">Booked</div></div>
+    <div class="comm-arrow">→</div>
+    <div class="comm-step"><div class="ic">📆</div><div class="lb">Day-before check-in</div></div>
+    <div class="comm-arrow">→</div>
+    <div class="comm-step"><div class="ic">🚚</div><div class="lb">&ldquo;On the way&rdquo; text</div></div>
+    <div class="comm-arrow">→</div>
+    <div class="comm-step"><div class="ic">🏁</div><div class="lb">Final walkthrough</div></div>
+  </div>
 </div></section>
 
 <!-- Q6 — ENVIRONMENT (the orphan question, one-line wink) -->
@@ -184,6 +205,7 @@ footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
 <footer><div class="wrap">
   <p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don&rsquo;t earn numbers like those by dodging the hard questions.</span></p>
   <p>TX TxDMV #006604158C · US DOT #2193963 &nbsp;|&nbsp; FL Mover Reg. No. IM3621 · US DOT #3882313</p>
+  <p style="font-size:11px;color:#9AA3AA;margin-top:10px">P.S. You made it to the fine print. We like you already.</p>
   <p class="devnote">WHY US DRAFT v1 · 7/1/2026 — built from the audit-REVISED blueprint (aggregator: video questions as spine, ranked to 3-proof hierarchy; MYM showcase lives here per 7/1 decision; Constant Communication beat rescued; honest-disqualifier carried from live; teasers link to Coverage/Pricing, metaphors stay on their home pages). *25–50% asterisk pending mystery-shop verification.</p>
 </div></footer>
 <a href="why-us-page-b.html" style="position:fixed;right:16px;bottom:16px;z-index:400;background:#1A2329;color:#fff;border-radius:999px;padding:10px 16px;font:700 12.5px Roboto,sans-serif;text-decoration:none;box-shadow:0 8px 30px rgba(11,16,20,.25)">⇄ View Variant B (system-led)</a>

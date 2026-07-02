@@ -90,7 +90,7 @@ nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-
 .hero h1 .a{color:var(--orange-900)}
 .hero .lead{font-size:18.5px;line-height:1.55;max-width:640px;margin:0 auto 26px}
 .hero .lead b{color:var(--navy-500)}
-.tw{color:var(--orange-900);border-bottom:3px solid var(--orange-100);padding-bottom:1px;transition:opacity .18s ease}
+.tw{color:var(--orange-900);border-bottom:3px solid var(--orange-100);padding-bottom:1px;transition:opacity .18s ease;display:inline-block;min-width:19ch;text-align:left} /* min-width = longest TW_WORDS entry ("refreshingly simple") — kills the layout jump */
 @media(max-width:620px){.hero h1{font-size:32px}.hero .lead{font-size:16.5px}}
 @media(prefers-reduced-motion:reduce){.tw{transition:none}}
 
@@ -111,7 +111,12 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .cmp tr:first-child td{border-top:none}
 .x{color:var(--error);font-weight:700;margin-right:7px}
 .chk{color:var(--success-text);font-weight:700;margin-right:7px}
-.strike{text-decoration:line-through;text-decoration-color:rgba(204,1,0,.55)}
+.strike{position:relative;text-decoration:none}
+.strike::after{content:"";position:absolute;left:0;right:0;top:55%;height:2px;background:rgba(204,1,0,.55);transform:scaleX(0);transform-origin:left;transition:transform .35s ease-out;transition-delay:calc(var(--i,0)*90ms)}
+.cmp.in .strike::after{transform:scaleX(1)}
+#pricing .cmp .fb{opacity:0;transform:scale(.5);transition:transform .2s ease-out,opacity .2s ease-out;transition-delay:calc(620ms + var(--fi,0)*60ms)}
+#pricing .cmp.in .fb{opacity:1;transform:scale(1)}
+@media(prefers-reduced-motion:reduce){.strike::after{transform:scaleX(1);transition:none}#pricing .cmp .fb{opacity:1;transform:none;transition:none}}
 .fb{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--navy-500);background:var(--orange-100);border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
 .cmp tr.bottom td{border-top:2px solid var(--navy-500);font-weight:700;padding-top:16px;padding-bottom:16px}
 .cmp tr.bottom td.item{color:var(--orange-900);text-transform:uppercase;letter-spacing:.05em;font-size:12.5px}
@@ -119,12 +124,25 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .cmp tr.bottom td.us{color:var(--success-text)}
 .fineprint{text-align:center;color:var(--grey-500);font-size:12.5px;margin:12px auto 0;max-width:720px;line-height:1.5}
 .fineprint b{color:var(--navy-500)}
+/* MOBILE: comparison tables stay tables — fit a 375px screen, Einstein column fully visible, no horizontal scroll */
+@media(max-width:640px){
+  table.cmp{min-width:0}
+  .cmp thead th{padding:10px 8px;font-size:11px;letter-spacing:.02em;white-space:normal}
+  .cmp td{padding:8px 6px;font-size:13px;white-space:normal;overflow-wrap:break-word}
+  .cmp td.item .m,.cmp td.them .note{font-size:11px}
+  /* 4-col coverage table: hide the middle paid-upgrade column → item | worst-case | Einstein */
+  #covTable th:nth-child(3),#covTable td:nth-child(3){display:none}
+}
 
 /* ================= PRICING second part (B/D hybrid: receipt continuation + stamp) ================= */
 .p2-headrow{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin:52px 0 20px}
 .p2-headrow h3{font-family:Lora,serif;font-size:25px;margin:0;text-align:center}
 .p2-headrow h3 .b{color:var(--blue-500)}
 .stamp{border:2.5px solid var(--orange-900);color:var(--orange-900);border-radius:10px;padding:6px 12px;font-weight:800;font-size:12.5px;line-height:1.1;text-align:center;letter-spacing:.04em;transform:rotate(-7deg);text-transform:uppercase;opacity:.9}
+@keyframes stampIn{0%{transform:rotate(-7deg) scale(2.4);opacity:0}70%{transform:rotate(-7deg) scale(.95);opacity:1}100%{transform:rotate(-7deg) scale(1);opacity:.9}}
+.stamp.pre{opacity:0}
+.stamp.thunk{animation:stampIn .32s cubic-bezier(.2,.9,.3,1.2) both}
+@media(prefers-reduced-motion:reduce){.stamp.pre{opacity:.9}.stamp.thunk{animation:none}}
 .r2-card{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:22px 26px;max-width:620px;margin:0 auto;box-shadow:var(--shadow-sm)}
 .r2-line{display:flex;align-items:baseline;gap:8px;padding:9px 0;font-size:15px}
 .r2-line>span:first-child{color:var(--navy-500)}
@@ -208,6 +226,11 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .chapter-chip:hover{border-color:var(--blue-500)}
 .chapter-chip[aria-pressed="true"]{background:var(--blue-50);border-color:var(--blue-500);color:var(--blue-700)}
 .chapter-echo{margin:18px auto 0;font-style:italic;color:var(--navy-500);font-size:15px;min-height:24px}
+@keyframes chipPulse{0%{transform:scale(1)}50%{transform:scale(1.04)}100%{transform:scale(1)}}
+.chapter-chip.pulse{animation:chipPulse .18s ease-out}
+@keyframes echoIn{from{opacity:0}to{opacity:1}}
+.chapter-echo.fade{animation:echoIn .25s ease-out .12s both}
+@media(prefers-reduced-motion:reduce){.chapter-chip.pulse,.chapter-echo.fade{animation:none}}
 
 /* ================= PROOF PEAK (awards + review wall) ================= */
 .proof{background:var(--navy-50);padding:72px 0}
@@ -366,11 +389,9 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
         <div class="stamp">No<br>add-ons</div>
       </div>
       <div class="r2-card rv">
-        <div class="r2-line"><span>Furniture blankets, wrap &amp; supplies</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
         <div class="r2-line"><span>Furniture disassembly &amp; reassembly</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
-        <div class="r2-line"><span>$2,000 damage coverage <span class="r2-note">· actual value</span></span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+        <div class="r2-line"><span>TV boxes (&times;2), shrink wrap &amp; tape</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
         <div class="r2-line"><span>On-time guarantee <span class="r2-note">· late = your move is discounted</span></span><span class="r2-dots"></span><span class="r2-inc">Included</span></div>
-        <div class="r2-line"><span>Booking deposit</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
         <div class="r2-tot"><span>Everything most movers bill extra for</span><span class="r2-big">$0</span></div>
       </div>
     </div>
@@ -385,9 +406,9 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
       </div>
     </div>
 
-    <div style="text-align:center;margin-top:40px" class="rv">
-      <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
-      <div class="microproof">No deposit · No hidden fees · <b>Nothing gets added at the bottom.</b></div>
+    <div style="text-align:center;margin-top:24px" class="rv">
+      <a class="offramp" style="margin-top:0" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
+      <div class="microproof">Nothing gets added at the bottom.</div>
       <!-- NOTE: pricing intentionally has NO learn-more link — the quote form IS the pricing deep-dive -->
     </div>
   </div>
@@ -398,7 +419,7 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
   <div class="wrap">
     <div class="eyebrow-ic rv"><div class="coin">🛡️</div></div>
     <h2 class="sec rv" id="covH2">Most movers cover your stuff by the pound.<br>We cover what it&rsquo;s actually <span class="a">worth</span>.</h2>
-    <p class="sub rv">By law, a mover only owes <b>60&#162; a pound</b> if they break something &mdash; which has nothing to do with what it&rsquo;s worth. Most paid &ldquo;upgrades&rdquo; are still per-pound (check the fine print). Every Einstein move includes <b>$2,000 of coverage, free</b> &mdash; paid on actual value, no deductible.</p>
+    <p class="sub rv">By law, a mover only owes <b>60&#162; a pound</b> if they break something. Every Einstein move includes <b>$2,000 of coverage, free</b> &mdash; paid on actual value.</p>
 
     <!-- display: killer stat (default) -->
     <div id="covKiller" class="rv">
@@ -442,7 +463,6 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
     </div>
 
     <p class="fineprint rv"><b>$2,000 of coverage is included on every Einstein move, free.</b> Most moves never come near it &mdash; and when a move genuinely goes wrong on us, we make it right, not just up to a number.</p>
-    <div class="metaphor rv">Covering your things by the pound is like insuring your <b>wedding ring by how much it weighs</b> &mdash; not what it&rsquo;s worth.</div>
 
     <div style="text-align:center;margin-top:40px" class="rv">
       <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">Get a quote with coverage included →</a>
@@ -463,13 +483,13 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
       <div class="crew-card"><div class="avatar">Real crew photo<br>(never stock)</div><div class="cname">Diego M.</div><div class="crole">Mover · 2 yrs</div></div>
       <div class="crew-card"><div class="avatar">Real crew photo<br>(never stock)</div><div class="cname">Tay W.</div><div class="crole">Mover · 3 yrs</div></div>
     </div>
-    <p class="crew-foot rv">The crew you&rsquo;ll actually meet, sent to you before move day. <b>Fewer than 1% of applicants make it.</b></p>
+    <p class="crew-foot rv"><b>Fewer than 1% of applicants make it.</b></p>
     <a class="offramp rv" href="https://www.einsteinmoving.com/quote/">Meet your crew before move day — see my real price →</a>
   </div>
 </section>
 
 <!-- ============ 4. SMS UMBRELLA (on-time + results live here, demoted to supporting cast) ============ -->
-<section class="block" id="system" style="background:var(--orange-50)">
+<section class="block" id="system" style="background:#EEF1F4"><!-- RULING 7/2: the orange CTA band below is the page's only orange field -->
   <div class="wrap">
     <div style="text-align:center;margin-bottom:14px" class="rv"><span class="sms-pill"><span class="brain">🧠</span> The Smart Move System&trade;</span></div>
     <h2 class="sec rv" id="smsH2">It all runs on one system.</h2>
@@ -489,7 +509,7 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
 <section class="cta-band" id="cta">
   <div class="wrap">
     <h2>Get your accurate online moving quote in 47 seconds.</h2>
-    <p class="cta-sub">It&rsquo;s fun, there&rsquo;s zero pressure, and it takes <b>0 phone calls.</b></p>
+    <p class="cta-sub">Zero pressure, zero phone calls.</p>
     <p class="cta-elves">The team of tiny math elves behind this button can&rsquo;t wait to get to work. 🧮</p>
     <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">How much will my move cost? →</a>
   </div>
@@ -499,8 +519,14 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
 <section class="matters" id="matters">
   <div class="wrap">
     <h2 class="sec rv">Why this move matters</h2>
-    <p class="big rv">Moving is more than just logistics — it&rsquo;s <span class="accent">a fresh start, a new chapter, a chance to reset.</span></p>
-    <p class="invite rv">Whether you&rsquo;re heading to a new job in a new city, upgrading to a bigger home, downsizing for simplicity, or just making a change — this moment is worth doing right.</p>
+    <!-- "Matters line" workshop toggle: ORIGINAL (two lines) vs PROPOSED (one line) -->
+    <div id="mattersOrig">
+      <p class="big rv">Moving is more than just logistics — it&rsquo;s <span class="accent">a fresh start, a new chapter, a chance to reset.</span></p>
+      <p class="invite rv">This moment is worth doing right.</p>
+    </div>
+    <div id="mattersProp" hidden>
+      <p class="big rv">Nobody moves because they love boxes. You&rsquo;re moving toward something &mdash; and that something is worth doing right.</p>
+    </div>
     <div class="chapter-chips rv" id="chapterChips" role="group" aria-label="What's your next chapter?">
       <button class="chapter-chip" type="button" data-echo="A new city deserves a good first day. We'll get you there." data-cta="See my price for the new city →" aria-pressed="false">New job, new city</button>
       <button class="chapter-chip" type="button" data-echo="More room for the life you're building. Let's fill it." data-cta="See my price for the bigger place →" aria-pressed="false">Upgrading</button>
@@ -538,10 +564,11 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
       </div>
       <p class="wall-note">Draft slots: 5–6 existing influencer videos + reviews pulled from GBP. &ldquo;Customer holding a sign&rdquo; photos = the aspirational upgrade, decided at workshop.</p>
     </div>
+    <a class="offramp rv" href="awards-reviews-page.html">See every award, year by year &mdash; plus the review wall →</a>
 
-    <div style="text-align:center;margin-top:36px" class="rv">
-      <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
-      <div class="microproof">Join 100,000+ moves that went the smart way.</div>
+    <div style="text-align:center;margin-top:24px" class="rv">
+      <a class="offramp" style="margin-top:0" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
+      <div class="microproof">Join 100,000+ moves.</div>
     </div>
   </div>
 </section>
@@ -598,7 +625,7 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
   <div class="wrap">
     <div class="exit-ramp rv">
       <h2>Ready to move?</h2>
-      <p>Give us a call, shoot us a text, start a chat — whatever&rsquo;s easiest for you. We&rsquo;ll handle the heavy lifting. <b>Literally.</b></p>
+      <p>Give us a call, shoot us a text, start a chat — whatever&rsquo;s easiest for you. You&rsquo;ve done enough thinking about this move. <b>That&rsquo;s our department now.</b> 🧠</p>
       <div class="exit-actions">
         <!-- DUMMY phone — real number is location-dependent -->
         <a class="btn-secondary" href="tel:7375550100">📞 Call us</a>
@@ -607,7 +634,7 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
         <a class="btn-primary" id="bookCta" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
       </div>
       <div class="microproof">No deposit · Free cancellation · No hidden fees · Your quote doesn&rsquo;t expire</div>
-      <p class="exit-close">Moving doesn&rsquo;t have to suck. <span class="smart">Let us make it easy, smooth, and maybe even fun.</span></p>
+      <p class="exit-close">Moving doesn&rsquo;t have to suck. <span class="smart">Let us prove it.</span></p>
     </div>
   </div>
 </section>
@@ -637,8 +664,9 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
       <a href="services-page.html">Storage</a>
       <a href="services-page.html">Statewide moving</a>
     </div>
-    <p class="desc">Einstein Moving Company provides professional, reliable residential and commercial moving services across Texas and Tampa, Florida. Trusted service, transparent pricing, and friendly expertise — every box, every home, every customer.</p>
+    <p class="desc">Einstein Moving Company provides professional, reliable residential and commercial moving services across Texas and Tampa, Florida.</p>
     <p class="reg">TX TxDMV #006604158C · US DOT #2193963 &nbsp;|&nbsp; FL Mover Reg. No. IM3621 · US DOT #3882313</p>
+    <p class="reg" style="font-size:11px;margin-top:10px">P.S. You made it to the fine print. We like you already.</p>
     <p class="textus">Questions? Text us: <a href="sms:7375550100">737.555.0100</a> <span style="font-size:11px;color:#5C7280">(placeholder — number varies by location)</span></p>
     <p class="devnote">ASSEMBLED DRAFT v2 · 7/1/2026 — three proof leads (pricing → coverage → movers) + SMS umbrella + fused awards/review proof peak + origin story, per the pre-assembly audit. Workshop panel (⚙, bottom right): 7 heroes × tone families × headlines × displays; state lives in the URL — copy the setup link to share a combo. Award counts verified vs the awards sheet 7/1. Emoji/dashed boxes = placeholder assets.</p>
   </div>
@@ -677,6 +705,10 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
   <div class="grp"><div class="lab">Review wall</div><div class="opts" id="wsWall">
     <button class="opt" data-v="on" type="button">On</button>
     <button class="opt" data-v="off" type="button">Off</button>
+  </div></div>
+  <div class="grp"><div class="lab">Matters line</div><div class="opts" id="wsMatters">
+    <button class="opt" data-v="orig" type="button">Original</button>
+    <button class="opt" data-v="prop" type="button">Proposed</button>
   </div></div>
   <button class="share" id="wsShare" type="button">Copy setup link</button>
   <button class="share" id="wsNotes" type="button" style="margin-top:8px;background:#2A3742">📋 Copy workshop notes (0)</button>
@@ -717,7 +749,7 @@ var HEROES = [
 var HEADLINES = {
   price: {
     contrast: ['Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span>',
-               'Their rate is where the fees start.<br><span class="a">Ours is where they end.</span>',
+               'The fees other movers add at the bottom?<br><span class="a">We already deleted them.</span>',
                'A low hourly rate is easy.<br><span class="a">An honest one took us a decade.</span>'],
     positive: ['Simple, honest pricing. <span class="a">One rate</span> — everything’s in it, and then some.',
                'One all-inclusive hourly rate.<br><span class="a">Everything included. Actually everything.</span>',
@@ -741,7 +773,7 @@ var HEADLINES = {
 var TW_WORDS = ['easy','honest','fast','fun','smart','refreshingly simple'];
 
 /* ---------- STATE ---------- */
-var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on' };
+var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on', matters:'orig' };
 safe('loadState', function(){
   var saved = localStorage.getItem('ws-state-v2');
   if(saved){ var s = JSON.parse(saved); for(var k in state){ if(s[k]!==undefined) state[k]=s[k]; } }
@@ -794,16 +826,19 @@ function renderDisplays(){
   if(cards) cards.hidden = state.p2!=='cards';
   var wall = document.getElementById('reviewWall');
   if(wall) wall.hidden = state.wall==='off';
+  var mo = document.getElementById('mattersOrig'), mp = document.getElementById('mattersProp');
+  if(mo) mo.hidden = state.matters!=='orig';
+  if(mp) mp.hidden = state.matters!=='prop';
 }
 function comboString(){
-  return 'hero='+state.hero+'&tone='+state.tone+'&ph='+state.ph+'&ch='+state.ch+'&mh='+state.mh+'&cov='+state.cov+'&p2='+state.p2+'&wall='+state.wall;
+  return 'hero='+state.hero+'&tone='+state.tone+'&ph='+state.ph+'&ch='+state.ch+'&mh='+state.mh+'&cov='+state.cov+'&p2='+state.p2+'&wall='+state.wall+'&matters='+state.matters;
 }
 function renderPanel(){
   ['wsHeroC','wsHeroP'].forEach(function(id){
     var box = document.getElementById(id); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.v===state.hero ? 'true':'false'); });
   });
-  [['wsTone','tone'],['wsCov','cov'],['wsP2','p2'],['wsWall','wall']].forEach(function(m){
+  [['wsTone','tone'],['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters']].forEach(function(m){
     var box = document.getElementById(m[0]); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.v===String(state[m[1]]) ? 'true':'false'); });
   });
@@ -840,7 +875,7 @@ safe('cycleButtons', function(){
   });
 });
 safe('displayButtons', function(){
-  [['wsCov','cov'],['wsP2','p2'],['wsWall','wall']].forEach(function(m){
+  [['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters']].forEach(function(m){
     var box = document.getElementById(m[0]); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){
       b.addEventListener('click', function(){ state[m[1]]=b.dataset.v; renderAll(); });
@@ -894,6 +929,11 @@ safe('chips', function(){
       chips.querySelectorAll('.chapter-chip').forEach(function(c){ c.setAttribute('aria-pressed','false'); });
       chip.setAttribute('aria-pressed','true');
       if(echo) echo.textContent = chip.dataset.echo || '';
+      /* select feedback: chip pulses once, echo fades in after 120ms (reduced-motion: instant, no pulse) */
+      if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+        chip.classList.remove('pulse'); void chip.offsetWidth; chip.classList.add('pulse');
+        if(echo){ echo.classList.remove('fade'); void echo.offsetWidth; echo.classList.add('fade'); }
+      }
       /* personalize IN-FLOW closing CTA only — never the sticky (mobile overflow) */
       var book = document.getElementById('bookCta');
       if(book && chip.dataset.cta) book.textContent = chip.dataset.cta;
@@ -959,6 +999,29 @@ safe('pins', function(){
     if(confirm('Clear all workshop notes on this browser?')){ save([]); refresh(); }
   });
   refresh();
+});
+
+/* ---------- STRIKE-DRAW (pricing comparison table): fees arrive un-struck, line draws on scroll-in, then $0/Free pills pop ---------- */
+safe('strikeDraw', function(){
+  var tbl = document.querySelector('#pricing table.cmp'); if(!tbl) return;
+  tbl.querySelectorAll('.strike').forEach(function(s,i){ s.style.setProperty('--i', i); });
+  tbl.querySelectorAll('.fb').forEach(function(p,i){ p.style.setProperty('--fi', i); });
+  if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches){ tbl.classList.add('in'); return; }
+  var io = new IntersectionObserver(function(en){
+    if(en[0].isIntersecting){ tbl.classList.add('in'); io.disconnect(); }
+  },{threshold:.35});
+  io.observe(tbl);
+});
+/* ---------- STAMP THUNK: the "No add-ons" stamp thunks in once when its headrow scrolls in ---------- */
+safe('stampThunk', function(){
+  var row = document.querySelector('#price2bd .p2-headrow'); if(!row) return;
+  var stamp = row.querySelector('.stamp'); if(!stamp) return;
+  if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; /* reduced-motion: final state, no animation */
+  stamp.classList.add('pre');
+  var io = new IntersectionObserver(function(en){
+    if(en[0].isIntersecting){ stamp.classList.remove('pre'); stamp.classList.add('thunk'); io.disconnect(); }
+  },{threshold:.6});
+  io.observe(row);
 });
 
 safe('reveal', function(){
