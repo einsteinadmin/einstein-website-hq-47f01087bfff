@@ -725,6 +725,11 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <button class="opt" data-v="off" type="button">Off</button>
     <button class="opt" data-v="on" type="button">On</button>
   </div></div>
+  <div class="grp"><div class="lab">Matters pills</div><div class="opts" id="wsChips">
+    <button class="opt" data-v="full" type="button">Pills + tailored CTA</button>
+    <button class="opt" data-v="echo" type="button">Pills, echo only</button>
+    <button class="opt" data-v="off" type="button">No pills</button>
+  </div></div>
   <div class="grp"><div class="lab">Exit line</div><div class="opts" id="wsExit">
     <button class="opt" data-v="dept" type="button">Our department 🧠</button>
     <button class="opt" data-v="easiest" type="button">Easiest = our thing</button>
@@ -794,7 +799,7 @@ var HEADLINES = {
 var TW_WORDS = ['easy','honest','fast','fun','smart','refreshingly simple'];
 
 /* ---------- STATE ---------- */
-var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on', matters:'orig', fears:'off', exit:'dept' };
+var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on', matters:'orig', fears:'off', exit:'dept', chips:'full' };
 safe('loadState', function(){
   var saved = localStorage.getItem('ws-state-v2');
   if(saved){ var s = JSON.parse(saved); for(var k in state){ if(s[k]!==undefined) state[k]=s[k]; } }
@@ -855,16 +860,22 @@ function renderDisplays(){
   if(xd) xd.hidden = state.exit!=='dept';
   if(xe) xe.hidden = state.exit!=='easiest';
   if(xc) xc.hidden = state.exit!=='classic';
+  /* Matters pills 3-way: full = chips + echo + tailored CTAs · echo = chips + echo, one plain CTA everywhere · off = headline/subline only */
+  var cw = document.getElementById('chapterChips'), ce = document.getElementById('chapterEcho'), cc = document.getElementById('chapterCta');
+  if(cw) cw.hidden = state.chips==='off';
+  if(ce) ce.hidden = state.chips==='off';
+  if(cc && state.chips!=='full') cc.hidden = true;
+  if(state.chips!=='full'){ var bk = document.getElementById('bookCta'); if(bk) bk.textContent = 'See my real price →'; }
 }
 function comboString(){
-  return 'hero='+state.hero+'&tone='+state.tone+'&ph='+state.ph+'&ch='+state.ch+'&mh='+state.mh+'&cov='+state.cov+'&p2='+state.p2+'&wall='+state.wall+'&matters='+state.matters+'&fears='+state.fears+'&exit='+state.exit;
+  return 'hero='+state.hero+'&tone='+state.tone+'&ph='+state.ph+'&ch='+state.ch+'&mh='+state.mh+'&cov='+state.cov+'&p2='+state.p2+'&wall='+state.wall+'&matters='+state.matters+'&fears='+state.fears+'&exit='+state.exit+'&chips='+state.chips;
 }
 function renderPanel(){
   ['wsHeroC','wsHeroP'].forEach(function(id){
     var box = document.getElementById(id); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.v===state.hero ? 'true':'false'); });
   });
-  [['wsTone','tone'],['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsFears','fears'],['wsExit','exit']].forEach(function(m){
+  [['wsTone','tone'],['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsFears','fears'],['wsExit','exit'],['wsChips','chips']].forEach(function(m){
     var box = document.getElementById(m[0]); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.v===String(state[m[1]]) ? 'true':'false'); });
   });
@@ -901,7 +912,7 @@ safe('cycleButtons', function(){
   });
 });
 safe('displayButtons', function(){
-  [['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsFears','fears'],['wsExit','exit']].forEach(function(m){
+  [['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsFears','fears'],['wsExit','exit'],['wsChips','chips']].forEach(function(m){
     var box = document.getElementById(m[0]); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){
       b.addEventListener('click', function(){ state[m[1]]=b.dataset.v; renderAll(); });
@@ -919,7 +930,7 @@ safe('fab', function(){
 safe('reset', function(){
   var b = document.getElementById('wsReset'); if(!b) return;
   b.addEventListener('click', function(){
-    state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on', matters:'orig', fears:'off', exit:'dept' };
+    state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on', matters:'orig', fears:'off', exit:'dept', chips:'full' };
     renderAll();
     b.textContent = 'Defaults restored ✓';
     setTimeout(function(){ b.textContent = '↺ Reset to draft defaults'; }, 1400);
@@ -969,16 +980,20 @@ safe('chips', function(){
         chip.classList.remove('pulse'); void chip.offsetWidth; chip.classList.add('pulse');
         if(echo){ echo.classList.remove('fade'); void echo.offsetWidth; echo.classList.add('fade'); }
       }
-      /* personalize IN-FLOW closing CTA only — never the sticky (mobile overflow) */
-      var book = document.getElementById('bookCta');
-      if(book && chip.dataset.cta) book.textContent = chip.dataset.cta;
-      /* visible payoff: personalized CTA fades in right under the echo (7/2 — the far bookCta alone was invisible from here) */
-      var cc = document.getElementById('chapterCta'), ccb = document.getElementById('chapterCtaBtn');
-      if(cc && ccb && chip.dataset.cta){
-        ccb.textContent = chip.dataset.cta;
-        cc.hidden = false;
-        if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-          cc.classList.remove('fade'); void cc.offsetWidth; cc.classList.add('fade');
+      /* CTA personalization only in 'full' mode — and only IN-FLOW CTAs, never the sticky
+         (sticky = persistent chrome: a section-6 label following you across the page is out of context,
+         'See my real price' is the clearest label on the highest-frequency button, long labels break the mobile bar) */
+      if(state.chips==='full'){
+        var book = document.getElementById('bookCta');
+        if(book && chip.dataset.cta) book.textContent = chip.dataset.cta;
+        /* visible payoff: personalized CTA fades in right under the echo (7/2 — the far bookCta alone was invisible from here) */
+        var cc = document.getElementById('chapterCta'), ccb = document.getElementById('chapterCtaBtn');
+        if(cc && ccb && chip.dataset.cta){
+          ccb.textContent = chip.dataset.cta;
+          cc.hidden = false;
+          if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+            cc.classList.remove('fade'); void cc.offsetWidth; cc.classList.add('fade');
+          }
         }
       }
     });
