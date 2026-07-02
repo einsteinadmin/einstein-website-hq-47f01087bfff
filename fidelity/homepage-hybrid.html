@@ -228,9 +228,20 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 
 /* ================= ORIGIN ================= */
 .origin{padding:72px 0;background:#fff;text-align:center}
-.origin .tale{font-family:Lora,serif;font-size:21px;line-height:1.55;max-width:640px;margin:0 auto 14px}
+.origin-row{display:flex;gap:44px;align-items:center;justify-content:center;max-width:860px;margin:26px auto 0;text-align:left}
+.origin .tale{font-family:Lora,serif;font-size:21px;line-height:1.55;max-width:480px;margin:0 0 14px}
 .origin .tale .a{color:var(--orange-900)}
-.origin p.rest{max-width:600px;margin:0 auto 18px;color:var(--grey-500);font-size:15.5px}
+.origin p.rest{max-width:480px;margin:0 0 12px;color:var(--grey-500);font-size:15.5px}
+.origin p.ps{max-width:480px;margin:0 0 16px;color:var(--grey-500);font-size:14px;font-style:italic}
+.origin .offramp{text-align:left;margin-top:6px}
+.polaroid{flex:0 0 auto;width:258px;background:#fff;padding:12px 12px 46px;box-shadow:0 12px 30px rgba(11,16,20,.18);border:1px solid var(--grey-100);transform:rotate(-3deg);position:relative;transition:transform .25s ease}
+.polaroid:hover{transform:rotate(0deg) scale(1.02)} /* spark: the photo straightens when you look at it */
+.polaroid::before{content:"";position:absolute;top:-13px;left:50%;transform:translateX(-50%) rotate(2deg);width:92px;height:26px;background:rgba(254,246,236,.9);border:1px solid rgba(11,16,20,.06);z-index:2}
+.polaroid img{width:100%;display:block;background:var(--grey-50)}
+.polaroid .drop{display:none;height:230px;border:1.5px dashed var(--orange-500);background:var(--orange-50);align-items:center;justify-content:center;text-align:center;font-size:11px;color:var(--grey-500);text-transform:uppercase;letter-spacing:.4px;padding:14px;line-height:1.6}
+.polaroid .cap{position:absolute;bottom:13px;left:12px;right:12px;text-align:center;font-family:Lora,serif;font-style:italic;font-size:13px;color:var(--grey-500)}
+@media(max-width:760px){.origin-row{flex-direction:column;gap:30px;text-align:center}.origin .tale,.origin p.rest,.origin p.ps{margin-left:auto;margin-right:auto}.origin .offramp{text-align:center}}
+@media(prefers-reduced-motion:reduce){.polaroid{transition:none}.polaroid:hover{transform:rotate(-3deg)}}
 
 /* ================= FAQ + EXIT ================= */
 .faqblock{background:var(--grey-50);padding:72px 0}
@@ -282,6 +293,11 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
 .ws .share{margin-top:14px;width:100%;font:inherit;font-size:12.5px;font-weight:700;background:var(--blue-500);color:#fff;border:none;border-radius:8px;padding:9px;cursor:pointer}
 .ws .share:hover{background:var(--blue-700)}
 .ws .note{font-size:10.5px;color:#8CA0AC;margin-top:8px;line-height:1.45}
+
+/* ================= WORKSHOP PINS (team feedback, section-keyed + combo-stamped) ================= */
+.pin{position:absolute;top:14px;right:14px;z-index:5;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:6px 11px;font:inherit;font-size:13px;font-weight:600;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm);opacity:.7;transition:opacity .12s ease}
+.pin:hover{opacity:1}
+.pin.has{background:var(--orange-50);border-color:var(--orange-300);color:var(--orange-900);opacity:1}
 
 /* scroll reveal */
 .rv{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
@@ -534,9 +550,20 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
 <section class="origin" id="story">
   <div class="wrap">
     <h2 class="sec rv">A long time ago, in a sandbox <span class="a">not too far away&hellip;</span></h2>
-    <p class="tale rv">Two kindergarten best friends grew up, and in 2012 bought one used truck and made each other a promise: <span class="a">build the moving company we&rsquo;d actually want to hire.</span></p>
-    <p class="rest rv">Ten branches across Texas and Tampa later, it&rsquo;s still the same two friends — and still the same promise.</p>
-    <a class="offramp rv" href="https://www.einsteinmoving.com/about-us/">Read the whole story →</a>
+    <div class="origin-row rv">
+      <figure class="polaroid" aria-label="The founders as kids">
+        <!-- DROP SLOT: save the founders childhood photo as fidelity/assets/founders-kids.jpg and it appears automatically -->
+        <img src="assets/founders-kids.jpg" alt="The two founders as kids, in cowboy hats" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="drop">Drop the real photo at<br><b>fidelity/assets/<br>founders-kids.jpg</b><br>— the cowboy-hats one 🤠</div>
+        <figcaption class="cap">The founders, already dressed for hard work.</figcaption>
+      </figure>
+      <div>
+        <p class="tale">Two kindergarten best friends grew up, and in 2012 bought one used truck and made each other a promise: <span class="a">build the moving company we&rsquo;d actually want to hire.</span></p>
+        <p class="rest">Ten branches across Texas and Tampa later, it&rsquo;s still the same two friends — and still the same promise.</p>
+        <p class="ps">P.S. We also plant <b>four trees for every move</b> — the sandbox taught us to leave places better than we found them. 🌳</p>
+        <a class="offramp" href="https://www.einsteinmoving.com/about-us/">Read the whole story →</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -643,7 +670,9 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
     <button class="opt" data-v="off" type="button">Off</button>
   </div></div>
   <button class="share" id="wsShare" type="button">Copy setup link</button>
-  <div class="note">State saves to the URL + this browser. Share the link and the team sees this exact combo. Headline tone auto-matches the hero family unless overridden.</div>
+  <button class="share" id="wsNotes" type="button" style="margin-top:8px;background:#2A3742">📋 Copy workshop notes (0)</button>
+  <button class="share" id="wsClear" type="button" style="margin-top:8px;background:transparent;border:1px solid #3A4956;font-weight:400">✕ Clear notes</button>
+  <div class="note">State saves to the URL + this browser. Share the link and the team sees this exact combo. Headline tone auto-matches the hero family unless overridden. <b>♥ pins</b> (top-right of each section) collect notes — each note records which combo was active.</div>
 </div>
 
 <script>
@@ -874,6 +903,55 @@ safe('sticky', function(){
   /* failsafe: if IO misbehaves in odd embeds, show after 3s of scroll depth */
   setTimeout(function(){ if(window.scrollY > 900) show(true); }, 3000);
 });
+/* ---------- WORKSHOP PINS (section-keyed, combo-stamped) ---------- */
+safe('pins', function(){
+  var SECTIONS = ['hero','pricing','coverage','movers','system','cta','matters','proof','story','faq','book'];
+  var KEY = 'ws-pins-v2';
+  function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || []; }catch(e){ return []; } }
+  function save(list){ try{ localStorage.setItem(KEY, JSON.stringify(list)); }catch(e){} }
+  function refresh(){
+    var list = load();
+    SECTIONS.forEach(function(id){
+      var btn = document.querySelector('.pin[data-sec="'+id+'"]'); if(!btn) return;
+      var n = list.filter(function(p){ return p.sec===id; }).length;
+      btn.textContent = n ? ('♥ '+n) : '♡';
+      btn.classList.toggle('has', n>0);
+    });
+    var nb = document.getElementById('wsNotes');
+    if(nb) nb.textContent = '📋 Copy workshop notes ('+list.length+')';
+  }
+  SECTIONS.forEach(function(id){
+    var sec = document.getElementById(id); if(!sec) return;
+    if(getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'pin'; btn.dataset.sec = id;
+    btn.setAttribute('aria-label', 'Leave a workshop note on the '+id+' section');
+    btn.textContent = '♡';
+    btn.addEventListener('click', function(){
+      var note = prompt('Note for the "'+id+'" section (empty = just a ♥):');
+      if(note === null) return;
+      var list = load();
+      list.push({ sec:id, note:note.trim(), combo:comboString(), ts:new Date().toLocaleString() });
+      save(list); refresh();
+    });
+    sec.appendChild(btn);
+  });
+  var nb = document.getElementById('wsNotes');
+  if(nb) nb.addEventListener('click', function(){
+    var list = load();
+    if(!list.length){ nb.textContent = '📋 No notes yet'; setTimeout(refresh, 1200); return; }
+    var txt = 'EINSTEIN HOMEPAGE WORKSHOP NOTES — ' + new Date().toLocaleString() + '\n' +
+      list.map(function(p){ return '• ['+p.sec+'] ' + (p.note || '♥ loved it') + '  (combo: '+p.combo+' · '+p.ts+')'; }).join('\n');
+    if(navigator.clipboard){ navigator.clipboard.writeText(txt); nb.textContent = 'Copied ✓'; setTimeout(refresh, 1400); }
+    else { prompt('Copy the notes:', txt); }
+  });
+  var cb = document.getElementById('wsClear');
+  if(cb) cb.addEventListener('click', function(){
+    if(confirm('Clear all workshop notes on this browser?')){ save([]); refresh(); }
+  });
+  refresh();
+});
+
 safe('reveal', function(){
   var els = document.querySelectorAll('.rv');
   if(!('IntersectionObserver' in window)){ els.forEach(function(e){ e.classList.add('in'); }); return; }

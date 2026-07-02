@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Einstein Coverage Component — the wedge (3-tier)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Lora:ital,wght@0,600;0,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#27343D; --navy700:#1A2329; --orange:#EF8B22; --o50:#FEF6EC; --o100:#FDE3C2; --o900:#CC5500;
+  --blue:#0979C3; --blue700:#065E9A; --grey50:#F4F5F5; --grey100:#ECEEEF; --line:#E2E7EA; --mut:#5C6B75;
+  --red:#CC0100; --redbg:#FCF3F3; --green:#3F7A33; --greenbg:#EFF5EC; --radius:12px;
+}
+*{box-sizing:border-box}
+body{font-family:Roboto,system-ui,sans-serif;color:var(--navy);background:var(--grey50);margin:0;line-height:1.55;-webkit-font-smoothing:antialiased}
+.section{padding:64px 20px 72px}
+.wrap{max-width:960px;margin:0 auto}
+.eyebrow{display:flex;justify-content:center;margin-bottom:16px}
+.shield{width:56px;height:56px;border-radius:50%;background:var(--o50);display:flex;align-items:center;justify-content:center;font-size:26px}
+h2.head{font-family:Lora,serif;text-align:center;font-size:34px;line-height:1.16;margin:0 0 14px}
+h2.head .b{color:var(--o900)}
+.sub{text-align:center;color:var(--mut);font-size:16.5px;max-width:680px;margin:0 auto 6px}
+.sub b{color:var(--navy)}
+.tblcap{text-align:center;font-size:14px;color:var(--navy);font-weight:700;margin:30px 0 12px}
+
+/* ---- 3-tier payout table ---- */
+.tblscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 2px 14px rgba(11,16,20,.05)}
+.cmp thead th{background:var(--navy);color:#fff;text-align:left;font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding:13px 16px;font-weight:700;vertical-align:top}
+.cmp thead th .hnote{display:block;font-weight:400;text-transform:none;letter-spacing:0;font-size:11px;color:#B9C4CC;margin-top:3px}
+.cmp thead th.us{background:var(--o900)}
+.cmp thead th.us .hnote{color:#F6D9BE}
+.cmp td{padding:13px 16px;border-top:1px solid var(--line);font-size:14.5px;vertical-align:middle}
+.cmp td.item{font-weight:700;color:var(--navy);width:34%}
+.cmp td.item .meta{display:block;font-weight:400;color:var(--mut);font-size:12px;margin-top:2px}
+.cmp td.them{color:var(--red);font-weight:700;width:22%}
+.cmp td.them.paid{color:#B5651D}
+.cmp td.them .note{display:block;color:var(--mut);font-weight:400;font-size:11.5px;margin-top:2px}
+.cmp td.us{width:22%;background:var(--o50);color:var(--green);font-weight:700}
+.cmp tr:first-child td{border-top:none}
+.freebadge{display:inline-block;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#fff;background:var(--o900);border-radius:999px;padding:1px 6px;margin-left:5px;vertical-align:middle}
+.cmp tr.bottom td{border-top:2px solid var(--navy);font-weight:700;padding-top:15px;padding-bottom:15px;font-size:13.5px}
+.cmp tr.bottom td.item{color:var(--o900);text-transform:uppercase;letter-spacing:.04em;font-size:12px}
+.cmp tr.bottom td.them{color:var(--red)}
+.cmp tr.bottom td.them.paid{color:#B5651D}
+.cmp tr.bottom td.us{color:var(--green)}
+.fineprint{text-align:center;color:var(--mut);font-size:12.5px;margin:12px auto 0;max-width:720px;line-height:1.5}
+.fineprint b{color:var(--navy)}
+
+.metaphor{max-width:660px;margin:26px auto 0;background:#fff;border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:10px;padding:16px 22px;font-family:Lora,serif;font-size:18px;line-height:1.5;color:var(--navy);text-align:center}
+.metaphor b{color:var(--o900)}
+
+.covered{margin-top:52px}
+h3.cov-head{font-family:Lora,serif;text-align:center;font-size:25px;margin:0 0 24px}
+h3.cov-head .b{color:var(--blue)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;text-align:center}
+.card .ic{width:46px;height:46px;border-radius:50%;background:var(--o50);display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 12px}
+.card h4{margin:0 0 5px;font-size:15.5px;color:var(--o900)}
+.card p{margin:0;font-size:13.5px;color:var(--mut);line-height:1.5}
+
+.cta{text-align:center;margin-top:44px}
+.btn{display:inline-block;background:var(--blue);color:#fff;font-weight:700;font-size:17px;padding:17px 38px;border-radius:9px;text-decoration:none;box-shadow:0 4px 14px rgba(9,121,195,.28)}
+.btn:hover{background:var(--blue700)}
+.learn{display:block;margin:16px 0 0;color:var(--blue);font-weight:600;font-size:14.5px;text-decoration:none}
+.learn:hover{text-decoration:underline}
+.rea{margin:8px 0 0;color:var(--mut);font-size:13.5px}
+
+@media(max-width:660px){
+  h2.head{font-size:26px}
+  .cards{grid-template-columns:1fr}
+}
+</style></head>
+<body>
+<div class="section">
+  <div class="wrap">
+
+    <div class="eyebrow"><div class="shield">🛡️</div></div>
+    <h2 class="head">Most movers cover your stuff by the pound.<br>We cover what it's actually <span class="b">worth</span>.</h2>
+    <p class="sub">By law, a mover only owes <b>60¢ a pound</b> if they break something — which has nothing to do with what it's worth. Pay extra for their "upgrade" and you <b>still</b> get pennies on the pound. Every Einstein move includes <b>$2,000 of coverage, free</b> — paid on actual value, no per-pound math, no deductible.</p>
+
+    <div class="tblcap">Say a mover breaks something of yours. Here's the check you'd get:</div>
+    <div class="tblscroll">
+    <table class="cmp" aria-label="Coverage payout: free minimum vs paid upgrade vs Einstein">
+      <thead>
+        <tr>
+          <th class="item">If a mover breaks your…</th>
+          <th class="them">Industry minimum<span class="hnote">free · 60¢/lb</span></th>
+          <th class="them paid">Their paid upgrade<span class="hnote">you pay ~$200 · still per-pound</span></th>
+          <th class="us">Einstein<span class="hnote">free · actual value</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="item">65" TV<span class="meta">~50 lb · ~$1,200 to replace</span></td>
+          <td class="them">$30</td>
+          <td class="them paid">~$150</td>
+          <td class="us">$1,200<span class="freebadge">Free</span></td>
+        </tr>
+        <tr>
+          <td class="item">Laptop<span class="meta">~5 lb · ~$1,500 to replace</span></td>
+          <td class="them">$3</td>
+          <td class="them paid">~$15</td>
+          <td class="us">$1,500<span class="freebadge">Free</span></td>
+        </tr>
+        <tr>
+          <td class="item">Leather sofa<span class="meta">~150 lb · ~$1,800 to replace</span></td>
+          <td class="them">$90</td>
+          <td class="them paid">~$450</td>
+          <td class="us">$1,800<span class="freebadge">Free</span></td>
+        </tr>
+        <tr>
+          <td class="item">Framed art / mirror<span class="meta">~20 lb · ~$900 to replace</span></td>
+          <td class="them">$12</td>
+          <td class="them paid">~$60</td>
+          <td class="us">$900<span class="freebadge">Free</span></td>
+        </tr>
+        <tr>
+          <td class="item">Your floors, walls &amp; doorframes<span class="meta">the scratch on the way out</span></td>
+          <td class="them">$0<span class="note">cargo only</span></td>
+          <td class="them paid">$0<span class="note">cargo only</span></td>
+          <td class="us">Covered too<span class="freebadge">Free</span></td>
+        </tr>
+        <tr class="bottom">
+          <td class="item">Bottom line</td>
+          <td class="them">A check for the weight</td>
+          <td class="them paid">You paid — still the weight</td>
+          <td class="us">What it's actually worth</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="fineprint">Industry figures are the free 60¢/lb legal minimum and a typical paid per-pound upgrade; exact terms vary by mover. <b>Einstein includes $2,000 of coverage on every move, free</b> — most moves never come near it, and when a move genuinely goes wrong on us, we make it right, not just up to a number.</p>
+
+    <div class="metaphor">Covering your things by the pound is like insuring your <b>wedding ring by how much it weighs</b> — not what it's worth.</div>
+
+    <div class="covered">
+      <h3 class="cov-head">What "actually covered" <span class="b">means.</span></h3>
+      <div class="cards">
+        <div class="card"><div class="ic">🛋️</div><h4>Your things</h4><p>Furniture, electronics, the stuff that matters — covered for what it's worth, on every move.</p></div>
+        <div class="card"><div class="ic">🏠</div><h4>Your home, too</h4><p>Scratched floors, dinged walls, gouged doorframes. Most coverage quietly skips this. Ours doesn't.</p></div>
+        <div class="card"><div class="ic">🧑‍🔧</div><h4>A real person, fast</h4><p>No claims maze. We repair, replace, or cut a check — handled by someone you can actually reach.</p></div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <a class="btn" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
+      <a class="learn" href="#coverage">See exactly what's covered, and how a claim works →</a>
+      <p class="rea">Included free on every move · No deductible · No upgrade to buy</p>
+    </div>
+
+  </div>
+</div>
+</body></html>
