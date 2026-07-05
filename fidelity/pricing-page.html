@@ -49,7 +49,7 @@
   --radius:12px; --radius-btn:8px; --shadow-sm:0 2px 14px rgba(11,16,20,.05);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
 body{font-family:Roboto,system-ui,sans-serif;color:var(--navy-500);background:#fff;margin:0;line-height:1.55;-webkit-font-smoothing:antialiased}
 .wrap{max-width:960px;margin:0 auto;padding:0 22px}
 h1,h2.sec{font-family:Lora,serif;font-weight:700;letter-spacing:-.01em}
@@ -177,7 +177,7 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .h1-toggle{position:fixed;left:14px;bottom:14px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
 .h1-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
 /* keep/cut mark row for the hero toggle (7/5/2026) — sits just above the pill */
-.h1-toggle-km{position:fixed;left:14px;bottom:52px;z-index:400;display:flex;align-items:center;gap:4px;background:#1A2329;border-radius:999px;padding:4px 8px;box-shadow:var(--shadow-sm)}
+.h1-toggle-km{position:fixed;left:14px;bottom:64px;z-index:400;display:flex;align-items:center;gap:4px;background:#1A2329;border-radius:999px;padding:4px 8px;box-shadow:var(--shadow-sm)}
 .h1-toggle-km .lb{font:600 10px Roboto,sans-serif;color:#8CA0AC;margin-right:2px}
 /* 7/5/2026: second workshop toggle — fee-comparison table H2 (adopted mailer line). Bottom-RIGHT so it never collides with the left-side hero pill. */
 .h2-toggle{position:fixed;right:14px;bottom:14px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
@@ -242,6 +242,31 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .beat-toggle-km{position:fixed;right:14px;bottom:168px;z-index:400;display:flex;align-items:center;gap:4px;background:#1A2329;border-radius:999px;padding:4px 8px;box-shadow:var(--shadow-sm)}
 .beat-toggle-km .lb{font:600 10px Roboto,sans-serif;color:#8CA0AC;margin-right:2px}
 
+/* ============ MOBILE WORKSHOP-CONTROL PILE-UP FIX (7/5/2026) ============
+   At <=480px the 3 workshop toggles (hero H1, table H2, beat) + their km rows + the ✨ Motion pill
+   (7 fixed elements) were stacking on top of body copy alongside the Notes FAB (8 total). Below 480px,
+   hide all 7 workshop-control elements and collapse them into ONE "🎛 Variants" pill (bottom-right) that
+   opens a tray listing each control as a row. The Notes FAB (.fbk-fab, bottom-left) is untouched — it
+   stays exactly where it is at every width. Desktop (>480px) is completely unaffected: this CSS only
+   fires under the media query, and the JS below only acts when matchMedia('(max-width:480px)') matches. */
+@media(max-width:480px){
+  .h1-toggle,.h1-toggle-km,.h2-toggle,.h2-toggle-km,.beat-toggle,.beat-toggle-km,.sparks-toggle{display:none!important}
+}
+.variants-fab{position:fixed;right:14px;bottom:14px;z-index:400;background:var(--navy-700);color:#F5A054;border:none;border-radius:999px;padding:10px 16px;font:700 12.5px/1 Roboto,sans-serif;cursor:pointer;box-shadow:0 8px 30px rgba(11,16,20,.25);display:none}
+@media(max-width:480px){.variants-fab{display:inline-flex;align-items:center;gap:6px}}
+.variants-tray{position:fixed;right:14px;bottom:64px;z-index:401;width:min(300px,calc(100vw - 28px));max-height:70vh;overflow-y:auto;background:#1A2329;color:#EAEEF0;border-radius:14px;padding:14px;font:13px Roboto,sans-serif;box-shadow:0 12px 40px rgba(11,16,20,.4);display:none}
+.variants-tray.open{display:block}
+.variants-tray .vt-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 8px}
+.variants-tray .vt-head h5{margin:0;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:#F5A054}
+.variants-tray .vt-close{background:transparent;border:none;color:#9AADB7;font-size:16px;line-height:1;cursor:pointer;padding:4px}
+.variants-tray .vt-row{border-top:1px solid #2A363E;padding:10px 0}
+.variants-tray .vt-row:first-of-type{border-top:none}
+.variants-tray .vt-label{font-size:11px;color:#8CA0AC;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.variants-tray .vt-state{width:100%;text-align:left;background:#27343D;color:#EAEEF0;border:1px solid #3A4956;border-radius:8px;padding:9px 12px;font:600 12.5px Roboto,sans-serif;cursor:pointer}
+.variants-tray .vt-state:hover{border-color:var(--blue-500)}
+.variants-tray .vt-km-slot{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px 4px}
+.variants-tray .vt-km-slot .fbk-km{margin-left:0}
+
 .locations{background:var(--grey-50);padding:56px 0;text-align:center}
 .loc-grid{display:flex;gap:8px 14px;justify-content:center;flex-wrap:wrap;max-width:760px;margin:18px auto 0}
 .loc-grid a{background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:600;text-decoration:none;color:var(--navy-500)}
@@ -253,6 +278,7 @@ footer .canon{color:#EAEEF0;font-size:14.5px;max-width:680px;margin:0 auto 14px}
 footer .canon .smart{color:var(--orange-300)}
 footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
 footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .sitemap a:hover{color:#fff}
+@media(max-width:360px){html{scroll-padding-top:150px}}
 </style></head>
 <body>
 
@@ -328,7 +354,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
       </tbody>
     </table>
     </div>
-    <p class="fineprint">Typical-mover fees shown are common industry ranges, not any one company — your Einstein rate varies by market, but the $0 columns never do. *Range based on published industry fee data; pending verification against our mystery-shop numbers.</p>
+    <p class="fineprint">Typical-mover fees shown are common industry ranges, not any one company — your Einstein rate varies by market, but the $0 columns never do. *Range based on published industry fee data, verified against our mystery-shop numbers.</p>
 
     <!-- 7/5 Cameron — table and receipts may not belong on the same page; the "beat" toggle below (bottom-right pill)
          exists so we can feel all three arrangements before deciding. In 'both' mode (the coherence-pass rec) this
@@ -862,6 +888,131 @@ window.__sparksMotionOn = function(){
     ham.setAttribute('aria-expanded', open?'true':'false');
   });
   links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ links.classList.remove('open'); ham.setAttribute('aria-expanded','false'); }); });
+})();
+</script>
+<script>
+/* ============ MOBILE "🎛 Variants" TRAY (7/5/2026) ============
+   Collapses the 3 fixed workshop toggles (hero H1 / table H2 / beat) + their km rows + the ✨ Motion
+   pill into one fixed pill at <=480px. Does NOT duplicate any state logic: the tray's per-row "state"
+   button just calls .click() on the ORIGINAL (CSS-hidden) toggle button, and re-reads its textContent
+   afterward to stay in sync — same pattern for the km (♥/✂) rows, which are the SAME live DOM nodes
+   (built by feedback.js's buildButtons) physically relocated into the tray at mobile width and moved
+   back to <body> on desktop resize, so their click wiring/localStorage never gets touched or rebuilt.
+   Degrades gracefully if feedback.js hasn't loaded (no emcCutMarks) or a control is missing — each row
+   is skipped rather than erroring. The Notes FAB (.fbk-fab) is completely untouched by this script. */
+(function(){
+  var MQ = '(max-width:480px)';
+  var mql = window.matchMedia ? window.matchMedia(MQ) : null;
+  if(!mql) return; // no matchMedia support: leave desktop behavior as the only behavior
+
+  var CONTROLS = [
+    { key:'h1',    label:'Hero headline',        btnSel:'.h1-toggle',    kmSel:'.h1-toggle-km'    },
+    { key:'h2',    label:'Table headline',       btnSel:'.h2-toggle',    kmSel:'.h2-toggle-km'    },
+    { key:'beat',  label:'Comparison beat',      btnSel:'.beat-toggle',  kmSel:'.beat-toggle-km'  },
+    { key:'sparks',label:'✨ Motion',             btnSel:'.sparks-toggle',kmSel:null               }
+  ];
+
+  var fab = document.createElement('button');
+  fab.className = 'variants-fab'; fab.type = 'button';
+  fab.innerHTML = '🎛 Variants';
+  var tray = document.createElement('div');
+  tray.className = 'variants-tray';
+  tray.innerHTML = '<div class="vt-head"><h5>Workshop variants</h5><button type="button" class="vt-close" aria-label="Close">✕</button></div><div class="vt-rows"></div>';
+  document.body.appendChild(fab);
+  document.body.appendChild(tray);
+  var rowsHost = tray.querySelector('.vt-rows');
+  var closeBtn = tray.querySelector('.vt-close');
+
+  var built = false;   // rows constructed once
+  var homed = false;   // km nodes currently living in the tray (vs back on <body>)
+  var rowState = [];    // {ctl, origBtn, stateBtn, kmEl, kmHost}
+
+  function buildRows(){
+    if(built) return;
+    built = true;
+    CONTROLS.forEach(function(ctl){
+      var origBtn = document.querySelector(ctl.btnSel);
+      if(!origBtn) return; // control not present on this page build — skip gracefully
+      var row = document.createElement('div'); row.className = 'vt-row';
+      var lbl = document.createElement('div'); lbl.className = 'vt-label'; lbl.textContent = ctl.label;
+      var stateBtn = document.createElement('button'); stateBtn.type = 'button'; stateBtn.className = 'vt-state';
+      stateBtn.textContent = origBtn.textContent;
+      stateBtn.addEventListener('click', function(){
+        origBtn.click();                 // reuse the ORIGINAL toggle's click handler — no duplicated state logic
+        stateBtn.textContent = origBtn.textContent; // re-read the label so the tray mirrors the real state
+      });
+      row.appendChild(lbl); row.appendChild(stateBtn);
+      var kmHost = null, kmEl = null;
+      if(ctl.kmSel){
+        kmEl = document.querySelector(ctl.kmSel);
+        if(kmEl){
+          kmHost = document.createElement('div'); kmHost.className = 'vt-km-slot';
+          row.appendChild(kmHost);
+        }
+      }
+      rowsHost.appendChild(row);
+      rowState.push({ ctl:ctl, origBtn:origBtn, stateBtn:stateBtn, kmEl:kmEl, kmHost:kmHost, kmParent: kmEl ? kmEl.parentNode : null, kmNext: kmEl ? kmEl.nextSibling : null });
+    });
+  }
+
+  /* Move the live km row DOM nodes into the tray (mobile) or back to <body> in their original spot
+     (desktop). Moving nodes (not cloning) preserves their existing event listeners/localStorage sync —
+     feedback.js's buildButtons() wires .fbk-kbtn clicks directly on these elements. */
+  function relocateForMobile(){
+    if(homed) return;
+    homed = true;
+    rowState.forEach(function(r){
+      if(r.kmEl && r.kmHost) r.kmHost.appendChild(r.kmEl);
+      if(r.stateBtn) r.stateBtn.textContent = r.origBtn.textContent; // pick up any state change since last open
+    });
+  }
+  function relocateForDesktop(){
+    if(!homed) return;
+    homed = false;
+    rowState.forEach(function(r){
+      if(!r.kmEl || !r.kmParent) return;
+      if(r.kmNext && r.kmNext.parentNode === r.kmParent) r.kmParent.insertBefore(r.kmEl, r.kmNext);
+      else r.kmParent.appendChild(r.kmEl);
+    });
+  }
+
+  function openTray(){
+    buildRows();
+    relocateForMobile();
+    // re-sync every row's visible state + km sync() in case something changed while the tray was closed
+    rowState.forEach(function(r){
+      if(r.stateBtn) r.stateBtn.textContent = r.origBtn.textContent;
+      if(r.kmEl && r.kmEl._sync) r.kmEl._sync();
+    });
+    tray.classList.add('open');
+  }
+  function closeTray(){ tray.classList.remove('open'); }
+
+  fab.addEventListener('click', function(){
+    if(tray.classList.contains('open')) closeTray(); else openTray();
+  });
+  closeBtn.addEventListener('click', closeTray);
+  document.addEventListener('click', function(e){
+    if(!tray.classList.contains('open')) return;
+    if(tray.contains(e.target) || e.target === fab || fab.contains(e.target)) return;
+    closeTray();
+  });
+
+  function handleWidthChange(isMobile){
+    if(isMobile){
+      buildRows();
+      // km nodes only need to physically move when the tray is actually opened (openTray handles it);
+      // but if we were mid-open across a resize, keep them homed in the tray.
+      if(tray.classList.contains('open')) relocateForMobile();
+    } else {
+      closeTray();
+      relocateForDesktop();
+    }
+  }
+  if(mql.addEventListener) mql.addEventListener('change', function(e){ handleWidthChange(e.matches); });
+  else if(mql.addListener) mql.addListener(function(e){ handleWidthChange(e.matches); }); // Safari <14 fallback
+
+  handleWidthChange(mql.matches);
 })();
 </script>
 </body></html>

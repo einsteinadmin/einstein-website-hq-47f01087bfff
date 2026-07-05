@@ -38,7 +38,7 @@
   --radius:12px; --radius-btn:8px; --shadow-sm:0 2px 14px rgba(11,16,20,.05);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
 body{font-family:Roboto,system-ui,sans-serif;color:var(--navy-500);background:#fff;margin:0;line-height:1.55;-webkit-font-smoothing:antialiased}
 .wrap{max-width:960px;margin:0 auto;padding:0 22px}
 h1,h2.sec{font-family:Lora,serif;font-weight:700;letter-spacing:-.01em}
@@ -196,6 +196,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 /* Workshop hero toggle (7/5/2026) — same fixed-pill pattern as pricing-page's h1-toggle. This page had no existing toggle pill. */
 .h1-toggle{position:fixed;left:14px;bottom:14px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
 .h1-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
+@media(max-width:360px){html{scroll-padding-top:150px}}
 </style></head>
 <body>
 

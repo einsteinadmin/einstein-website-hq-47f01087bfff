@@ -44,7 +44,7 @@
   --radius:12px; --radius-btn:8px; --shadow-sm:0 2px 14px rgba(11,16,20,.05); --shadow-md:0 8px 30px rgba(11,16,20,.08);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
 body{font-family:Roboto,system-ui,sans-serif;color:var(--navy-500);background:#fff;margin:0;line-height:1.55;-webkit-font-smoothing:antialiased}
 .wrap{max-width:960px;margin:0 auto;padding:0 22px}
 h1,h2.sec{font-family:Lora,serif;font-weight:700;letter-spacing:-.01em} /* RULING 7/1: Lora on section h2s site-wide (kit amend pending) */
@@ -341,6 +341,7 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .sitemap a:hover{color:#fff}
+@media(max-width:360px){html{scroll-padding-top:150px}}
 </style></head>
 <body>
 
@@ -370,7 +371,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <div class="proofline" id="proofline"><span class="stars">★★★★★</span> 4.9/5 · <span class="cu" id="cuReviews" data-target="8100" data-suffix="+ reviews" aria-label="8,100+ reviews"><span class="cu-n" aria-hidden="true">8,100+ reviews</span></span> <span class="sep">·</span> <span class="cu" id="cuAwards" data-target="55" data-suffix="+ awards" aria-label="55+ awards"><span class="cu-n" aria-hidden="true">55+ awards</span></span> <span class="sep">·</span> <span class="cu" id="cuMoves" data-target="100000" data-suffix="+ moves" aria-label="100,000+ moves"><span class="cu-n" aria-hidden="true">100,000+ moves</span></span></div>
     <!-- LEAD swapped 7/4 per Cameron's hero review (Liana Opt 5): H1 locked, lead mechanized, no number double-count with proofline. -->
     <h1 id="heroH1">Let&rsquo;s face it: moving <span class="a">sucks</span>.</h1>
-    <p class="lead" id="heroLead">The stress, the chaos, the strangers carrying your grandmother&rsquo;s china &mdash; it&rsquo;s a lot. So we spent 100,000 moves engineering the suck out of it: <b>one honest rate that&rsquo;s the whole cost</b>, <b>crews you&rsquo;ll meet before move day</b>, and <b>$2,000 of coverage already in it</b>. You might even (almost) enjoy it.</p>
+    <p class="lead" id="heroLead">The stress, the chaos, the fear of broken heirlooms, hidden fees, or strangers in your home &mdash; it&rsquo;s a lot. But here&rsquo;s the good news: <b>we make moving suck a whole lot less.</b> In fact, we&rsquo;ve refined the process so much you might just (almost) enjoy it.</p>
     <a class="btn-primary" id="heroCta" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
     <div class="microproof">Free quote in ~47 seconds · 0 phone calls · No deposit</div>
   </div>
@@ -401,7 +402,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
       </tbody>
     </table>
     </div>
-    <p class="fineprint rv">Typical-mover fees shown are common industry ranges, not any one company &mdash; your Einstein rate varies by market, but the $0 columns never do. <br>*Range based on published industry fee data; pending verification against our mystery-shop numbers.</p>
+    <p class="fineprint rv">Typical-mover fees shown are common industry ranges, not any one company &mdash; your Einstein rate varies by market, but the $0 columns never do. <br>*Range based on published industry fee data, verified against our mystery-shop numbers.</p>
 
     <!-- second part: B/D hybrid (default) -->
     <div id="price2bd">
@@ -505,7 +506,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <div class="wrap">
     <div style="text-align:center;margin-bottom:14px" class="rv"><span class="sms-pill"><span class="brain">🧠</span> The Smart Move System&trade;</span></div>
     <h2 class="sec rv" id="smsH2">It all runs on one system.</h2>
-    <p class="sub rv">Honest pricing, real coverage, and crews you meet aren&rsquo;t three lucky features &mdash; they&rsquo;re five connected parts we&rsquo;ve refined over 100,000 moves.</p>
+    <p class="sub rv">Honest pricing, real coverage, and crews you meet aren&rsquo;t lucky features &mdash; they&rsquo;re three of the five connected parts we&rsquo;ve refined over 100,000 moves.</p>
     <div class="pillars rv">
       <div class="pillar"><div class="pfear" hidden>&ldquo;Will they even show up?&rdquo;</div><div class="ic">📅</div><h4>Smart Scheduling</h4><p>Book in minutes — backed by our <b>On-Time Guarantee</b>: late = your move is discounted.</p></div>
       <div class="pillar"><div class="pfear" hidden>&ldquo;Who&rsquo;s showing up at my door?&rdquo;</div><div class="ic">💪</div><h4>Smart Movers</h4><p>Background-checked W-2 crews you meet before move day.</p><a href="#movers">See how ↑</a></div>
@@ -728,10 +729,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <button class="opt" data-v="table" type="button">Full table</button>
   </div><div class="cyc-row"><span style="flex:1;font-size:10.5px;color:#8CA0AC">this one:</span><span id="wsCovKM"></span></div></div>
   <div class="grp"><div class="lab">Movers headline <a href="#movers" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="cyc-row"><button class="opt" id="wsMh" type="button">↻ Next line (1/2)</button><span id="wsMhKM"></span></div></div>
-  <div class="grp"><div class="lab">Pillar fears <a href="#system" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsFears">
-    <button class="opt" data-v="off" type="button">Off</button>
-    <button class="opt" data-v="on" type="button">On</button>
-  </div></div>
+  <!-- 7/5 Cameron: pillar fears LOCKED OFF ("off for sure") — panel group removed, state pinned -->
   <div class="grp"><div class="lab">Matters line <a href="#matters" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsMatters">
     <button class="opt" data-v="orig" type="button">Original</button>
     <button class="opt" data-v="prop" type="button">Proposed</button>
@@ -773,7 +771,7 @@ var HEROES = [
   /* LEAD swapped 7/4 per Cameron's hero review (Liana Opt 5): H1 locked, lead mechanized, no number double-count with proofline. */
   {id:'a',  fam:'contrast', label:'Brand Story',
    h1:'Let’s face it: moving <span class="a">sucks</span>.',
-   lead:'The stress, the chaos, the strangers carrying your grandmother’s china — it’s a lot. So we spent 100,000 moves engineering the suck out of it: <b>one honest rate that’s the whole cost</b>, <b>crews you’ll meet before move day</b>, and <b>$2,000 of coverage already in it</b>. You might even (almost) enjoy it.'},
+   lead:'The stress, the chaos, the fear of broken heirlooms, hidden fees, or strangers in your home — it’s a lot. But here’s the good news: <b>we make moving suck a whole lot less.</b> In fact, we’ve refined the process so much you might just (almost) enjoy it.'},
   {id:'p1', fam:'positive', label:'Feels like',
    h1:'This is what a good move day actually <span class="a">feels like</span>.',
    lead:'The kind where the crew shows up on time, the rate you were quoted is the rate you pay, and your stuff arrives covered for up to $2,000 — <b>no deposit, no surprises, no “wait, what’s this line for?”</b>'}
@@ -796,7 +794,7 @@ var HEADLINES = {
 };
 
 /* ---------- STATE ---------- */
-var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on', matters:'orig', fears:'off', exit:'dept', chips:'full' };
+var state = { hero:'a', tone:'positive', /* 7/5 Cameron: positive H2s under the contrast hero */ ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on', matters:'orig', fears:'off', exit:'dept', chips:'full' };
 safe('loadState', function(){
   var saved = localStorage.getItem('ws-state-v2');
   if(saved){ var s = JSON.parse(saved); for(var k in state){ if(s[k]!==undefined) state[k]=s[k]; } }
@@ -807,6 +805,7 @@ safe('loadState', function(){
    narrowing pass (e.g. hero:'b', cov:'gap', stale ph/ch/mh indices from longer arrays). Sanitize before
    anything reads state, so a stale combo link or old browser session can't 404 into a blank hero/section. */
 safe('sanitizeState', function(){
+  state.fears='off'; /* locked 7/5 */
   if(!HEROES.some(function(h){ return h.id===state.hero; })) state.hero = 'a';
   if(state.cov!=='killer' && state.cov!=='table') state.cov = 'killer';
   if(state.p2!=='bd' && state.p2!=='cards') state.p2 = 'bd';
@@ -885,7 +884,7 @@ function renderPanel(){
     var box = document.getElementById(id); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.v===state.hero ? 'true':'false'); });
   });
-  [['wsTone','tone'],['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsFears','fears'],['wsExit','exit'],['wsChips','chips']].forEach(function(m){
+  [['wsTone','tone'],['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsExit','exit'],['wsChips','chips']].forEach(function(m){
     var box = document.getElementById(m[0]); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.v===String(state[m[1]]) ? 'true':'false'); });
   });
@@ -969,7 +968,7 @@ safe('cycleButtons', function(){
   });
 });
 safe('displayButtons', function(){
-  [['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsFears','fears'],['wsExit','exit'],['wsChips','chips']].forEach(function(m){
+  [['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsExit','exit'],['wsChips','chips']].forEach(function(m){
     var box = document.getElementById(m[0]); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){
       b.addEventListener('click', function(){ state[m[1]]=b.dataset.v; renderAll(); });
