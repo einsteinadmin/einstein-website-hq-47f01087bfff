@@ -20,7 +20,7 @@
     { "@type": "Question", "name": "Do you require a deposit?",
       "acceptedAnswer": { "@type": "Answer", "text": "No. No deposit to book, free cancellation, and your quote doesn't expire. Booking early costs you nothing." } },
     { "@type": "Question", "name": "Is the rate I see the rate I pay?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes — one all-inclusive hourly rate that covers your movers, the truck, blankets, wrap, tools, taxes, and $2,000 of damage coverage. Your total is that rate times the time your move takes; nothing gets added at the bottom." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes — one all-inclusive hourly rate that covers your movers, the truck, blankets, wrap, tools, taxes, appliance hookups, and $2,000 of damage coverage. Your total is that rate times the time your move takes; nothing gets added at the bottom." } },
     { "@type": "Question", "name": "Are there fuel, trip, or credit-card fees?",
       "acceptedAnswer": { "@type": "Answer", "text": "No. $0 fuel surcharges, $0 trip fees inside your branch's service area, and $0 credit-card processing fees." } },
     { "@type": "Question", "name": "How is damage coverage priced?",
@@ -212,7 +212,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <div class="ic">💲</div>
     <!-- 7/4 decision (Cameron's hero review): H1 promoted to the homepage's proven contrast line; "moving prices" SEO keyword moved from H1 into the lead — flag for KP's SEO pass. Fee-table H2 below reworded so the promoted line isn't said twice. -->
     <h1 id="heroH1">Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span></h1>
-    <p class="lead" id="heroLead">Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. Our moving prices are one upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b></p>
+    <p class="lead" id="heroLead">Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. Our moving prices are one upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, appliance hookups, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b></p>
     <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
     <div class="microproof">Free quote in ~47 seconds · No phone calls · No deposit</div>
   </div>
@@ -269,6 +269,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
       <div class="r2-line"><span>Furniture blankets, wrap &amp; supplies</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
       <div class="r2-line"><span>TV boxes (&times;2)</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
       <div class="r2-line"><span>Furniture disassembly &amp; reassembly</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+      <div class="r2-line"><span>Appliance disconnect &amp; reconnect <span class="r2-note">· everything but gas · quick waiver</span></span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
       <div class="r2-line"><span>$2,000 damage coverage <span class="r2-note">· actual value</span></span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
       <div class="r2-line"><span>On-time guarantee <span class="r2-note">· late = your move is discounted</span></span><span class="r2-dots"></span><span class="r2-inc">Included</span></div>
       <div class="r2-line"><span>Booking deposit</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
@@ -407,10 +408,10 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     /* 7/4: slot 0 updated to Cameron's ratified hero (H1 promoted, "moving prices" keyword moved to the lead — flag for KP's SEO pass). id stays 'original' so persisted localStorage keeps tracing. */
     { id:'original',
       h1:'Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span>',
-      lead:'Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. Our moving prices are one upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b>' },
+      lead:'Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. Our moving prices are one upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, appliance hookups, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b>' },
     { id:'proposed',
       h1:'“Am I going to get ripped off?”<br><span class="a">Not here — and this page is the receipt.</span>',
-      lead:'One upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b>' }
+      lead:'One upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, appliance hookups, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b>' }
   ];
   var idx = 0;
   try{ if(localStorage.getItem('emc-pricing-h1')==='proposed') idx = 1; }catch(e){}
