@@ -9,6 +9,13 @@
   Metaphor homes: RESORT FEE + TAXI METER live here (wedding-ring lives on Coverage). Live-site pricing copy
   (research/live-site-copy.md) = canonical source for KP's copy pass. FAQ mirrors JSON-LD.
   DRAFT MARKERS: 25-50% asterisked; emoji icons placeholder; example savings framed without fake rates.
+
+  7/5 Cameron — table and receipts may not belong on the same page: a coherence review found the fee-comparison
+  section (table + fineprint + "extras...$0" strip) and the #receipts-demo animated section tell the same beat
+  twice back-to-back. Added a 3-mode "beat" toggle (bottom-right pill, above the ✨ Motion pill) so we can feel
+  all three arrangements before deciding: 'both' (default) = demo leads / table verifies / extras strip retired
+  in that mode — the coherence-pass rec; 'table' = the incumbent full section; 'receipts' = demo only. See the
+  WORKSHOP TOGGLE script block near the end of this file.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
@@ -228,6 +235,12 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
    hero pill stack + the feedback.js 💬 FAB at left:16/bottom:74) */
 .sparks-toggle{position:fixed;right:14px;bottom:92px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
 .sparks-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
+/* 7/5/2026: third workshop toggle — pricing-comparison "beat" (table vs receipts-demo vs both). Right-side
+   stack was right:14px @ bottom 14(h2-toggle)/52(h2-toggle-km)/92(sparks-toggle) — this sits ABOVE all three. */
+.beat-toggle{position:fixed;right:14px;bottom:130px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
+.beat-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
+.beat-toggle-km{position:fixed;right:14px;bottom:168px;z-index:400;display:flex;align-items:center;gap:4px;background:#1A2329;border-radius:999px;padding:4px 8px;box-shadow:var(--shadow-sm)}
+.beat-toggle-km .lb{font:600 10px Roboto,sans-serif;color:#8CA0AC;margin-right:2px}
 
 .locations{background:var(--grey-50);padding:56px 0;text-align:center}
 .loc-grid{display:flex;gap:8px 14px;justify-content:center;flex-wrap:wrap;max-width:760px;margin:18px auto 0}
@@ -317,19 +330,25 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     </div>
     <p class="fineprint">Typical-mover fees shown are common industry ranges, not any one company — your Einstein rate varies by market, but the $0 columns never do. *Range based on published industry fee data; pending verification against our mystery-shop numbers.</p>
 
-    <div class="p2-headrow">
-      <h3>And the extras? <span class="b">Already on the receipt — at $0.</span></h3>
-      <div class="stamp">No<br>add-ons</div>
-    </div>
-    <div class="r2-card">
-      <div class="r2-line"><span>Furniture blankets, wrap &amp; supplies</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
-      <div class="r2-line"><span>TV boxes (&times;2)</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
-      <div class="r2-line"><span>Furniture disassembly &amp; reassembly</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
-      <div class="r2-line"><span>Appliance disconnect &amp; reconnect <span class="r2-note">· everything but gas · quick waiver</span></span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
-      <div class="r2-line"><span>$2,000 damage coverage <span class="r2-note">· actual value</span></span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
-      <div class="r2-line"><span>On-time guarantee <span class="r2-note">· late = your move is discounted</span></span><span class="r2-dots"></span><span class="r2-inc">Included</span></div>
-      <div class="r2-line"><span>Booking deposit</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
-      <div class="r2-tot"><span>Everything most movers bill extra for</span><span class="r2-big">$0</span></div>
+    <!-- 7/5 Cameron — table and receipts may not belong on the same page; the "beat" toggle below (bottom-right pill)
+         exists so we can feel all three arrangements before deciding. In 'both' mode (the coherence-pass rec) this
+         "extras...$0" strip is HIDDEN — it's a third restatement of the same idea the demo + table already carry.
+         See #pb-extras-block toggle logic in the script block near the bottom of this file. -->
+    <div id="pb-extras-block">
+      <div class="p2-headrow">
+        <h3>And the extras? <span class="b">Already on the receipt — at $0.</span></h3>
+        <div class="stamp">No<br>add-ons</div>
+      </div>
+      <div class="r2-card">
+        <div class="r2-line"><span>Furniture blankets, wrap &amp; supplies</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+        <div class="r2-line"><span>TV boxes (&times;2)</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+        <div class="r2-line"><span>Furniture disassembly &amp; reassembly</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+        <div class="r2-line"><span>Appliance disconnect &amp; reconnect <span class="r2-note">· everything but gas · quick waiver</span></span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+        <div class="r2-line"><span>$2,000 damage coverage <span class="r2-note">· actual value</span></span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+        <div class="r2-line"><span>On-time guarantee <span class="r2-note">· late = your move is discounted</span></span><span class="r2-dots"></span><span class="r2-inc">Included</span></div>
+        <div class="r2-line"><span>Booking deposit</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+        <div class="r2-tot"><span>Everything most movers bill extra for</span><span class="r2-big">$0</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -447,7 +466,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     </div>
     <div style="text-align:center;margin-top:36px">
       <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
-      <div class="microproof">No deposit · No hidden fees · <b>Nothing gets added at the bottom.</b></div>
+      <!-- 7/5 coherence: "bottom" drum was beating 6x on this page — this strip gives one back -->
+      <div class="microproof">No deposit · No hidden fees · <b>The quote means what it says.</b></div>
     </div>
   </div>
 </section>
@@ -498,13 +518,13 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   });
 })();
 
-/* Shared combo writer (7/5/2026, extended 7/6 for sparks): body[data-combo] is single-valued, but this
-   page now has THREE independent workshop toggles (hero H1 + fee-table H2 + sparks motion). Each toggle
-   writes its own slot here and the combined string gets stamped — so feedback.js notes carry all active
-   variants at once. */
-window.__prCombo = { h1:'original', tableh2:'current', sparks:'on' };
+/* Shared combo writer (7/5/2026, extended 7/6 for sparks + 7/5 for the beat toggle): body[data-combo] is
+   single-valued, but this page now has FOUR independent workshop toggles (hero H1 + fee-table H2 + sparks
+   motion + the table/receipts "beat"). Each toggle writes its own slot here and the combined string gets
+   stamped — so feedback.js notes carry all active variants at once. */
+window.__prCombo = { h1:'original', tableh2:'current', sparks:'on', beat:'both' };
 function __prWriteCombo(){
-  document.body.setAttribute('data-combo', 'h1='+window.__prCombo.h1+'&tableh2='+window.__prCombo.tableh2+'&sparks='+window.__prCombo.sparks);
+  document.body.setAttribute('data-combo', 'h1='+window.__prCombo.h1+'&tableh2='+window.__prCombo.tableh2+'&sparks='+window.__prCombo.sparks+'&beat='+window.__prCombo.beat);
 }
 
 /* Workshop H1 toggle — ORIGINAL vs PROPOSED hero (persisted: emc-pricing-h1) */
@@ -567,6 +587,74 @@ function __prWriteCombo(){
   apply();
 })();
 
+/* ============ WORKSHOP TOGGLE — the pricing-comparison "beat" (persisted: emc-pricing-beat) ============
+   7/5 Cameron: a coherence review found #fee-comparison (table + fineprint + "extras...$0" strip) and
+   #receipts-demo tell the same beat twice back-to-back. This cycles THREE arrangements so Cameron can
+   feel each one live before deciding:
+     'both'     — DEFAULT, the coherence-pass rec. #receipts-demo moves FIRST (the hook), the comparison
+                  section follows as the check-my-math reference, and the "extras...$0" strip (#pb-extras-block)
+                  is HIDDEN — it's a third restatement of the same idea.
+     'table'    — the incumbent. Full #fee-comparison section (table + fineprint + extras strip); the
+                  #receipts-demo section hidden entirely.
+     'receipts' — #receipts-demo only; the ENTIRE #fee-comparison section (table, fineprint, extras strip)
+                  hidden.
+   Reordering is physical (insertBefore) so document order matches what 'both' claims — not just a visual
+   CSS order trick — because the receipts scroll-trigger animation keys off real intersection/scroll position.
+   Unknown/stale localStorage values sanitize to 'both'. */
+(function(){
+  var cmpSec = document.getElementById('fee-comparison');
+  var demoSec = document.getElementById('receipts-demo');
+  var extras = document.getElementById('pb-extras-block');
+  if(!cmpSec || !demoSec) return;
+  var parent = cmpSec.parentNode;
+  var MODES = ['both','table','receipts'];
+  var LABELS = { both:'Demo → Table (extras hidden)', table:'Table only (incumbent)', receipts:'Receipts only' };
+  var mode = 'both';
+  try{
+    var stored = localStorage.getItem('emc-pricing-beat');
+    mode = (MODES.indexOf(stored) !== -1) ? stored : 'both'; /* sanitize unknown/stale values */
+  }catch(e){ mode = 'both'; }
+  window.__pbKM = null; /* set once feedback.js builds the km row (see below) */
+  function apply(){
+    if(mode === 'both'){
+      /* physically move the demo section ahead of the comparison section */
+      if(demoSec.nextSibling !== cmpSec) parent.insertBefore(demoSec, cmpSec);
+      demoSec.style.display = '';
+      cmpSec.style.display = '';
+      if(extras) extras.style.display = 'none';
+    } else if(mode === 'table'){
+      /* restore natural order (comparison first, demo after) — matches source order */
+      if(cmpSec.nextSibling !== demoSec) parent.insertBefore(cmpSec, demoSec);
+      cmpSec.style.display = '';
+      demoSec.style.display = 'none';
+      if(extras) extras.style.display = '';
+    } else { /* receipts */
+      if(cmpSec.nextSibling !== demoSec) parent.insertBefore(cmpSec, demoSec);
+      cmpSec.style.display = 'none';
+      demoSec.style.display = '';
+      if(extras) extras.style.display = '';
+    }
+    btn.textContent = '⇄ Beat · ' + LABELS[mode];
+    window.__prCombo.beat = mode; __prWriteCombo();
+    if(window.__pbKM) window.__pbKM(mode);
+    /* the receipts demo may have just become visible for the first time (table→receipts/both switch) —
+       give its own IntersectionObserver (registered later in this file) a chance to re-check by nudging
+       a resize-free re-measure; it re-observes on scroll naturally, but if the section is already in
+       view at switch time (e.g. toggled while scrolled down), fire a manual check once. */
+    if(mode !== 'table' && window.__pbCheckReceiptsInView) window.__pbCheckReceiptsInView();
+  }
+  var btn = document.createElement('button');
+  btn.className = 'beat-toggle'; btn.type = 'button'; btn.title = 'Workshop control: cycle the pricing-comparison beat (table / receipts / both)';
+  btn.addEventListener('click', function(){
+    var idx = (MODES.indexOf(mode) + 1) % MODES.length;
+    mode = MODES[idx];
+    try{ localStorage.setItem('emc-pricing-beat', mode); }catch(e){}
+    apply();
+  });
+  document.body.appendChild(btn);
+  apply();
+})();
+
 /* Scroll-in animations: strike-draw + $0 pill pop (comparison table) and stamp thunk.
    Reduced-motion fallbacks render final states statically (see CSS). */
 (function(){
@@ -620,7 +708,12 @@ window.__sparksMotionOn = function(){
    Einstein's stops after 4 lines, tears off (settle), and sits still while the competitor keeps
    printing for another ~1.8s — the timing gap IS the joke. Fires once on scroll-in.
    Motion-off or prefers-reduced-motion = the static markup already IS the final state (hidden/grow
-   rules only exist under .rc-armed, which is only added when motion is live). */
+   rules only exist under .rc-armed, which is only added when motion is live).
+   7/5/2026 — made ROBUST to the "beat" toggle: #receipts-demo can be display:none at load (table mode),
+   or physically reordered ahead of #fee-comparison (both mode). Offset measurements (offsetHeight/offsetTop)
+   are meaningless while display:none, so arming is deferred to the first moment the section is actually
+   visible — via a lightweight poll keyed off the beat toggle's apply(), exposed as
+   window.__pbCheckReceiptsInView() — rather than assuming visibility at script-load time. */
 (function(){
   var grid = document.getElementById('receiptsGrid');
   if(!grid) return;
@@ -635,13 +728,35 @@ window.__sparksMotionOn = function(){
     if(us) us.classList.remove('rc-settle');
   };
   if(!window.__sparksMotionOn() || !('IntersectionObserver' in window) || !us || !them) return;
-  /* reserve the final footprint so the page below never shifts while the papers grow */
-  grid.style.minHeight = grid.offsetHeight + 'px';
-  grid.classList.add('rc-armed');
-  [us,them].forEach(function(p){
-    var h = p.querySelector('.receipt-h');
-    p.style.maxHeight = (h.offsetTop + h.offsetHeight + 14) + 'px';
-  });
+
+  var armed = false, played = false, io = null;
+  function isVisible(){
+    /* an ancestor (or the section itself) with display:none collapses offsetParent to null */
+    return grid.offsetParent !== null;
+  }
+  function arm(){
+    if(armed || !isVisible()) return;
+    armed = true;
+    /* reserve the final footprint so the page below never shifts while the papers grow */
+    grid.style.minHeight = grid.offsetHeight + 'px';
+    grid.classList.add('rc-armed');
+    [us,them].forEach(function(p){
+      var h = p.querySelector('.receipt-h');
+      p.style.maxHeight = (h.offsetTop + h.offsetHeight + 14) + 'px';
+    });
+    io = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(e){
+        if(e.isIntersecting && !played){
+          played = true; obs.disconnect();
+          printAll(us, 170, function(){ us.classList.add('rc-done','rc-settle'); });   /* done ~1.2s, tears off, sits still */
+          printAll(them, 300, function(){ them.classList.add('rc-done'); });           /* still printing until ~3.1s */
+        }
+      });
+    }, {threshold:.3});
+    io.observe(grid);
+    /* the grid may already be in view the instant it becomes visible (e.g. toggled mid-scroll) —
+       IntersectionObserver's first callback handles that on its own, no manual kick needed. */
+  }
   function printAll(p, step, done){
     var rows = p.querySelectorAll('.rline,.rtot');
     rows.forEach(function(r,i){
@@ -653,16 +768,9 @@ window.__sparksMotionOn = function(){
       }, 240 + i*step);
     });
   }
-  var played = false;
-  new IntersectionObserver(function(entries, io){
-    entries.forEach(function(e){
-      if(e.isIntersecting && !played){
-        played = true; io.disconnect();
-        printAll(us, 170, function(){ us.classList.add('rc-done','rc-settle'); });   /* done ~1.2s, tears off, sits still */
-        printAll(them, 300, function(){ them.classList.add('rc-done'); });           /* still printing until ~3.1s */
-      }
-    });
-  }, {threshold:.3}).observe(grid);
+  /* called by the beat toggle's apply() whenever the demo section may have just become visible */
+  window.__pbCheckReceiptsInView = arm;
+  arm(); /* covers the default/unaffected case where the section is visible from the start */
 })();
 </script>
 <script src="feedback.js?v=20260705cut"></script>
@@ -707,6 +815,42 @@ window.__sparksMotionOn = function(){
   }
   window.__prTableKM = render;
   try{ render(localStorage.getItem('emc-pricing-tableh2')==='mailer' ? 'mailer' : 'current'); }catch(e){ render('current'); }
+})();
+</script>
+<script>
+/* keep/cut mark row for the pricing-comparison "beat" toggle — built after feedback.js so
+   window.emcCutMarks exists. ids pb-both / pb-table / pb-receipts, group "MODE · Pricing comparison
+   beat", shared schema with cut-list.html. Unlike the H1/H2 toggles (2 variants, one re-tinted slot),
+   this shows all THREE mode marks at once — Cameron can ♥/✂ each independently regardless of which
+   mode is currently active on screen. The active mode gets a "current" dot so the row still reads
+   which one is live. Re-renders (dot moves) on every toggle click via __pbKM. */
+(function(){
+  if(!window.emcCutMarks) return;
+  var MODES = ['both','table','receipts'];
+  var LABELS = { both:'Both (default · demo leads, table verifies)', table:'Table only (incumbent)', receipts:'Receipts only' };
+  var IDMAP = { both:'pb-both', table:'pb-table', receipts:'pb-receipts' };
+  var wrap = document.createElement('div'); wrap.className = 'beat-toggle-km';
+  var lb = document.createElement('span'); lb.className='lb'; lb.textContent='beat:';
+  wrap.appendChild(lb);
+  var dots = {};
+  MODES.forEach(function(m){
+    var row = document.createElement('span');
+    row.style.cssText = 'display:inline-flex;align-items:center;gap:2px;margin-right:4px';
+    var dot = document.createElement('span');
+    dot.textContent = m[0].toUpperCase();
+    dot.title = LABELS[m];
+    dot.style.cssText = 'font:700 9px Roboto,sans-serif;color:#8CA0AC;width:14px;text-align:center';
+    row.appendChild(dot);
+    row.appendChild(window.emcCutMarks.buildButtons(IDMAP[m], { label:LABELS[m], group:'MODE · Pricing comparison beat', page:'Pricing' }, null, row));
+    wrap.appendChild(row);
+    dots[m] = dot;
+  });
+  document.body.appendChild(wrap);
+  function render(activeMode){
+    MODES.forEach(function(m){ dots[m].style.color = (m===activeMode) ? '#F5A054' : '#8CA0AC'; });
+  }
+  window.__pbKM = render;
+  try{ var stored = localStorage.getItem('emc-pricing-beat'); render(MODES.indexOf(stored)!==-1 ? stored : 'both'); }catch(e){ render('both'); }
 })();
 </script>
 <script>
