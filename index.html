@@ -31,6 +31,9 @@
   .review-note ul { margin:6px 0 0 0; padding-left:18px; }
   .review-note ul li { margin-bottom:5px; list-style:disc; }
   .review-note .rn-foot { margin-top:12px; font-style:italic; color:var(--gray); }
+  .ask-note { background:#FDF3E7; border-color:#F0D9B8; }
+  .phase ul.open-list { font-size:.88rem; color:var(--gray); padding-left:18px; margin:0 0 4px; max-width:680px; }
+  .phase ul.open-list li { margin-bottom:4px; }
   .phases { margin-top:36px; display:flex; flex-direction:column; gap:0; position:relative; }
   .phase { display:grid; grid-template-columns:64px 1fr; gap:22px; padding:26px 0; border-bottom:1px solid var(--line); }
   .ph-num { font-family:'Bebas Neue',sans-serif; font-size:2.2rem; color:var(--orange); line-height:1; padding-top:2px; }
@@ -62,19 +65,38 @@
 <div class="wrap">
   <div class="eyebrow">Q2 2026 · Einstein Moving Company × Kickpoint</div>
   <h1>Website Redesign HQ</h1>
-  <p class="lede">The shared home for the redesign — the fully drafted 10-page site, the design system it's built from, and the inspiration + concept work that led here. Open any page on desktop and on your phone (they're responsive).</p>
-  <p class="meta">Einstein × Kickpoint · Updated 7/2/2026 · <span class="internal-only">Items tagged <span class="local-note">internal</span> are hidden automatically on the hosted (KP) copy.</span></p>
+  <p class="lede">The shared home for the redesign — the fully drafted 10-page site, the design system it's built from, and the inspiration + concept work that led here. As of 7/5 it's in Kickpoint's hands for the first review pass. Open any page on desktop and on your phone (they're responsive).</p>
+  <p class="meta">Einstein × Kickpoint · Updated 7/5/2026 · <span class="internal-only">Items tagged <span class="local-note">internal</span> are hidden automatically on the hosted (KP) copy.</span></p>
 
   <!-- HOW TO REVIEW — shown to everyone (KP reviewers) -->
   <div class="review-note">
-    <div class="rn-head">Reviewing with us? Here's how.</div>
+    <div class="rn-head">How to review (for the Kickpoint crew)</div>
     <ol>
-      <li><b>Start at "The Full Site"</b> (first card below) — all 10 drafted pages, nav-wired to each other like a real site. Browse them the way a customer would.</li>
-      <li><b>Leave feedback right on the pages:</b> <b>highlight any text</b> → a 💬 button pops up → add your note on that exact copy. Or tap a section's <b>💬 pin</b> (♥ on the homepage) for a whole-section note. Notes from every page collect in the <b>📝 Notes panel, bottom-left</b>.</li>
-      <li><b>When you're done:</b> open the 📝 Notes panel → <b>"Copy ALL feedback (for Albert)"</b> — it copies every note from every page in one paste. Send that paste to Cameron. (Nothing sends on its own.)</li>
-      <li><b>Or just tell Cameron</b> — flag what you think, or grab time for a walkthrough together. Always a fine path.</li>
+      <li><b>Browse it like a customer.</b> Start at "The Full Site" (first card below) — all 10 drafted pages, nav-wired to each other like a real site. Desktop and phone both.</li>
+      <li><b>Leave feedback right on the pages:</b> <b>highlight any text</b> → a 💬 button pops up → your note lands on that exact copy. Or tap a section's <b>💬 pin</b> (♥ on the homepage) for a whole-section note. Notes from every page collect in the <b>📝 Notes panel, bottom-left</b>.</li>
+      <li><b>When you're done:</b> open the 📝 Notes panel → <b>"Copy ALL feedback"</b> — one paste with every note from every page. Send that paste to Cameron. (Nothing sends on its own.)</li>
+      <li><b>Flip the toggles.</b> Several pages carry live workshop toggles — <b>Why Us B hero (×4)</b>, <b>Coverage hero (×2)</b>, the <b>homepage hero variants</b>, the <b>exit line</b>, and the <b>"what matters" pills</b>. Try them all and tell us your winners.</li>
+      <li><b>One thing not to fix:</b> the quotes on the walls are <b>verbatim real Google reviews</b> — typos, odd phrasing and all. That's the point. Please don't punch them up.</li>
     </ol>
     <div class="rn-foot">No wrong reactions — tell us what lands and what doesn't. Grey "#" links on the drafts are known placeholders, not bugs.</div>
+  </div>
+
+  <!-- WHAT WE'D LOVE FROM YOU — the loose asks (KP-visible). Formal tracking lives on the KP Monday board + the Wednesday sync. -->
+  <div class="review-note ask-note">
+    <div class="rn-head">What we'd love from you</div>
+    <ol>
+      <li><b>A first pass over the next ~3 days.</b> Initial gut reactions — nothing formal.</li>
+      <li><b>Your own export.</b> Leave notes and toggle favorites the way Cameron did, hit "Copy ALL feedback," and then we run a joint workshop to make the calls together.</li>
+      <li><b>The big creative one: where does joy live?</b> The photography plan, real crew faces, imagery, and the Einstein character — where the mascot shows up and what he does. This is the part we most want your eyes on.</li>
+      <li><b>The design-owned calls we've parked for you:</b>
+        <ul>
+          <li><b>Services H1</b> — the keyword-vs-concrete-list tension (your SEO call)</li>
+          <li><b>The SEO constraint sheet</b> — tell us what's actually negotiable on keyword H1s</li>
+          <li><b>The [BRANCH-DATA] per-branch content plan</b> — including which review quotes go to which branch (see review-mining report §5)</li>
+          <li><b>One hard guardrail:</b> the Why Us B <b>fear-question chips are load-bearing</b> — restyle them all you want, but never design them away.</li>
+        </ul>
+      </li>
+    </ol>
   </div>
 
   <!-- FEATURED: the design system / component set -->
@@ -91,19 +113,37 @@
       <div class="ph-num">🌐</div>
       <div>
         <h2>The Full Site — all 10 pages, review here <span class="ph-status">Review</span></h2>
-        <p><b>DRAFTING DONE (7/2)</b> — every page built on the component library, nav-wired to each other, polish-audited (5-lens pass) + full-site audited (14-agent pre-flight, 7/2). <b>Current stage: Cameron's in-depth review</b> — high-level pass for major outliers, feedback through the notes layer below. Highlight text or use the 💬 pins on any page to leave feedback — the 📝 Notes panel's "Copy ALL feedback (for Albert)" collects every page in one paste. Nav is the 7-item set (7/2 ruling): Pricing · Coverage · Services · Locations · Why Us · About · Reviews — Claims additionally joins the header on the Coverage/Claims pair (deliberate pairing; it's in every footer sitemap). Workshop toggles remember your last choice in this browser — <b>↺ Reset to draft defaults</b> (homepage panel) brings back the locked draft.</p>
+        <p><b>DRAFTING CLOSED (7/2), copy hardened since.</b> Every hero went through a <b>6-voice copy council</b> plus Cameron's own review (7/4–5), the body copy got a seasoning pass, and the quotes on the walls were rewired to <b>verbatim real Google reviews</b> (pulled from a 2,478-review corpus). Call it <b>~90% there</b> — Cameron's line-by-line continues in parallel with your review, so small copy shifts may land under you; that's normal. <b>Why Us is Variant B now</b> (nav repointed 7/5); Variant A stays below as an archive. Nav is the 7-item set: Pricing · Coverage · Services · Locations · Why Us · About · Reviews — Claims additionally joins the header on the Coverage/Claims pair (deliberate pairing; it's in every footer sitemap). Workshop toggles remember your last choice in this browser — <b>↺ Reset to draft defaults</b> (homepage panel) brings back the locked draft.</p>
         <div class="links">
           <a class="star" href="fidelity/homepage-hybrid.html">★ Homepage (workshop panel: heroes · coverage · pricing · matters + pills · pillar fears · exit line)</a>
           <a href="fidelity/pricing-page.html">Pricing (⇄ Headline toggle bottom-left)</a>
-          <a href="fidelity/coverage-page.html">Coverage</a>
+          <a href="fidelity/coverage-page.html">Coverage (hero toggle ×2)</a>
           <a href="fidelity/claims-page.html">Claims</a>
-          <a href="fidelity/why-us-page.html">Why Us — A (question-led)</a>
-          <a href="fidelity/why-us-page-b.html">Why Us — B (system-led)</a>
+          <a href="fidelity/why-us-page-b.html">Why Us — B, the live draft (hero toggle ×4)</a>
+          <a href="fidelity/why-us-page.html">Why Us — A (archived — B won the slot, 7/4 council 4–2)</a>
           <a href="fidelity/about-page.html">About</a>
           <a href="fidelity/services-page.html">Services hub</a>
           <a href="fidelity/locations-model-naustin.html">Locations model — N. Austin (KP stamp template)</a>
           <a href="fidelity/awards-reviews-page.html">Awards &amp; Reviews</a>
         </div>
+      </div>
+    </div>
+
+    <!-- INTERNAL — Cameron's open iterate list. Hidden automatically on the hosted (KP) copy. -->
+    <div class="phase int internal-only">
+      <div class="ph-num">✎</div>
+      <div>
+        <h2>Open Iterate List — Cameron <span class="ph-status">Internal</span><span class="local-note">internal</span></h2>
+        <p>The &lt;10 copy pieces still moving while KP does their first pass — none of them block the handoff:</p>
+        <ul class="open-list">
+          <li><b>Why Us B supporting-pillars H2</b> wording — Cameron's remix is in, still iterating</li>
+          <li><b>Awards review-wall H2</b> — between two options</li>
+          <li><b>Coverage §3 add</b> — top-3 re-roll pending</li>
+          <li><b>Hero-toggle winners</b> — Why Us B W1–4 · Coverage C1/C2</li>
+          <li><b>N. Austin lead</b> — "movers who actually work here" register (flagged for real-Liana)</li>
+          <li><b>Nextdoor H3 cut</b> — executed, ratify on review</li>
+          <li><b>About founder-note promise line</b> — banked as an L2 candidate</li>
+        </ul>
       </div>
     </div>
 
@@ -172,8 +212,8 @@
       <div class="ph-num">05</div>
       <div>
         <h2>Sparks of Joy — tier 2 <span class="ph-status">Next</span></h2>
-        <p>Tier 1 already ships on the drafts (fee strike-draw, "no add-ons" stamp thunk, fine-print easter egg, calm claims-submit exhale). Tier 2 = a few more distinctive delight moments layered on <i>after</i> Cameron's review locks content, so motion enhances a solid base rather than carrying it. Candidates from the originality backlog: the mover/couch motif as a through-line (Mover Journey DNA, minus the heavy scroll engine), the Einstein mascot as a host at key beats, count-ups on the proof numbers, a finale payoff (the crew loads the truck). This buys back the distinctiveness the consultant panel flagged.</p>
-        <div class="links"><span class="soon">After Cameron's review pass</span></div>
+        <p>Tier 1 already ships on the drafts (fee strike-draw, "no add-ons" stamp thunk, fine-print easter egg, calm claims-submit exhale). Tier 2 = a few more distinctive delight moments layered on <i>after</i> the KP review + joint workshop lock content, so motion enhances a solid base rather than carrying it. Candidates from the originality backlog: the mover/couch motif as a through-line (Mover Journey DNA, minus the heavy scroll engine), the Einstein mascot as a host at key beats, count-ups on the proof numbers, a finale payoff (the crew loads the truck). This buys back the distinctiveness the consultant panel flagged.</p>
+        <div class="links"><span class="soon">After the joint decision workshop</span></div>
       </div>
     </div>
 
@@ -199,7 +239,7 @@
       <div class="ph-num">08</div>
       <div>
         <h2>Kickpoint Design Pass + Build Handoff <span class="ph-status">Later</span></h2>
-        <p>KP's full design review across the 10 pages, then the handoff pack: Emma extracts the labeled components into the Figma library (Einstein owns it, census ready in step 04) · KP verifies the WordPress FSE translation · locations get the per-branch <b>[BRANCH-DATA]</b> file · the workshop toggles get their final calls locked at a team workshop (hero set · Why Us A/B · pricing headline · matters pills · exit line · pillar fears · "not the cheapest" wink).</p>
+        <p>KP's full design review across the 10 pages, then the handoff pack: Emma extracts the labeled components into the Figma library (Einstein owns it, census ready in step 04) · KP verifies the WordPress FSE translation · locations get the per-branch <b>[BRANCH-DATA]</b> file · the workshop toggles get their final calls locked at the joint workshop (hero sets · pricing headline · matters pills · exit line · pillar fears · "not the cheapest" wink — Why Us A/B already settled: B).</p>
         <div class="links"><span class="soon">Seeds from the Component Library (step 04)</span></div>
       </div>
     </div>
