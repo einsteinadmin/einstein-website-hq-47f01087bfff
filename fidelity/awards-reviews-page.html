@@ -134,6 +134,12 @@ footer .canon .smart{color:var(--orange-300)}
 footer a{color:var(--blue-100)}
 footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
 footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .sitemap a:hover{color:#fff}
+
+/* Workshop H2 toggle for the review-wall headline (7/5/2026) — same fixed-pill pattern as pricing-page's h1-toggle. */
+.h1-toggle{position:fixed;left:14px;bottom:14px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
+.h1-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
+.h1-toggle-km{position:fixed;left:14px;bottom:52px;z-index:400;display:flex;align-items:center;gap:4px;background:#1A2329;border-radius:999px;padding:4px 8px;box-shadow:var(--shadow-sm)}
+.h1-toggle-km .lb{font:600 10px Roboto,sans-serif;color:#8CA0AC;margin-right:2px}
 </style></head>
 <body>
 
@@ -162,7 +168,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
          The lead's self-aware turn ("exactly the kind of claim a moving company would make up… this page is the receipt")
          is load-bearing — never trim it. Lead stays VERBATIM. -->
     <h1>The most awarded moving company <span class="a">in the history of moving companies.</span></h1>
-    <p class="lead">Seriously — we&rsquo;re running out of shelf space. And because &ldquo;most awarded&rdquo; is exactly the kind of claim a moving company would make up, this page is the receipt: every award, every issuer, every year.</p>
+    <p class="lead">Seriously — we&rsquo;re running out of shelf space. And because &ldquo;most awarded&rdquo; is exactly the kind of claim a moving company would make up, this page is the receipt: every award, every issuer, every year. The thing that earned them all is <b>The Smart Move System</b> — this page is just the shelf.</p>
+    <!-- 7/5 plan-naming directive (Miller, hero council): name The Smart Move System once per page -->
     <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
     <a class="second" href="#reviews">Skip the trophies, show me the reviews ↓</a>
     <div class="microproof">No deposit required · Free cancellation · $2,000 damage coverage included</div>
@@ -273,7 +280,9 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 <!-- ============ 6. REVIEW WALL — real captured quotes + filter chips + media placeholders ============ -->
 <section class="block" id="reviews" style="background:var(--grey-50);padding-top:60px;scroll-margin-top:80px">
   <div class="wrap">
-    <h2 class="sec">We&rsquo;re not happy unless you&rsquo;re <span class="a">THIS happy.</span></h2>
+    <!-- 7/5 CUT ROUND: review-wall H2 narrowed to 2 finalists (Options 3+4 cut — see cut-list.html).
+         Toggle built + wired below, after feedback.js loads (window.emcCutMarks). Static markup = opt1 (default). -->
+    <h2 class="sec" id="wallH2">We&rsquo;re not happy unless you&rsquo;re <span class="a">THIS happy.</span></h2>
     <p class="sub">Pick the fear you came here with — there&rsquo;s a review for it. Quotes carried verbatim from real reviews (typos and all — we don&rsquo;t edit these).</p>
     <div class="chips" role="group" aria-label="Filter reviews">
       <button class="chip on" data-f="all" aria-pressed="true">All</button>
@@ -389,7 +398,56 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   });
 })();
 </script>
+
+<!-- Workshop H2 toggle — review-wall headline, 2 finalists after Cameron's 7/5 cut round (persisted: emc-awards-wallh2) -->
+<script>
+(function(){
+  var h2 = document.getElementById('wallH2');
+  if(!h2) return;
+  var V = [
+    { id:'opt1', html:'We&rsquo;re not happy unless you&rsquo;re <span class="a">THIS happy.</span>' },
+    { id:'opt2', html:'The trophies are nice. <span class="a">These are better.</span>' }
+  ];
+  var idx = 0;
+  try{ if(localStorage.getItem('emc-awards-wallh2')==='opt2') idx = 1; }catch(e){}
+  window.__awWallKM = null; /* set once feedback.js builds the km row (see below) */
+  function apply(){
+    h2.innerHTML = V[idx].html; btn.textContent = '⇄ Review-wall H2 · ' + (idx===0?'opt1':'opt2'); document.body.setAttribute('data-combo','wallh2='+V[idx].id);
+    if(window.__awWallKM) window.__awWallKM(V[idx].id);
+  }
+  var btn = document.createElement('button');
+  btn.className = 'h1-toggle'; btn.type = 'button'; btn.title = 'Workshop control: cycle review-wall H2 variants';
+  btn.addEventListener('click', function(){
+    idx = (idx+1) % V.length;
+    try{ localStorage.setItem('emc-awards-wallh2', V[idx].id); }catch(e){}
+    apply();
+  });
+  document.body.appendChild(btn);
+  apply();
+})();
+</script>
 <script src="feedback.js?v=20260705cut"></script>
+<script>
+/* keep/cut mark row for the awards review-wall H2 toggle — built after feedback.js so window.emcCutMarks exists.
+   ids aw-1 / aw-2, shared schema with cut-list.html. Options 3+4 were cut 7/5 (see cut-list.html). */
+(function(){
+  if(!window.emcCutMarks) return;
+  var LABELS = { opt1:'Option 1 · current', opt2:'Option 2' };
+  var IDMAP = { opt1:'aw-1', opt2:'aw-2' };
+  var wrap = document.createElement('div'); wrap.className = 'h1-toggle-km';
+  var lb = document.createElement('span'); lb.className='lb'; lb.textContent='this one:';
+  wrap.appendChild(lb);
+  var slot = document.createElement('span');
+  wrap.appendChild(slot);
+  document.body.appendChild(wrap);
+  function render(id){
+    slot.innerHTML='';
+    slot.appendChild(window.emcCutMarks.buildButtons(IDMAP[id]||id, { label:LABELS[id]||id, group:'Awards review-wall H2', page:'awards-reviews-page' }, null, wrap));
+  }
+  window.__awWallKM = render;
+  try{ render(localStorage.getItem('emc-awards-wallh2')==='opt2' ? 'opt2' : 'opt1'); }catch(e){ render('opt1'); }
+})();
+</script>
 <script>
 (function(){
   var ham = document.getElementById('ham'), links = document.getElementById('navLinks');

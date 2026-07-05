@@ -192,6 +192,10 @@ footer .canon .smart{color:var(--orange-300)}
 footer a{color:var(--blue-100)}
 footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
 footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .sitemap a:hover{color:#fff}
+
+/* Workshop hero toggle (7/5/2026) — same fixed-pill pattern as pricing-page's h1-toggle. This page had no existing toggle pill. */
+.h1-toggle{position:fixed;left:14px;bottom:14px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
+.h1-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
 </style></head>
 <body>
 
@@ -217,8 +221,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <div class="wrap">
     <!-- [BRANCH-DATA: city] value="North Austin" — drives geochip, H1, subhead, CTA label -->
     <div class="geochip">📍 You&rsquo;re looking at our North Austin branch — <a href="#cities">not your city? Pick yours ↓</a></div>
-    <!-- ✓ VERIFIED by Cameron 7/5: Best of Austin won 10 times — "ten times" is CORRECT. The V5 mailer's "nine years straight" predates the 10th win (printed earlier); next print run should bump to ten. Mailer hero pattern "[City] voted us best movers. [N] years straight." = candidate on the cut list; other markets still need their own count + issuer before running it. -->
-    <h1>North Austin Movers — <span class="a">voted Austin&rsquo;s best, ten times.</span></h1>
+    <!-- ✓ VERIFIED by Cameron 7/5: Best of Austin won 10 times — "ten times" is CORRECT. The V5 mailer's "nine years straight" predates the 10th win (printed earlier); next print run should bump to ten. Mailer hero pattern "[City] voted us best movers. [N] years straight." = ADOPTED here as a workshop toggle (L2, below) — production adds an issuer badge (Austin Chronicle) + [BRANCH-DATA] per-market count+issuer when templated; other markets still need their own count + issuer before running it. -->
+    <h1 id="locHeroH1">North Austin Movers — <span class="a">voted Austin&rsquo;s best, ten times.</span></h1>
     <!-- [BRANCH-DATA: hero-award] value="10x Best of Austin · Austin Chronicle · 2016–2026" — verified 7/1 canon.
          ADAPTED: live page said "9 Years Running / 2017→2025"; updated to the 10x canon. FL pages (Tampa) swap
          to their real honor (e.g. Neighborhood Favorite) — NEVER reuse a TX award on an FL page. -->
@@ -297,7 +301,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
         <span class="kick">Pricing honesty</span>
         <h3>Straightforward hourly rates. No hidden fees. No move-day surprises.</h3>
         <!-- ADAPTED: live "What we quote is what you pay" → rate-level phrasing per honesty lock -->
-        <p>Wondering what movers actually cost? We bill by the hour, and we&rsquo;ll give you a clear rate before anything is scheduled. No lowball rates designed to look good and hurt later — <b>the rate you see is the whole rate. Nothing gets added at the bottom.</b></p>
+        <!-- 7/5 plan-naming directive (Miller, hero council): name The Smart Move System once per page -->
+        <p>Wondering what movers actually cost? We bill by the hour, and we&rsquo;ll give you a clear rate before anything is scheduled. No lowball rates designed to look good and hurt later — <b>the rate you see is the whole rate. Nothing gets added at the bottom.</b> That&rsquo;s <b>The Smart Move System</b> at work — the same deal at every Einstein branch.</p>
         <p class="mut" style="font-size:13.5px;margin-bottom:6px"><b style="color:var(--navy-500)">What&rsquo;s included in your hourly rate, every move:</b></p>
         <!-- Inclusions checklist carried from live (9 items; "standard insurance" line reworded — coverage, never "insured") -->
         <ul class="incl">
@@ -567,6 +572,32 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   </div>
 </footer>
 
+<!-- Workshop hero toggle (7/5/2026) — L1 (current, default) vs L2 (adopted mailer Version A hero pattern).
+     No ♥/✂ km buttons here (per Cameron's 7/5 cut-list call) — 💬 page notes suffice. Persisted: emc-locations-hero. -->
+<script>
+(function(){
+  var h1 = document.getElementById('locHeroH1');
+  if(!h1) return;
+  var V = [
+    { id:'l1', html:'North Austin Movers — <span class="a">voted Austin&rsquo;s best, ten times.</span>' },
+    { id:'l2', html:'Austin voted us best movers. <span class="a">Ten years straight.</span>' }
+  ];
+  var idx = 0;
+  try{ if(localStorage.getItem('emc-locations-hero')==='l2') idx = 1; }catch(e){}
+  function apply(){
+    h1.innerHTML = V[idx].html; btn.textContent = '⇄ Hero · ' + (idx===0?'L1':'L2'); document.body.setAttribute('data-combo','loc-hero='+V[idx].id);
+  }
+  var btn = document.createElement('button');
+  btn.className = 'h1-toggle'; btn.type = 'button'; btn.title = 'Workshop control: cycle hero H1 variants';
+  btn.addEventListener('click', function(){
+    idx = (idx+1) % V.length;
+    try{ localStorage.setItem('emc-locations-hero', V[idx].id); }catch(e){}
+    apply();
+  });
+  document.body.appendChild(btn);
+  apply();
+})();
+</script>
 <script src="feedback.js?v=20260705cut"></script>
 <script>
 (function(){

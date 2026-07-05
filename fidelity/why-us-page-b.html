@@ -126,8 +126,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 
 <header class="hero" id="hero"><div class="wrap">
   <div><span class="sms-pill"><span class="brain">🧠</span> The Smart Move System&trade;</span></div>
-  <!-- HERO = WORKSHOP TOGGLE (Cameron 7/4: hero NOT locked — 4 variants via the "hero (workshop)" control, bottom right). Static markup = W2, the council trim (default). -->
-  <h1 id="heroH1">We didn&rsquo;t fix moving with promises.<br><span class="a">We fixed it with a system.</span></h1>
+  <!-- HERO = WORKSHOP TOGGLE (Cameron 7/4: hero NOT locked — narrowed to 2 finalists 7/5 via the "hero (workshop)" control, bottom right). Static markup = W1 (default post-cut). -->
+  <h1 id="heroH1">Why us? Because we didn&rsquo;t fix moving with promises.<br><span class="a">We fixed it with a system.</span></h1>
   <p class="wink" id="heroWink">Every fear you have about movers has an engineered answer. Five parts. Here they are — biggest fears first.</p>
 </div></header>
 
@@ -232,7 +232,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 <p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don&rsquo;t earn numbers like those by dodging the hard questions.</span></p>
   <p>TX TxDMV #006604158C · US DOT #2193963 &nbsp;|&nbsp; FL Mover Reg. No. IM3621 · US DOT #3882313</p>
   <p style="font-size:11px;color:#9AA3AA;margin-top:10px">P.S. You made it to the fine print. We like you already.</p>
-  <p class="devnote">Plain English first: two versions of this page were drafted; this one (B) won our internal review and is the live draft — the other (A) is archived. The ⚙ hero toggle offers 4 alternate hero options; W2 is the default. Internal shorthand follows. · WHY US — VARIANT B (system-led) v2 · council surgery 7/4/2026, Cameron-ratified 4&ndash;2: <b>B IS THE PAGE</b>; A = organ donor (comm strip · quoted fear-questions promoted to co-headline · full generous disqualifier · canon line). &ldquo;Engineered out&rdquo; kept once, varied elsewhere. Hero NOT locked — 4-variant &ldquo;hero (workshop)&rdquo; toggle, W2 council trim = default. Guardrails: ranked pillar weights (3 lead / 2 compressed); every pillar enters through the QUOTED fear (load-bearing — see KP guardrail comment in source); video stays the &ldquo;vet us&rdquo; closer. *25&ndash;50% asterisk pending mystery-shop verification.</p>
+  <p class="devnote">Plain English first: two versions of this page were drafted; this one (B) won our internal review and is the live draft — the other (A) is archived. 2 finalists after Cameron's 7/5 cut round: W1 (default) and W4. Internal shorthand follows. · WHY US — VARIANT B (system-led) v2 · council surgery 7/4/2026, Cameron-ratified 4&ndash;2: <b>B IS THE PAGE</b>; A = organ donor (comm strip · quoted fear-questions promoted to co-headline · full generous disqualifier · canon line). &ldquo;Engineered out&rdquo; kept once, varied elsewhere. Hero NOT locked — &ldquo;hero (workshop)&rdquo; toggle, W1 = default post-cut. Guardrails: ranked pillar weights (3 lead / 2 compressed); every pillar enters through the QUOTED fear (load-bearing — see KP guardrail comment in source); video stays the &ldquo;vet us&rdquo; closer. *25&ndash;50% asterisk pending mystery-shop verification.</p>
 </div></footer>
 <a class="abswitch" href="why-us-page-b.html">⇄ Variant A (archive — organ donor)</a>
 
@@ -242,9 +242,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <h5>hero (workshop)</h5>
   <div class="combo" id="hwsCombo">—</div>
   <div class="opts" id="hwsOpts">
-    <div class="optrow"><button class="opt" data-v="w1" type="button">W1 · &ldquo;Why us? Because&hellip;&rdquo; (v1 draft)</button><span class="km" data-km="w1"></span></div>
-    <div class="optrow"><button class="opt" data-v="w2" type="button">W2 · council trim (default)</button><span class="km" data-km="w2"></span></div>
-    <div class="optrow"><button class="opt" data-v="w3" type="button">W3 · fears-first seat-swap (Miller)</button><span class="km" data-km="w3"></span></div>
+    <div class="optrow"><button class="opt" data-v="w1" type="button">W1 · &ldquo;Why us? Because&hellip;&rdquo; (default)</button><span class="km" data-km="w1"></span></div>
     <div class="optrow"><button class="opt" data-v="w4" type="button">W4 · &ldquo;Not the cheapest&rdquo; admission</button><span class="km" data-km="w4"></span></div>
   </div>
   <div class="note">Saves to this browser. 💬 notes are stamped with the active hero variant, same as the homepage workshop combos.</div>
@@ -265,18 +263,16 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 /* ---------- HERO (WORKSHOP) TOGGLE — pattern ported from homepage-hybrid's workshop panel ---------- */
 (function(){
   "use strict";
-  /* Pronoun trim per Miller (council 7/4): the wink never doubles the H1's "we fixed it" — W3/W4 winks carry ONE "we". */
+  /* 7/5 CUT ROUND: Cameron narrowed the 4-variant hero registry to 2 finalists — W2 (council trim) and W3
+     (fears-first seat-swap) cut. W1 is the new default. Pronoun trim per Miller (council 7/4) still applies
+     to W4's wink (carries ONE "we"). */
   var VARIANTS = {
     w1: { h1:'Why us? Because we didn&rsquo;t fix moving with promises.<br><span class="a">We fixed it with a system.</span>',
           wink:'Every fear you have about movers has an engineered answer. Five parts. Here they are — biggest fears first.' },
-    w2: { h1:'We didn&rsquo;t fix moving with promises.<br><span class="a">We fixed it with a system.</span>',
-          wink:'Every fear you have about movers has an engineered answer. Five parts. Here they are — biggest fears first.' },
-    w3: { h1:'Every fear you have about movers has an engineered answer.<br><span class="a">Five parts. Zero fine print.</span>',
-          wink:'We fixed moving with a system, not promises — biggest fears first.' },
     w4: { h1:'Not the cheapest. <span class="a">The most honest &mdash; and we can prove it.</span>',
           wink:'We fixed moving with a system, not promises. Five parts, biggest fears first.' }
   };
-  var KEY = 'hws-whyusb-hero-v1', state = 'w2'; /* DEFAULT = W2, the council trim */
+  var KEY = 'hws-whyusb-hero-v1', state = 'w1'; /* DEFAULT = W1 (7/5 cut round) */
   try { var saved = localStorage.getItem(KEY); if(saved && VARIANTS[saved]) state = saved; } catch(e){}
   var h = location.hash.replace(/^#/,'');
   if(h.indexOf('hero=')===0){ var hv = h.split('=')[1]; if(VARIANTS[hv]) state = hv; }
@@ -294,8 +290,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   if(box) box.querySelectorAll('.opt').forEach(function(b){
     b.addEventListener('click', function(){ state = b.dataset.v; render(); });
   });
-  /* keep/cut marks — id wu-w1..w4, shared schema with cut-list.html */
-  var WU_LABELS = { w1:'W1', w2:'W2 (default)', w3:'W3', w4:'W4' };
+  /* keep/cut marks — id wu-w1/wu-w4, shared schema with cut-list.html */
+  var WU_LABELS = { w1:'W1 (default)', w4:'W4' };
   if(window.emcCutMarks){
     box.querySelectorAll('.km').forEach(function(span){
       var v = span.dataset.km;

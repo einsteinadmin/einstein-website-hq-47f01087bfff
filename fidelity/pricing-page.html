@@ -172,6 +172,11 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 /* keep/cut mark row for the hero toggle (7/5/2026) — sits just above the pill */
 .h1-toggle-km{position:fixed;left:14px;bottom:52px;z-index:400;display:flex;align-items:center;gap:4px;background:#1A2329;border-radius:999px;padding:4px 8px;box-shadow:var(--shadow-sm)}
 .h1-toggle-km .lb{font:600 10px Roboto,sans-serif;color:#8CA0AC;margin-right:2px}
+/* 7/5/2026: second workshop toggle — fee-comparison table H2 (adopted mailer line). Bottom-RIGHT so it never collides with the left-side hero pill. */
+.h2-toggle{position:fixed;right:14px;bottom:14px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
+.h2-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
+.h2-toggle-km{position:fixed;right:14px;bottom:52px;z-index:400;display:flex;align-items:center;gap:4px;background:#1A2329;border-radius:999px;padding:4px 8px;box-shadow:var(--shadow-sm)}
+.h2-toggle-km .lb{font:600 10px Roboto,sans-serif;color:#8CA0AC;margin-right:2px}
 
 .faq-list{max-width:720px;margin:0 auto}
 .faq-item{width:100%;display:flex;justify-content:space-between;align-items:center;font:inherit;font-weight:600;font-size:15.5px;color:var(--navy-500);background:#fff;border:1px solid var(--grey-100);border-radius:10px;padding:16px 18px;margin-top:10px;cursor:pointer;text-align:left}
@@ -242,8 +247,9 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 <!-- ============ 3. THE COMPARISON (locked table + B/D second part) ============ -->
 <section class="block" id="fee-comparison">
   <div class="wrap">
-    <!-- 7/4: H2 reworded — the "starting price / whole thing" line was promoted to the page H1, so this section can't repeat it. -->
-    <h2 class="sec">One hourly rate. <span class="a">The add-on list below reads $0, top to bottom.</span></h2>
+    <!-- 7/4: H2 reworded — the "starting price / whole thing" line was promoted to the page H1, so this section can't repeat it.
+         7/5: workshop toggle added — opt2 = the adopted V5 mailer-back H1 line (see cut-list.html "Mailer borrows"). -->
+    <h2 class="sec" id="tableH2">One hourly rate. <span class="a">The add-on list below reads $0, top to bottom.</span></h2>
     <p class="sub">A low hourly rate always looks cheaper — until the fees stack up on move day.</p>
     <div class="tblscroll">
     <table class="cmp" aria-label="What typical movers charge extra for vs Einstein">
@@ -288,6 +294,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <h2>Two guarantees with money behind them.</h2>
     <p><b>On-Time Guarantee:</b> we commit to your arrival window — miss it and your move is discounted, and the longer we&rsquo;re late, the bigger the discount. We rarely need it.</p>
     <p><b>$2,000 Damage Coverage:</b> included free on every move, paid on actual value — not 60¢ a pound. <a class="covlink" href="coverage-page.html">See exactly what it pays →</a></p>
+    <!-- 7/5 plan-naming directive (Miller, hero council): name The Smart Move System once per page -->
+    <p>Honest rates, a clock with consequences, coverage with real money behind it — this is <b>The Smart Move System</b> doing its job.</p>
   </div>
 </section>
 
@@ -404,6 +412,14 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   });
 })();
 
+/* Shared combo writer (7/5/2026): body[data-combo] is single-valued, but this page now has TWO
+   independent workshop toggles (hero H1 + fee-table H2). Each toggle writes its own slot here and
+   the combined string gets stamped — so feedback.js notes carry both active variants at once. */
+window.__prCombo = { h1:'original', tableh2:'current' };
+function __prWriteCombo(){
+  document.body.setAttribute('data-combo', 'h1='+window.__prCombo.h1+'&tableh2='+window.__prCombo.tableh2);
+}
+
 /* Workshop H1 toggle — ORIGINAL vs PROPOSED hero (persisted: emc-pricing-h1) */
 (function(){
   var h1 = document.getElementById('heroH1'), lead = document.getElementById('heroLead');
@@ -421,7 +437,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   try{ if(localStorage.getItem('emc-pricing-h1')==='proposed') idx = 1; }catch(e){}
   window.__prHeroKM = null; /* set once feedback.js builds the km row (see below) */
   function apply(){
-    h1.innerHTML = V[idx].h1; lead.innerHTML = V[idx].lead; btn.textContent = '⇄ Headline · ' + (idx===0?'original':'proposed'); document.body.setAttribute('data-combo','h1='+V[idx].id);
+    h1.innerHTML = V[idx].h1; lead.innerHTML = V[idx].lead; btn.textContent = '⇄ Headline · ' + (idx===0?'original':'proposed');
+    window.__prCombo.h1 = V[idx].id; __prWriteCombo();
     if(window.__prHeroKM) window.__prHeroKM(V[idx].id);
   }
   var btn = document.createElement('button');
@@ -429,6 +446,34 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   btn.addEventListener('click', function(){
     idx = (idx+1) % V.length;
     try{ localStorage.setItem('emc-pricing-h1', V[idx].id); }catch(e){}
+    apply();
+  });
+  document.body.appendChild(btn);
+  apply();
+})();
+
+/* Workshop H2 toggle — fee-comparison table headline (persisted: emc-pricing-tableh2).
+   opt2 = adopted from the live V5 mailer-back H1, Cameron 7/5 (see cut-list.html "Mailer borrows"). */
+(function(){
+  var h2 = document.getElementById('tableH2');
+  if(!h2) return;
+  var V = [
+    { id:'current', html:'One hourly rate. <span class="a">The add-on list below reads $0, top to bottom.</span>' },
+    { id:'mailer', html:'We fixed the stuff that <span class="a">makes moving terrible.</span>' }
+  ];
+  var idx = 0;
+  try{ if(localStorage.getItem('emc-pricing-tableh2')==='mailer') idx = 1; }catch(e){}
+  window.__prTableKM = null; /* set once feedback.js builds the km row (see below) */
+  function apply(){
+    h2.innerHTML = V[idx].html; btn.textContent = '⇄ Table H2 · ' + (idx===0?'current':'mailer');
+    window.__prCombo.tableh2 = V[idx].id; __prWriteCombo();
+    if(window.__prTableKM) window.__prTableKM(V[idx].id);
+  }
+  var btn = document.createElement('button');
+  btn.className = 'h2-toggle'; btn.type = 'button'; btn.title = 'Workshop control: cycle fee-table H2 variants';
+  btn.addEventListener('click', function(){
+    idx = (idx+1) % V.length;
+    try{ localStorage.setItem('emc-pricing-tableh2', V[idx].id); }catch(e){}
     apply();
   });
   document.body.appendChild(btn);
@@ -476,6 +521,28 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   }
   window.__prHeroKM = render;
   try{ render(localStorage.getItem('emc-pricing-h1')==='proposed' ? 'proposed' : 'original'); }catch(e){ render('original'); }
+})();
+</script>
+<script>
+/* keep/cut mark row for the fee-table H2 toggle — built after feedback.js so window.emcCutMarks exists.
+   ids ml-fixed-a (current) / ml-fixed-b (mailer), shared schema with cut-list.html.
+   Adopted from the live V5 mailer-back H1, Cameron 7/5. Re-tints on every toggle click via __prTableKM. */
+(function(){
+  if(!window.emcCutMarks) return;
+  var LABELS = { current:'Current', mailer:'Mailer-adopted' };
+  var IDMAP = { current:'ml-fixed-a', mailer:'ml-fixed-b' };
+  var wrap = document.createElement('div'); wrap.className = 'h2-toggle-km';
+  var lb = document.createElement('span'); lb.className='lb'; lb.textContent='this one:';
+  wrap.appendChild(lb);
+  var slot = document.createElement('span');
+  wrap.appendChild(slot);
+  document.body.appendChild(wrap);
+  function render(id){
+    slot.innerHTML='';
+    slot.appendChild(window.emcCutMarks.buildButtons(IDMAP[id]||id, { label:LABELS[id]||id, group:'Pricing table H2', page:'pricing-page' }, null, wrap));
+  }
+  window.__prTableKM = render;
+  try{ render(localStorage.getItem('emc-pricing-tableh2')==='mailer' ? 'mailer' : 'current'); }catch(e){ render('current'); }
 })();
 </script>
 <script>

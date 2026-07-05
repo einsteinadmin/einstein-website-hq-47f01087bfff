@@ -90,9 +90,7 @@ nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-
 .hero h1 .a{color:var(--orange-900)}
 .hero .lead{font-size:18.5px;line-height:1.55;max-width:640px;margin:0 auto 26px}
 .hero .lead b{color:var(--navy-500)}
-.tw{color:var(--orange-900);border-bottom:3px solid var(--orange-100);padding-bottom:1px;transition:opacity .18s ease;display:inline-block;min-width:19ch;text-align:left} /* min-width = longest TW_WORDS entry ("refreshingly simple") — kills the layout jump */
 @media(max-width:620px){.hero h1{font-size:32px}.hero .lead{font-size:16.5px}}
-@media(prefers-reduced-motion:reduce){.tw{transition:none}}
 
 /* ================= COMPARISON TABLES (ONE shared spec — the anti-drift move) ================= */
 .tblscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -174,18 +172,8 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .killer .capn{font-size:12.5px;color:var(--grey-500);margin-top:6px}
 .killer .strip{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px solid var(--grey-100);font-size:13px;color:var(--grey-500)}
 .killer .strip b{color:var(--navy-500)}
-.gapgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:820px;margin:0 auto}
-.gcard{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:16px 18px}
-.gcard .gt{font-weight:700;font-size:14.5px}
-.gcard .gm{color:var(--grey-500);font-size:11.5px;margin-bottom:10px}
-.bar{height:12px;border-radius:6px;background:#F0E6DC;position:relative;overflow:hidden;margin-bottom:8px}
-.bar .fill{position:absolute;left:0;top:0;bottom:0;background:var(--error);border-radius:6px}
-.grow{display:flex;justify-content:space-between;font-size:13px}
-.grow .t{color:var(--error);font-weight:700}
-.grow .u{color:var(--success-text);font-weight:700}
 .metaphor{max-width:640px;margin:26px auto 0;background:#fff;border:1px solid var(--grey-100);border-left:4px solid var(--orange-500);border-radius:10px;padding:16px 22px;font-family:Lora,serif;font-size:18px;line-height:1.5;color:var(--navy-500);text-align:center}
 .metaphor b{color:var(--orange-900)}
-@media(max-width:600px){.gapgrid{grid-template-columns:1fr}}
 
 /* ================= MEET YOUR MOVERS ================= */
 .crew-cards{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:26px 0 14px}
@@ -468,16 +456,6 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
       </div>
     </div>
 
-    <!-- display: gap cards (toggle) -->
-    <div id="covGap" hidden>
-      <div class="gapgrid">
-        <div class="gcard"><div class="gt">Laptop</div><div class="gm">~5 lb · ~$1,500 to replace</div><div class="bar"><div class="fill" style="width:1%"></div></div><div class="grow"><span class="t">Them: $3</span><span class="u">Einstein: $1,500</span></div></div>
-        <div class="gcard"><div class="gt">65&Prime; TV</div><div class="gm">~50 lb · ~$1,200 to replace</div><div class="bar"><div class="fill" style="width:2.5%"></div></div><div class="grow"><span class="t">Them: $30</span><span class="u">Einstein: $1,200</span></div></div>
-        <div class="gcard"><div class="gt">Leather sofa</div><div class="gm">~150 lb · ~$1,800 to replace</div><div class="bar"><div class="fill" style="width:5%"></div></div><div class="grow"><span class="t">Them: $90</span><span class="u">Einstein: $1,800</span></div></div>
-        <div class="gcard"><div class="gt">Your floors &amp; walls</div><div class="gm">property, not cargo</div><div class="bar"><div class="fill" style="width:0%"></div></div><div class="grow"><span class="t">Them: not covered</span><span class="u">Einstein: covered</span></div></div>
-      </div>
-    </div>
-
     <p class="fineprint rv"><b>$2,000 of coverage is included on every Einstein move, free.</b> Most moves never come near it &mdash; and when a move genuinely goes wrong on us, we make it right, not just up to a number.</p>
 
     <div style="text-align:center;margin-top:40px" class="rv">
@@ -726,7 +704,6 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <div class="grp"><div class="lab">Coverage display</div><div class="opts" id="wsCov">
     <button class="opt" data-v="killer" type="button">Killer stat</button>
     <button class="opt" data-v="table" type="button">Full table</button>
-    <button class="opt" data-v="gap" type="button">Gap cards</button>
   </div><div class="cyc-row"><span style="flex:1;font-size:10.5px;color:#8CA0AC">this one:</span><span id="wsCovKM"></span></div></div>
   <div class="grp"><div class="lab">Pricing second part</div><div class="opts" id="wsP2">
     <button class="opt" data-v="bd" type="button">Receipt + stamp (B/D)</button>
@@ -771,55 +748,33 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 function safe(name, fn){ try{ fn(); }catch(e){ console.warn('[workshop] '+name+' failed:', e); } }
 
 /* ---------- VARIANT DATA ---------- */
+/* 7/5 CUT ROUND: Cameron narrowed the 7-hero registry to 2 finalists (b/c/p2/p3/p4 cut).
+   Variant C was the only typewriter user — the TW_WORDS/twTimer machinery went with it. */
 var HEROES = [
   /* LEAD swapped 7/4 per Cameron's hero review (Liana Opt 5): H1 locked, lead mechanized, no number double-count with proofline. */
   {id:'a',  fam:'contrast', label:'Brand Story',
    h1:'Let’s face it: moving <span class="a">sucks</span>.',
    lead:'The stress, the chaos, the strangers carrying your grandmother’s china — it’s a lot. So we spent 100,000 moves engineering the suck out of it: <b>one honest rate that’s the whole cost</b>, <b>crews you’ll meet before move day</b>, and <b>$2,000 of coverage already in it</b>. You might even (almost) enjoy it.'},
-  {id:'b',  fam:'contrast', label:'Front Door',
-   h1:'Moving is awful. We’ve spent over a decade making sure <span class="a">ours isn’t</span>.',
-   lead:'One honest all-inclusive rate, vetted crews you meet before move day, and <b>$2,000 of damage coverage already included.</b> That’s the Smart Move System.'},
-  {id:'c',  fam:'contrast', label:'Typewriter', tw:true,
-   h1:'Moving, but <span class="a tw" id="twWord">easy</span>.',
-   lead:'We’ll bring the brains and the brawn. Background-checked W-2 crews, one all-inclusive hourly rate, and <b>$2,000 of coverage already in it.</b>'},
   {id:'p1', fam:'positive', label:'Feels like',
    h1:'This is what a good move day actually <span class="a">feels like</span>.',
-   lead:'The kind where the crew shows up on time, the rate you were quoted is the rate you pay, and your stuff arrives covered for up to $2,000 — <b>no deposit, no surprises, no “wait, what’s this line for?”</b>'},
-  {id:'p2', fam:'positive', label:'Sad to end',
-   h1:'The moving day you’ll almost be <span class="a">sad to see end</span>.',
-   lead:'Vetted crews you meet before the truck shows up, one honest rate with nothing sneaky at the bottom, and <b>$2,000 of coverage on us</b> — for actual value, not 60¢ a pound. Turns out a good move day is a real thing.'},
-  {id:'p3', fam:'positive', label:'New chapter',
-   h1:'New place, new chapter, <span class="a">no drama</span> on move day.',
-   lead:'You’ve got enough to feel about this move without wondering how it’ll go. Real crews you meet beforehand, one honest all-in rate, and $2,000 of coverage that pays actual value — <b>so the only thing that changes is your address.</b>'},
-  {id:'p4', fam:'positive', label:'Nothing sideways',
-   h1:'Picture the move where nothing goes <span class="a">sideways</span>.',
-   lead:'The crew you already met shows up on time, the truck pulls away with everything in one piece, and the bill holds no surprises — plus <b>$2,000 of damage coverage</b> you never had to think about. That’s a good moving day, and it’s the only kind we run.'}
+   lead:'The kind where the crew shows up on time, the rate you were quoted is the rate you pay, and your stuff arrives covered for up to $2,000 — <b>no deposit, no surprises, no “wait, what’s this line for?”</b>'}
 ];
+/* 7/5 CUT ROUND: each cycler trimmed to its ratified survivor(s) — see cut-list.html for the losing options. */
 var HEADLINES = {
   price: {
-    contrast: ['Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span>',
-               'The fees other movers add at the bottom?<br><span class="a">We already deleted them.</span>',
-               'A low hourly rate is easy.<br><span class="a">An honest one took us a decade.</span>'],
-    positive: ['Simple, honest pricing. <span class="a">One rate</span> — everything’s in it, and then some.',
-               'One all-inclusive hourly rate.<br><span class="a">Everything included. Actually everything.</span>',
-               'Pricing so simple <span class="a">it fits on one line.</span>']
+    contrast: ['Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span>'],
+    positive: ['Simple, honest pricing. <span class="a">One rate</span> — everything’s in it, and then some.']
   },
   cov: {
-    contrast: ['Most movers cover your stuff by the pound.<br>We cover what it’s actually <span class="a">worth</span>.',
-               '60¢ a pound isn’t coverage.<br><span class="a">It’s a coupon.</span>',
-               'Their coverage weighs your stuff.<br><span class="a">Ours values it.</span>'],
+    contrast: ['Most movers cover your stuff by the pound.<br>We cover what it’s actually <span class="a">worth</span>.'],
     positive: ['Real coverage on every move — <span class="a">included free</span>.',
-               'Covered for what it’s <span class="a">worth</span>, not what it weighs.',
-               '$2,000 of peace of mind, <span class="a">on us</span>.']
+               'Covered for what it’s <span class="a">worth</span>, not what it weighs.']
   },
   mym: {
-    contrast: ['Who’s showing up at your door?<br><span class="a">With us, you already know.</span>',
-               'No strangers in your home. <span class="a">Ever.</span>'],
-    positive: ['Meet your movers <span class="a">before they meet your stuff</span>.',
-               'Your crew, introduced <span class="a">before move day</span>.']
+    contrast: ['Who’s showing up at your door?<br><span class="a">With us, you already know.</span>'],
+    positive: ['Meet your movers <span class="a">before they meet your stuff</span>.']
   }
 };
-var TW_WORDS = ['easy','honest','fast','fun','smart','refreshingly simple'];
 
 /* ---------- STATE ---------- */
 var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'on', matters:'orig', fears:'off', exit:'dept', chips:'full' };
@@ -829,26 +784,36 @@ safe('loadState', function(){
   var h = location.hash.replace(/^#/,'');
   if(h.indexOf('=')>-1){ h.split('&').forEach(function(kv){ var p=kv.split('='); if(state[p[0]]!==undefined) state[p[0]] = isNaN(p[1]) ? p[1] : +p[1]; }); }
 });
+/* 7/5 CUT-ROUND HARDENING: saved localStorage / URL-hash state can still reference options removed in the
+   narrowing pass (e.g. hero:'b', cov:'gap', stale ph/ch/mh indices from longer arrays). Sanitize before
+   anything reads state, so a stale combo link or old browser session can't 404 into a blank hero/section. */
+safe('sanitizeState', function(){
+  if(!HEROES.some(function(h){ return h.id===state.hero; })) state.hero = 'a';
+  if(state.cov!=='killer' && state.cov!=='table') state.cov = 'killer';
+  if(state.p2!=='bd' && state.p2!=='cards') state.p2 = 'bd';
+  if(state.matters!=='orig' && state.matters!=='prop') state.matters = 'orig';
+  if(state.chips!=='full' && state.chips!=='echo' && state.chips!=='off') state.chips = 'full';
+  if(state.exit!=='dept' && state.exit!=='easiest' && state.exit!=='classic') state.exit = 'dept';
+  if(state.wall!=='on' && state.wall!=='off') state.wall = 'on';
+  if(state.tone!=='auto' && state.tone!=='contrast' && state.tone!=='positive') state.tone = 'auto';
+  var t = tone();
+  ['ph','ch','mh'].forEach(function(key){
+    var arrKey = (key==='ph') ? 'price' : (key==='ch') ? 'cov' : 'mym';
+    var len = HEADLINES[arrKey][t].length;
+    var n = state[key]; if(typeof n !== 'number' || isNaN(n) || n<0) n = 0;
+    state[key] = n % len;
+  });
+});
 
 function famOf(heroId){ var h = HEROES.filter(function(x){return x.id===heroId;})[0]; return h ? h.fam : 'contrast'; }
 function tone(){ return state.tone==='auto' ? famOf(state.hero) : state.tone; }
 
 /* ---------- RENDER ---------- */
-var twTimer = null;
 function renderHero(){
   var h = HEROES.filter(function(x){return x.id===state.hero;})[0] || HEROES[0];
   var h1 = document.getElementById('heroH1'), lead = document.getElementById('heroLead');
   if(!h1 || !lead) return;
   h1.innerHTML = h.h1; lead.innerHTML = h.lead;
-  if(twTimer){ clearInterval(twTimer); twTimer = null; }
-  if(h.tw && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    var i = 0;
-    twTimer = setInterval(function(){
-      var el = document.getElementById('twWord'); if(!el){ clearInterval(twTimer); return; }
-      i = (i+1) % TW_WORDS.length; el.style.opacity = 0;
-      setTimeout(function(){ el.textContent = TW_WORDS[i]; el.style.opacity = 1; }, 180);
-    }, 1900);
-  }
 }
 function renderHeadlines(){
   var t = tone();
@@ -866,10 +831,9 @@ function renderHeadlines(){
   });
 }
 function renderDisplays(){
-  var k = document.getElementById('covKiller'), tb = document.getElementById('covTable'), g = document.getElementById('covGap');
+  var k = document.getElementById('covKiller'), tb = document.getElementById('covTable');
   if(k) k.hidden = state.cov!=='killer';
   if(tb) tb.hidden = state.cov!=='table';
-  if(g) g.hidden = state.cov!=='gap';
   var bd = document.getElementById('price2bd'), cards = document.getElementById('price2cards');
   if(bd) bd.hidden = state.p2!=='bd';
   if(cards) cards.hidden = state.p2!=='cards';
@@ -947,7 +911,7 @@ function curCyclerId(key){
   return CUR_ID_MAP[key].prefix + '-' + fam + (i+1);
 }
 var CUR_MODE_MAP = {
-  cov:     { group:'MODE · Homepage coverage-section style', ids:{ killer:'m-cov-killer', table:'m-cov-table', gap:'m-cov-gap' }, labels:{ killer:'Killer stat', table:'Payout table', gap:'Gap framing' } },
+  cov:     { group:'MODE · Homepage coverage-section style', ids:{ killer:'m-cov-killer', table:'m-cov-table' }, labels:{ killer:'Killer stat', table:'Payout table' } },
   p2:      { group:'MODE · Homepage price-section layout', ids:{ bd:'m-p2-table', cards:'m-p2-cards' }, labels:{ bd:'Receipt comparison table', cards:'Icon cards' } },
   matters: { group:'MODE · Matters section version', ids:{ orig:'m-mat-orig', prop:'m-mat-prop' }, labels:{ orig:'Original body', prop:'Proposed body' } },
   chips:   { group:'MODE · Life-chapter pills', ids:{ full:'m-chips-full', echo:'m-chips-echo', off:'m-chips-off' }, labels:{ full:'Full (pills + echo + tailored CTA)', echo:'Echo-only', off:'Off' } },
