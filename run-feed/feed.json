@@ -1,6 +1,6 @@
 {
  "run": "Sparks pass \u2014 animation demos (7/5/2026)",
- "status": "Building \u2014 all 4 demos done, writing the animation opportunity map",
+ "status": "Self-testing \u2014 running all 4 demos in a browser, on and off, plus reduced-motion",
  "entries": [
   {
    "t": "init",
@@ -38,6 +38,10 @@
   {
    "ts": "4:33 PM CT",
    "msg": "The coverage page's payout table now reveals row by row \u2014 and saves the '$3 for a laptop' line for a deadpan last beat."
+  },
+  {
+   "ts": "4:36 PM CT",
+   "msg": "Opportunity map written \u2014 20+ future animation ideas across all 10 pages, each tagged with the job it does. Now self-testing everything in a real browser."
   }
  ]
 }
