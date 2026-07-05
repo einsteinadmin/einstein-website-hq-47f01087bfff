@@ -1,6 +1,6 @@
 {
  "run": "Sparks pass \u2014 animation demos (7/5/2026)",
- "status": "Building \u2014 3 of 4 demos done, coverage table next",
+ "status": "Building \u2014 all 4 demos done, writing the animation opportunity map",
  "entries": [
   {
    "t": "init",
@@ -34,6 +34,10 @@
   {
    "ts": "4:24 PM CT",
    "msg": "The homepage exit line's brain emoji now gives one small nod when it scrolls into view."
+  },
+  {
+   "ts": "4:33 PM CT",
+   "msg": "The coverage page's payout table now reveals row by row \u2014 and saves the '$3 for a laptop' line for a deadpan last beat."
   }
  ]
 }
