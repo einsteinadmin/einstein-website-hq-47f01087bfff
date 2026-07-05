@@ -53,8 +53,26 @@ nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-
 .pillar-head{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:6px;flex-wrap:wrap}
 .pillar-head .ic{width:46px;height:46px;border-radius:50%;background:var(--orange-50);display:flex;align-items:center;justify-content:center;font-size:21px}
 h3.pt{font-size:24px;margin:0}
-.fearchip{display:block;text-align:center;font-size:14px;color:var(--error);font-weight:600;margin:8px 0 14px}
-.fearchip .ans{color:var(--success-text)}
+/* 7/4 council: fear-question promoted to CO-HEADLINE (Ogilvy — the reader's words outpull "Smart Pricing") */
+.fearchip{display:block;text-align:center;font-family:Lora,serif;font-size:19px;line-height:1.3;color:var(--error);font-weight:600;margin:10px auto 16px;max-width:640px}
+.fearchip .ans{font-family:Roboto,system-ui,sans-serif;font-size:14px;color:var(--success-text);font-weight:700;white-space:nowrap}
+/* 7/4 transplant from Variant A: the 4-step communication strip */
+.comm-steps{display:flex;gap:10px;justify-content:center;align-items:stretch;flex-wrap:nowrap;max-width:760px;margin:22px auto 0}
+.comm-step{flex:1;min-width:0;background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:14px 10px;box-shadow:var(--shadow-sm);text-align:center}
+.comm-step .ic{font-size:20px;line-height:1;margin-bottom:6px}
+.comm-step .lb{font-size:13px;font-weight:600;color:var(--navy-500);line-height:1.35}
+.comm-arrow{align-self:center;color:var(--grey-500);font-size:15px;flex:0 0 auto}
+@media(max-width:640px){.comm-steps{flex-direction:column;align-items:stretch;max-width:300px}.comm-arrow{transform:rotate(90deg)}}
+/* 7/4: hero (workshop) toggle — matches the homepage workshop-panel pattern */
+.hws-fab{position:fixed;right:16px;bottom:66px;z-index:400;background:var(--navy-700);color:#fff;border:none;border-radius:999px;padding:10px 16px;font:700 12.5px Roboto,sans-serif;cursor:pointer;box-shadow:0 8px 30px rgba(11,16,20,.25)}
+.hws{position:fixed;right:16px;bottom:114px;z-index:401;width:300px;max-width:calc(100vw - 32px);background:var(--navy-700);color:#EAEEF0;border-radius:14px;padding:14px 14px 12px;box-shadow:0 8px 30px rgba(11,16,20,.35);display:none}
+.hws.open{display:block}
+.hws h5{margin:0 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--orange-300)}
+.hws .combo{font-size:11px;color:#8CA0AC;margin-bottom:8px;word-break:break-all}
+.hws .opts{display:flex;flex-direction:column;gap:6px}
+.hws button.opt{font:600 12px Roboto,sans-serif;text-align:left;background:#2A3742;color:#CDD5DA;border:1px solid #3A4956;border-radius:10px;padding:7px 11px;cursor:pointer}
+.hws button.opt[aria-pressed="true"]{background:var(--orange-500);border-color:var(--orange-500);color:var(--navy-700)}
+.hws .note{font-size:10.5px;color:#8CA0AC;margin-top:8px;line-height:1.45}
 .teaser{max-width:600px;margin:18px auto 0;background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:18px 22px;box-shadow:var(--shadow-sm)}
 .trow{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--grey-100);font-size:14.5px}
 .trow:last-child{border-bottom:none}
@@ -105,27 +123,31 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 
 <header class="hero" id="hero"><div class="wrap">
   <div><span class="sms-pill"><span class="brain">🧠</span> The Smart Move System&trade;</span></div>
-  <h1>Why us? Because we didn&rsquo;t fix moving with promises.<br><span class="a">We fixed it with a system.</span></h1>
-  <p class="wink">Every fear you have about movers has an engineered answer. Five parts. Here they are — biggest fears first.</p>
+  <!-- HERO = WORKSHOP TOGGLE (Cameron 7/4: hero NOT locked — 4 variants via the "hero (workshop)" control, bottom right). Static markup = W2, the council trim (default). -->
+  <h1 id="heroH1">We didn&rsquo;t fix moving with promises.<br><span class="a">We fixed it with a system.</span></h1>
+  <p class="wink" id="heroWink">Every fear you have about movers has an engineered answer. Five parts. Here they are — biggest fears first.</p>
 </div></header>
 
+<!-- KP DESIGN GUARDRAIL (council 7/4): the fear-questions are LOAD-BEARING, not decoration — if a design pass trims them, this page collapses into a brand monologue. Never separate a pillar from its quoted fear. -->
 <!-- LEAD PILLAR 1 — SMART PRICING -->
 <section class="pillar-band" id="p-pricing"><div class="wrap">
   <div class="pillar-head"><span class="ic">💲</span><h3 class="pt">Smart Pricing</h3></div>
-  <span class="fearchip">The fear: &ldquo;Am I going to get ripped off?&rdquo; <span class="ans">→ engineered out.</span></span>
+  <span class="fearchip">&ldquo;What&rsquo;s their hourly rate &mdash; and are there extra fees?&rdquo; <span class="ans">→ engineered out.</span></span>
   <p class="sub" style="margin-bottom:0">One all-inclusive hourly rate — movers, truck, supplies, taxes, coverage, all in it. The industry&rsquo;s usual add-ons, at Einstein:</p>
   <div class="teaser">
     <div class="trow"><span>Fuel / trip surcharge · card fees</span><span class="u">$0</span></div>
     <div class="trow"><span>Blankets, wrap, stairs, deposit</span><span class="u">$0</span></div>
     <div class="trow"><span>Their usual bottom line</span><span class="t">25–50% more than quoted*</span></div>
   </div>
+  <!-- 7/4 Cameron pick (Liana pass): boring-invoices aside — smirk lands AFTER the table, never inside it -->
+  <p class="sub" style="margin:14px auto 0;font-size:14px"><i>(Our invoices are boring. It&rsquo;s our favorite thing about them.)</i></p>
   <a class="golink" href="pricing-page.html">The full pricing breakdown →</a>
 </div></section>
 
 <!-- LEAD PILLAR 2 — SMART PROTECTION -->
 <section class="pillar-band" id="p-protection" style="background:var(--grey-50)"><div class="wrap">
   <div class="pillar-head"><span class="ic">🛡️</span><h3 class="pt">Smart Protection</h3></div>
-  <span class="fearchip">The fear: &ldquo;What if they break my stuff?&rdquo; <span class="ans">→ engineered out.</span></span>
+  <span class="fearchip">&ldquo;What happens if something gets damaged?&rdquo; <span class="ans">→ solved, in dollars.</span></span>
   <p class="sub" style="margin-bottom:0">$2,000 of damage coverage on every move, free — paid on <b>actual value</b>, not the industry&rsquo;s 60&#162; a pound. Your $1,500 laptop:</p>
   <div class="duo">
     <div class="col kthem"><div class="lbl">Most movers owe</div><div class="big">$3</div></div>
@@ -137,7 +159,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 <!-- LEAD PILLAR 3 — SMART MOVERS -->
 <section class="pillar-band" id="p-movers"><div class="wrap" style="text-align:center">
   <div class="pillar-head"><span class="ic">💪</span><h3 class="pt">Smart Movers</h3></div>
-  <span class="fearchip">The fear: &ldquo;Who&rsquo;s showing up at my door?&rdquo; <span class="ans">→ engineered out.</span></span>
+  <span class="fearchip">&ldquo;Who are the movers showing up at my door?&rdquo; <span class="ans">→ answered, days ahead.</span></span>
   <p class="sub" style="margin-bottom:0">Background-checked, W-2, five-step-vetted — <b>fewer than 1% of applicants make it</b> — and with Meet Your Movers, <b>you&rsquo;ll know their names before they know your address.</b> Photos and bios, days ahead.</p>
   <div class="crew-cards">
     <div class="crew-card"><div class="avatar">Real crew photo (never stock)</div><div class="cname">Marcus R.</div><div class="crole">Crew Lead · 4 yrs</div></div>
@@ -155,7 +177,19 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <div class="scard"><h4>📅 Smart Scheduling</h4><p>Book in minutes — and the On-Time Guarantee has teeth: late means your move is discounted, and the longer we&rsquo;re late, the bigger the discount.</p></div>
     <div class="scard"><h4>🏆 Smart Results</h4><p>4.9/5 across 8,100+ reviews · 10× Best of Austin · 5× Best in DFW · 4× Best of San Antonio · 3× Best of the Best Houston · 7× Inc. 5000 · featured in Forbes Home. Seriously — we&rsquo;re running out of shelf space. <a href="awards-reviews-page.html">The full year-by-year, every trophy with its name tag on →</a></p></div>
   </div>
-  <p class="sub" style="margin:24px auto 0"><b>And the part no pillar covers:</b> constant communication — from booking to &ldquo;we&rsquo;re on the way&rdquo; texts to the final walkthrough, you&rsquo;ll never wonder what&rsquo;s next. Plus we&rsquo;re going carbon neutral — four trees planted per move. 🌳 <a href="about-page.html">That story&rsquo;s on About →</a></p>
+  <!-- 7/4 Cameron pick (Liana pass): line ported verbatim from Variant A §q-communication — "must survive the merge" -->
+  <p class="sub" style="margin:24px auto 0"><b>And the part no pillar covers:</b> constant communication — we check in so regularly you&rsquo;ll never wonder what&rsquo;s next. You might wonder about other things. Life, the universe. Not your move.</p>
+  <!-- 7/4 transplant from Variant A: the 4-step strip was buried in a paragraph here; rebuilt as the visual sequence (council harvest list, unanimous among B voters) -->
+  <div class="comm-steps">
+    <div class="comm-step"><div class="ic">✓</div><div class="lb">Booked</div></div>
+    <div class="comm-arrow">→</div>
+    <div class="comm-step"><div class="ic">📆</div><div class="lb">Day-before check-in</div></div>
+    <div class="comm-arrow">→</div>
+    <div class="comm-step"><div class="ic">🚚</div><div class="lb">&ldquo;On the way&rdquo; text</div></div>
+    <div class="comm-arrow">→</div>
+    <div class="comm-step"><div class="ic">🏁</div><div class="lb">Final walkthrough</div></div>
+  </div>
+  <p class="sub" style="margin:18px auto 0">Plus we&rsquo;re going carbon neutral — four trees planted per move. 🌳 <a href="about-page.html">That story&rsquo;s on About →</a></p>
 </div></section>
 
 
@@ -166,7 +200,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 <section class="block" id="honest-disqualifier"><div class="wrap">
   <div class="disq">
     <h3>One more honest thing.</h3>
-    <p>Just moving a few boxes? <b>We might not be your best fit — and that&rsquo;s okay.</b> The system is built for full moves done right. If it&rsquo;s your whole home? <b>That&rsquo;s exactly what it&rsquo;s for.</b></p>
+    <!-- 7/4: A's fuller generous-disqualifier restored (council harvest — the "labor-only may genuinely save you money" line is the honesty that earns the rest of the page) -->
+    <p>Just moving a few boxes, or a single piece across town? <b>We might not be your best fit — and that&rsquo;s okay.</b> Our crews, coverage, and system are built for full moves done right. If your move is small, a labor-only service may genuinely save you money. If it&rsquo;s your whole home? <b>That&rsquo;s exactly what we&rsquo;re for.</b></p>
   </div>
 </div></section>
 
@@ -189,12 +224,27 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 
 <footer><div class="wrap">
       <p class="sitemap" style="margin:0 0 16px"><a href="pricing-page.html">Pricing</a> · <a href="coverage-page.html">Coverage</a> · <a href="claims-page.html">Claims</a> · <a href="services-page.html">Services</a> · <a href="locations-model-naustin.html">Locations</a> · <a href="why-us-page.html">Why Us</a> · <a href="about-page.html">About</a> · <a href="awards-reviews-page.html">Awards &amp; Reviews</a></p>
-<p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">Systems beat promises.</span></p>
+<p class="canon">4.9 stars from 8,100+ reviews. 55+ awards. 100,000+ moves. <span class="smart">You don&rsquo;t earn numbers like those by dodging the hard questions.</span></p>
   <p>TX TxDMV #006604158C · US DOT #2193963 &nbsp;|&nbsp; FL Mover Reg. No. IM3621 · US DOT #3882313</p>
   <p style="font-size:11px;color:#9AA3AA;margin-top:10px">P.S. You made it to the fine print. We like you already.</p>
-  <p class="devnote">WHY US — VARIANT B (system-led) v1 · 7/1/2026. Contrast to Variant A (question-led). Guardrails: ranked pillar weights (3 lead / 2 compressed — never 5 co-equal); every pillar enters through the fear; video demoted to the &ldquo;vet us&rdquo; closer, not deleted. Workshop picks A or B — one wins before KP handoff. *25&ndash;50% asterisk pending mystery-shop verification.</p>
+  <p class="devnote">WHY US — VARIANT B (system-led) v2 · council surgery 7/4/2026, Cameron-ratified 4&ndash;2: <b>B IS THE PAGE</b>; A = organ donor (comm strip · quoted fear-questions promoted to co-headline · full generous disqualifier · canon line). &ldquo;Engineered out&rdquo; kept once, varied elsewhere. Hero NOT locked — 4-variant &ldquo;hero (workshop)&rdquo; toggle, W2 council trim = default. Guardrails: ranked pillar weights (3 lead / 2 compressed); every pillar enters through the QUOTED fear (load-bearing — see KP guardrail comment in source); video stays the &ldquo;vet us&rdquo; closer. *25&ndash;50% asterisk pending mystery-shop verification.</p>
 </div></footer>
-<a class="abswitch" href="why-us-page.html">⇄ View Variant A (question-led)</a>
+<a class="abswitch" href="why-us-page.html">⇄ Variant A (archive — organ donor)</a>
+
+<!-- ============ HERO (WORKSHOP) TOGGLE — Cameron 7/4: hero not locked, keep working it ============ -->
+<button class="hws-fab" id="hwsFab" type="button" aria-expanded="false" aria-controls="hwsPanel">⚙ hero (workshop)</button>
+<div class="hws" id="hwsPanel" role="region" aria-label="Hero variant toggle (workshop)">
+  <h5>hero (workshop)</h5>
+  <div class="combo" id="hwsCombo">—</div>
+  <div class="opts" id="hwsOpts">
+    <button class="opt" data-v="w1" type="button">W1 · &ldquo;Why us? Because&hellip;&rdquo; (v1 draft)</button>
+    <button class="opt" data-v="w2" type="button">W2 · council trim (default)</button>
+    <button class="opt" data-v="w3" type="button">W3 · fears-first seat-swap (Miller)</button>
+    <button class="opt" data-v="w4" type="button">W4 · &ldquo;Not the cheapest&rdquo; admission</button>
+  </div>
+  <div class="note">Saves to this browser. 💬 notes are stamped with the active hero variant, same as the homepage workshop combos.</div>
+</div>
+
 <script src="feedback.js?v=20260702b"></script>
 <script>
 (function(){
@@ -205,6 +255,46 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     ham.setAttribute('aria-expanded', open?'true':'false');
   });
   links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ links.classList.remove('open'); ham.setAttribute('aria-expanded','false'); }); });
+})();
+
+/* ---------- HERO (WORKSHOP) TOGGLE — pattern ported from homepage-hybrid's workshop panel ---------- */
+(function(){
+  "use strict";
+  /* Pronoun trim per Miller (council 7/4): the wink never doubles the H1's "we fixed it" — W3/W4 winks carry ONE "we". */
+  var VARIANTS = {
+    w1: { h1:'Why us? Because we didn&rsquo;t fix moving with promises.<br><span class="a">We fixed it with a system.</span>',
+          wink:'Every fear you have about movers has an engineered answer. Five parts. Here they are — biggest fears first.' },
+    w2: { h1:'We didn&rsquo;t fix moving with promises.<br><span class="a">We fixed it with a system.</span>',
+          wink:'Every fear you have about movers has an engineered answer. Five parts. Here they are — biggest fears first.' },
+    w3: { h1:'Every fear you have about movers has an engineered answer.<br><span class="a">Five parts. Zero fine print.</span>',
+          wink:'We fixed moving with a system, not promises — biggest fears first.' },
+    w4: { h1:'Not the cheapest. <span class="a">The most honest &mdash; and we can prove it.</span>',
+          wink:'We fixed moving with a system, not promises. Five parts, biggest fears first.' }
+  };
+  var KEY = 'hws-whyusb-hero-v1', state = 'w2'; /* DEFAULT = W2, the council trim */
+  try { var saved = localStorage.getItem(KEY); if(saved && VARIANTS[saved]) state = saved; } catch(e){}
+  var h = location.hash.replace(/^#/,'');
+  if(h.indexOf('hero=')===0){ var hv = h.split('=')[1]; if(VARIANTS[hv]) state = hv; }
+  function render(){
+    var h1 = document.getElementById('heroH1'), wink = document.getElementById('heroWink');
+    if(h1) h1.innerHTML = VARIANTS[state].h1;
+    if(wink) wink.innerHTML = VARIANTS[state].wink;
+    var box = document.getElementById('hwsOpts');
+    if(box) box.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.v===state ? 'true':'false'); });
+    var c = document.getElementById('hwsCombo'); if(c) c.textContent = 'whyus-hero='+state;
+    document.body.setAttribute('data-combo', 'whyus-hero='+state); /* feedback.js combo-stamps 💬 notes from this */
+    try { localStorage.setItem(KEY, state); } catch(e){}
+  }
+  var box = document.getElementById('hwsOpts');
+  if(box) box.querySelectorAll('.opt').forEach(function(b){
+    b.addEventListener('click', function(){ state = b.dataset.v; render(); });
+  });
+  var fab = document.getElementById('hwsFab'), panel = document.getElementById('hwsPanel');
+  if(fab && panel) fab.addEventListener('click', function(){
+    var open = panel.classList.toggle('open');
+    fab.setAttribute('aria-expanded', open?'true':'false');
+  });
+  render();
 })();
 </script>
 </body></html>

@@ -208,8 +208,9 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 <header class="hero" id="hero">
   <div class="wrap">
     <div class="ic">💲</div>
-    <h1 id="heroH1"><span class="a">Honest</span>, all-inclusive moving prices.<br>One hourly rate — no hidden fees.</h1>
-    <p class="lead" id="heroLead">Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. One upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b></p>
+    <!-- 7/4 decision (Cameron's hero review): H1 promoted to the homepage's proven contrast line; "moving prices" SEO keyword moved from H1 into the lead — flag for KP's SEO pass. Fee-table H2 below reworded so the promoted line isn't said twice. -->
+    <h1 id="heroH1">Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span></h1>
+    <p class="lead" id="heroLead">Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. Our moving prices are one upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b></p>
     <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
     <div class="microproof">Free quote in ~47 seconds · No phone calls · No deposit</div>
   </div>
@@ -236,7 +237,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 <!-- ============ 3. THE COMPARISON (locked table + B/D second part) ============ -->
 <section class="block" id="fee-comparison">
   <div class="wrap">
-    <h2 class="sec">The industry&rsquo;s add-on list, in full. <span class="a">Ours reads $0, top to bottom.</span></h2>
+    <!-- 7/4: H2 reworded — the "starting price / whole thing" line was promoted to the page H1, so this section can't repeat it. -->
+    <h2 class="sec">One hourly rate. <span class="a">The add-on list below reads $0, top to bottom.</span></h2>
     <p class="sub">A low hourly rate always looks cheaper — until the fees stack up on move day.</p>
     <div class="tblscroll">
     <table class="cmp" aria-label="What typical movers charge extra for vs Einstein">
@@ -392,9 +394,10 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   var h1 = document.getElementById('heroH1'), lead = document.getElementById('heroLead');
   if(!h1 || !lead) return;
   var V = [
+    /* 7/4: slot 0 updated to Cameron's ratified hero (H1 promoted, "moving prices" keyword moved to the lead — flag for KP's SEO pass). id stays 'original' so persisted localStorage keeps tracing. */
     { id:'original',
-      h1:'<span class="a">Honest</span>, all-inclusive moving prices.<br>One hourly rate — no hidden fees.',
-      lead:'Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. One upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b>' },
+      h1:'Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span>',
+      lead:'Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. Our moving prices are one upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b>' },
     { id:'proposed',
       h1:'“Am I going to get ripped off?”<br><span class="a">Not here — and this page is the receipt.</span>',
       lead:'One upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b>' }
