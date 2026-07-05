@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<title>Cut List — narrow the open options | Einstein Website Workshop</title>
+<!--
+  CUT LIST (Cameron-internal tool) · built 7/5/2026 · migrated to shared cutmarks schema 7/5/2026
+  Purpose: one screen holding EVERY still-open copy option across the workshop so Cameron can
+  ✂ CUT what we won't use and ♥ KEEP front-runners — then export one paste for Albert to execute
+  (cut variants removed from the toggles/source; single survivors become locked copy).
+  State: localStorage 'emc-cutmarks-v1' — SAME key/schema as the in-page ♥/✂ marks on the fidelity
+  pages (see fidelity/feedback.js's window.emcCutMarks). This ballot and the on-page marks are one
+  system: a mark made here shows up tinted on the live page, and vice versa. Shape per entry:
+  { mark:"keep"|"cut", label, group, page }. Groups with no in-page toggle (Awards review-wall H2,
+  Coverage §3 add) are ballot-only, same schema. One-time migration handles the old 'emc-cutlist-v1'
+  key if present (pre-7/5 picks), then removes it.
+  Option texts mirror the live variant arrays in the fidelity pages as of 7/5. If a page's
+  variants change, re-sync this ballot.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Lora:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--navy-500:#27343D;--navy-700:#1A2329;--orange-50:#FEF6EC;--orange-100:#FDE3C2;--orange-500:#EF8B22;--orange-900:#CC5500;--blue-500:#0979C3;--grey-50:#F4F5F5;--grey-100:#E2E3E4;--grey-500:#53575A;--error:#CC0100;--success:#3F7A33;--radius:12px}
+*{box-sizing:border-box}
+body{font-family:Roboto,system-ui,sans-serif;color:var(--navy-500);background:var(--grey-50);margin:0;line-height:1.5;padding-bottom:90px}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header{background:var(--navy-700);color:#fff;padding:28px 0 24px;margin-bottom:26px}
+header h1{font-family:Lora,serif;font-size:26px;margin:0 0 6px}
+header h1 .a{color:var(--orange-500)}
+header p{margin:0;font-size:14px;color:#B9C4CC;max-width:700px}
+.card{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);margin-bottom:18px;overflow:hidden}
+.card-h{padding:14px 18px;border-bottom:1px solid var(--grey-100);background:#fff}
+.card-h h2{font-family:Lora,serif;font-size:17px;margin:0}
+.card-h .loc{font-size:11.5px;color:var(--grey-500);font-weight:400}
+.card-h .hint{font-size:12px;color:var(--grey-500);margin:4px 0 0}
+.opt{display:flex;gap:12px;align-items:flex-start;padding:12px 18px;border-bottom:1px solid var(--grey-50)}
+.opt:last-of-type{border-bottom:none}
+.opt.cut{background:#FCF3F3}
+.opt.cut .txt{text-decoration:line-through;opacity:.45}
+.opt.keep{background:#F3FAF0}
+.txt{flex:1;font-size:14.5px}
+.txt .a{color:var(--orange-900);font-weight:600}
+.txt .lb{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--grey-500);margin-bottom:2px}
+.txt .sub2{display:block;font-size:12.5px;color:var(--grey-500);margin-top:3px}
+.btns{display:flex;gap:6px;flex:0 0 auto}
+.btns button{font:700 12px Roboto,sans-serif;border-radius:8px;padding:7px 10px;cursor:pointer;border:1px solid var(--grey-100);background:#fff;color:var(--grey-500)}
+.btns button.bcut[aria-pressed="true"]{background:var(--error);border-color:var(--error);color:#fff}
+.btns button.bkeep[aria-pressed="true"]{background:var(--success);border-color:var(--success);color:#fff}
+.gnote{padding:10px 18px 14px;background:#fff}
+.gnote textarea{width:100%;min-height:34px;border:1px dashed var(--grey-100);border-radius:8px;font:400 13px Roboto,sans-serif;padding:8px 10px;color:var(--navy-500);resize:vertical}
+.sechead{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--grey-500);margin:26px 0 10px}
+.foot{position:fixed;left:0;right:0;bottom:0;background:var(--navy-700);color:#fff;padding:12px 0;z-index:100}
+.foot .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.foot .prog{font-size:13px;color:#B9C4CC;flex:1;min-width:180px}
+.foot button{font:700 13px Roboto,sans-serif;border:none;border-radius:9px;padding:11px 18px;cursor:pointer}
+#exportBtn{background:var(--orange-500);color:var(--navy-700)}
+#clearBtn{background:#2A3742;color:#CDD5DA}
+.howto{background:var(--orange-50);border:1px solid var(--orange-100);border-radius:var(--radius);padding:14px 18px;font-size:13.5px;margin-bottom:22px}
+</style></head><body>
+
+<header><div class="wrap">
+  <h1>The Cut List <span class="a">— narrow the field</span></h1>
+  <p>Every still-open copy option across the workshop, one screen. ✂ CUT what we won&rsquo;t use, ♥ KEEP the front-runners, leave the rest untouched. Export once at the end — Albert deletes the cuts from the site source and the toggles.</p>
+</div></header>
+
+<div class="wrap">
+  <div class="howto"><b>How to read this:</b> untouched = still in play. You don&rsquo;t have to pick winners — cutting the losers is the job. Notes per group are optional. Works fully offline; picks persist in this browser.</div>
+
+  <p class="sechead">Homepage</p>
+
+  <div class="card" data-group="Homepage hero (H1 + lead)">
+    <div class="card-h"><h2>Homepage hero — 7 candidates <span class="loc">· homepage ⚙ panel</span></h2><p class="hint">H1 locked winner was "Let's face it: moving sucks." — the rest still live in the toggle. Cutting here = removing them from the workshop panel.</p></div>
+    <div class="opt" data-id="hero-a"><div class="txt"><span class="lb">A · Brand Story (current default)</span>Let&rsquo;s face it: moving <span class="a">sucks</span>.<span class="sub2">Lead: "…strangers carrying your grandmother&rsquo;s china… we spent 100,000 moves engineering the suck out of it…"</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="hero-b"><div class="txt"><span class="lb">B · Front Door</span>Moving is awful. We&rsquo;ve spent over a decade making sure <span class="a">ours isn&rsquo;t</span>.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="hero-c"><div class="txt"><span class="lb">C · Typewriter</span>Moving, but <span class="a">easy</span>. <span class="sub2">(word cycles: easy / honest / fast / fun / smart / refreshingly simple)</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="hero-p1"><div class="txt"><span class="lb">P1 · Feels like</span>This is what a good move day actually <span class="a">feels like</span>.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="hero-p2"><div class="txt"><span class="lb">P2 · Sad to end</span>The moving day you&rsquo;ll almost be <span class="a">sad to see end</span>.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="hero-p3"><div class="txt"><span class="lb">P3 · New chapter</span>New place, new chapter, <span class="a">no drama</span> on move day.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="hero-p4"><div class="txt"><span class="lb">P4 · Nothing sideways</span>Picture the move where nothing goes <span class="a">sideways</span>.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="Homepage Pricing-section H2">
+    <div class="card-h"><h2>Pricing section H2 — 6 candidates <span class="loc">· auto-matches hero tone (contrast vs positive)</span></h2></div>
+    <div class="opt" data-id="ph-c1"><div class="txt"><span class="lb">Contrast 1 (default)</span>Most movers quote a starting price. <span class="a">We quote the whole thing.</span> <span class="sub2">⚠ same line as the Pricing page H1 — keeping both = deliberate echo</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="ph-c2"><div class="txt"><span class="lb">Contrast 2</span>The fees other movers add at the bottom? <span class="a">We already deleted them.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="ph-c3"><div class="txt"><span class="lb">Contrast 3</span>A low hourly rate is easy. <span class="a">An honest one took us a decade.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="ph-p1"><div class="txt"><span class="lb">Positive 1</span>Simple, honest pricing. <span class="a">One rate</span> — everything&rsquo;s in it, and then some.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="ph-p2"><div class="txt"><span class="lb">Positive 2</span>One all-inclusive hourly rate. <span class="a">Everything included. Actually everything.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="ph-p3"><div class="txt"><span class="lb">Positive 3</span>Pricing so simple <span class="a">it fits on one line.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="Homepage Coverage-section H2">
+    <div class="card-h"><h2>Coverage section H2 — 6 candidates</h2></div>
+    <div class="opt" data-id="ch-c1"><div class="txt"><span class="lb">Contrast 1 (default)</span>Most movers cover your stuff by the pound. We cover what it&rsquo;s actually <span class="a">worth</span>.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="ch-c2"><div class="txt"><span class="lb">Contrast 2</span>60&#162; a pound isn&rsquo;t coverage. <span class="a">It&rsquo;s a coupon.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="ch-c3"><div class="txt"><span class="lb">Contrast 3</span>Their coverage weighs your stuff. <span class="a">Ours values it.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="ch-p1"><div class="txt"><span class="lb">Positive 1</span>Real coverage on every move — <span class="a">included free</span>.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="ch-p2"><div class="txt"><span class="lb">Positive 2</span>Covered for what it&rsquo;s <span class="a">worth</span>, not what it weighs.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="ch-p3"><div class="txt"><span class="lb">Positive 3</span>$2,000 of peace of mind, <span class="a">on us</span>.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="Homepage Meet-Your-Movers H2">
+    <div class="card-h"><h2>Meet Your Movers H2 — 4 candidates</h2></div>
+    <div class="opt" data-id="mh-c1"><div class="txt"><span class="lb">Contrast 1 (default)</span>Who&rsquo;s showing up at your door? <span class="a">With us, you already know.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="mh-c2"><div class="txt"><span class="lb">Contrast 2</span>No strangers in your home. <span class="a">Ever.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="mh-p1"><div class="txt"><span class="lb">Positive 1</span>Meet your movers <span class="a">before they meet your stuff</span>.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="mh-p2"><div class="txt"><span class="lb">Positive 2</span>Your crew, introduced <span class="a">before move day</span>.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="Homepage exit line">
+    <div class="card-h"><h2>Exit-ramp closing line — 3 candidates</h2></div>
+    <div class="opt" data-id="exit-dept"><div class="txt"><span class="lb">Dept 🧠 (default)</span>You&rsquo;ve done enough thinking about this move. <span class="a">That&rsquo;s our department now.</span> 🧠</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="exit-easiest"><div class="txt"><span class="lb">Easiest</span><span class="a">Easiest is kind of our whole thing.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="exit-classic"><div class="txt"><span class="lb">Heavy lifting</span>We&rsquo;ll handle the heavy lifting. <span class="a">Literally.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
+  </div>
+
+  <p class="sechead">Other pages</p>
+
+  <div class="card" data-group="Why Us B hero (W1–W4)">
+    <div class="card-h"><h2>Why Us B hero — 4 candidates <span class="loc">· W2 = council default</span></h2></div>
+    <div class="opt" data-id="wu-w1"><div class="txt"><span class="lb">W1</span>Why us? Because we didn&rsquo;t fix moving with promises. <span class="a">We fixed it with a system.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="wu-w2"><div class="txt"><span class="lb">W2 (default)</span>We didn&rsquo;t fix moving with promises. <span class="a">We fixed it with a system.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="wu-w3"><div class="txt"><span class="lb">W3</span>Every fear you have about movers has an engineered answer. <span class="a">Five parts. Zero fine print.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="wu-w4"><div class="txt"><span class="lb">W4</span>Not the cheapest. <span class="a">The most honest — and we can prove it.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="Coverage page hero (C1/C2)">
+    <div class="card-h"><h2>Coverage hero — 2 candidates <span class="loc">· you said "I like both" 7/4 — cut one or keep the toggle</span></h2></div>
+    <div class="opt" data-id="cov-c1"><div class="txt"><span class="lb">C1 · current (default)</span>Smart Move Damage Coverage: $2,000 on every move, free — <span class="a">and not by the pound.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="cov-c2"><div class="txt"><span class="lb">C2 · Ogilvy 60&#162;-law</span>When a mover breaks your things, the law says he owes you 60&#162; a pound. <span class="a">We include $2,000 of coverage — paid at what your things are actually worth — free, on every move.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="Pricing page H1">
+    <div class="card-h"><h2>Pricing H1 — 2 candidates <span class="loc">· ⇄ toggle on the page</span></h2></div>
+    <div class="opt" data-id="pr-orig"><div class="txt"><span class="lb">Original (default)</span>Most movers quote a starting price. <span class="a">We quote the whole thing.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="pr-prop"><div class="txt"><span class="lb">Proposed</span>&ldquo;Am I going to get ripped off?&rdquo; <span class="a">Not here — and this page is the receipt.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="Awards review-wall H2">
+    <div class="card-h"><h2>Awards review-wall H2 — 4 candidates <span class="loc">· you narrowed to Options 2 vs 3 on 7/5</span></h2></div>
+    <div class="opt" data-id="aw-1"><div class="txt"><span class="lb">Option 1 · current</span>We&rsquo;re not happy unless you&rsquo;re THIS happy. <span class="sub2">(flagged: caps break the deadpan register)</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="aw-2"><div class="txt"><span class="lb">Option 2</span><span class="a">The trophies are nice. These are better.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="aw-3"><div class="txt"><span class="lb">Option 3</span><span class="a">8,100+ people said it better than we could.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="aw-4"><div class="txt"><span class="lb">Option 4</span><span class="a">Judges liked us. The people who paid us liked us more.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="Coverage §3 payout-table add">
+    <div class="card-h"><h2>Coverage §3 payout-table add — 4 candidates <span class="loc">· re-rolled 7/5; table itself stays bone-dry</span></h2></div>
+    <div class="opt" data-id="c3-none"><div class="txt"><span class="lb">Option 1 · leave as is</span>No add — keep the table and its surroundings bone-dry.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="c3-deadpan"><div class="txt"><span class="lb">Option 2 · Over-Commit Deadpan (above table)</span>We gave the per-pound system every possible benefit of the doubt. <span class="a">Below: its finest performance.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="c3-laptop"><div class="txt"><span class="lb">Option 3 · Inner Monologue (below table)</span><span class="a">(Feel free to go weigh your laptop. It won&rsquo;t help.)</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="c3-sesame"><div class="txt"><span class="lb">Option 4 · Wildcard (above table)</span><span class="a">One of these columns is not like the others.</span></div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
+  </div>
+
+  <p class="sechead">Layout &amp; mode calls (pick a lane)</p>
+
+  <div class="card" data-group="MODE · Homepage price-section layout">
+    <div class="card-h"><h2>Price-section layout</h2></div>
+    <div class="opt" data-id="m-p2-table"><div class="txt">Receipt comparison table (default)</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="m-p2-cards"><div class="txt">Icon cards ("All included. No add-ons.")</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="MODE · Homepage coverage-section style">
+    <div class="card-h"><h2>Coverage-section style</h2></div>
+    <div class="opt" data-id="m-cov-killer"><div class="txt">Killer stat (default)</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="m-cov-table"><div class="txt">Payout table</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="m-cov-gap"><div class="txt">Gap framing</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="MODE · Life-chapter pills">
+    <div class="card-h"><h2>Life-chapter pills <span class="loc">· Albert rec = echo-only</span></h2></div>
+    <div class="opt" data-id="m-chips-full"><div class="txt">Full (pills + echo + tailored CTA)</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="m-chips-echo"><div class="txt">Echo-only (pills + echo line, CTA stays universal)</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="m-chips-off"><div class="txt">Off (no pills)</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="MODE · Matters section version">
+    <div class="card-h"><h2>&ldquo;Why this move matters&rdquo; version <span class="loc">· H2 already locked 7/5: "Every move is about something. What&rsquo;s yours?"</span></h2></div>
+    <div class="opt" data-id="m-mat-orig"><div class="txt">Original body (default)</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="opt" data-id="m-mat-prop"><div class="txt">Proposed body (toggle variant)</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note (optional)…"></textarea></div>
+  </div>
+</div>
+
+<div class="foot"><div class="wrap">
+  <span class="prog" id="prog">0 cut · 0 kept</span>
+  <button id="clearBtn" type="button">✕ Clear all</button>
+  <button id="exportBtn" type="button">📋 Copy cut list (for Cameron → Albert)</button>
+</div></div>
+
+<script>
+(function(){
+  "use strict";
+  /* ---- shared keep/cut marks store — SAME schema + key as feedback.js's window.emcCutMarks (7/5/2026) ----
+     { "<optionId>": { mark:"keep"|"cut", label, group, page } }
+     This ballot and the in-page ♥/✂ marks on the fidelity pages are now ONE system: mark something here,
+     see it tinted on the live page (and vice versa) — same browser, same localStorage key. */
+  var CM_KEY='emc-cutmarks-v1';
+  function cmLoad(){ try{ return JSON.parse(localStorage.getItem(CM_KEY))||{}; }catch(e){ return {}; } }
+  function cmSave(o){ try{ localStorage.setItem(CM_KEY,JSON.stringify(o)); }catch(e){} }
+  var marks = cmLoad();
+
+  /* ---- one-time migration from the old ballot-only key (emc-cutlist-v1) ----
+     Old shape: { opts:{id:'cut'|'keep'}, notes:{group:text} }. Convert opts into the shared schema
+     (label/group/page pulled from THIS page's own DOM, same as new marks), then drop the old key. */
+  /* group notes persist under their own key (not part of the shared marks schema) */
+  var NOTES_KEY='emc-cutlist-notes-v1';
+  var notes = {};
+  try{ var ns=localStorage.getItem(NOTES_KEY); if(ns) notes=JSON.parse(ns)||{}; }catch(e){}
+  function saveNotes(){ try{ localStorage.setItem(NOTES_KEY,JSON.stringify(notes)); }catch(e){} }
+  (function migrate(){
+    var OLD_KEY='emc-cutlist-v1';
+    var old = null;
+    try{ var s=localStorage.getItem(OLD_KEY); if(s) old=JSON.parse(s); }catch(e){}
+    if(old && old.opts){
+      Object.keys(old.opts).forEach(function(id){
+        var v = old.opts[id]; if(v!=='cut' && v!=='keep') return;
+        if(marks[id]) return; /* don't clobber an already-migrated/newer mark */
+        var row = document.querySelector('.opt[data-id="'+id+'"]');
+        var group = row ? row.closest('.card').dataset.group : '';
+        var lb = row ? row.querySelector('.lb') : null;
+        var label = lb ? lb.textContent.trim() : id;
+        marks[id] = { mark:v, label:label, group:group, page:'cut-list' };
+      });
+      cmSave(marks);
+      if(old.notes){ notes = old.notes; saveNotes(); }
+      try{ localStorage.removeItem(OLD_KEY); }catch(e){}
+    }
+  })();
+
+  function save(){ cmSave(marks); }
+  function toggle(id, mark, meta){
+    var cur = marks[id];
+    if(cur && cur.mark===mark){ delete marks[id]; }
+    else { marks[id] = { mark:mark, label:(meta&&meta.label)||id, group:(meta&&meta.group)||'', page:'cut-list' }; }
+    save();
+  }
+
+  function render(){
+    var cut=0,keep=0;
+    document.querySelectorAll('.opt').forEach(function(o){
+      var m = marks[o.dataset.id], v = m ? m.mark : '';
+      o.classList.toggle('cut', v==='cut'); o.classList.toggle('keep', v==='keep');
+      o.querySelector('.bcut').setAttribute('aria-pressed', v==='cut'?'true':'false');
+      o.querySelector('.bkeep').setAttribute('aria-pressed', v==='keep'?'true':'false');
+      if(v==='cut')cut++; if(v==='keep')keep++;
+    });
+    document.getElementById('prog').textContent = cut+' cut · '+keep+' kept';
+  }
+  document.querySelectorAll('.opt').forEach(function(o){
+    var id = o.dataset.id;
+    var group = o.closest('.card').dataset.group;
+    var lb = o.querySelector('.lb');
+    var label = lb ? lb.textContent.trim() : id;
+    var meta = { label:label, group:group, page:'cut-list' };
+    o.querySelector('.bcut').addEventListener('click',function(){ toggle(id,'cut',meta); render(); });
+    o.querySelector('.bkeep').addEventListener('click',function(){ toggle(id,'keep',meta); render(); });
+  });
+  document.querySelectorAll('[data-note]').forEach(function(t){
+    var g=t.closest('.card').dataset.group;
+    t.value=notes[g]||'';
+    t.addEventListener('input',function(){ notes[g]=t.value; saveNotes(); });
+  });
+  document.getElementById('clearBtn').addEventListener('click',function(){
+    if(!confirm('Clear ALL cut-list picks and notes? (This clears the shared keep/cut marks used on every page.)')) return;
+    marks={}; notes={}; save(); saveNotes(); document.querySelectorAll('[data-note]').forEach(function(t){t.value='';}); render();
+  });
+  document.getElementById('exportBtn').addEventListener('click',function(){
+    var lines=['EINSTEIN CUT LIST — '+new Date().toLocaleString()+' — send this to Albert',''];
+    document.querySelectorAll('.card').forEach(function(c){
+      var g=c.dataset.group, rows=[];
+      c.querySelectorAll('.opt').forEach(function(o){
+        var m=marks[o.dataset.id], v = m ? m.mark : '', lb=o.querySelector('.lb'), txt=o.querySelector('.txt').textContent.trim().replace(/\s+/g,' ');
+        if(v) rows.push((v==='cut'?'  ✂ CUT: ':'  ♥ KEEP: ')+(lb?lb.textContent+' — ':'')+txt.slice(0,120));
+      });
+      var note=(notes[g]||'').trim();
+      if(rows.length||note){ lines.push('## '+g); lines=lines.concat(rows); if(note) lines.push('  NOTE: '+note); lines.push(''); }
+    });
+    if(lines.length<3){ lines.push('(no picks yet)'); }
+    var txt=lines.join('\n'), b=this;
+    function ok(){ b.textContent='Copied ✓'; setTimeout(function(){ b.textContent='📋 Copy cut list (for Cameron → Albert)'; },1400); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(ok,function(){ fallback(); }); } else { fallback(); }
+    function fallback(){ var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy'); ok();}catch(e){ prompt('Copy this:', txt); } document.body.removeChild(ta); }
+  });
+  render();
+})();
+</script>
+</body></html>
