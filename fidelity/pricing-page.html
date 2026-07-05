@@ -183,6 +183,52 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .faq-item .t{color:var(--orange-900);font-size:18px;font-weight:700}
 .acc-answer{background:#fff;border:1px solid var(--grey-100);border-top:none;border-radius:0 0 10px 10px;padding:2px 18px 6px;font-size:14.5px;color:var(--grey-500)}
 
+/* ============ ✨ SPARKS DEMO A — dueling receipts (7/6/2026) ============
+   KP-workshop proposal. Register: motion with a job — the TIMING GAP is the punchline (ours prints
+   4 lines, tears off, sits still; theirs keeps printing for a couple more beats). Deadpan, no bounce.
+   Easing/durations from the brand-kit motion system (motion.json: base=180ms, ease-enter cubic-bezier(0,0,.2,1)).
+   Motion OFF (✨ pill, localStorage emc-sparks-motion) or prefers-reduced-motion → final state instantly.
+   SURFACE RULE HELD: no committed $/hr or dollar totals — competitor lines reuse the fee table's
+   industry ranges verbatim; the Einstein side is rate × hours + $0s, never a fake number. */
+.sparks-tag{display:inline-block;background:var(--navy-700);color:#F5A054;font:700 11px/1 Roboto,sans-serif;text-transform:uppercase;letter-spacing:.05em;padding:6px 12px;border-radius:999px;margin:0 auto 14px}
+.receipts-wrap{text-align:center}
+.receipts{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:820px;margin:30px auto 0;align-items:start}
+@media(max-width:660px){.receipts{grid-template-columns:1fr}}
+.receipt{background:#FFFDF8;border:1px solid var(--grey-100);border-radius:4px 4px 0 0;box-shadow:var(--shadow-sm);padding:22px 20px 16px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13px;text-align:left;position:relative}
+.receipt::after{content:"";display:block;height:12px;margin:10px -20px -16px;background:
+  linear-gradient(-45deg, #FFFDF8 8px, transparent 0),
+  linear-gradient(45deg, #FFFDF8 8px, transparent 0);
+  background-size:16px 16px;background-position:0 0;filter:drop-shadow(0 2px 1px rgba(11,16,20,.06))}
+.receipt-h{text-align:center;font-weight:700;letter-spacing:.03em;text-transform:uppercase;font-size:12.5px;border-bottom:1px dashed var(--grey-100);padding-bottom:10px;margin-bottom:10px}
+.receipt.them .receipt-h{color:var(--error)}
+.receipt.us .receipt-h{color:var(--success-text)}
+.rline{display:flex;justify-content:space-between;gap:10px;padding:4px 0}
+.rline .amt{white-space:nowrap;font-weight:700}
+.receipt.them .amt{color:var(--error)}
+.receipt.us .amt{color:var(--success-text)}
+.rtot{display:flex;justify-content:space-between;gap:10px;border-top:1px dashed var(--grey-100);margin-top:8px;padding-top:10px;font-weight:700;font-size:13.5px}
+.rtot .amt{white-space:normal;text-align:right}
+/* armed = JS + motion ON: lines hidden until "printed"; the paper itself grows (one-shot max-height steps —
+   the competitor receipt visibly gets longer and longer while ours is already done) */
+.receipts.rc-armed .receipt{overflow:hidden;transition:max-height .28s cubic-bezier(0,0,.2,1)}
+.receipts.rc-armed .receipt::after{opacity:0}
+.receipts.rc-armed .receipt.rc-done::after{opacity:1;transition:opacity .2s cubic-bezier(0,0,.2,1)}
+.receipts.rc-armed .rline,.receipts.rc-armed .rtot{opacity:0;transform:translateY(-4px);transition:opacity .18s cubic-bezier(0,0,.2,1),transform .18s cubic-bezier(0,0,.2,1)}
+.receipts.rc-armed .rline.on,.receipts.rc-armed .rtot.on{opacity:1;transform:none}
+.receipt.rc-done{overflow:visible!important;max-height:none!important}
+.receipt.us.rc-settle{animation:rcSettle .5s cubic-bezier(0.2,0,0,1) both} /* the tear-off settle — once, then it sits still */
+@keyframes rcSettle{0%{transform:translateY(0) rotate(0deg)}55%{transform:translateY(5px) rotate(-1.3deg)}100%{transform:translateY(2px) rotate(-.6deg)}}
+@media(prefers-reduced-motion:reduce){
+  .receipts.rc-armed .receipt{overflow:visible;max-height:none!important;transition:none}
+  .receipts.rc-armed .receipt::after{opacity:1}
+  .receipts.rc-armed .rline,.receipts.rc-armed .rtot{opacity:1;transform:none;transition:none}
+  .receipt.us.rc-settle{animation:none;transform:none}
+}
+/* ✨ Motion pill — right side above the Table-H2 toggle + its keep/cut row (left side is taken by the
+   hero pill stack + the feedback.js 💬 FAB at left:16/bottom:74) */
+.sparks-toggle{position:fixed;right:14px;bottom:92px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
+.sparks-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
+
 .locations{background:var(--grey-50);padding:56px 0;text-align:center}
 .loc-grid{display:flex;gap:8px 14px;justify-content:center;flex-wrap:wrap;max-width:760px;margin:18px auto 0}
 .loc-grid a{background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 16px;font-size:13.5px;font-weight:600;text-decoration:none;color:var(--navy-500)}
@@ -285,6 +331,46 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
       <div class="r2-line"><span>Booking deposit</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
       <div class="r2-tot"><span>Everything most movers bill extra for</span><span class="r2-big">$0</span></div>
     </div>
+  </div>
+</section>
+
+<!-- ============ 3B. SPARKS DEMO A — dueling receipts ============
+     Proposal for KP: the fee-comparison table above states the case; this animates the punchline —
+     one receipt keeps printing, ours stops early and settles. Job: land "nothing added at the bottom"
+     as a felt contrast in time, not just a claim in text. Dollar figures reuse the table above verbatim
+     (Einstein = rate × hours framing + explicit $0 add-ons already named on this page; competitor =
+     the same industry ranges already cited in the fee-comparison table). -->
+<section class="block receipts-wrap" id="receipts-demo" style="background:var(--grey-50)">
+  <div class="wrap">
+    <span class="sparks-tag">✨ SPARKS DEMO — for the KP workshop</span>
+    <h2 class="sec">Two receipts, <span class="a">same move.</span></h2>
+    <p class="sub">Watch how long the typical mover&rsquo;s keeps going.</p>
+    <!-- SURFACE RULE: no committed $/hr or dollar totals on this page. Competitor amounts below reuse
+         the fee-comparison table's industry ranges VERBATIM; the Einstein side is rate × hours + $0s.
+         Never put a fake dollar figure on the Einstein receipt. -->
+    <div class="receipts" id="receiptsGrid">
+      <div class="receipt them">
+        <div class="receipt-h">Typical mover</div>
+        <div class="rline"><span>Hourly rate &times; hours</span><span class="amt">the quote</span></div>
+        <div class="rline"><span>Fuel / trip surcharge</span><span class="amt">+$50&ndash;250</span></div>
+        <div class="rline"><span>Credit-card fee</span><span class="amt">+2.5&ndash;3.5%</span></div>
+        <div class="rline"><span>Blankets &amp; wrap</span><span class="amt">+$65&ndash;135</span></div>
+        <div class="rline"><span>Stair fee</span><span class="amt">+$100&ndash;250</span></div>
+        <div class="rline"><span>Long-carry fee</span><span class="amt">+more</span></div>
+        <div class="rline"><span>Heavy-item fee</span><span class="amt">+more</span></div>
+        <div class="rline"><span>&ldquo;Misc&rdquo;</span><span class="amt">+misc</span></div>
+        <div class="rtot"><span>Total</span><span class="amt">25&ndash;50% more than quoted*</span></div>
+      </div>
+      <div class="receipt us" id="usReceipt">
+        <div class="receipt-h">Einstein</div>
+        <div class="rline"><span>Hourly rate &times; hours</span><span class="amt">the whole cost</span></div>
+        <div class="rline"><span>Fuel / trip / card fees</span><span class="amt">$0</span></div>
+        <div class="rline"><span>Blankets, wrap &amp; supplies</span><span class="amt">$0</span></div>
+        <div class="rline"><span>Stairs, long carry &amp; heavy items</span><span class="amt">$0</span></div>
+        <div class="rtot"><span>Added at the bottom</span><span class="amt">Nothing.</span></div>
+      </div>
+    </div>
+    <p class="fineprint">Fee lines reuse the industry ranges from the table above &mdash; not any one company. Trip fees: $0 inside your branch&rsquo;s service area, and disclosed before you book if you&rsquo;re outside it.</p>
   </div>
 </section>
 
@@ -412,12 +498,13 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   });
 })();
 
-/* Shared combo writer (7/5/2026): body[data-combo] is single-valued, but this page now has TWO
-   independent workshop toggles (hero H1 + fee-table H2). Each toggle writes its own slot here and
-   the combined string gets stamped — so feedback.js notes carry both active variants at once. */
-window.__prCombo = { h1:'original', tableh2:'current' };
+/* Shared combo writer (7/5/2026, extended 7/6 for sparks): body[data-combo] is single-valued, but this
+   page now has THREE independent workshop toggles (hero H1 + fee-table H2 + sparks motion). Each toggle
+   writes its own slot here and the combined string gets stamped — so feedback.js notes carry all active
+   variants at once. */
+window.__prCombo = { h1:'original', tableh2:'current', sparks:'on' };
 function __prWriteCombo(){
-  document.body.setAttribute('data-combo', 'h1='+window.__prCombo.h1+'&tableh2='+window.__prCombo.tableh2);
+  document.body.setAttribute('data-combo', 'h1='+window.__prCombo.h1+'&tableh2='+window.__prCombo.tableh2+'&sparks='+window.__prCombo.sparks);
 }
 
 /* Workshop H1 toggle — ORIGINAL vs PROPOSED hero (persisted: emc-pricing-h1) */
@@ -499,6 +586,83 @@ function __prWriteCombo(){
       entries.forEach(function(e){ if(e.isIntersecting){ stamp.classList.remove('pre'); stamp.classList.add('go'); io.disconnect(); } });
     }, {threshold:.6}).observe(headrow);
   }
+})();
+
+/* ============ SPARKS — shared motion toggle (persisted: emc-sparks-motion) ============
+   Default ON. Motion OFF (toggle OR prefers-reduced-motion) = every sparks demo renders instantly
+   in its final state — no animation classes ever get the chance to run. */
+window.__sparksMotionOn = function(){
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
+  try{ return localStorage.getItem('emc-sparks-motion') !== 'off'; }catch(e){ return true; }
+};
+(function(){
+  var btn = document.createElement('button');
+  btn.className = 'sparks-toggle'; btn.type = 'button'; btn.title = 'Toggle sparks animation demos on this page';
+  function apply(){
+    btn.textContent = '✨ Motion: ' + (window.__sparksMotionOn() ? 'On' : 'Off');
+    window.__prCombo.sparks = window.__sparksMotionOn() ? 'on' : 'off';
+    __prWriteCombo();
+  }
+  btn.addEventListener('click', function(){
+    var next = window.__sparksMotionOn() ? 'off' : 'on';
+    try{ localStorage.setItem('emc-sparks-motion', next); }catch(e){}
+    apply();
+    /* turning OFF mid-page = snap every demo to its final state; turning ON takes effect next load
+       (each animation fires once per page load — no replays) */
+    if(next==='off' && window.__sparksReceiptsFinal) window.__sparksReceiptsFinal();
+  });
+  document.body.appendChild(btn);
+  apply();
+})();
+
+/* ============ SPARKS DEMO A — dueling receipts print-in ============
+   Both receipts "print" line by line and the PAPER GROWS with each line (one-shot max-height steps).
+   Einstein's stops after 4 lines, tears off (settle), and sits still while the competitor keeps
+   printing for another ~1.8s — the timing gap IS the joke. Fires once on scroll-in.
+   Motion-off or prefers-reduced-motion = the static markup already IS the final state (hidden/grow
+   rules only exist under .rc-armed, which is only added when motion is live). */
+(function(){
+  var grid = document.getElementById('receiptsGrid');
+  if(!grid) return;
+  var us = document.getElementById('usReceipt');
+  var them = grid.querySelector('.receipt.them');
+  var killed = false;
+  window.__sparksReceiptsFinal = function(){
+    killed = true;
+    grid.classList.remove('rc-armed');
+    grid.querySelectorAll('.rline,.rtot').forEach(function(l){ l.classList.add('on'); });
+    [us,them].forEach(function(p){ if(p){ p.classList.add('rc-done'); p.style.maxHeight=''; } });
+    if(us) us.classList.remove('rc-settle');
+  };
+  if(!window.__sparksMotionOn() || !('IntersectionObserver' in window) || !us || !them) return;
+  /* reserve the final footprint so the page below never shifts while the papers grow */
+  grid.style.minHeight = grid.offsetHeight + 'px';
+  grid.classList.add('rc-armed');
+  [us,them].forEach(function(p){
+    var h = p.querySelector('.receipt-h');
+    p.style.maxHeight = (h.offsetTop + h.offsetHeight + 14) + 'px';
+  });
+  function printAll(p, step, done){
+    var rows = p.querySelectorAll('.rline,.rtot');
+    rows.forEach(function(r,i){
+      setTimeout(function(){
+        if(killed) return;
+        r.classList.add('on');
+        p.style.maxHeight = (r.offsetTop + r.offsetHeight + 18) + 'px';
+        if(i===rows.length-1 && done) setTimeout(function(){ if(!killed) done(); }, 220);
+      }, 240 + i*step);
+    });
+  }
+  var played = false;
+  new IntersectionObserver(function(entries, io){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !played){
+        played = true; io.disconnect();
+        printAll(us, 170, function(){ us.classList.add('rc-done','rc-settle'); });   /* done ~1.2s, tears off, sits still */
+        printAll(them, 300, function(){ them.classList.add('rc-done'); });           /* still printing until ~3.1s */
+      }
+    });
+  }, {threshold:.3}).observe(grid);
 })();
 </script>
 <script src="feedback.js?v=20260705cut"></script>

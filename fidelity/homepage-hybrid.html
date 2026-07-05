@@ -86,6 +86,10 @@ nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-
 .proofline{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;font-size:13px;color:var(--grey-500);font-weight:600;margin-bottom:20px}
 .proofline .stars{color:var(--star);letter-spacing:1px}
 .proofline .sep{color:var(--grey-100)}
+/* SPARKS DEMO B — count-up trust numbers (7/6/2026). .cu-n is purely presentational (aria-hidden);
+   the real, final text lives in the parent .cu's aria-label so screen readers get one clean read,
+   never a mid-count sequence. No layout shift: font/weight identical to resting proofline text. */
+.cu{font-weight:600}
 .hero h1{font-size:46px;line-height:1.08;margin:0 0 16px}
 .hero h1 .a{color:var(--orange-900)}
 .hero .lead{font-size:18.5px;line-height:1.55;max-width:640px;margin:0 auto 26px}
@@ -294,6 +298,18 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
 @media(max-width:640px){.sticky-bar .checks{display:none}.sticky-bar{justify-content:center}}
 @media(prefers-reduced-motion:reduce){.sticky-bar{transition:none}}
 
+/* SPARKS — shared motion toggle pill (7/6/2026). Left side, ABOVE the feedback.js FAB (left:16/bottom:74,
+   ~44px tall) so it collides with neither the FAB nor the sticky bottom CTA bar (bottom:0, full width).
+   Same pill visual language as pricing/coverage's .h1-toggle. The open feedback panel (bottom:124, z:401)
+   covers it while open — acceptable, both are workshop chrome. */
+.sparks-toggle{position:fixed;left:16px;bottom:126px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
+.sparks-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
+/* SPARKS DEMO D — exit-line mascot nod (7/6/2026) */
+.exit-brain{display:inline-block;transform:rotate(0deg)}
+.exit-brain.nod{animation:exitBrainNod .4s cubic-bezier(0.2,0,0,1) both}
+@keyframes exitBrainNod{0%{transform:rotate(0deg)}55%{transform:rotate(10deg)}100%{transform:rotate(0deg)}}
+@media(prefers-reduced-motion:reduce){.exit-brain.nod{animation:none;transform:rotate(0deg)}}
+
 /* ================= WORKSHOP PANEL v2 ================= */
 .ws-fab{position:fixed;right:16px;bottom:74px;z-index:400;background:var(--navy-700);color:#fff;border:none;border-radius:999px;padding:12px 18px;font:inherit;font-weight:700;font-size:13.5px;cursor:pointer;box-shadow:var(--shadow-md)}
 .ws{position:fixed;right:16px;bottom:124px;z-index:401;width:330px;max-width:calc(100vw - 32px);max-height:min(70vh,560px);overflow:auto;background:var(--navy-700);color:#EAEEF0;border-radius:14px;padding:16px 16px 14px;box-shadow:var(--shadow-md);display:none}
@@ -349,7 +365,9 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 <!-- ============ HERO — 7-variant registry (workshop panel switches) ============ -->
 <header class="hero" id="hero">
   <div class="wrap">
-    <div class="proofline"><span class="stars">★★★★★</span> 4.9/5 · 8,100+ reviews <span class="sep">·</span> 55+ awards <span class="sep">·</span> 100,000+ moves</div>
+    <!-- SPARKS DEMO B: markup carries the REAL final numbers (no-JS/motion-off state); JS zeroes them
+         only at the moment the count-up actually starts. aria-label = one clean screen-reader read. -->
+    <div class="proofline" id="proofline"><span class="stars">★★★★★</span> 4.9/5 · <span class="cu" id="cuReviews" data-target="8100" data-suffix="+ reviews" aria-label="8,100+ reviews"><span class="cu-n" aria-hidden="true">8,100+ reviews</span></span> <span class="sep">·</span> <span class="cu" id="cuAwards" data-target="55" data-suffix="+ awards" aria-label="55+ awards"><span class="cu-n" aria-hidden="true">55+ awards</span></span> <span class="sep">·</span> <span class="cu" id="cuMoves" data-target="100000" data-suffix="+ moves" aria-label="100,000+ moves"><span class="cu-n" aria-hidden="true">100,000+ moves</span></span></div>
     <!-- LEAD swapped 7/4 per Cameron's hero review (Liana Opt 5): H1 locked, lead mechanized, no number double-count with proofline. -->
     <h1 id="heroH1">Let&rsquo;s face it: moving <span class="a">sucks</span>.</h1>
     <p class="lead" id="heroLead">The stress, the chaos, the strangers carrying your grandmother&rsquo;s china &mdash; it&rsquo;s a lot. So we spent 100,000 moves engineering the suck out of it: <b>one honest rate that&rsquo;s the whole cost</b>, <b>crews you&rsquo;ll meet before move day</b>, and <b>$2,000 of coverage already in it</b>. You might even (almost) enjoy it.</p>
@@ -631,7 +649,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <div class="wrap">
     <div class="exit-ramp rv">
       <h2>Ready to move?</h2>
-      <p>Give us a call, shoot us a text, start a chat — whatever&rsquo;s easiest for you. <span id="exitDept">You&rsquo;ve done enough thinking about this move. <b>That&rsquo;s our department now.</b> 🧠</span><span id="exitEasiest" hidden><b>Easiest is kind of our whole thing.</b></span><span id="exitClassic" hidden>We&rsquo;ll handle the heavy lifting. <b>Literally.</b></span></p>
+      <p>Give us a call, shoot us a text, start a chat — whatever&rsquo;s easiest for you. <span id="exitDept">You&rsquo;ve done enough thinking about this move. <b>That&rsquo;s our department now.</b> <span class="exit-brain" id="exitBrain">🧠</span></span><span id="exitEasiest" hidden><b>Easiest is kind of our whole thing.</b></span><span id="exitClassic" hidden>We&rsquo;ll handle the heavy lifting. <b>Literally.</b></span></p>
       <div class="exit-actions">
         <!-- DUMMY phone — real number is location-dependent -->
         <a class="btn-secondary" href="tel:7375550100">📞 Call us</a>
@@ -855,7 +873,11 @@ function renderDisplays(){
   if(state.chips!=='full'){ var bk = document.getElementById('bookCta'); if(bk) bk.textContent = 'See my real price →'; }
 }
 function comboString(){
-  return 'hero='+state.hero+'&tone='+state.tone+'&ph='+state.ph+'&ch='+state.ch+'&mh='+state.mh+'&cov='+state.cov+'&p2='+state.p2+'&wall='+state.wall+'&matters='+state.matters+'&fears='+state.fears+'&exit='+state.exit+'&chips='+state.chips;
+  /* sparks= appended 7/6/2026: motion toggle lives outside `state` (it's not part of the reset-to-draft-
+     defaults flow — it's a demo-viewing preference, not a copy variant) but still needs to combo-stamp
+     feedback notes, so read it live off the shared helper. */
+  var sparksVal = (window.__sparksMotionOn ? (window.__sparksMotionOn() ? 'on' : 'off') : 'on');
+  return 'hero='+state.hero+'&tone='+state.tone+'&ph='+state.ph+'&ch='+state.ch+'&mh='+state.mh+'&cov='+state.cov+'&p2='+state.p2+'&wall='+state.wall+'&matters='+state.matters+'&fears='+state.fears+'&exit='+state.exit+'&chips='+state.chips+'&sparks='+sparksVal;
 }
 function renderPanel(){
   ['wsHeroC','wsHeroP'].forEach(function(id){
@@ -1127,6 +1149,95 @@ safe('reveal', function(){
   },{threshold:.08});
   els.forEach(function(e){ io.observe(e); });
   setTimeout(function(){ els.forEach(function(e){ e.classList.add('in'); }); }, 1600); /* failsafe */
+});
+
+/* ============ SPARKS — shared motion toggle (persisted: emc-sparks-motion) ============
+   Default ON. Motion OFF (toggle OR prefers-reduced-motion) = every sparks demo renders instantly
+   in its final state. */
+window.__sparksMotionOn = function(){
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
+  try{ return localStorage.getItem('emc-sparks-motion') !== 'off'; }catch(e){ return true; }
+};
+safe('sparksToggle', function(){
+  var btn = document.createElement('button');
+  btn.className = 'sparks-toggle'; btn.type = 'button'; btn.title = 'Toggle sparks animation demos on this page';
+  function apply(){
+    btn.textContent = '✨ Motion: ' + (window.__sparksMotionOn() ? 'On' : 'Off');
+    document.body.setAttribute('data-combo', comboString());
+  }
+  btn.addEventListener('click', function(){
+    var next = window.__sparksMotionOn() ? 'off' : 'on';
+    try{ localStorage.setItem('emc-sparks-motion', next); }catch(e){}
+    apply();
+  });
+  document.body.appendChild(btn);
+  apply();
+});
+
+/* ============ SPARKS DEMO B — count-up trust numbers ============
+   Each .cu counts up from 0 to its data-target on first scroll-in, ease-out, landing exactly on the
+   real value with original formatting (commas + suffix) preserved. Fires once. Motion-off or
+   prefers-reduced-motion = final value shown instantly, no counting. */
+safe('countUp', function(){
+  var els = document.querySelectorAll('.cu');
+  if(!els.length) return;
+  function fmt(n){ return n.toLocaleString('en-US'); }
+  function finalState(el){
+    var inner = el.querySelector('.cu-n');
+    var target = +el.dataset.target, suffix = el.dataset.suffix || '';
+    if(inner) inner.textContent = fmt(target) + suffix;
+  }
+  function easeOutCubic(t){ return 1 - Math.pow(1-t, 3); }
+  function animate(el){
+    var inner = el.querySelector('.cu-n');
+    var target = +el.dataset.target, suffix = el.dataset.suffix || '';
+    /* markup already shows the final value — lock its width BEFORE zeroing so the proofline
+       never reflows while digits grow (final value is always the widest) */
+    if(inner){ inner.style.display='inline-block'; inner.style.minWidth = inner.offsetWidth + 'px'; }
+    var dur = 1200, start = null;
+    function step(ts){
+      if(start===null) start = ts;
+      var p = Math.min(1, (ts-start)/dur);
+      var val = Math.round(target * easeOutCubic(p));
+      if(inner) inner.textContent = fmt(val) + suffix;
+      if(p < 1) requestAnimationFrame(step); else if(inner) inner.textContent = fmt(target) + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  /* NOTE: markup carries the real final numbers — that IS the no-JS / motion-off / reduced-motion state. */
+  if(!('IntersectionObserver' in window)) return;
+  var proofline = document.getElementById('proofline');
+  if(!proofline) return;
+  var played = false;
+  new IntersectionObserver(function(entries, io){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !played){
+        played = true;
+        if(window.__sparksMotionOn()){ els.forEach(function(el){ animate(el); }); }
+        else { els.forEach(function(el){ finalState(el); }); }
+        io.disconnect();
+      }
+    });
+  }, {threshold:.6}).observe(proofline);
+});
+
+/* ============ SPARKS DEMO D — exit-line mascot nod ============
+   The 🧠 does one small rotate-and-back "nod" when the exit ramp scrolls into view. Fires once. */
+safe('exitBrainNod', function(){
+  var brain = document.getElementById('exitBrain');
+  var exitSec = document.getElementById('book');
+  if(!brain || !exitSec) return;
+  if(!('IntersectionObserver' in window)) return;
+  var played = false;
+  new IntersectionObserver(function(entries, io){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !played){
+        played = true;
+        if(window.__sparksMotionOn()) brain.classList.add('nod');
+        io.disconnect();
+      }
+    });
+  }, {threshold:.6}).observe(exitSec);
 });
 
 renderAll();
