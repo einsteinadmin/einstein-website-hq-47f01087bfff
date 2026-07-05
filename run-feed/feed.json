@@ -1,6 +1,6 @@
 {
  "run": "Sparks pass \u2014 animation demos (7/5/2026)",
- "status": "Self-testing \u2014 running all 4 demos in a browser, on and off, plus reduced-motion",
+ "status": "Done \u2014 all 4 demos built, tested, and passing. Awaiting Albert's review.",
  "entries": [
   {
    "t": "init",
@@ -42,6 +42,14 @@
   {
    "ts": "4:36 PM CT",
    "msg": "Opportunity map written \u2014 20+ future animation ideas across all 10 pages, each tagged with the job it does. Now self-testing everything in a real browser."
+  },
+  {
+   "ts": "4:52 PM CT",
+   "msg": "Self-test passed on all three pages: every demo fires on scroll, the Motion-off switch and reduced-motion settings show the finished state instantly, existing feedback tools still work, and there are zero errors."
+  },
+  {
+   "ts": "4:52 PM CT",
+   "msg": "Done \u2014 dueling receipts, count-up numbers, payout-table punchline, and the brain-emoji nod are all in, plus a map of 20+ future animation ideas. Awaiting Albert's review."
   }
  ]
 }
