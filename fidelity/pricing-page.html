@@ -287,7 +287,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <div class="wrap">
     <div class="flex-band">
       <h2 class="sec">Flexible on dates? <span class="a">It pays.</span></h2>
-      <p class="sub">The same move costs less on quieter days — and your quote shows your <b>whole week</b> side by side, so the savings are yours to grab, never a surge to dodge.</p>
+      <p class="sub">The same move costs less on quieter days — and your quote shows your <b>whole week</b> side by side, so the savings are yours to grab.</p>
       <div class="weekstrip" role="img" aria-label="Relative price by day of week — midweek days usually cost less. No dollar amounts shown; your quote carries the real rates.">
         <div class="ws-day"><div class="ws-bar" style="height:26px"></div><span>Mon</span></div>
         <div class="ws-day cheap"><div class="ws-bar" style="height:16px"></div><span>Tue</span></div>
@@ -309,7 +309,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <div class="faq-list" id="faqList">
       <div>
         <button class="faq-item" aria-expanded="false"><span>Do you require a deposit?</span><span class="t">+</span></button>
-        <div class="acc-answer" hidden><p>No. No deposit to book, free cancellation, and your quote doesn&rsquo;t expire. Booking early costs you nothing.</p></div>
+        <div class="acc-answer" hidden><p>No. No deposit to book, free cancellation, and your quote doesn&rsquo;t expire. Booking early costs you nothing. <i style="font-size:12.5px">[VERIFY: quote-validity policy under variable pricing — does a quote hold its rate indefinitely? Cameron/Matisen to rule; also mirrored in the FAQPage JSON-LD up top]</i></p></div>
       </div>
       <div>
         <button class="faq-item" aria-expanded="false"><span>Is the rate I see the rate I pay?</span><span class="t">+</span></button>
@@ -404,7 +404,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   ];
   var idx = 0;
   try{ if(localStorage.getItem('emc-pricing-h1')==='proposed') idx = 1; }catch(e){}
-  function apply(){ h1.innerHTML = V[idx].h1; lead.innerHTML = V[idx].lead; btn.textContent = '⇄ Headline · ' + (idx===0?'original':'proposed'); }
+  function apply(){ h1.innerHTML = V[idx].h1; lead.innerHTML = V[idx].lead; btn.textContent = '⇄ Headline · ' + (idx===0?'original':'proposed'); document.body.setAttribute('data-combo','h1='+V[idx].id); }
   var btn = document.createElement('button');
   btn.className = 'h1-toggle'; btn.type = 'button'; btn.title = 'Workshop control: cycle hero H1 variants';
   btn.addEventListener('click', function(){
@@ -437,7 +437,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   }
 })();
 </script>
-<script src="feedback.js?v=20260702b"></script>
+<script src="feedback.js?v=20260705kp"></script>
 <script>
 (function(){
   var ham = document.getElementById('ham'), links = document.getElementById('navLinks');

@@ -3,7 +3,7 @@
    1) HIGHLIGHT any text → a 💬 button appears → add a note tied to that exact copy.
    2) 💬 pin on each section (subpages; homepage keeps its ♥ pins — both merge on export).
    One store per browser origin → review on the HQ (github.io) or localhost, NOT file://,
-   so notes from all pages aggregate. "Copy ALL feedback" outputs everything for Albert. */
+   so notes from all pages aggregate. "Copy ALL feedback" outputs everything for Cameron. */
 (function(){
 "use strict";
 var KEY='emc-feedback-v1';
@@ -73,7 +73,7 @@ window.emcAskNote = askNote;
 var fab=document.createElement('button'); fab.className='fbk-fab'; fab.type='button';
 var panel=document.createElement('div'); panel.className='fbk-panel';
 panel.innerHTML='<h5>Draft feedback</h5><div class="fbk-count"></div>'+
-  '<button class="fbk-copy" type="button">📋 Copy ALL feedback (for Albert)</button>'+
+  '<button class="fbk-copy" type="button">📋 Copy ALL feedback (for Cameron)</button>'+
   '<button class="fbk-clear" type="button">✕ Clear all</button>'+
   '<div class="tip">Highlight any text on the page → tap 💬 to comment on that exact copy. Or use the 💬 pin on a section. Notes from every page collect here (same browser).</div>';
 document.body.appendChild(fab); document.body.appendChild(panel);
@@ -90,12 +90,12 @@ fab.addEventListener('click',function(){ panel.classList.toggle('open'); });
 panel.querySelector('.fbk-copy').addEventListener('click',function(){
   var l=load(), pins=[];
   try{ pins=JSON.parse(localStorage.getItem('ws-pins-v2'))||[]; }catch(e){}
-  if(!l.length && !pins.length){ this.textContent='Nothing yet'; var b=this; setTimeout(function(){b.textContent='📋 Copy ALL feedback (for Albert)';},1200); return; }
-  var lines=['EINSTEIN DRAFT FEEDBACK — '+new Date().toLocaleString()+' — paste this to Albert'];
+  if(!l.length && !pins.length){ this.textContent='Nothing yet'; var b=this; setTimeout(function(){b.textContent='📋 Copy ALL feedback (for Cameron)';},1200); return; }
+  var lines=['EINSTEIN DRAFT FEEDBACK — '+new Date().toLocaleString()+' — send this to Cameron'];
   l.forEach(function(e){ lines.push('• ['+e.page+(e.sec?' → '+e.sec:'')+'] '+(e.quote?'RE: "'+e.quote+'" — ':'')+e.note+(e.combo?'  (combo: '+e.combo+')':'')); });
   pins.forEach(function(p){ lines.push('• [homepage-hybrid → '+p.sec+'] '+(p.note||'♥ loved it')+'  (combo: '+p.combo+')'); });
   var txt=lines.join('\n'), b=this;
-  if(navigator.clipboard){ navigator.clipboard.writeText(txt); b.textContent='Copied ✓'; setTimeout(function(){b.textContent='📋 Copy ALL feedback (for Albert)';},1400); }
+  if(navigator.clipboard){ navigator.clipboard.writeText(txt); b.textContent='Copied ✓'; setTimeout(function(){b.textContent='📋 Copy ALL feedback (for Cameron)';},1400); }
   else prompt('Copy:',txt);
 });
 panel.querySelector('.fbk-clear').addEventListener('click',function(){

@@ -223,6 +223,7 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .matters .big .accent{color:var(--orange-900)}
 .matters .invite{color:var(--grey-500);font-size:16px;max-width:620px;margin:0 auto 26px}
 .chapter-chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.chapter-chips[hidden]{display:none!important} /* chips=off toggle — display:flex above beats the hidden attr without this */
 .chapter-chip{font:inherit;font-size:14.5px;font-weight:600;color:var(--navy-500);background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:11px 20px;cursor:pointer;transition:border-color .12s ease,background .12s ease}
 .chapter-chip:hover{border-color:var(--blue-500)}
 .chapter-chip[aria-pressed="true"]{background:var(--blue-50);border-color:var(--blue-500);color:var(--blue-700)}
@@ -628,7 +629,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
       </div>
       <div>
         <button class="faq-item" aria-expanded="false"><span>Does my quote expire?</span><span class="acc-toggle">+</span></button>
-        <div class="acc-answer" hidden><p>No. Your quote doesn&rsquo;t expire, there&rsquo;s no deposit, and cancellation is free. Book when you&rsquo;re ready.</p></div>
+        <div class="acc-answer" hidden><p>No. Your quote doesn&rsquo;t expire, there&rsquo;s no deposit, and cancellation is free. Book when you&rsquo;re ready. <i style="font-size:12.5px">[VERIFY: quote-validity policy under variable pricing — Cameron/Matisen to rule; claim also mirrored in the FAQPage JSON-LD + footer badge]</i></p></div>
       </div>
       <div>
         <button class="faq-item" aria-expanded="false"><span>What forms of payment do you accept?</span><span class="acc-toggle">+</span></button>
@@ -651,6 +652,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
         <a class="btn-secondary" href="https://www.einsteinmoving.com/contact/">✉️ Email us</a>
         <a class="btn-primary" id="bookCta" href="https://www.einsteinmoving.com/quote/">See my real price →</a>
       </div>
+      <!-- [VERIFY] "quote doesn't expire" pending the quote-validity policy ruling (see FAQ answer above) — if it falls, badge becomes "No deposit · Free cancellation · No hidden fees" -->
       <div class="microproof">No deposit · Free cancellation · No hidden fees · Your quote doesn&rsquo;t expire</div>
       <p class="exit-close">Moving doesn&rsquo;t have to suck. <span class="smart">Let us prove it.</span></p>
     </div>
@@ -747,7 +749,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <button class="share" id="wsReset" type="button" style="margin-top:8px;background:#2A3742">↺ Reset to draft defaults</button>
   <button class="share" id="wsNotes" type="button" style="margin-top:8px;background:#2A3742">📋 Copy ♥ notes only (0)</button>
   <button class="share" id="wsClear" type="button" style="margin-top:8px;background:transparent;border:1px solid #3A4956;font-weight:400">✕ Clear notes</button>
-  <div class="note">State saves to the URL + this browser — <b>↺ Reset</b> brings back the locked draft defaults. Share the setup link and the team sees this exact combo. Headline tone auto-matches the hero family unless overridden. <b>♥ pins</b> (top-right of each section) collect notes stamped with the active combo. For your full review export use the <b>📝 Notes panel (bottom-left)</b> → "Copy ALL feedback (for Albert)" — it includes these ♥ notes.</div>
+  <div class="note">State saves to the URL + this browser — <b>↺ Reset</b> brings back the locked draft defaults. Share the setup link and the team sees this exact combo. Headline tone auto-matches the hero family unless overridden. <b>♥ pins</b> (top-right of each section) collect notes stamped with the active combo. For your full review export use the <b>📝 Notes panel (bottom-left)</b> → "Copy ALL feedback (for Cameron)" — it includes these ♥ notes.</div>
 </div>
 
 <script>
@@ -1107,5 +1109,5 @@ safe('reveal', function(){
 renderAll();
 })();
 </script>
-<script src="feedback.js?v=20260702b"></script>
+<script src="feedback.js?v=20260705kp"></script>
 </body></html>
