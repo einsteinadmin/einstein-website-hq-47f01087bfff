@@ -1,6 +1,6 @@
 {
  "run": "Sparks pass \u2014 animation demos (7/5/2026)",
- "status": "Building \u2014 dueling receipts done, homepage numbers next",
+ "status": "Building \u2014 3 of 4 demos done, coverage table next",
  "entries": [
   {
    "t": "init",
@@ -26,6 +26,14 @@
   {
    "ts": "4:20 PM CT",
    "msg": "Dueling receipts is animating on the pricing page \u2014 the competitor receipt keeps printing fee after fee while ours prints four lines, tears off, and sits still."
+  },
+  {
+   "ts": "4:24 PM CT",
+   "msg": "The homepage trust numbers now count up to the real totals (8,100+ reviews, 55+ awards, 100,000+ moves) when you scroll to them."
+  },
+  {
+   "ts": "4:24 PM CT",
+   "msg": "The homepage exit line's brain emoji now gives one small nod when it scrolls into view."
   }
  ]
 }
