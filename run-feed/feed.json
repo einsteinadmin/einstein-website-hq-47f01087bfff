@@ -1,6 +1,6 @@
 {
  "run": "Sparks pass \u2014 animation demos (7/5/2026)",
- "status": "Build starting \u2014 Albert is writing the animation demos now",
+ "status": "Building \u2014 1 of 4 demos done, working on the homepage next",
  "entries": [
   {
    "t": "init",
@@ -10,6 +10,10 @@
   {
    "ts": "3:59 PM CT",
    "msg": "Starting the sparks animation build \u2014 4 demos across the pricing, homepage, and coverage pages."
+  },
+  {
+   "ts": "4:10 PM CT",
+   "msg": "Dueling receipts is animating on the pricing page \u2014 the competitor receipt keeps printing fees while ours stops after four lines and settles."
   }
  ]
 }
