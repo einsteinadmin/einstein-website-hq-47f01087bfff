@@ -709,42 +709,43 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 <div class="ws" id="wsPanel" role="region" aria-label="Workshop variant panel">
   <h5>Workshop mode</h5>
   <div class="combo" id="wsCombo">—</div>
+  <!-- 7/5: panel groups reordered to match page scroll order (Cameron); ↓ = jump to that section -->
   <div class="grp"><div class="lab">Hero — contrast family</div><div class="opts rows" id="wsHeroC"></div></div>
   <div class="grp"><div class="lab">Hero — positive family</div><div class="opts rows" id="wsHeroP"></div></div>
-  <div class="grp"><div class="lab">Component headline tone</div><div class="opts" id="wsTone">
+  <div class="grp"><div class="lab">Section headline tone (global)</div><div class="opts" id="wsTone">
     <button class="opt" data-v="auto" type="button">Auto (follows hero)</button>
     <button class="opt" data-v="contrast" type="button">Contrast</button>
     <button class="opt" data-v="positive" type="button">Positive</button>
   </div></div>
-  <div class="grp"><div class="lab">Pricing headline</div><div class="cyc-row"><button class="opt" id="wsPh" type="button">↻ Next line (1/3)</button><span id="wsPhKM"></span></div></div>
-  <div class="grp"><div class="lab">Coverage headline</div><div class="cyc-row"><button class="opt" id="wsCh" type="button">↻ Next line (1/3)</button><span id="wsChKM"></span></div></div>
-  <div class="grp"><div class="lab">Movers headline</div><div class="cyc-row"><button class="opt" id="wsMh" type="button">↻ Next line (1/2)</button><span id="wsMhKM"></span></div></div>
-  <div class="grp"><div class="lab">Coverage display</div><div class="opts" id="wsCov">
-    <button class="opt" data-v="killer" type="button">Killer stat</button>
-    <button class="opt" data-v="table" type="button">Full table</button>
-  </div><div class="cyc-row"><span style="flex:1;font-size:10.5px;color:#8CA0AC">this one:</span><span id="wsCovKM"></span></div></div>
-  <div class="grp"><div class="lab">Pricing second part</div><div class="opts" id="wsP2">
+  <div class="grp"><div class="lab">Pricing headline <a href="#pricing" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="cyc-row"><button class="opt" id="wsPh" type="button">↻ Next line (1/3)</button><span id="wsPhKM"></span></div></div>
+  <div class="grp"><div class="lab">Pricing second part <a href="#pricing" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsP2">
     <button class="opt" data-v="bd" type="button">Receipt + stamp (B/D)</button>
     <button class="opt" data-v="cards" type="button">Icon cards</button>
   </div><div class="cyc-row"><span style="flex:1;font-size:10.5px;color:#8CA0AC">this one:</span><span id="wsP2KM"></span></div></div>
-  <div class="grp"><div class="lab">Review wall</div><div class="opts" id="wsWall">
-    <button class="opt" data-v="on" type="button">On</button>
+  <div class="grp"><div class="lab">Coverage headline <a href="#coverage" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="cyc-row"><button class="opt" id="wsCh" type="button">↻ Next line (1/3)</button><span id="wsChKM"></span></div></div>
+  <div class="grp"><div class="lab">Coverage display <a href="#coverage" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsCov">
+    <button class="opt" data-v="killer" type="button">Killer stat</button>
+    <button class="opt" data-v="table" type="button">Full table</button>
+  </div><div class="cyc-row"><span style="flex:1;font-size:10.5px;color:#8CA0AC">this one:</span><span id="wsCovKM"></span></div></div>
+  <div class="grp"><div class="lab">Movers headline <a href="#movers" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="cyc-row"><button class="opt" id="wsMh" type="button">↻ Next line (1/2)</button><span id="wsMhKM"></span></div></div>
+  <div class="grp"><div class="lab">Pillar fears <a href="#system" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsFears">
     <button class="opt" data-v="off" type="button">Off</button>
+    <button class="opt" data-v="on" type="button">On</button>
   </div></div>
-  <div class="grp"><div class="lab">Matters line</div><div class="opts" id="wsMatters">
+  <div class="grp"><div class="lab">Matters line <a href="#matters" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsMatters">
     <button class="opt" data-v="orig" type="button">Original</button>
     <button class="opt" data-v="prop" type="button">Proposed</button>
   </div><div class="cyc-row"><span style="flex:1;font-size:10.5px;color:#8CA0AC">this one:</span><span id="wsMattersKM"></span></div></div>
-  <div class="grp"><div class="lab">Pillar fears</div><div class="opts" id="wsFears">
-    <button class="opt" data-v="off" type="button">Off</button>
-    <button class="opt" data-v="on" type="button">On</button>
-  </div></div>
-  <div class="grp"><div class="lab">Matters pills</div><div class="opts" id="wsChips">
+  <div class="grp"><div class="lab">Matters pills <a href="#matters" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsChips">
     <button class="opt" data-v="full" type="button">Pills + tailored CTA</button>
     <button class="opt" data-v="echo" type="button">Pills, echo only</button>
     <button class="opt" data-v="off" type="button">No pills</button>
   </div><div class="cyc-row"><span style="flex:1;font-size:10.5px;color:#8CA0AC">this one:</span><span id="wsChipsKM"></span></div></div>
-  <div class="grp"><div class="lab">Exit line</div><div class="opts" id="wsExit">
+  <div class="grp"><div class="lab">Review wall <a href="#proof" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsWall">
+    <button class="opt" data-v="on" type="button">On</button>
+    <button class="opt" data-v="off" type="button">Off</button>
+  </div></div>
+  <div class="grp"><div class="lab">Exit line <a href="#book" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsExit">
     <button class="opt" data-v="dept" type="button">Our department 🧠</button>
     <button class="opt" data-v="easiest" type="button">Easiest = our thing</button>
     <button class="opt" data-v="classic" type="button">Heavy lifting pun</button>
