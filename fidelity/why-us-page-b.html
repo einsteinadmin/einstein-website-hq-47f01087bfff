@@ -73,6 +73,9 @@ h3.pt{font-size:24px;margin:0}
 .hws button.opt{font:600 12px Roboto,sans-serif;text-align:left;background:#2A3742;color:#CDD5DA;border:1px solid #3A4956;border-radius:10px;padding:7px 11px;cursor:pointer}
 .hws button.opt[aria-pressed="true"]{background:var(--orange-500);border-color:var(--orange-500);color:var(--navy-700)}
 .hws .note{font-size:10.5px;color:#8CA0AC;margin-top:8px;line-height:1.45}
+/* keep/cut rows (7/5/2026) */
+.hws .optrow{display:flex;align-items:center;gap:6px}
+.hws .optrow button.opt{flex:1}
 .teaser{max-width:600px;margin:18px auto 0;background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:18px 22px;box-shadow:var(--shadow-sm)}
 .trow{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--grey-100);font-size:14.5px}
 .trow:last-child{border-bottom:none}
@@ -239,15 +242,15 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <h5>hero (workshop)</h5>
   <div class="combo" id="hwsCombo">—</div>
   <div class="opts" id="hwsOpts">
-    <button class="opt" data-v="w1" type="button">W1 · &ldquo;Why us? Because&hellip;&rdquo; (v1 draft)</button>
-    <button class="opt" data-v="w2" type="button">W2 · council trim (default)</button>
-    <button class="opt" data-v="w3" type="button">W3 · fears-first seat-swap (Miller)</button>
-    <button class="opt" data-v="w4" type="button">W4 · &ldquo;Not the cheapest&rdquo; admission</button>
+    <div class="optrow"><button class="opt" data-v="w1" type="button">W1 · &ldquo;Why us? Because&hellip;&rdquo; (v1 draft)</button><span class="km" data-km="w1"></span></div>
+    <div class="optrow"><button class="opt" data-v="w2" type="button">W2 · council trim (default)</button><span class="km" data-km="w2"></span></div>
+    <div class="optrow"><button class="opt" data-v="w3" type="button">W3 · fears-first seat-swap (Miller)</button><span class="km" data-km="w3"></span></div>
+    <div class="optrow"><button class="opt" data-v="w4" type="button">W4 · &ldquo;Not the cheapest&rdquo; admission</button><span class="km" data-km="w4"></span></div>
   </div>
   <div class="note">Saves to this browser. 💬 notes are stamped with the active hero variant, same as the homepage workshop combos.</div>
 </div>
 
-<script src="feedback.js?v=20260705kp"></script>
+<script src="feedback.js?v=20260705cut"></script>
 <script>
 (function(){
   var ham = document.getElementById('ham'), links = document.getElementById('navLinks');
@@ -291,6 +294,15 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   if(box) box.querySelectorAll('.opt').forEach(function(b){
     b.addEventListener('click', function(){ state = b.dataset.v; render(); });
   });
+  /* keep/cut marks — id wu-w1..w4, shared schema with cut-list.html */
+  var WU_LABELS = { w1:'W1', w2:'W2 (default)', w3:'W3', w4:'W4' };
+  if(window.emcCutMarks){
+    box.querySelectorAll('.km').forEach(function(span){
+      var v = span.dataset.km;
+      var optBtn = span.closest('.optrow').querySelector('.opt');
+      span.appendChild(window.emcCutMarks.buildButtons('wu-'+v, { label:WU_LABELS[v]||v, group:'Why Us B hero (W1–W4)', page:'why-us-page-b' }, null, optBtn));
+    });
+  }
   var fab = document.getElementById('hwsFab'), panel = document.getElementById('hwsPanel');
   if(fab && panel) fab.addEventListener('click', function(){
     var open = panel.classList.toggle('open');

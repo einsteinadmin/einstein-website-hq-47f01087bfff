@@ -320,6 +320,12 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
 .ws .share{margin-top:14px;width:100%;font:inherit;font-size:12.5px;font-weight:700;background:var(--blue-500);color:#fff;border:none;border-radius:8px;padding:9px;cursor:pointer}
 .ws .share:hover{background:var(--blue-700)}
 .ws .note{font-size:10.5px;color:#8CA0AC;margin-top:8px;line-height:1.45}
+/* ---- keep/cut rows (7/5/2026): hero list becomes rows so each option gets its own ♥/✂ pair ---- */
+.ws .opts.rows{display:flex;flex-direction:column;gap:5px}
+.ws .opts.rows .optrow{display:flex;align-items:center;gap:6px}
+.ws .opts.rows .optrow button.opt{flex:1;text-align:left}
+.ws .cyc-row{display:flex;align-items:center;gap:6px}
+.ws .cyc-row button.opt{flex:1}
 
 /* ================= WORKSHOP PINS (team feedback, section-keyed + combo-stamped) ================= */
 .pin{position:absolute;top:14px;right:14px;z-index:5;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:6px 11px;font:inherit;font-size:13px;font-weight:600;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm);opacity:.7;transition:opacity .12s ease}
@@ -707,25 +713,25 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 <div class="ws" id="wsPanel" role="region" aria-label="Workshop variant panel">
   <h5>Workshop mode</h5>
   <div class="combo" id="wsCombo">—</div>
-  <div class="grp"><div class="lab">Hero — contrast family</div><div class="opts" id="wsHeroC"></div></div>
-  <div class="grp"><div class="lab">Hero — positive family</div><div class="opts" id="wsHeroP"></div></div>
+  <div class="grp"><div class="lab">Hero — contrast family</div><div class="opts rows" id="wsHeroC"></div></div>
+  <div class="grp"><div class="lab">Hero — positive family</div><div class="opts rows" id="wsHeroP"></div></div>
   <div class="grp"><div class="lab">Component headline tone</div><div class="opts" id="wsTone">
     <button class="opt" data-v="auto" type="button">Auto (follows hero)</button>
     <button class="opt" data-v="contrast" type="button">Contrast</button>
     <button class="opt" data-v="positive" type="button">Positive</button>
   </div></div>
-  <div class="grp"><div class="lab">Pricing headline</div><div class="opts"><button class="opt" id="wsPh" type="button">↻ Next line (1/3)</button></div></div>
-  <div class="grp"><div class="lab">Coverage headline</div><div class="opts"><button class="opt" id="wsCh" type="button">↻ Next line (1/3)</button></div></div>
-  <div class="grp"><div class="lab">Movers headline</div><div class="opts"><button class="opt" id="wsMh" type="button">↻ Next line (1/2)</button></div></div>
+  <div class="grp"><div class="lab">Pricing headline</div><div class="cyc-row"><button class="opt" id="wsPh" type="button">↻ Next line (1/3)</button><span id="wsPhKM"></span></div></div>
+  <div class="grp"><div class="lab">Coverage headline</div><div class="cyc-row"><button class="opt" id="wsCh" type="button">↻ Next line (1/3)</button><span id="wsChKM"></span></div></div>
+  <div class="grp"><div class="lab">Movers headline</div><div class="cyc-row"><button class="opt" id="wsMh" type="button">↻ Next line (1/2)</button><span id="wsMhKM"></span></div></div>
   <div class="grp"><div class="lab">Coverage display</div><div class="opts" id="wsCov">
     <button class="opt" data-v="killer" type="button">Killer stat</button>
     <button class="opt" data-v="table" type="button">Full table</button>
     <button class="opt" data-v="gap" type="button">Gap cards</button>
-  </div></div>
+  </div><div class="cyc-row"><span style="flex:1;font-size:10.5px;color:#8CA0AC">this one:</span><span id="wsCovKM"></span></div></div>
   <div class="grp"><div class="lab">Pricing second part</div><div class="opts" id="wsP2">
     <button class="opt" data-v="bd" type="button">Receipt + stamp (B/D)</button>
     <button class="opt" data-v="cards" type="button">Icon cards</button>
-  </div></div>
+  </div><div class="cyc-row"><span style="flex:1;font-size:10.5px;color:#8CA0AC">this one:</span><span id="wsP2KM"></span></div></div>
   <div class="grp"><div class="lab">Review wall</div><div class="opts" id="wsWall">
     <button class="opt" data-v="on" type="button">On</button>
     <button class="opt" data-v="off" type="button">Off</button>
@@ -733,7 +739,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <div class="grp"><div class="lab">Matters line</div><div class="opts" id="wsMatters">
     <button class="opt" data-v="orig" type="button">Original</button>
     <button class="opt" data-v="prop" type="button">Proposed</button>
-  </div></div>
+  </div><div class="cyc-row"><span style="flex:1;font-size:10.5px;color:#8CA0AC">this one:</span><span id="wsMattersKM"></span></div></div>
   <div class="grp"><div class="lab">Pillar fears</div><div class="opts" id="wsFears">
     <button class="opt" data-v="off" type="button">Off</button>
     <button class="opt" data-v="on" type="button">On</button>
@@ -742,12 +748,12 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <button class="opt" data-v="full" type="button">Pills + tailored CTA</button>
     <button class="opt" data-v="echo" type="button">Pills, echo only</button>
     <button class="opt" data-v="off" type="button">No pills</button>
-  </div></div>
+  </div><div class="cyc-row"><span style="flex:1;font-size:10.5px;color:#8CA0AC">this one:</span><span id="wsChipsKM"></span></div></div>
   <div class="grp"><div class="lab">Exit line</div><div class="opts" id="wsExit">
     <button class="opt" data-v="dept" type="button">Our department 🧠</button>
     <button class="opt" data-v="easiest" type="button">Easiest = our thing</button>
     <button class="opt" data-v="classic" type="button">Heavy lifting pun</button>
-  </div></div>
+  </div><div class="cyc-row"><span style="flex:1;font-size:10.5px;color:#8CA0AC">this one:</span><span id="wsExitKM"></span></div></div>
   <button class="share" id="wsShare" type="button">Copy setup link</button>
   <button class="share" id="wsReset" type="button" style="margin-top:8px;background:#2A3742">↺ Reset to draft defaults</button>
   <button class="share" id="wsNotes" type="button" style="margin-top:8px;background:#2A3742">📋 Copy ♥ notes only (0)</button>
@@ -755,6 +761,9 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <div class="note">State saves to the URL + this browser — <b>↺ Reset</b> brings back the locked draft defaults. Share the setup link and the team sees this exact combo. Headline tone auto-matches the hero family unless overridden. <b>♥ pins</b> (top-right of each section) collect notes stamped with the active combo. For your full review export use the <b>📝 Notes panel (bottom-left)</b> → "Copy ALL feedback (for Cameron)" — it includes these ♥ notes.</div>
 </div>
 
+<!-- feedback.js loaded BEFORE the workshop script (7/5/2026) so window.emcCutMarks exists when
+     heroButtons()/renderCutMarkRows() build the ♥/✂ mini-buttons on first render. -->
+<script src="feedback.js?v=20260705cut"></script>
 <script>
 (function(){
 "use strict";
@@ -902,16 +911,21 @@ function persist(){
     history.replaceState(null,'','#'+comboString());
   });
 }
-function renderAll(){ renderHero(); renderHeadlines(); renderDisplays(); renderPanel(); persist(); }
+function renderAll(){ renderHero(); renderHeadlines(); renderDisplays(); renderPanel(); persist(); safe('renderCutMarkRows', renderCutMarkRows); }
 
 /* ---------- PANEL WIRING ---------- */
 safe('heroButtons', function(){
   var c = document.getElementById('wsHeroC'), p = document.getElementById('wsHeroP');
   HEROES.forEach(function(h){
+    var row = document.createElement('div'); row.className='optrow';
     var b = document.createElement('button');
     b.type='button'; b.className='opt'; b.dataset.v=h.id; b.textContent=h.label;
     b.addEventListener('click', function(){ state.hero=h.id; renderAll(); });
-    (h.fam==='contrast' ? c : p).appendChild(b);
+    row.appendChild(b);
+    if(window.emcCutMarks){
+      row.appendChild(window.emcCutMarks.buildButtons('hero-'+h.id, { label:h.label, group:'Homepage hero', page:'homepage-hybrid' }, null, b));
+    }
+    (h.fam==='contrast' ? c : p).appendChild(row);
   });
 });
 safe('toneButtons', function(){
@@ -919,6 +933,48 @@ safe('toneButtons', function(){
     b.addEventListener('click', function(){ state.tone=b.dataset.v; renderAll(); });
   });
 });
+/* ---- "this one" keep/cut for cycler + mode groups: marks the CURRENTLY DISPLAYED option id ---- */
+var CUR_ID_MAP = {
+  /* cyclers: id prefix + family letter (c/p) + 1-based index, e.g. ph-c1, ch-p2, mh-c1 */
+  ph: { prefix:'ph', group:'Homepage Pricing-section H2' },
+  ch: { prefix:'ch', group:'Homepage Coverage-section H2' },
+  mh: { prefix:'mh', group:'Homepage Meet-Your-Movers H2' }
+};
+function curCyclerId(key){
+  var t = tone(); var fam = (t==='contrast') ? 'c' : 'p';
+  var arrKey = (key==='ph') ? 'price' : (key==='ch') ? 'cov' : 'mym';
+  var arr = HEADLINES[arrKey][t]; var i = state[key] % arr.length;
+  return CUR_ID_MAP[key].prefix + '-' + fam + (i+1);
+}
+var CUR_MODE_MAP = {
+  cov:     { group:'MODE · Homepage coverage-section style', ids:{ killer:'m-cov-killer', table:'m-cov-table', gap:'m-cov-gap' }, labels:{ killer:'Killer stat', table:'Payout table', gap:'Gap framing' } },
+  p2:      { group:'MODE · Homepage price-section layout', ids:{ bd:'m-p2-table', cards:'m-p2-cards' }, labels:{ bd:'Receipt comparison table', cards:'Icon cards' } },
+  matters: { group:'MODE · Matters section version', ids:{ orig:'m-mat-orig', prop:'m-mat-prop' }, labels:{ orig:'Original body', prop:'Proposed body' } },
+  chips:   { group:'MODE · Life-chapter pills', ids:{ full:'m-chips-full', echo:'m-chips-echo', off:'m-chips-off' }, labels:{ full:'Full (pills + echo + tailored CTA)', echo:'Echo-only', off:'Off' } },
+  exit:    { group:'Homepage exit line', ids:{ dept:'exit-dept', easiest:'exit-easiest', classic:'exit-classic' }, labels:{ dept:'Dept 🧠', easiest:'Easiest', classic:'Heavy lifting' } }
+};
+var cyclerLabelArr = { ph:['Contrast','Positive'], ch:['Contrast','Positive'], mh:['Contrast','Positive'] };
+function renderCutMarkRows(){
+  if(!window.emcCutMarks) return;
+  ['ph','ch','mh'].forEach(function(key){
+    var cycleBtnId = 'ws'+key.charAt(0).toUpperCase()+key.slice(1);
+    var host = document.getElementById(cycleBtnId+'KM'); if(!host) return;
+    var cycleBtn = document.getElementById(cycleBtnId);
+    var id = curCyclerId(key);
+    host.innerHTML='';
+    host.appendChild(window.emcCutMarks.buildButtons(id, { label:id, group:CUR_ID_MAP[key].group, page:'homepage-hybrid' }, renderCutMarkRows, cycleBtn));
+  });
+  Object.keys(CUR_MODE_MAP).forEach(function(key){
+    var hostId = 'ws'+key.charAt(0).toUpperCase()+key.slice(1)+'KM';
+    var host = document.getElementById(hostId); if(!host) return;
+    var m = CUR_MODE_MAP[key]; var v = state[key]; var id = m.ids[v]; if(!id) return;
+    var boxId = 'ws'+key.charAt(0).toUpperCase()+key.slice(1);
+    var box = document.getElementById(boxId);
+    var activeBtn = box ? box.querySelector('.opt[aria-pressed="true"]') : null;
+    host.innerHTML='';
+    host.appendChild(window.emcCutMarks.buildButtons(id, { label:m.labels[v]||id, group:m.group, page:'homepage-hybrid' }, renderCutMarkRows, activeBtn));
+  });
+}
 safe('cycleButtons', function(){
   [['wsPh','ph'],['wsCh','ch'],['wsMh','mh']].forEach(function(m){
     var b = document.getElementById(m[0]); if(!b) return;
@@ -1112,5 +1168,4 @@ safe('reveal', function(){
 renderAll();
 })();
 </script>
-<script src="feedback.js?v=20260705kp"></script>
 </body></html>
