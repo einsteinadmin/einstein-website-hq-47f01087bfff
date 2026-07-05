@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta http-equiv="refresh" content="60">
+<title>Albert Run Feed</title>
+<style>
+:root{--navy:#1A2329;--navy2:#27343D;--orange:#EF8B22;--orange9:#CC5500;--grey:#53575A;--line:#E2E3E4}
+*{box-sizing:border-box}
+body{font-family:Roboto,system-ui,sans-serif;background:#F4F5F5;color:var(--navy2);margin:0;line-height:1.5}
+.wrap{max-width:640px;margin:0 auto;padding:18px 16px 60px}
+header{background:var(--navy);color:#fff;padding:20px 0}
+header .wrap{padding-top:0;padding-bottom:0}
+h1{font-size:19px;margin:0}
+h1 .a{color:var(--orange)}
+.runname{font-size:13px;color:#B9C4CC;margin-top:4px}
+.banner{background:#fff;border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:10px;padding:14px 16px;margin:18px 0;font-size:15px;font-weight:600}
+.banner .lbl{display:block;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--grey);margin-bottom:3px}
+.entry{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin-bottom:9px;font-size:14px}
+.entry .ts{font-size:11px;color:var(--grey);font-weight:700}
+.entry img{max-width:100%;border-radius:6px;margin-top:8px}
+.meta{font-size:11.5px;color:var(--grey);text-align:center;margin-top:20px}
+</style></head><body>
+<header><div class="wrap"><h1>🧠 Albert <span class="a">Run Feed</span></h1><div class="runname" id="runName">loading…</div></div></header>
+<div class="wrap">
+  <div class="banner"><span class="lbl">Current status</span><span id="status">loading…</span></div>
+  <div id="log"></div>
+  <p class="meta">Auto-refreshes every 60s · newest first · reply to Albert in the session to redirect the run</p>
+</div>
+<script>
+fetch('feed.json?cb='+Date.now()).then(function(r){return r.json();}).then(function(f){
+  document.getElementById('runName').textContent = f.run || '';
+  document.getElementById('status').textContent = f.status || '';
+  var log = document.getElementById('log');
+  (f.entries||[]).slice().reverse().forEach(function(e){
+    var d = document.createElement('div'); d.className='entry';
+    d.innerHTML = '<span class="ts">'+(e.ts||'')+'</span><div>'+(e.msg||'')+'</div>' + (e.img ? '<img src="'+e.img+'" alt="">' : '');
+    log.appendChild(d);
+  });
+}).catch(function(){ document.getElementById('status').textContent='feed.json unreadable — refresh in a minute'; });
+</script>
+</body></html>
