@@ -65,7 +65,9 @@ css.textContent =
 '.fbk-mhint{margin-top:8px;font-size:10.5px;color:#8CA0AC;text-align:center}' +
 /* ---- keep/cut mini-buttons — shared across all workshop panels (7/5/2026) ---- */
 '.fbk-km{display:inline-flex;gap:4px;flex:0 0 auto;margin-left:auto}' +
-'.fbk-kbtn{width:24px;height:24px;min-width:24px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;font-size:12px;line-height:1;border-radius:999px;border:1px solid #3A4956;background:#2A3742;color:#CDD5DA;cursor:pointer;padding:0;margin:0}' +
+'.fbk-kbtn{width:24px;height:24px;min-width:24px;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;font-size:12px;line-height:1;border-radius:999px;border:1px dashed #4A5866;background:transparent;color:#6B7A87;opacity:.55;cursor:pointer;padding:0;margin:0}' +
+'.fbk-kbtn:hover{opacity:1;border-style:solid}' +
+'.fbk-kbtn[aria-pressed="true"]{opacity:1;border-style:solid}' +
 '.fbk-kbtn[aria-pressed="true"].fbk-keep{background:#3F7A33;border-color:#3F7A33;color:#fff}' +
 '.fbk-kbtn[aria-pressed="true"].fbk-cut{background:#CC0100;border-color:#CC0100;color:#fff}' +
 '.fbk-marked-keep{background:rgba(63,122,51,.14)!important;border-color:#3F7A33!important}' +
@@ -79,7 +81,7 @@ document.head.appendChild(css);
    onChange(mark|null) fires after every toggle so callers can additionally re-tint their own row markup. */
 window.emcCutMarks.buildButtons = function(id, meta, onChange, tintEl){
   var wrap = document.createElement('span'); wrap.className='fbk-km';
-  var keep = document.createElement('button'); keep.type='button'; keep.className='fbk-kbtn fbk-keep'; keep.textContent='♥';
+  var keep = document.createElement('button'); keep.type='button'; keep.className='fbk-kbtn fbk-keep'; keep.textContent='♡';
   keep.title='Keep as finalist'; keep.setAttribute('aria-label','Keep as finalist: '+((meta&&meta.label)||id));
   var cut = document.createElement('button'); cut.type='button'; cut.className='fbk-kbtn fbk-cut'; cut.textContent='✂';
   cut.title='Cut — won\'t use'; cut.setAttribute('aria-label','Cut, won\'t use: '+((meta&&meta.label)||id));
@@ -88,6 +90,7 @@ window.emcCutMarks.buildButtons = function(id, meta, onChange, tintEl){
     var isKeep = cur && cur.mark==='keep', isCut = cur && cur.mark==='cut';
     keep.setAttribute('aria-pressed', isKeep ? 'true':'false');
     cut.setAttribute('aria-pressed', isCut ? 'true':'false');
+    keep.textContent = isKeep ? '♥' : '♡'; /* 7/5 Cameron: only a marked option should read as a heart */
     if(tintEl){
       tintEl.classList.toggle('fbk-marked-keep', !!isKeep);
       tintEl.classList.toggle('fbk-marked-cut', !!isCut);
