@@ -177,13 +177,7 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .h1-toggle{position:fixed;left:14px;bottom:14px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
 .h1-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
 /* keep/cut mark row for the hero toggle (7/5/2026) — sits just above the pill */
-.h1-toggle-km{position:fixed;left:14px;bottom:64px;z-index:400;display:flex;align-items:center;gap:4px;background:#1A2329;border-radius:999px;padding:4px 8px;box-shadow:var(--shadow-sm)}
-.h1-toggle-km .lb{font:600 10px Roboto,sans-serif;color:#8CA0AC;margin-right:2px}
-/* 7/5/2026: second workshop toggle — fee-comparison table H2 (adopted mailer line). Bottom-RIGHT so it never collides with the left-side hero pill. */
-.h2-toggle{position:fixed;right:14px;bottom:14px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
-.h2-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
-.h2-toggle-km{position:fixed;right:14px;bottom:52px;z-index:400;display:flex;align-items:center;gap:4px;background:#1A2329;border-radius:999px;padding:4px 8px;box-shadow:var(--shadow-sm)}
-.h2-toggle-km .lb{font:600 10px Roboto,sans-serif;color:#8CA0AC;margin-right:2px}
+/* 7/5 Cameron page-by-page: table-H2 toggle + km CSS removed entirely (mailer line belongs on Why Us, not here) */
 
 .faq-list{max-width:720px;margin:0 auto}
 .faq-item{width:100%;display:flex;justify-content:space-between;align-items:center;font:inherit;font-weight:600;font-size:15.5px;color:var(--navy-500);background:#fff;border:1px solid var(--grey-100);border-radius:10px;padding:16px 18px;margin-top:10px;cursor:pointer;text-align:left}
@@ -231,26 +225,25 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
   .receipts.rc-armed .rline,.receipts.rc-armed .rtot{opacity:1;transform:none;transition:none}
   .receipt.us.rc-settle{animation:none;transform:none}
 }
-/* ✨ Motion pill — right side above the Table-H2 toggle + its keep/cut row (left side is taken by the
-   hero pill stack + the feedback.js 💬 FAB at left:16/bottom:74) */
-.sparks-toggle{position:fixed;right:14px;bottom:92px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
+/* 7/5 Cameron page-by-page: table-H2 toggle removed entirely (mailer line relocated to Why Us hero W5) —
+   right-side stack recompressed. ✨ Motion pill now sits at the base of the right-side stack. */
+.sparks-toggle{position:fixed;right:14px;bottom:14px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
 .sparks-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
-/* 7/5/2026: third workshop toggle — pricing-comparison "beat" (table vs receipts-demo vs both). Right-side
-   stack was right:14px @ bottom 14(h2-toggle)/52(h2-toggle-km)/92(sparks-toggle) — this sits ABOVE all three. */
-.beat-toggle{position:fixed;right:14px;bottom:130px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
+/* 7/5/2026: pricing-comparison "beat" toggle (table vs receipts-demo vs both). Right-side stack recompressed
+   7/5 PM after the table-H2 toggle removal — now right:14px @ bottom 14(sparks-toggle)/52(beat-toggle)/90(beat-toggle-km). */
+.beat-toggle{position:fixed;right:14px;bottom:52px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
 .beat-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
-.beat-toggle-km{position:fixed;right:14px;bottom:168px;z-index:400;display:flex;align-items:center;gap:4px;background:#1A2329;border-radius:999px;padding:4px 8px;box-shadow:var(--shadow-sm)}
-.beat-toggle-km .lb{font:600 10px Roboto,sans-serif;color:#8CA0AC;margin-right:2px}
 
 /* ============ MOBILE WORKSHOP-CONTROL PILE-UP FIX (7/5/2026) ============
-   At <=480px the 3 workshop toggles (hero H1, table H2, beat) + their km rows + the ✨ Motion pill
-   (7 fixed elements) were stacking on top of body copy alongside the Notes FAB (8 total). Below 480px,
-   hide all 7 workshop-control elements and collapse them into ONE "🎛 Variants" pill (bottom-right) that
-   opens a tray listing each control as a row. The Notes FAB (.fbk-fab, bottom-left) is untouched — it
-   stays exactly where it is at every width. Desktop (>480px) is completely unaffected: this CSS only
-   fires under the media query, and the JS below only acts when matchMedia('(max-width:480px)') matches. */
+   At <=480px the workshop toggles (hero H1, beat) + their km rows + the ✨ Motion pill were stacking on
+   top of body copy alongside the Notes FAB. Below 480px, hide all workshop-control elements and collapse
+   them into ONE "🎛 Variants" pill (bottom-right) that opens a tray listing each control as a row. The
+   Notes FAB (.fbk-fab, bottom-left) is untouched — it stays exactly where it is at every width. Desktop
+   (>480px) is completely unaffected: this CSS only fires under the media query, and the JS below only
+   acts when matchMedia('(max-width:480px)') matches. 7/5 PM: table-H2 toggle removed from this list (gone
+   from the page entirely) — tray now holds 3 rows (Hero headline, Comparison beat, ✨ Motion). */
 @media(max-width:480px){
-  .h1-toggle,.h1-toggle-km,.h2-toggle,.h2-toggle-km,.beat-toggle,.beat-toggle-km,.sparks-toggle{display:none!important}
+  .h1-toggle,.beat-toggle,.sparks-toggle{display:none!important}
 }
 .variants-fab{position:fixed;right:14px;bottom:14px;z-index:400;background:var(--navy-700);color:#F5A054;border:none;border-radius:999px;padding:10px 16px;font:700 12.5px/1 Roboto,sans-serif;cursor:pointer;box-shadow:0 8px 30px rgba(11,16,20,.25);display:none}
 @media(max-width:480px){.variants-fab{display:inline-flex;align-items:center;gap:6px}}
@@ -304,6 +297,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <div class="wrap">
     <div class="ic">💲</div>
     <!-- 7/4 decision (Cameron's hero review): H1 promoted to the homepage's proven contrast line; "moving prices" SEO keyword moved from H1 into the lead — flag for KP's SEO pass. Fee-table H2 below reworded so the promoted line isn't said twice. -->
+    <!-- 7/5 Cameron page-by-page -->
     <h1 id="heroH1">Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span></h1>
     <p class="lead" id="heroLead">Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. Our moving prices are one upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, appliance hookups, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b></p>
     <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my price →</a>
@@ -333,8 +327,10 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 <section class="block" id="fee-comparison">
   <div class="wrap">
     <!-- 7/4: H2 reworded — the "starting price / whole thing" line was promoted to the page H1, so this section can't repeat it.
-         7/5: workshop toggle added — opt2 = the adopted V5 mailer-back H1 line (see cut-list.html "Mailer borrows"). -->
-    <h2 class="sec" id="tableH2">One hourly rate. <span class="a">The add-on list below reads $0, top to bottom.</span></h2>
+         7/5 Cameron page-by-page: table-H2 ⇄ toggle removed entirely — the adopted mailer line ("We fixed the stuff
+         that makes moving terrible") belongs on Why Us, not here (relocated to why-us-page-b.html hero variant W5).
+         This H2 is permanent static copy again. -->
+    <h2 class="sec" id="tableH2">One hourly rate. <span class="a">The add-ons? All $0.</span><!-- 7/5 Cameron pick: old sub-sentence read 'a bit AI' --></h2>
     <p class="sub">A low hourly rate always looks cheaper — until the fees stack up on move day.</p>
     <div class="tblscroll">
     <table class="cmp" aria-label="What typical movers charge extra for vs Einstein">
@@ -348,7 +344,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
         <tr style="--i:4"><td class="item">Blankets, wrap &amp; supplies</td><td class="them"><span class="x">✕</span><span class="strike">+$65–135</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
         <tr style="--i:5"><td class="item">Stair / long-carry / heavy-item fees</td><td class="them"><span class="x">✕</span><span class="strike">+$100–250</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
         <!-- 7/5 Cameron add: appliance disconnect/reconnect = a real differentiator most movers refuse. Scope CONFIRMED by Cameron 7/5: everything but gas. Signed liability waiver required (say so — it's the honest version). -->
-        <tr style="--i:6"><td class="item">Appliance disconnect &amp; reconnect</td><td class="them"><span class="x">✕</span>Won&rsquo;t touch them — call a handyman</td><td class="us"><span class="chk">✓</span>$0 · included (everything but gas · quick waiver)</td></tr>
+        <!-- 7/5 Cameron page-by-page: simplified to "$0 · included" — the FAQ below carries the everything-but-gas/waiver detail; laymen were confused by the parenthetical here. -->
+        <tr style="--i:6"><td class="item">Appliance disconnect &amp; reconnect</td><td class="them"><span class="x">✕</span>Won&rsquo;t touch them — call a handyman</td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
         <tr style="--i:7"><td class="item">Damage coverage</td><td class="them"><span class="x">✕</span>60¢/lb — or pay to upgrade</td><td class="us"><span class="chk">✓</span>$2,000 · actual value<span class="fb">Free</span></td></tr>
         <tr class="bottom" style="--i:8"><td class="item">Bottom line</td><td class="them">25–50% more than quoted*</td><td class="us">Nothing added at the bottom</td></tr>
       </tbody>
@@ -365,14 +362,14 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
         <h3>And the extras? <span class="b">Already on the receipt — at $0.</span></h3>
         <div class="stamp">No<br>add-ons</div>
       </div>
+      <!-- 7/5 Cameron page-by-page: de-duped vs the fee-comparison table above — dropped the 3 rows that
+           just restated the table (blankets/wrap & supplies, $2,000 damage coverage, booking deposit) plus
+           the appliance row. Kept only what the table doesn't already say: TV boxes, disassembly/reassembly,
+           and the on-time guarantee. -->
       <div class="r2-card">
-        <div class="r2-line"><span>Furniture blankets, wrap &amp; supplies</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
         <div class="r2-line"><span>TV boxes (&times;2)</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
         <div class="r2-line"><span>Furniture disassembly &amp; reassembly</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
-        <div class="r2-line"><span>Appliance disconnect &amp; reconnect <span class="r2-note">· everything but gas · quick waiver</span></span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
-        <div class="r2-line"><span>$2,000 damage coverage <span class="r2-note">· actual value</span></span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
         <div class="r2-line"><span>On-time guarantee <span class="r2-note">· late = your move is discounted</span></span><span class="r2-dots"></span><span class="r2-inc">Included</span></div>
-        <div class="r2-line"><span>Booking deposit</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
         <div class="r2-tot"><span>Everything most movers bill extra for</span><span class="r2-big">$0</span></div>
       </div>
     </div>
@@ -545,12 +542,14 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 })();
 
 /* Shared combo writer (7/5/2026, extended 7/6 for sparks + 7/5 for the beat toggle): body[data-combo] is
-   single-valued, but this page now has FOUR independent workshop toggles (hero H1 + fee-table H2 + sparks
-   motion + the table/receipts "beat"). Each toggle writes its own slot here and the combined string gets
-   stamped — so feedback.js notes carry all active variants at once. */
-window.__prCombo = { h1:'original', tableh2:'current', sparks:'on', beat:'both' };
+   single-valued, but this page has THREE independent workshop toggles (hero H1 + sparks motion + the
+   table/receipts "beat"). Each toggle writes its own slot here and the combined string gets stamped —
+   so feedback.js notes carry all active variants at once.
+   7/5 Cameron page-by-page: dropped the tableh2= key — the fee-table H2 toggle was removed entirely
+   (mailer line relocated to Why Us hero W5; this section's H2 is permanent static copy again). */
+window.__prCombo = { h1:'original', sparks:'on', beat:'both' };
 function __prWriteCombo(){
-  document.body.setAttribute('data-combo', 'h1='+window.__prCombo.h1+'&tableh2='+window.__prCombo.tableh2+'&sparks='+window.__prCombo.sparks+'&beat='+window.__prCombo.beat);
+  document.body.setAttribute('data-combo', 'h1='+window.__prCombo.h1+'&sparks='+window.__prCombo.sparks+'&beat='+window.__prCombo.beat);
 }
 
 /* Workshop H1 toggle — ORIGINAL vs PROPOSED hero (persisted: emc-pricing-h1) */
@@ -568,11 +567,9 @@ function __prWriteCombo(){
   ];
   var idx = 0;
   try{ if(localStorage.getItem('emc-pricing-h1')==='proposed') idx = 1; }catch(e){}
-  window.__prHeroKM = null; /* set once feedback.js builds the km row (see below) */
   function apply(){
     h1.innerHTML = V[idx].h1; lead.innerHTML = V[idx].lead; btn.textContent = '⇄ Headline · ' + (idx===0?'original':'proposed');
     window.__prCombo.h1 = V[idx].id; __prWriteCombo();
-    if(window.__prHeroKM) window.__prHeroKM(V[idx].id);
   }
   var btn = document.createElement('button');
   btn.className = 'h1-toggle'; btn.type = 'button'; btn.title = 'Workshop control: cycle hero H1 variants';
@@ -585,33 +582,8 @@ function __prWriteCombo(){
   apply();
 })();
 
-/* Workshop H2 toggle — fee-comparison table headline (persisted: emc-pricing-tableh2).
-   opt2 = adopted from the live V5 mailer-back H1, Cameron 7/5 (see cut-list.html "Mailer borrows"). */
-(function(){
-  var h2 = document.getElementById('tableH2');
-  if(!h2) return;
-  var V = [
-    { id:'current', html:'One hourly rate. <span class="a">The add-on list below reads $0, top to bottom.</span>' },
-    { id:'mailer', html:'We fixed the stuff that <span class="a">makes moving terrible.</span>' }
-  ];
-  var idx = 0;
-  try{ if(localStorage.getItem('emc-pricing-tableh2')==='mailer') idx = 1; }catch(e){}
-  window.__prTableKM = null; /* set once feedback.js builds the km row (see below) */
-  function apply(){
-    h2.innerHTML = V[idx].html; btn.textContent = '⇄ Table H2 · ' + (idx===0?'current':'mailer');
-    window.__prCombo.tableh2 = V[idx].id; __prWriteCombo();
-    if(window.__prTableKM) window.__prTableKM(V[idx].id);
-  }
-  var btn = document.createElement('button');
-  btn.className = 'h2-toggle'; btn.type = 'button'; btn.title = 'Workshop control: cycle fee-table H2 variants';
-  btn.addEventListener('click', function(){
-    idx = (idx+1) % V.length;
-    try{ localStorage.setItem('emc-pricing-tableh2', V[idx].id); }catch(e){}
-    apply();
-  });
-  document.body.appendChild(btn);
-  apply();
-})();
+/* 7/5 Cameron page-by-page: fee-comparison table H2 ⇄ toggle removed entirely (mailer line relocated to
+   Why Us hero W5 — see why-us-page-b.html). tableH2 is permanent static copy again; no toggle, no km row. */
 
 /* ============ WORKSHOP TOGGLE — the pricing-comparison "beat" (persisted: emc-pricing-beat) ============
    7/5 Cameron: a coherence review found #fee-comparison (table + fineprint + "extras...$0" strip) and
@@ -640,7 +612,6 @@ function __prWriteCombo(){
     var stored = localStorage.getItem('emc-pricing-beat');
     mode = (MODES.indexOf(stored) !== -1) ? stored : 'both'; /* sanitize unknown/stale values */
   }catch(e){ mode = 'both'; }
-  window.__pbKM = null; /* set once feedback.js builds the km row (see below) */
   function apply(){
     if(mode === 'both'){
       /* physically move the demo section ahead of the comparison section */
@@ -662,7 +633,6 @@ function __prWriteCombo(){
     }
     btn.textContent = '⇄ Beat · ' + LABELS[mode];
     window.__prCombo.beat = mode; __prWriteCombo();
-    if(window.__pbKM) window.__pbKM(mode);
     /* the receipts demo may have just become visible for the first time (table→receipts/both switch) —
        give its own IntersectionObserver (registered later in this file) a chance to re-check by nudging
        a resize-free re-measure; it re-observes on scroll naturally, but if the section is already in
@@ -800,85 +770,10 @@ window.__sparksMotionOn = function(){
 })();
 </script>
 <script src="feedback.js?v=20260705cut2"></script>
-<script>
-/* keep/cut mark row for the pricing H1 toggle — built after feedback.js so window.emcCutMarks exists.
-   ids pr-orig / pr-prop, shared schema with cut-list.html. Re-tints on every toggle click via __prHeroKM. */
-(function(){
-  if(!window.emcCutMarks) return;
-  var LABELS = { original:'Original', proposed:'Proposed' };
-  var IDMAP = { original:'pr-orig', proposed:'pr-prop' };
-  var wrap = document.createElement('div'); wrap.className = 'h1-toggle-km';
-  var lb = document.createElement('span'); lb.className='lb'; lb.textContent='this one:';
-  wrap.appendChild(lb);
-  var slot = document.createElement('span');
-  wrap.appendChild(slot);
-  document.body.appendChild(wrap);
-  function render(id){
-    slot.innerHTML='';
-    slot.appendChild(window.emcCutMarks.buildButtons(IDMAP[id]||id, { label:LABELS[id]||id, group:'Pricing page H1', page:'pricing-page' }, null, wrap));
-  }
-  window.__prHeroKM = render;
-  try{ render(localStorage.getItem('emc-pricing-h1')==='proposed' ? 'proposed' : 'original'); }catch(e){ render('original'); }
-})();
-</script>
-<script>
-/* keep/cut mark row for the fee-table H2 toggle — built after feedback.js so window.emcCutMarks exists.
-   ids ml-fixed-a (current) / ml-fixed-b (mailer), shared schema with cut-list.html.
-   Adopted from the live V5 mailer-back H1, Cameron 7/5. Re-tints on every toggle click via __prTableKM. */
-(function(){
-  if(!window.emcCutMarks) return;
-  var LABELS = { current:'Current', mailer:'Mailer-adopted' };
-  var IDMAP = { current:'ml-fixed-a', mailer:'ml-fixed-b' };
-  var wrap = document.createElement('div'); wrap.className = 'h2-toggle-km';
-  var lb = document.createElement('span'); lb.className='lb'; lb.textContent='this one:';
-  wrap.appendChild(lb);
-  var slot = document.createElement('span');
-  wrap.appendChild(slot);
-  document.body.appendChild(wrap);
-  function render(id){
-    slot.innerHTML='';
-    slot.appendChild(window.emcCutMarks.buildButtons(IDMAP[id]||id, { label:LABELS[id]||id, group:'Pricing table H2', page:'pricing-page' }, null, wrap));
-  }
-  window.__prTableKM = render;
-  try{ render(localStorage.getItem('emc-pricing-tableh2')==='mailer' ? 'mailer' : 'current'); }catch(e){ render('current'); }
-})();
-</script>
-<script>
-/* keep/cut mark row for the pricing-comparison "beat" toggle — built after feedback.js so
-   window.emcCutMarks exists. ids pb-both / pb-table / pb-receipts, group "MODE · Pricing comparison
-   beat", shared schema with cut-list.html. Unlike the H1/H2 toggles (2 variants, one re-tinted slot),
-   this shows all THREE mode marks at once — Cameron can ♥/✂ each independently regardless of which
-   mode is currently active on screen. The active mode gets a "current" dot so the row still reads
-   which one is live. Re-renders (dot moves) on every toggle click via __pbKM. */
-(function(){
-  if(!window.emcCutMarks) return;
-  var MODES = ['both','table','receipts'];
-  var LABELS = { both:'Both (default · demo leads, table verifies)', table:'Table only (incumbent)', receipts:'Receipts only' };
-  var IDMAP = { both:'pb-both', table:'pb-table', receipts:'pb-receipts' };
-  var wrap = document.createElement('div'); wrap.className = 'beat-toggle-km';
-  var lb = document.createElement('span'); lb.className='lb'; lb.textContent='beat:';
-  wrap.appendChild(lb);
-  var dots = {};
-  MODES.forEach(function(m){
-    var row = document.createElement('span');
-    row.style.cssText = 'display:inline-flex;align-items:center;gap:2px;margin-right:4px';
-    var dot = document.createElement('span');
-    dot.textContent = m[0].toUpperCase();
-    dot.title = LABELS[m];
-    dot.style.cssText = 'font:700 9px Roboto,sans-serif;color:#8CA0AC;width:14px;text-align:center';
-    row.appendChild(dot);
-    row.appendChild(window.emcCutMarks.buildButtons(IDMAP[m], { label:LABELS[m], group:'MODE · Pricing comparison beat', page:'Pricing' }, null, row));
-    wrap.appendChild(row);
-    dots[m] = dot;
-  });
-  document.body.appendChild(wrap);
-  function render(activeMode){
-    MODES.forEach(function(m){ dots[m].style.color = (m===activeMode) ? '#F5A054' : '#8CA0AC'; });
-  }
-  window.__pbKM = render;
-  try{ var stored = localStorage.getItem('emc-pricing-beat'); render(MODES.indexOf(stored)!==-1 ? stored : 'both'); }catch(e){ render('both'); }
-})();
-</script>
+<!-- 7/5 Cameron: in-page marks retired — cut-list.html is the marking surface -->
+<!-- 7/5 Cameron page-by-page: fee-table H2 km-row script removed entirely (toggle + km row both gone;
+     ml-fixed-a/ml-fixed-b ids retired — see cut-list.html "Mailer borrows" note for the relocation). -->
+
 <script>
 (function(){
   var ham = document.getElementById('ham'), links = document.getElementById('navLinks');
@@ -892,8 +787,9 @@ window.__sparksMotionOn = function(){
 </script>
 <script>
 /* ============ MOBILE "🎛 Variants" TRAY (7/5/2026) ============
-   Collapses the 3 fixed workshop toggles (hero H1 / table H2 / beat) + their km rows + the ✨ Motion
-   pill into one fixed pill at <=480px. Does NOT duplicate any state logic: the tray's per-row "state"
+   Collapses the fixed workshop toggles (hero H1 / beat) + their km rows + the ✨ Motion
+   pill into one fixed pill at <=480px. 7/5 Cameron page-by-page: table-H2 toggle removed from the page
+   entirely, so the tray now holds 3 rows. Does NOT duplicate any state logic: the tray's per-row "state"
    button just calls .click() on the ORIGINAL (CSS-hidden) toggle button, and re-reads its textContent
    afterward to stay in sync — same pattern for the km (♥/✂) rows, which are the SAME live DOM nodes
    (built by feedback.js's buildButtons) physically relocated into the tray at mobile width and moved
@@ -905,9 +801,10 @@ window.__sparksMotionOn = function(){
   var mql = window.matchMedia ? window.matchMedia(MQ) : null;
   if(!mql) return; // no matchMedia support: leave desktop behavior as the only behavior
 
+  /* 7/5 Cameron page-by-page: table-H2 row removed — that toggle no longer exists on this page (mailer
+     line relocated to Why Us). Tray now holds 3 rows: Hero headline, Comparison beat, ✨ Motion. */
   var CONTROLS = [
     { key:'h1',    label:'Hero headline',        btnSel:'.h1-toggle',    kmSel:'.h1-toggle-km'    },
-    { key:'h2',    label:'Table headline',       btnSel:'.h2-toggle',    kmSel:'.h2-toggle-km'    },
     { key:'beat',  label:'Comparison beat',      btnSel:'.beat-toggle',  kmSel:'.beat-toggle-km'  },
     { key:'sparks',label:'✨ Motion',             btnSel:'.sparks-toggle',kmSel:null               }
   ];

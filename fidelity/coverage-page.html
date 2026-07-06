@@ -65,8 +65,6 @@ nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-
 .h1-toggle{position:fixed;left:14px;bottom:14px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
 .h1-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
 /* keep/cut mark row for the hero toggle (7/5/2026) — sits just above the pill */
-.h1-toggle-km{position:fixed;left:14px;bottom:64px;z-index:400;display:flex;align-items:center;gap:4px;background:#1A2329;border-radius:999px;padding:4px 8px;box-shadow:var(--shadow-sm)}
-.h1-toggle-km .lb{font:600 10px Roboto,sans-serif;color:#8CA0AC;margin-right:2px}
 
 .trap{max-width:720px;margin:0 auto;font-size:16px;line-height:1.65;color:var(--navy-500)}
 .trap p{margin:0 0 16px}
@@ -205,7 +203,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <div class="trap">
       <p>Here&rsquo;s how the industry actually works: by law, a mover only owes you <b>60 cents per pound</b> if they break something. It&rsquo;s called released-value coverage, it&rsquo;s the legal minimum, and it has nothing to do with what your things are worth.</p>
       <p>Most movers will sell you an upgrade — often around $200. But read the fine print: <b>most paid upgrades are still per-pound.</b> You paid extra to still be underpaid.</p>
-      <p>This isn&rsquo;t an attack — it&rsquo;s just the math nobody shows you before move day. So we will:</p>
+      <p>It&rsquo;s just the math nobody shows you before move day. So we will:</p>
     </div>
     <div class="metaphor">Covering your things by the pound is like insuring your <b>wedding ring by how much it weighs</b> — not what it&rsquo;s worth.</div>
     <!-- 7/5 plan-naming directive (Miller, hero council): name The Smart Move System once per page -->
@@ -322,7 +320,6 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   ];
   var idx = 0;
   try{ if(localStorage.getItem('emc-coverage-hero')==='c2') idx = 1; }catch(e){}
-  window.__covHeroKM = null; /* set once feedback.js builds the km row (see below) */
   /* Shared combo writer (7/6/2026, sparks): this page's data-combo was single-valued (hero=X) — extended
      to also carry the sparks motion state so feedback.js notes stamp both. */
   window.__covCombo = { hero:'c1', sparks:'on' };
@@ -333,7 +330,6 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     h1.innerHTML = V[idx].h1; lead.innerHTML = V[idx].lead;
     btn.textContent = '⇄ Hero (workshop) · ' + (idx===0 ? 'C1 · current' : 'C2 · 60¢ law');
     window.__covCombo.hero = V[idx].id; window.__covWriteCombo();
-    if(window.__covHeroKM) window.__covHeroKM(V[idx].id);
   }
   var btn = document.createElement('button');
   btn.className = 'h1-toggle'; btn.type = 'button'; btn.title = 'Workshop control: cycle hero variants (C1 current / C2 60¢-law)';
@@ -402,27 +398,7 @@ window.__sparksMotionOn = function(){
 })();
 </script>
 <script src="feedback.js?v=20260705cut2"></script>
-<script>
-/* keep/cut mark row for the coverage hero toggle — built after feedback.js so window.emcCutMarks exists.
-   ids cov-c1 / cov-c2, shared schema with cut-list.html. Re-tints on every toggle click via __covHeroKM. */
-(function(){
-  if(!window.emcCutMarks) return;
-  var LABELS = { c1:'C1 · current', c2:'C2 · Ogilvy 60¢-law' };
-  var wrap = document.createElement('div'); wrap.className = 'h1-toggle-km';
-  var lb = document.createElement('span'); lb.className='lb'; lb.textContent='this one:';
-  wrap.appendChild(lb);
-  var slot = document.createElement('span');
-  wrap.appendChild(slot);
-  document.body.appendChild(wrap);
-  function render(id){
-    slot.innerHTML='';
-    slot.appendChild(window.emcCutMarks.buildButtons('cov-'+id, { label:LABELS[id]||id, group:'Coverage page hero (C1/C2)', page:'coverage-page' }, null, wrap));
-  }
-  window.__covHeroKM = render;
-  /* paint immediately for whichever hero is currently active */
-  try{ render(localStorage.getItem('emc-coverage-hero')==='c2' ? 'c2' : 'c1'); }catch(e){ render('c1'); }
-})();
-</script>
+<!-- 7/5 Cameron: in-page marks retired — cut-list.html is the marking surface -->
 <script>
 (function(){
   var ham = document.getElementById('ham'), links = document.getElementById('navLinks');
