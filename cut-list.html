@@ -55,11 +55,13 @@ header p{margin:0;font-size:14px;color:#B9C4CC;max-width:700px}
 #exportBtn{background:var(--orange-500);color:var(--navy-700)}
 #clearBtn{background:#2A3742;color:#CDD5DA}
 .howto{background:var(--orange-50);border:1px solid var(--orange-100);border-radius:var(--radius);padding:14px 18px;font-size:13.5px;margin-bottom:22px}
+ul.it{margin:0;padding:12px 18px 6px 36px;background:#fff;list-style:disc}
+ul.it li{font:400 13.5px/1.55 Roboto,sans-serif;color:var(--navy-500);margin:0 0 9px}
 </style></head><body>
 
 <header><div class="wrap">
   <h1>The Cut List <span class="a">— narrow the field</span></h1>
-  <p>Every still-open copy option across the workshop, one screen. ✂ CUT what we won&rsquo;t use, ♥ KEEP the front-runners, leave the rest untouched. Export once at the end — Albert deletes the cuts from the site source and the toggles.</p>
+  <p>Every still-open copy option across the workshop, one screen. ✂ CUT what we won&rsquo;t use, ♥ KEEP the front-runners, leave the rest untouched. Export once at the end — Albert deletes the cuts from the site source and the toggles. The <b>iterate queue</b> (copy pieces still moving, not either/or votes) lives here too &mdash; one list, works from anywhere.</p>
 </div></header>
 
 <div class="wrap">
@@ -208,6 +210,52 @@ header p{margin:0;font-size:14px;color:#B9C4CC;max-width:700px}
     <div class="opt" data-id="pb-table"><div class="txt"><span class="lb">Table only (incumbent)</span>Full #fee-comparison section &mdash; table, fineprint, and the extras strip. #receipts-demo hidden entirely.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
     <div class="opt" data-id="pb-receipts"><div class="txt"><span class="lb">Receipts only</span>#receipts-demo only. The entire #fee-comparison section (table, fineprint, extras strip) hidden.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
     <div class="gnote"><textarea data-note placeholder="Note (optional)…"></textarea></div>
+  </div>
+
+  <p class="sechead">✎ Iterate queue &mdash; parked copy items (notes, not votes)</p>
+  <div class="howto">Moved here from the hub 7/5 so everything lives on ONE list. These aren&rsquo;t ballots &mdash; they&rsquo;re components still being reworked. Drop a note on any card and it rides the same 📋 export. None of this blocks Kickpoint&rsquo;s first pass.</div>
+
+  <div class="card" data-group="Iterate · Homepage" data-notekey="it-home">
+    <div class="card-h"><h2>Homepage</h2></div>
+    <ul class="it">
+      <li><b>⭐ Killer-stat component</b> &mdash; the coverage section&rsquo;s one-big-stat treatment (current default). Your 7/5 note flagged it as confusing on first read; queued to iterate &mdash; clearer framing line, a different stat, or a different shape entirely.</li>
+      <li><b>Pricing-section H2 re-clothe</b> &mdash; currently echoes the pricing page H1 verbatim (confirmed unintentional). Rewrite AFTER the pricing H1 winner locks, so the survivor owns the line.</li>
+      <li><b>Shelf-space joke ×3 + math-elves placement</b> &mdash; coherence items #5/#8; deciding which instance keeps the joke.</li>
+    </ul>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="Iterate · Why Us" data-notekey="it-whyus">
+    <div class="card-h"><h2>Why Us</h2></div>
+    <ul class="it">
+      <li><b>Supporting-pillars H2 wording</b> &mdash; your remix is in, still iterating.</li>
+      <li><b>$1,500-laptop one-fact component</b> &mdash; lead-in orphaned after edits; needs a revision pass.</li>
+      <li><b>Proof box</b> &mdash; reads crowded; thin it or restructure.</li>
+      <li><b>Realtors block</b> &mdash; reads stuffed-in; find it a real seam or cut it.</li>
+      <li><b>💡 Receipts demo&rsquo;s possible real home</b> &mdash; the Why Us pricing pillar (comparison table stays on the homepage). Ties to the pricing-beat MODE ballot above.</li>
+    </ul>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="Iterate · Pricing" data-notekey="it-pricing">
+    <div class="card-h"><h2>Pricing</h2></div>
+    <ul class="it">
+      <li><b>Guarantees band</b> &mdash; skim risk; wants a visual treatment (KP design call, flagged for the workshop).</li>
+      <li><b>Table-H2 second sentence</b> &mdash; &ldquo;a tad AI&rdquo;; replacement pick pending.</li>
+    </ul>
+    <div class="opt" data-id="it-weekstrip"><div class="txt"><span class="lb">Flexible-dates weekstrip &mdash; keep or kill</span>Your 7/5 read: not compelling, mobile-fragile. This one IS a vote &mdash; ♥ keep it (we&rsquo;ll rework), ✂ kill it.</div><div class="btns"><button class="bkeep">♥ KEEP</button><button class="bcut">✂ CUT</button></div></div>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
+  </div>
+
+  <div class="card" data-group="Iterate · Coverage / Services / Locations / About" data-notekey="it-rest">
+    <div class="card-h"><h2>Coverage &middot; Services &middot; Locations &middot; About</h2></div>
+    <ul class="it">
+      <li><b>Coverage payout table</b> &mdash; keep refining (deductible nuance).</li>
+      <li><b>Services &ldquo;one all-inclusive rate&rdquo; phrasing vs travel fees</b> &mdash; POLICY wording; settle with the team, not a copy tweak.</li>
+      <li><b>N. Austin lead</b> &mdash; &ldquo;movers who actually work here&rdquo; register reads chunky/AI; queued for real-Liana.</li>
+      <li><b>About founder-note promise line</b> &mdash; banked as an L2 candidate.</li>
+    </ul>
+    <div class="gnote"><textarea data-note placeholder="Note for Albert (optional)…"></textarea></div>
   </div>
 
   <p class="sechead">Sparks round 2 &mdash; the creative menu (♥ = worth discussing, ✂ = not us)</p>
