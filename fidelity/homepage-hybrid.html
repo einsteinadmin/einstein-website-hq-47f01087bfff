@@ -342,6 +342,10 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .sitemap a:hover{color:#fff}
 @media(max-width:360px){html{scroll-padding-top:150px}}
+/* 7/8 Cameron: periodic attention jiggle on the primary CTA (like the live site). Motion-safe. */
+@keyframes ctaJiggle{0%,100%{transform:none}12%{transform:rotate(-2.2deg) scale(1.03)}24%{transform:rotate(2deg)}36%{transform:rotate(-1.4deg) scale(1.015)}48%{transform:rotate(.8deg)}60%{transform:none}}
+.cta-jiggle{animation:ctaJiggle .85s ease}
+@media (prefers-reduced-motion: reduce){.cta-jiggle{animation:none}}
 </style></head>
 <body>
 
@@ -652,7 +656,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <div class="wrap">
     <div class="exit-ramp rv">
       <h2>Ready to move?</h2>
-      <p>Give us a call, shoot us a text, start a chat — whatever&rsquo;s easiest for you. <span id="exitDept">You&rsquo;ve done enough thinking about this move. <b>That&rsquo;s our department now.</b> <span class="exit-brain" id="exitBrain">🧠</span></span><span id="exitEasiest" hidden><b>Easiest is kind of our whole thing.</b></span><span id="exitClassic" hidden>We&rsquo;ll handle the heavy lifting. <b>Literally.</b></span></p>
+      <p>Give us a call, shoot us a text, start a chat — whatever&rsquo;s easiest for you. <span id="exitDept">You&rsquo;ve done enough thinking about this move. <b>That&rsquo;s our department now.</b> <span class="exit-brain" id="exitBrain">🧠</span></span><span id="exitEasiest" hidden><b>Easiest is kind of our whole thing.</b></span></p>
       <div class="exit-actions">
         <!-- DUMMY phone — real number is location-dependent -->
         <a class="btn-secondary" href="tel:7375550100">📞 Call us</a>
@@ -697,7 +701,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <p class="reg">TX TxDMV #006604158C · US DOT #2193963 &nbsp;|&nbsp; FL Mover Reg. No. IM3621 · US DOT #3882313</p>
     <p class="reg" style="font-size:11px;margin-top:10px">P.S. You made it to the fine print. We like you already.</p>
     <p class="textus">Questions? Text us: <a href="sms:7375550100">737.555.0100</a> <span style="font-size:11px;color:#5C7280">(placeholder — number varies by location)</span></p>
-    <p class="devnote">ASSEMBLED DRAFT v2 · 7/1/2026 — three proof leads (pricing → coverage → movers) + SMS umbrella + fused awards/review proof peak + origin story, per the pre-assembly audit. Workshop panel (⚙, bottom right): 7 heroes × tone families × headlines × displays; state lives in the URL — copy the setup link to share a combo. Award counts verified vs the awards sheet 7/1. Emoji/dashed boxes = placeholder assets.</p>
+    <p class="devnote">ASSEMBLED DRAFT v2 · 7/1/2026 — three proof leads (pricing → coverage → movers) + SMS umbrella + fused awards/review proof peak + origin story, per the pre-assembly audit. Workshop panel (⚙, bottom right): post-7/8 locks — hero + pricing/coverage H2s locked, remaining toggles are A/B candidates; state lives in the URL — copy the setup link to share a combo. Award counts verified vs the awards sheet 7/1. Emoji/dashed boxes = placeholder assets.</p>
   </div>
 </footer>
 
@@ -713,42 +717,34 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <h5>Workshop mode</h5>
   <div class="combo" id="wsCombo">—</div>
   <!-- 7/5: panel groups reordered to match page scroll order (Cameron); ↓ = jump to that section -->
-  <div class="grp"><div class="lab">Hero — contrast family</div><div class="opts rows" id="wsHeroC"></div></div>
-  <div class="grp"><div class="lab">Hero — positive family</div><div class="opts rows" id="wsHeroP"></div></div>
-  <div class="grp"><div class="lab">Section headline tone (global)</div><div class="opts" id="wsTone">
-    <button class="opt" data-v="auto" type="button">Auto (follows hero)</button>
-    <button class="opt" data-v="contrast" type="button">Contrast</button>
-    <button class="opt" data-v="positive" type="button">Positive</button>
-  </div></div>
-  <div class="grp"><div class="lab">Pricing headline <a href="#pricing" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="cyc-row"><button class="opt" id="wsPh" type="button">↻ Next line (1/3)</button></div></div>
+  <div class="grp"><div class="lab">Hero</div><div class="lab" style="font-weight:400;text-transform:none;letter-spacing:0">🔒 Locked 7/8 — Brand Story (&ldquo;moving sucks&rdquo;) · Cameron + KP unanimous. Tone toggle retired with it.</div></div>
+  <div class="grp"><div class="lab">Pricing headline <a href="#pricing" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="lab" style="font-weight:400;text-transform:none;letter-spacing:0">🔒 Locked 7/8 — &ldquo;We quote the whole thing.&rdquo;</div></div>
   <div class="grp"><div class="lab">Pricing second part <a href="#pricing" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsP2">
     <button class="opt" data-v="bd" type="button">Receipt + stamp (B/D)</button>
     <button class="opt" data-v="cards" type="button">Icon cards</button>
   </div></div>
-  <div class="grp"><div class="lab">Coverage headline <a href="#coverage" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="cyc-row"><button class="opt" id="wsCh" type="button">↻ Next line (1/3)</button></div></div>
+  <div class="grp"><div class="lab">Coverage headline <a href="#coverage" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="lab" style="font-weight:400;text-transform:none;letter-spacing:0">🔒 Locked 7/8 — &ldquo;Real coverage on every move — included free.&rdquo;</div></div>
   <div class="grp"><div class="lab">Coverage display <a href="#coverage" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsCov">
     <button class="opt" data-v="killer" type="button">Killer stat</button>
     <button class="opt" data-v="table" type="button">Full table</button>
   </div></div>
-  <div class="grp"><div class="lab">Movers headline <a href="#movers" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="cyc-row"><button class="opt" id="wsMh" type="button">↻ Next line (1/2)</button></div></div>
+  <div class="grp"><div class="lab">Movers headline · ⚖ A/B <a href="#movers" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="cyc-row"><button class="opt" id="wsMh" type="button">↻ Next line (1/2)</button></div></div>
   <!-- 7/5 Cameron: pillar fears LOCKED OFF ("off for sure") — panel group removed, state pinned -->
   <div class="grp"><div class="lab">Matters line <a href="#matters" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsMatters">
     <button class="opt" data-v="orig" type="button">Original</button>
     <button class="opt" data-v="prop" type="button" title="Cameron's lean 7/5">Proposed ★</button>
   </div></div>
-  <div class="grp"><div class="lab">Matters pills <a href="#matters" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsChips">
+  <div class="grp"><div class="lab">Matters pills · ⚖ A/B <a href="#matters" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsChips">
     <button class="opt" data-v="full" type="button">Pills + tailored CTA</button>
-    <button class="opt" data-v="echo" type="button">Pills, echo only</button>
     <button class="opt" data-v="off" type="button" title="Cameron's lean 7/5">No pills ★</button>
   </div></div>
   <div class="grp"><div class="lab">Review wall <a href="#proof" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsWall">
     <button class="opt" data-v="on" type="button">On</button>
     <button class="opt" data-v="off" type="button" title="Cameron's lean 7/5">Off ★</button>
   </div></div>
-  <div class="grp"><div class="lab">Exit line <a href="#book" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsExit">
+  <div class="grp"><div class="lab">Exit line · ⚖ A/B <a href="#book" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsExit">
     <button class="opt" data-v="dept" type="button">Our department 🧠</button>
     <button class="opt" data-v="easiest" type="button" title="Cameron's lean 7/5">Easiest = our thing ★</button>
-    <button class="opt" data-v="classic" type="button">Heavy lifting pun</button>
   </div></div>
   <button class="share" id="wsShare" type="button">Copy setup link</button>
   <button class="share" id="wsReset" type="button" style="margin-top:8px;background:#2A3742">↺ Reset to draft defaults</button>
@@ -773,27 +769,27 @@ var HEROES = [
   /* LEAD swapped 7/4 per Cameron's hero review (Liana Opt 5): H1 locked, lead mechanized, no number double-count with proofline. */
   {id:'a',  fam:'contrast', label:'Brand Story',
    h1:'Let’s face it: moving <span class="a">sucks</span>.',
-   lead:'The stress, the chaos, the fear of broken heirlooms, hidden fees, or strangers in your home — it’s a lot. But here’s the good news: <b>we make moving suck a whole lot less.</b> In fact, we’ve refined the process so much you might just (almost) enjoy it.'},
-  {id:'p1', fam:'positive', label:'Feels like',
-   h1:'This is what a good move day actually <span class="a">feels like</span>.',
-   lead:'The kind where the crew shows up on time, the rate you were quoted is the rate you pay, and your stuff arrives covered for up to $2,000 — <b>no deposit, no surprises, no “wait, what’s this line for?”</b>'}
+   lead:'The stress, the chaos, the fear of broken heirlooms, hidden fees, or strangers in your home — it’s a lot. But here’s the good news: <b>we make moving suck a whole lot less.</b> In fact, we’ve refined the process so much you might just (almost) enjoy it.'}
 ];
+/* 7/8 CUT ROUND 2 (Cameron + KP unanimous): hero LOCKED = A Brand Story. P1 cut — registry is now single-entry. */
 /* 7/5 CUT ROUND: each cycler trimmed to its ratified survivor(s) — see cut-list.html for the losing options. */
 var HEADLINES = {
+  /* 7/8 CUT ROUND 2: price H2 LOCKED (KP + Cameron — echo resolved: pricing page H1 went "ripped off," this line owns home).
+     cov H2 LOCKED (unanimous — the positive line under a contrast hero, deliberate mix).
+     mym = BOTH survivors as an A/B toggle; tone keys mirror each other so the cycler works regardless of tone. */
   price: {
-    /* 7/5 Cameron C-pick: blend option folded in as a toggle (contrast frame + the "and then some" generosity) */
-    contrast: ['Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span>',
-               'Most movers quote a starting price.<br><span class="a">Ours is the whole thing — and then some.</span>'],
-    positive: ['Simple, honest pricing. <span class="a">One rate</span> — everything’s in it, and then some.']
+    contrast: ['Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span>'],
+    positive: ['Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span>']
   },
   cov: {
-    contrast: ['Most movers cover your stuff by the pound.<br>We cover what it’s actually <span class="a">worth</span>.'],
-    positive: ['Real coverage on every move — <span class="a">included free</span>.',
-               'Covered for what it’s <span class="a">worth</span>, not what it weighs.']
+    contrast: ['Real coverage on every move — <span class="a">included free</span>.'],
+    positive: ['Real coverage on every move — <span class="a">included free</span>.']
   },
   mym: {
-    contrast: ['Who’s showing up at your door?<br><span class="a">With us, you already know.</span>'],
-    positive: ['Meet your movers <span class="a">before they meet your stuff</span>.']
+    contrast: ['Who’s showing up at your door?<br><span class="a">With us, you already know.</span>',
+               'Meet your movers <span class="a">before they meet your stuff</span>.'],
+    positive: ['Who’s showing up at your door?<br><span class="a">With us, you already know.</span>',
+               'Meet your movers <span class="a">before they meet your stuff</span>.']
   }
 };
 
@@ -815,10 +811,10 @@ safe('sanitizeState', function(){
   if(state.cov!=='killer' && state.cov!=='table') state.cov = 'killer';
   if(state.p2!=='bd' && state.p2!=='cards') state.p2 = 'bd';
   if(state.matters!=='orig' && state.matters!=='prop') state.matters = 'orig';
-  if(state.chips!=='full' && state.chips!=='echo' && state.chips!=='off') state.chips = 'full';
-  if(state.exit!=='dept' && state.exit!=='easiest' && state.exit!=='classic') state.exit = 'dept';
+  if(state.chips!=='full' && state.chips!=='off') state.chips = 'off'; /* echo cut 7/8 */
+  if(state.exit!=='dept' && state.exit!=='easiest') state.exit = 'dept'; /* classic cut 7/8 */
   if(state.wall!=='on' && state.wall!=='off') state.wall = 'on';
-  if(state.tone!=='auto' && state.tone!=='contrast' && state.tone!=='positive') state.tone = 'auto';
+  state.tone = 'auto'; /* tone retired 7/8 — hero locked, H2s locked */
   var t = tone();
   ['ph','ch','mh'].forEach(function(key){
     var arrKey = (key==='ph') ? 'price' : (key==='ch') ? 'cov' : 'mym';
@@ -913,7 +909,7 @@ safe('heroButtons', function(){
     b.type='button'; b.className='opt'; b.dataset.v=h.id; b.textContent=h.label;
     b.addEventListener('click', function(){ state.hero=h.id; renderAll(); });
     row.appendChild(b); /* 7/5 Cameron: in-page marks retired — cut-list.html is the marking surface */
-    (h.fam==='contrast' ? c : p).appendChild(row);
+    var tgt = (h.fam==='contrast' ? c : p); if(tgt) tgt.appendChild(row); /* 7/8: hero panel groups removed (locked) */
   });
 });
 safe('toneButtons', function(){
@@ -938,8 +934,8 @@ var CUR_MODE_MAP = {
   cov:     { group:'MODE · Homepage coverage-section style', ids:{ killer:'m-cov-killer', table:'m-cov-table' }, labels:{ killer:'Killer stat', table:'Payout table' } },
   p2:      { group:'MODE · Homepage price-section layout', ids:{ bd:'m-p2-table', cards:'m-p2-cards' }, labels:{ bd:'Receipt comparison table', cards:'Icon cards' } },
   matters: { group:'MODE · Matters section version', ids:{ orig:'m-mat-orig', prop:'m-mat-prop' }, labels:{ orig:'Original body', prop:'Proposed body' } },
-  chips:   { group:'MODE · Life-chapter pills', ids:{ full:'m-chips-full', echo:'m-chips-echo', off:'m-chips-off' }, labels:{ full:'Full (pills + echo + tailored CTA)', echo:'Echo-only', off:'Off' } },
-  exit:    { group:'Homepage exit line', ids:{ dept:'exit-dept', easiest:'exit-easiest', classic:'exit-classic' }, labels:{ dept:'Dept 🧠', easiest:'Easiest', classic:'Heavy lifting' } }
+  chips:   { group:'MODE · Life-chapter pills', ids:{ full:'m-chips-full', off:'m-chips-off' }, labels:{ full:'Full (pills + echo + tailored CTA)', off:'Off' } },
+  exit:    { group:'Homepage exit line', ids:{ dept:'exit-dept', easiest:'exit-easiest' }, labels:{ dept:'Dept 🧠', easiest:'Easiest' } }
 };
 var cyclerLabelArr = { ph:['Contrast','Positive'], ch:['Contrast','Positive'], mh:['Contrast','Positive'] };
 function renderCutMarkRows(){ /* 7/5 Cameron: in-page marks retired — no-op kept so call sites stay safe */ }
@@ -956,6 +952,14 @@ safe('displayButtons', function(){
       b.addEventListener('click', function(){ state[m[1]]=b.dataset.v; renderAll(); });
     });
   });
+});
+safe('ctaJiggle', function(){
+  /* 7/8 Cameron ask: main CTA jiggles every so often, like the current live site. Hero + sticky bar CTAs. */
+  var targets = [document.getElementById('heroCta'), document.querySelector('.sticky-bar .btn-primary')].filter(Boolean);
+  if(!targets.length) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  targets.forEach(function(el){ el.addEventListener('animationend', function(){ el.classList.remove('cta-jiggle'); }); });
+  setInterval(function(){ targets.forEach(function(el){ el.classList.add('cta-jiggle'); }); }, 7000);
 });
 safe('fab', function(){
   var fab = document.getElementById('wsFab'), panel = document.getElementById('wsPanel');

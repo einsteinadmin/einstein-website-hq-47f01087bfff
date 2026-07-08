@@ -188,8 +188,10 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 <!-- ============ 3. THE VERIFIED BADGE WALL — canon counts + issuer + years ============ -->
 <section class="block" id="badge-wall">
   <div class="wrap">
-    <h2 class="sec">Every trophy, <span class="a">with its name tag on.</span></h2>
-    <p class="sub">Award claims are easy to make and boring to check. So we checked them for you — <b>who gave it, how many times, and when.</b> No blurring city wins into company totals.</p>
+    <!-- 7/8 ballot: 2 finalists survived Cameron's badge-wall H2 vote — feel both via the ⇄ pill (bottom-left). -->
+    <h2 class="sec" id="badgeH2">Every trophy, <span class="a">with its name tag on.</span></h2>
+    <!-- 7/8 LOCKED (Cameron): badge-wall sub = the "bragging" rewrite. -->
+    <p class="sub">Yes, this is bragging. <b>We earned it</b> — and every line below says who gave it, how many times, and when.</p>
     <div class="badges">
       <div class="badge">
         <div class="logo-ph">[ASSET-GATED: real Best of Austin badge tile]</div>
@@ -398,32 +400,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 })();
 </script>
 
-<!-- Workshop H2 toggle — review-wall headline, 2 finalists after Cameron's 7/5 cut round (persisted: emc-awards-wallh2) -->
-<script>
-(function(){
-  var h2 = document.getElementById('wallH2');
-  if(!h2) return;
-  var V = [
-    { id:'opt1', html:'We&rsquo;re not happy unless you&rsquo;re <span class="a">THIS happy.</span>' },
-    { id:'opt2', html:'The trophies are nice. <span class="a">These are better.</span>' },
-    /* 7/5 Cameron: promoted from the review-reality band */
-    { id:'opt3', html:'Real names, real moves — <span class="a">not a hand-picked carousel.</span>' }
-  ];
-  var idx = 0;
-  try{ var awS=localStorage.getItem('emc-awards-wallh2'); if(awS==='opt2') idx=1; else if(awS==='opt3') idx=2; }catch(e){}
-  function apply(){
-    h2.innerHTML = V[idx].html; btn.textContent = '⇄ Review-wall H2 · ' + V[idx].id; document.body.setAttribute('data-combo','wallh2='+V[idx].id);
-  }
-  var btn = document.createElement('button');
-  btn.className = 'h1-toggle'; btn.type = 'button'; btn.title = 'Workshop control: cycle review-wall H2 variants';
-  btn.addEventListener('click', function(){
-    idx = (idx+1) % V.length;
-    try{ localStorage.setItem('emc-awards-wallh2', V[idx].id); }catch(e){}
-    apply();
-  });
-  document.body.appendChild(btn);
-  apply();
-})();
+<!-- 7/8 LOCKED (Cameron + KP): review-wall H2 = "THIS happy" (static markup above). Options 2 + 5 cut;
+     toggle removed. The review-reality band itself was never on the ballot — it stays. -->
 </script>
 <script src="feedback.js?v=20260705cut2"></script>
 <!-- 7/5 Cameron: in-page marks retired — cut-list.html is the marking surface -->
@@ -436,6 +414,31 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     ham.setAttribute('aria-expanded', open?'true':'false');
   });
   links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ links.classList.remove('open'); ham.setAttribute('aria-expanded','false'); }); });
+})();
+</script>
+<script>
+/* 7/8 Workshop toggle — badge-wall H2, 2 finalists (Cameron ballot): current vs "The trophy case, itemized."
+   Same h1-toggle pill pattern; persisted emc-awards-badgeh2. */
+(function(){
+  var h2 = document.getElementById('badgeH2'); if(!h2) return;
+  var V = [
+    { id:'cur',  html:'Every trophy, <span class="a">with its name tag on.</span>' },
+    { id:'opt2', html:'The trophy case, <span class="a">itemized.</span>' }
+  ];
+  var idx = 0;
+  try{ if(localStorage.getItem('emc-awards-badgeh2')==='opt2') idx = 1; }catch(e){}
+  var btn = document.createElement('button');
+  btn.className = 'h1-toggle'; btn.type = 'button'; btn.title = 'Workshop control: badge-wall H2 (2 finalists, 7/8 ballot)';
+  function apply(){
+    h2.innerHTML = V[idx].html;
+    btn.textContent = '⇄ Badge H2 · ' + (idx===0 ? 'name tag (current)' : 'itemized');
+  }
+  btn.addEventListener('click', function(){
+    idx = (idx+1) % V.length;
+    try{ localStorage.setItem('emc-awards-badgeh2', V[idx].id); }catch(e){}
+    apply();
+  });
+  document.body.appendChild(btn); apply();
 })();
 </script>
 </body></html>

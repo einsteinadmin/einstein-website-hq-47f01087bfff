@@ -298,8 +298,9 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <div class="ic">💲</div>
     <!-- 7/4 decision (Cameron's hero review): H1 promoted to the homepage's proven contrast line; "moving prices" SEO keyword moved from H1 into the lead — flag for KP's SEO pass. Fee-table H2 below reworded so the promoted line isn't said twice. -->
     <!-- 7/5 Cameron page-by-page -->
-    <h1 id="heroH1">Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span></h1>
-    <p class="lead" id="heroLead">Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. Our moving prices are one upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, appliance hookups, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b></p>
+    <!-- 7/8 LOCKED (Cameron + KP): proposed hero won — the #1 fear goes in the big text. "Whole thing" line released to the homepage pricing H2 (echo resolved). ⚠ SEO note for KP pass: this H1 carries no "moving prices" keyword — the lead + title tag carry it. -->
+    <h1 id="heroH1">&ldquo;Am I going to get ripped off?&rdquo;<br><span class="a">Not here &mdash; and this page is the receipt.</span></h1>
+    <p class="lead" id="heroLead">Our moving prices are one upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, appliance hookups, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b></p>
     <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my price →</a>
     <div class="microproof">Free quote in ~47 seconds · No phone calls · No deposit</div>
   </div>
@@ -324,57 +325,9 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 </section>
 
 <!-- ============ 3. THE COMPARISON (locked table + B/D second part) ============ -->
-<section class="block" id="fee-comparison">
-  <div class="wrap">
-    <!-- 7/4: H2 reworded — the "starting price / whole thing" line was promoted to the page H1, so this section can't repeat it.
-         7/5 Cameron page-by-page: table-H2 ⇄ toggle removed entirely — the adopted mailer line ("We fixed the stuff
-         that makes moving terrible") belongs on Why Us, not here (relocated to why-us-page-b.html hero variant W5).
-         This H2 is permanent static copy again. -->
-    <h2 class="sec" id="tableH2">One hourly rate. <span class="a">The add-ons? All $0.</span><!-- 7/5 Cameron pick: old sub-sentence read 'a bit AI' --></h2>
-    <p class="sub">A low hourly rate always looks cheaper — until the fees stack up on move day.</p>
-    <div class="tblscroll">
-    <table class="cmp" aria-label="What typical movers charge extra for vs Einstein">
-      <thead><tr><th class="item">The fee</th><th class="them">Typical mover</th><th class="us">Einstein</th></tr></thead>
-      <tbody>
-        <tr style="--i:0"><td class="item">When the clock starts</td><td class="them"><span class="x">✕</span>At their warehouse</td><td class="us"><span class="chk">✓</span>At your door</td></tr>
-        <tr style="--i:1"><td class="item">Booking deposit</td><td class="them"><span class="x">✕</span>Required — often forfeited</td><td class="us"><span class="chk">✓</span>$0 · free cancellation</td></tr>
-        <!-- 7/5 scope added (mailer-council handoff): unqualified "$0 trip fee" is only true inside the service area -->
-        <tr style="--i:2"><td class="item">Fuel / trip surcharge</td><td class="them"><span class="x">✕</span><span class="strike">+$50–250</span></td><td class="us"><span class="chk">✓</span>$0 · in your service area</td></tr>
-        <tr style="--i:3"><td class="item">Credit-card fee</td><td class="them"><span class="x">✕</span><span class="strike">+2.5–3.5%</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
-        <tr style="--i:4"><td class="item">Blankets, wrap &amp; supplies</td><td class="them"><span class="x">✕</span><span class="strike">+$65–135</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
-        <tr style="--i:5"><td class="item">Stair / long-carry / heavy-item fees</td><td class="them"><span class="x">✕</span><span class="strike">+$100–250</span></td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
-        <!-- 7/5 Cameron add: appliance disconnect/reconnect = a real differentiator most movers refuse. Scope CONFIRMED by Cameron 7/5: everything but gas. Signed liability waiver required (say so — it's the honest version). -->
-        <!-- 7/5 Cameron page-by-page: simplified to "$0 · included" — the FAQ below carries the everything-but-gas/waiver detail; laymen were confused by the parenthetical here. -->
-        <tr style="--i:6"><td class="item">Appliance disconnect &amp; reconnect</td><td class="them"><span class="x">✕</span>Won&rsquo;t touch them — call a handyman</td><td class="us"><span class="chk">✓</span>$0 · included</td></tr>
-        <tr style="--i:7"><td class="item">Damage coverage</td><td class="them"><span class="x">✕</span>60¢/lb — or pay to upgrade</td><td class="us"><span class="chk">✓</span>$2,000 · actual value<span class="fb">Free</span></td></tr>
-        <tr class="bottom" style="--i:8"><td class="item">Bottom line</td><td class="them">25–50% more than quoted*</td><td class="us">Nothing added at the bottom</td></tr>
-      </tbody>
-    </table>
-    </div>
-    <p class="fineprint">Typical-mover fees shown are common industry ranges, not any one company — your Einstein rate varies by market, but the $0 columns never do. *Range based on published industry fee data, verified against our mystery-shop numbers.</p>
-
-    <!-- 7/5 Cameron — table and receipts may not belong on the same page; the "beat" toggle below (bottom-right pill)
-         exists so we can feel all three arrangements before deciding. In 'both' mode (the coherence-pass rec) this
-         "extras...$0" strip is HIDDEN — it's a third restatement of the same idea the demo + table already carry.
-         See #pb-extras-block toggle logic in the script block near the bottom of this file. -->
-    <div id="pb-extras-block">
-      <div class="p2-headrow">
-        <h3>And the extras? <span class="b">Already on the receipt — at $0.</span></h3>
-        <div class="stamp">No<br>add-ons</div>
-      </div>
-      <!-- 7/5 Cameron page-by-page: de-duped vs the fee-comparison table above — dropped the 3 rows that
-           just restated the table (blankets/wrap & supplies, $2,000 damage coverage, booking deposit) plus
-           the appliance row. Kept only what the table doesn't already say: TV boxes, disassembly/reassembly,
-           and the on-time guarantee. -->
-      <div class="r2-card">
-        <div class="r2-line"><span>TV boxes (&times;2)</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
-        <div class="r2-line"><span>Furniture disassembly &amp; reassembly</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
-        <div class="r2-line"><span>On-time guarantee <span class="r2-note">· late = your move is discounted</span></span><span class="r2-dots"></span><span class="r2-inc">Included</span></div>
-        <div class="r2-tot"><span>Everything most movers bill extra for</span><span class="r2-big">$0</span></div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- 7/8 CUT ROUND 2 (Cameron + KP): #fee-comparison REMOVED from this page — beat decided = receipts only.
+     The us-vs-them comparison table now lives on the Why Us pricing pillar (why-us-page-b.html #p-pricing).
+     The "extras...$0" strip survived the move — re-homed inside the receipts section below. -->
 
 <!-- ============ 3B. SPARKS DEMO A — dueling receipts ============
      Proposal for KP: the fee-comparison table above states the case; this animates the punchline —
@@ -384,7 +337,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
      the same industry ranges already cited in the fee-comparison table). -->
 <section class="block receipts-wrap" id="receipts-demo" style="background:var(--grey-50)">
   <div class="wrap">
-    <span class="sparks-tag">✨ SPARKS DEMO — for the KP workshop</span>
+    <!-- 7/8: sparks-tag removed — receipts demo RATIFIED as the pricing-comparison beat (KP + Cameron) -->
     <h2 class="sec">Two receipts, <span class="a">same move.</span></h2>
     <p class="sub">Watch how long the typical mover&rsquo;s keeps going.</p>
     <!-- SURFACE RULE: no committed $/hr or dollar totals on this page. Competitor amounts below reuse
@@ -412,7 +365,26 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
         <div class="rtot"><span>Added at the bottom</span><span class="amt">Nothing.</span></div>
       </div>
     </div>
-    <p class="fineprint">Fee lines reuse the industry ranges from the table above &mdash; not any one company. Trip fees: $0 inside your branch&rsquo;s service area, and disclosed before you book if you&rsquo;re outside it.</p>
+    <p class="fineprint">Fee lines are common industry ranges &mdash; not any one company. Trip fees: $0 inside your branch&rsquo;s service area, and disclosed before you book if you&rsquo;re outside it.</p>
+
+    <!-- 7/8: extras strip re-homed here when the comparison table moved to Why Us — carries the only
+         items the receipts don't already name (TV boxes, disassembly/reassembly, on-time guarantee). -->
+    <div id="pb-extras-block">
+      <div class="p2-headrow">
+        <h3>And the extras? <span class="b">Already on the receipt — at $0.</span></h3>
+        <div class="stamp">No<br>add-ons</div>
+      </div>
+      <!-- 7/5 Cameron page-by-page: de-duped vs the fee-comparison table above — dropped the 3 rows that
+           just restated the table (blankets/wrap & supplies, $2,000 damage coverage, booking deposit) plus
+           the appliance row. Kept only what the table doesn't already say: TV boxes, disassembly/reassembly,
+           and the on-time guarantee. -->
+      <div class="r2-card">
+        <div class="r2-line"><span>TV boxes (&times;2)</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+        <div class="r2-line"><span>Furniture disassembly &amp; reassembly</span><span class="r2-dots"></span><span class="r2-zero">$0</span></div>
+        <div class="r2-line"><span>On-time guarantee <span class="r2-note">· late = your move is discounted</span></span><span class="r2-dots"></span><span class="r2-inc">Included</span></div>
+        <div class="r2-tot"><span>Everything most movers bill extra for</span><span class="r2-big">$0</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -547,109 +519,18 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
    so feedback.js notes carry all active variants at once.
    7/5 Cameron page-by-page: dropped the tableh2= key — the fee-table H2 toggle was removed entirely
    (mailer line relocated to Why Us hero W5; this section's H2 is permanent static copy again). */
-window.__prCombo = { h1:'original', sparks:'on', beat:'both' };
+window.__prCombo = { h1:'proposed-locked', sparks:'on', beat:'receipts-locked' }; /* 7/8 locks */
 function __prWriteCombo(){
   document.body.setAttribute('data-combo', 'h1='+window.__prCombo.h1+'&sparks='+window.__prCombo.sparks+'&beat='+window.__prCombo.beat);
 }
 
-/* Workshop H1 toggle — ORIGINAL vs PROPOSED hero (persisted: emc-pricing-h1) */
-(function(){
-  var h1 = document.getElementById('heroH1'), lead = document.getElementById('heroLead');
-  if(!h1 || !lead) return;
-  var V = [
-    /* 7/4: slot 0 updated to Cameron's ratified hero (H1 promoted, "moving prices" keyword moved to the lead — flag for KP's SEO pass). id stays 'original' so persisted localStorage keeps tracing. */
-    { id:'original',
-      h1:'Most movers quote a starting price.<br><span class="a">We quote the whole thing.</span>',
-      lead:'Getting ripped off is the <b>#1 fear</b> people have when hiring movers — so we made it impossible. Our moving prices are one upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, appliance hookups, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b>' },
-    { id:'proposed',
-      h1:'“Am I going to get ripped off?”<br><span class="a">Not here — and this page is the receipt.</span>',
-      lead:'One upfront hourly rate across Texas and Tampa, FL: your movers, the truck, blankets, wrap, tools, taxes, appliance hookups, and <b>$2,000 of damage coverage</b>, all in it. <b>The rate you see is the whole rate.</b>' }
-  ];
-  var idx = 0;
-  try{ if(localStorage.getItem('emc-pricing-h1')==='proposed') idx = 1; }catch(e){}
-  function apply(){
-    h1.innerHTML = V[idx].h1; lead.innerHTML = V[idx].lead; btn.textContent = '⇄ Headline · ' + (idx===0?'original':'proposed');
-    window.__prCombo.h1 = V[idx].id; __prWriteCombo();
-  }
-  var btn = document.createElement('button');
-  btn.className = 'h1-toggle'; btn.type = 'button'; btn.title = 'Workshop control: cycle hero H1 variants';
-  btn.addEventListener('click', function(){
-    idx = (idx+1) % V.length;
-    try{ localStorage.setItem('emc-pricing-h1', V[idx].id); }catch(e){}
-    apply();
-  });
-  document.body.appendChild(btn);
-  apply();
-})();
+/* 7/8: H1 toggle removed — hero LOCKED to the proposed variant (see hero markup). */
 
 /* 7/5 Cameron page-by-page: fee-comparison table H2 ⇄ toggle removed entirely (mailer line relocated to
    Why Us hero W5 — see why-us-page-b.html). tableH2 is permanent static copy again; no toggle, no km row. */
 
-/* ============ WORKSHOP TOGGLE — the pricing-comparison "beat" (persisted: emc-pricing-beat) ============
-   7/5 Cameron: a coherence review found #fee-comparison (table + fineprint + "extras...$0" strip) and
-   #receipts-demo tell the same beat twice back-to-back. This cycles THREE arrangements so Cameron can
-   feel each one live before deciding:
-     'both'     — DEFAULT, the coherence-pass rec. #receipts-demo moves FIRST (the hook), the comparison
-                  section follows as the check-my-math reference, and the "extras...$0" strip (#pb-extras-block)
-                  is HIDDEN — it's a third restatement of the same idea.
-     'table'    — the incumbent. Full #fee-comparison section (table + fineprint + extras strip); the
-                  #receipts-demo section hidden entirely.
-     'receipts' — #receipts-demo only; the ENTIRE #fee-comparison section (table, fineprint, extras strip)
-                  hidden.
-   Reordering is physical (insertBefore) so document order matches what 'both' claims — not just a visual
-   CSS order trick — because the receipts scroll-trigger animation keys off real intersection/scroll position.
-   Unknown/stale localStorage values sanitize to 'both'. */
-(function(){
-  var cmpSec = document.getElementById('fee-comparison');
-  var demoSec = document.getElementById('receipts-demo');
-  var extras = document.getElementById('pb-extras-block');
-  if(!cmpSec || !demoSec) return;
-  var parent = cmpSec.parentNode;
-  var MODES = ['both','table','receipts'];
-  var LABELS = { both:'Demo → Table (extras hidden)', table:'Table only (incumbent)', receipts:'Receipts only' };
-  var mode = 'both';
-  try{
-    var stored = localStorage.getItem('emc-pricing-beat');
-    mode = (MODES.indexOf(stored) !== -1) ? stored : 'both'; /* sanitize unknown/stale values */
-  }catch(e){ mode = 'both'; }
-  function apply(){
-    if(mode === 'both'){
-      /* physically move the demo section ahead of the comparison section */
-      if(demoSec.nextSibling !== cmpSec) parent.insertBefore(demoSec, cmpSec);
-      demoSec.style.display = '';
-      cmpSec.style.display = '';
-      if(extras) extras.style.display = 'none';
-    } else if(mode === 'table'){
-      /* restore natural order (comparison first, demo after) — matches source order */
-      if(cmpSec.nextSibling !== demoSec) parent.insertBefore(cmpSec, demoSec);
-      cmpSec.style.display = '';
-      demoSec.style.display = 'none';
-      if(extras) extras.style.display = '';
-    } else { /* receipts */
-      if(cmpSec.nextSibling !== demoSec) parent.insertBefore(cmpSec, demoSec);
-      cmpSec.style.display = 'none';
-      demoSec.style.display = '';
-      if(extras) extras.style.display = '';
-    }
-    btn.textContent = '⇄ Beat · ' + LABELS[mode];
-    window.__prCombo.beat = mode; __prWriteCombo();
-    /* the receipts demo may have just become visible for the first time (table→receipts/both switch) —
-       give its own IntersectionObserver (registered later in this file) a chance to re-check by nudging
-       a resize-free re-measure; it re-observes on scroll naturally, but if the section is already in
-       view at switch time (e.g. toggled while scrolled down), fire a manual check once. */
-    if(mode !== 'table' && window.__pbCheckReceiptsInView) window.__pbCheckReceiptsInView();
-  }
-  var btn = document.createElement('button');
-  btn.className = 'beat-toggle'; btn.type = 'button'; btn.title = 'Workshop control: cycle the pricing-comparison beat (table / receipts / both)';
-  btn.addEventListener('click', function(){
-    var idx = (MODES.indexOf(mode) + 1) % MODES.length;
-    mode = MODES[idx];
-    try{ localStorage.setItem('emc-pricing-beat', mode); }catch(e){}
-    apply();
-  });
-  document.body.appendChild(btn);
-  apply();
-})();
+/* 7/8: beat toggle removed — DECIDED receipts-only (KP + Cameron). Comparison table moved to
+   why-us-page-b.html #p-pricing. Stale emc-pricing-beat localStorage is simply ignored. */
 
 /* Scroll-in animations: strike-draw + $0 pill pop (comparison table) and stamp thunk.
    Reduced-motion fallbacks render final states statically (see CSS). */
