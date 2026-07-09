@@ -343,6 +343,19 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
 footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .sitemap a:hover{color:#fff}
 @media(max-width:360px){html{scroll-padding-top:150px}}
 /* 7/8 Cameron: periodic attention jiggle on the primary CTA (like the live site). Motion-safe. */
+/* 7/8 Killer-stat iterate round 1 — K1 current · K2 KP single-example+visual · K3 strikethrough math · K4 pick-your-item.
+   KP 7/7: "a single example (such as the laptop) gets the point across quickly… visual TBD (laptop+scale photo or Einstein animation)."
+   Cameron 7/8: KP's idea = first candidate, not yet proven best. */
+.killer .kvis{font-size:52px;line-height:1;margin-bottom:14px}
+.killer .kvis .vtag{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--grey-500);font-weight:700;margin-top:6px}
+.killer .kmath{font-family:Lora,serif;font-size:40px;font-weight:700;line-height:1.15;color:var(--navy-500)}
+.killer .kmath .dead{color:var(--error);text-decoration:line-through;text-decoration-thickness:3px}
+.killer .kmath .live{color:var(--success-text)}
+.killer .kmath .arrow{color:var(--grey-500);font-size:30px;padding:0 8px}
+.killer .kpicks{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.killer .kpick{border:1px solid var(--grey-100);background:#fff;border-radius:999px;padding:8px 16px;font:600 13.5px Roboto,sans-serif;color:var(--navy-500);cursor:pointer}
+.killer .kpick[aria-pressed="true"]{background:var(--navy-500);color:#fff;border-color:var(--navy-500)}
+.killer .klaw{font-size:13px;color:var(--grey-500);margin-top:14px}
 @keyframes ctaJiggle{0%,100%{transform:none}12%{transform:rotate(-2.2deg) scale(1.03)}24%{transform:rotate(2deg)}36%{transform:rotate(-1.4deg) scale(1.015)}48%{transform:rotate(.8deg)}60%{transform:none}}
 .cta-jiggle{animation:ctaJiggle .85s ease}
 @media (prefers-reduced-motion: reduce){.cta-jiggle{animation:none}}
@@ -448,15 +461,48 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <h2 class="sec rv" id="covH2">Most movers cover your stuff by the pound.<br>We cover what it&rsquo;s actually <span class="a">worth</span>.</h2>
     <p class="sub rv">By law, a mover only owes <b>60&#162; a pound</b> if they break something. Every Einstein move includes <b>$2,000 of coverage, free</b> &mdash; paid on actual value.</p>
 
-    <!-- display: killer stat (default) -->
+    <!-- display: killer stat (default) — 7/8 iterate round 1, 4 versions cycle via the panel (state.kv) -->
     <div id="covKiller" class="rv">
-      <div class="killer">
+
+      <!-- K1 · current (baseline) -->
+      <div class="killer" data-kv="k1">
         <div class="q">If a mover drops your <b>$1,500 laptop&hellip;</b></div>
         <div class="duo">
           <div class="col kthem"><div class="lbl">Most movers owe you</div><div class="big">$3</div><div class="capn">5 lb &times; 60&#162; a pound. <i>(No, that&rsquo;s not a typo.)</i> Pay ~$200 for a typical upgrade and it&rsquo;s ~$15.</div></div>
           <div class="col kus"><div class="lbl">Einstein pays</div><div class="big">$1,500</div><div class="capn">Actual value. Free. No per-pound math.</div></div>
         </div>
         <div class="strip"><span><b>65&Prime; TV:</b> $30 &rarr; $1,200</span><span><b>Sofa:</b> $90 &rarr; $1,800</span><span><b>Your floors &amp; walls:</b> not in their valuation coverage &rarr; covered, handled by us</span></div>
+      </div>
+
+      <!-- K2 · KP's riff executed: SINGLE example, minimal captions, visual slot. -->
+      <div class="killer" data-kv="k2" hidden>
+        <div class="kvis">💻&#8202;⚖️<span class="vtag">[VISUAL SLOT — laptop-on-scale photo or Einstein animation, KP call]</span></div>
+        <div class="q">If a mover drops your <b>$1,500 laptop&hellip;</b></div>
+        <div class="duo">
+          <div class="col kthem"><div class="lbl">Most movers owe you</div><div class="big">$3</div><div class="capn">That&rsquo;s the law: 60&#162; a pound.</div></div>
+          <div class="col kus"><div class="lbl">Einstein pays</div><div class="big">$1,500</div><div class="capn">What it&rsquo;s actually worth.</div></div>
+        </div>
+      </div>
+
+      <!-- K3 · the math out loud: one line, strikethrough — no columns at all -->
+      <div class="killer" data-kv="k3" hidden>
+        <div class="q">A laptop weighs 5 pounds. By law, that&rsquo;s what a mover owes you for breaking it:</div>
+        <div class="kmath"><span class="dead">$3</span><span class="arrow">&rarr;</span><span class="live">$1,500 at Einstein</span></div>
+        <div class="klaw">60&#162; a pound is the industry standard. We pay actual value instead — included free on every move.</div>
+      </div>
+
+      <!-- K4 · pick your item: the old strip's richness, as interaction instead of clutter -->
+      <div class="killer" data-kv="k4" hidden>
+        <div class="q">What would a mover owe you for breaking your&hellip;</div>
+        <div class="kpicks" id="kvPicks">
+          <button class="kpick" data-item="laptop" aria-pressed="true" type="button">💻 Laptop</button>
+          <button class="kpick" data-item="tv" aria-pressed="false" type="button">📺 65&Prime; TV</button>
+          <button class="kpick" data-item="sofa" aria-pressed="false" type="button">🛋️ Sofa</button>
+        </div>
+        <div class="duo">
+          <div class="col kthem"><div class="lbl">Most movers owe you</div><div class="big" id="kvThem">$3</div><div class="capn" id="kvThemCap">5 lb &times; 60&#162; a pound</div></div>
+          <div class="col kus"><div class="lbl">Einstein pays</div><div class="big" id="kvUs">$1,500</div><div class="capn">Actual value. Free.</div></div>
+        </div>
       </div>
     </div>
 
@@ -479,7 +525,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
       </div>
     </div>
 
-    <p class="fineprint rv"><b>$2,000 of coverage is included on every Einstein move, free.</b> Most moves never come near it. <a href="coverage-page.html">What it pays, exactly →</a></p>
+    <!-- 7/8 KP: "This copy should be bigger, it's important." Promoted from fineprint to a standout line. -->
+    <p class="rv" style="text-align:center;font-size:19px;color:var(--navy-500);max-width:640px;margin:26px auto 0;line-height:1.5"><b>$2,000 of coverage is included on every Einstein move, free.</b> Most moves never come near it. <a href="coverage-page.html">What it pays, exactly →</a></p>
 
     <div style="text-align:center;margin-top:40px" class="rv">
       <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">Get a quote with coverage included →</a>
@@ -727,6 +774,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <div class="grp"><div class="lab">Coverage display <a href="#coverage" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsCov">
     <button class="opt" data-v="killer" type="button">Killer stat</button>
     <button class="opt" data-v="table" type="button">Full table</button>
+  </div><div class="lab" style="margin-top:8px">Killer-stat version · iterate rd 1</div><div class="cyc-row"><button class="opt" id="wsKv" type="button">↻ K1 · current (1/4)</button>
   </div></div>
   <div class="grp"><div class="lab">Movers headline · ⚖ A/B <a href="#movers" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="cyc-row"><button class="opt" id="wsMh" type="button">↻ Next line (1/2)</button></div></div>
   <!-- 7/5 Cameron: pillar fears LOCKED OFF ("off for sure") — panel group removed, state pinned -->
@@ -795,7 +843,7 @@ var HEADLINES = {
 
 /* ---------- STATE ---------- */
 /* 7/5 Cameron leans set as defaults (toggles stay live for the KP workshop): wall off · matters proposed · chips off; tone back to AUTO (his read: contrast flows with contrast, barely) */
-var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', p2:'bd', wall:'off', matters:'prop', fears:'off', exit:'dept', chips:'off' };
+var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', kv:'k1', p2:'bd', wall:'off', matters:'prop', fears:'off', exit:'dept', chips:'off' };
 safe('loadState', function(){
   var saved = localStorage.getItem('ws-state-v2');
   if(saved){ var s = JSON.parse(saved); for(var k in state){ if(s[k]!==undefined) state[k]=s[k]; } }
@@ -815,6 +863,7 @@ safe('sanitizeState', function(){
   if(state.exit!=='dept' && state.exit!=='easiest') state.exit = 'dept'; /* classic cut 7/8 */
   if(state.wall!=='on' && state.wall!=='off') state.wall = 'on';
   state.tone = 'auto'; /* tone retired 7/8 — hero locked, H2s locked */
+    if(['k1','k2','k3','k4'].indexOf(state.kv)<0) state.kv='k1';
   var t = tone();
   ['ph','ch','mh'].forEach(function(key){
     var arrKey = (key==='ph') ? 'price' : (key==='ch') ? 'cov' : 'mym';
@@ -851,6 +900,10 @@ function renderHeadlines(){
 }
 function renderDisplays(){
   var k = document.getElementById('covKiller'), tb = document.getElementById('covTable');
+  /* 7/8 killer-stat versions */
+  document.querySelectorAll('#covKiller .killer[data-kv]').forEach(function(el){ el.hidden = (el.dataset.kv !== state.kv); });
+  var kvBtn = document.getElementById('wsKv');
+  if(kvBtn){ var KVL={k1:'K1 · current',k2:'K2 · KP single+visual',k3:'K3 · math out loud',k4:'K4 · pick your item'}; kvBtn.textContent = '↻ '+KVL[state.kv]+' ('+(['k1','k2','k3','k4'].indexOf(state.kv)+1)+'/4)'; }
   if(k) k.hidden = state.cov!=='killer';
   if(tb) tb.hidden = state.cov!=='table';
   var bd = document.getElementById('price2bd'), cards = document.getElementById('price2cards');
@@ -915,6 +968,23 @@ safe('heroButtons', function(){
 safe('toneButtons', function(){
   document.querySelectorAll('#wsTone .opt').forEach(function(b){
     b.addEventListener('click', function(){ state.tone=b.dataset.v; renderAll(); });
+  });
+});
+safe('killerVersions', function(){
+  /* 7/8 killer-stat iterate rd 1 — ONE-TIME wiring (never inside renderPanel: that runs per render and stacks listeners) */
+  var kvB = document.getElementById('wsKv');
+  if(kvB) kvB.addEventListener('click', function(){
+    var KVS=['k1','k2','k3','k4']; state.kv = KVS[(KVS.indexOf(state.kv)+1)%4]; renderAll();
+  });
+  var D = { laptop:{them:'$3', cap:'5 lb \u00d7 60\u00a2 a pound', us:'$1,500'}, tv:{them:'$30', cap:'~50 lb \u00d7 60\u00a2 a pound', us:'$1,200'}, sofa:{them:'$90', cap:'~150 lb \u00d7 60\u00a2 a pound', us:'$1,800'} };
+  var wrap = document.getElementById('kvPicks');
+  if(wrap) wrap.addEventListener('click', function(e){
+    var b = e.target.closest('.kpick'); if(!b) return;
+    wrap.querySelectorAll('.kpick').forEach(function(x){ x.setAttribute('aria-pressed', x===b ? 'true':'false'); });
+    var d = D[b.dataset.item];
+    document.getElementById('kvThem').textContent = d.them;
+    document.getElementById('kvThemCap').textContent = d.cap;
+    document.getElementById('kvUs').textContent = d.us;
   });
 });
 /* ---- "this one" keep/cut for cycler + mode groups: marks the CURRENTLY DISPLAYED option id ---- */
