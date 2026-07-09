@@ -209,10 +209,22 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
   <!-- 7/5 Cameron's remix (over street-test fix "Parts four and five…") — names the System (Miller's plan-naming note satisfied). Still on his iterate list: "we're down to <10 pieces of copy to iterate — this is one." -->
   <!-- 🔒 LOCKED 7/9 (Cameron picked G2 of 3): Scheduling (money-backed guarantee) + Results (proof) are PARALLEL — never frame the proof as backing the guarantee. The plural "guarantees with money behind them" lives on pricing-page.html #guarantees (On-Time + $2,000 Coverage — both money-backed, honest there).
        SECTION-STRUCTURE INTENT (Cameron 7/9, for cold readers + KP): this page deliberately spends its space on the three biggest customer-facing differentiators — pricing, coverage, meet-your-movers — as full pillars. The secondary priorities (on-time guarantee / quick-quote speed / smart results) are lumped in THIS one section to save space. Whether Results should instead merge into the "Vet Us" closer = an open IA question for the KP workshop, not settled here. -->
+  <!-- 7/9 STRUCTURE TOGGLE (Cameron: build it, decide by eye — ⇄ pill bottom-left):
+       A (current) = the lump: Scheduling + Results share this section (space-saving, intent documented above).
+       B (proof-at-close) = this section slims to the Scheduling guarantee band; Smart Results moves INTO the
+       "Vet Us" closer below (structB2) so the proof lands at the end of the page's argument. -->
+  <div id="structA1">
   <h2 class="sec" style="font-size:24px">The last two parts of the Smart Move System: <span class="a">the on-time guarantee, and the track record behind the whole system.</span></h2>
   <div class="support">
     <div class="scard"><h4>📅 Smart Scheduling</h4><p>Book in minutes — and the On-Time Guarantee has teeth: late means your move is discounted, and the longer we&rsquo;re late, the bigger the discount.</p></div>
     <div class="scard"><h4>🏆 Smart Results</h4><p>4.9/5 across 8,100+ reviews · 10× Best of Austin · 5× Best in DFW · 4× Best of San Antonio · 3× Best of the Best Houston · 7× Inc. 5000 · featured in Forbes Home. Seriously — we&rsquo;re running out of shelf space. <a href="awards-reviews-page.html">The full year-by-year, every trophy with its name tag on →</a></p></div>
+  </div>
+  </div>
+  <div id="structB1" hidden>
+  <h2 class="sec" style="font-size:24px">One more part of the Smart Move System: <span class="a">the on-time guarantee — with money behind it.</span></h2>
+  <div class="support" style="grid-template-columns:1fr;max-width:560px">
+    <div class="scard"><h4>📅 Smart Scheduling</h4><p>Book in minutes — and the On-Time Guarantee has teeth: late means your move is discounted, and the longer we&rsquo;re late, the bigger the discount.</p></div>
+  </div>
   </div>
   <!-- 7/4 Cameron pick (Liana pass): line ported verbatim from Variant A §q-communication — "must survive the merge" -->
   <p class="sub" style="margin:24px auto 0"><b>And the part no pillar covers:</b> constant communication — we check in so regularly you&rsquo;ll never wonder what&rsquo;s next. You might wonder about other things. Life, the universe. Not your move.</p>
@@ -253,6 +265,11 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
   <p class="sub" style="margin-bottom:0">Here&rsquo;s how to vet <i>any</i> moving company — the questions to ask before you book with anyone, including us. The system above is our answer sheet.</p>
   <div class="videobox">
     <div class="vph">▶ &ldquo;How to Choose the Right Moving Company&rdquo;<br><span style="font-size:11px">embed youtu.be/pj_dJsc5QCc</span></div>
+  </div>
+  <!-- 7/9 STRUCTURE B: Smart Results lands HERE — the verdict beat at the end of the argument (hidden in structure A) -->
+  <div id="structB2" hidden style="max-width:640px;margin:30px auto 0">
+    <p class="sub" style="margin:0 0 12px"><b>And when you vet us, here&rsquo;s what you&rsquo;ll find:</b></p>
+    <div class="scard" style="text-align:left"><h4>🏆 Smart Results</h4><p>4.9/5 across 8,100+ reviews · 10× Best of Austin · 5× Best in DFW · 4× Best of San Antonio · 3× Best of the Best Houston · 7× Inc. 5000 · featured in Forbes Home. Seriously — we&rsquo;re running out of shelf space. <a href="awards-reviews-page.html">The full year-by-year, every trophy with its name tag on →</a></p></div>
   </div>
 </div></section>
 
@@ -343,6 +360,24 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
     fab.setAttribute('aria-expanded', open?'true':'false');
   });
   render();
+})();
+</script>
+<script>
+/* 7/9 STRUCTURE toggle — A (current lump) vs B (Scheduling-only band + Smart Results merged into the Vet Us closer).
+   Cameron: larger page-structure decisions = Cameron+Albert; decide by EYE, not description. Persisted emc-whyus-struct. */
+(function(){
+  var a1=document.getElementById('structA1'), b1=document.getElementById('structB1'), b2=document.getElementById('structB2');
+  if(!a1||!b1||!b2) return;
+  var mode='A';
+  try{ if(localStorage.getItem('emc-whyus-struct')==='B') mode='B'; }catch(e){}
+  var btn=document.createElement('button'); btn.type='button';
+  btn.style.cssText='position:fixed;left:14px;bottom:14px;z-index:400;background:#fff;border:1px solid #E2E3E4;border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:#53575A;cursor:pointer;box-shadow:0 1px 2px rgba(39,52,61,.08)';
+  function apply(){
+    a1.hidden = (mode!=='A'); b1.hidden = (mode!=='B'); b2.hidden = (mode!=='B');
+    btn.textContent = mode==='A' ? '⇄ Structure · A — current (lump)' : '⇄ Structure · B — proof at close';
+  }
+  btn.addEventListener('click', function(){ mode = mode==='A' ? 'B' : 'A'; try{localStorage.setItem('emc-whyus-struct',mode);}catch(e){} apply(); });
+  document.body.appendChild(btn); apply();
 })();
 </script>
 </body></html>

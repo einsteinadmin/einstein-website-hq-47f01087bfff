@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<title>Site Architecture &amp; Navigation — v1 proposal | Einstein Website Workshop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy-500:#27343D;--navy-700:#1A2329;--orange-50:#FEF6EC;--orange-100:#FDE3C2;--orange-500:#EF8B22;--orange-900:#CC5500;--grey-50:#F4F5F5;--grey-100:#E2E3E4;--grey-500:#53575A;--blue-500:#0979C3;--radius:12px}
+*{box-sizing:border-box}
+body{font-family:Roboto,system-ui,sans-serif;background:var(--grey-50);color:var(--navy-500);margin:0;line-height:1.55}
+.wrap{max-width:880px;margin:0 auto;padding:0 18px}
+header{background:var(--navy-700);color:#fff;padding:34px 0 30px}
+h1{font-family:Lora,serif;font-size:30px;margin:0 0 8px}
+h1 .a{color:var(--orange-500)}
+header p{color:#B9C4CC;margin:0;font-size:14.5px;max-width:720px}
+h2{font-family:Lora,serif;font-size:21px;margin:34px 0 10px}
+.card{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:20px 22px;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--grey-500);padding:8px 10px;border-bottom:2px solid var(--navy-500)}
+td{padding:8px 10px;border-top:1px solid var(--grey-100);vertical-align:top}
+.ok{color:#69995D;font-weight:700}
+.gap{color:var(--orange-900);font-weight:700}
+.navbar{background:#fff;border:1px solid var(--grey-100);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:13.5px;font-weight:600;margin:10px 0}
+.navbar .logo{font-weight:700;color:var(--navy-700)}
+.navbar .dd{color:var(--grey-500);font-weight:400;font-size:11px}
+.navbar .cta{margin-left:auto;background:var(--orange-500);color:var(--navy-700);padding:7px 14px;border-radius:8px;font-size:12px;text-transform:uppercase;letter-spacing:.4px}
+.tag{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--orange-50);border:1px solid var(--orange-100);color:var(--orange-900);border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.hint{font-size:13px;color:var(--grey-500)}
+.q{background:var(--orange-50);border:1px solid var(--orange-100);border-radius:8px;padding:10px 14px;font-size:13.5px;margin:8px 0}
+.foot{color:var(--grey-500);font-size:12.5px;text-align:center;padding:26px 0 44px}
+a{color:var(--blue-500)}
+</style></head><body>
+
+<header><div class="wrap">
+  <h1>Site Architecture &amp; Navigation — <span class="a">v1 proposal</span></h1>
+  <p>Built 7/9 for the Laura sync (Mon 10am). Answers three of Cameron&rsquo;s questions: where does the FAQ live, does the nav need condensing, and what pages exist on the live site that the mockup set doesn&rsquo;t cover yet. Inventory verified against the live site 7/9. Elizabeth&rsquo;s SEO guardrails apply to every naming decision here — nothing below is locked until her pass.</p>
+</div></header>
+
+<div class="wrap">
+
+<h2>1 · Page inventory — mocked vs. not-yet-mocked</h2>
+<div class="card">
+<table>
+<thead><tr><th>Page</th><th>Live site</th><th>Mockup set</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td><b>Homepage</b></td><td class="ok">✓</td><td class="ok">✓ hybrid draft</td><td>the workshop&rsquo;s anchor</td></tr>
+<tr><td><b>Pricing</b></td><td>— (new)</td><td class="ok">✓</td><td>net-new page; the redesign&rsquo;s receipts centerpiece</td></tr>
+<tr><td><b>Coverage</b></td><td>— (new)</td><td class="ok">✓</td><td>net-new; expands the 60&#162;/lb wedge</td></tr>
+<tr><td><b>Claims</b></td><td>— (new)</td><td class="ok">✓</td><td>counsel placeholder pending on the rights note</td></tr>
+<tr><td><b>Services hub</b></td><td class="ok">✓ /moving-services/</td><td class="ok">✓</td><td>hub only — see child pages below</td></tr>
+<tr><td>Service children ×6<br><span class="hint">residential · apartment · office · packing · portable-storage · TX statewide</span></td><td class="ok">✓ /service/*</td><td class="gap">✗</td><td>KP-built repeatable template (already planned — hub card links are &ldquo;#&rdquo; on purpose)</td></tr>
+<tr><td><b>Locations hub + 10 city pages</b></td><td class="ok">✓ /locations/*</td><td>⚠ 1 model</td><td>N. Austin = the stamp template; 9 more cities stamp from [BRANCH-DATA]</td></tr>
+<tr><td><b>Why Us</b></td><td class="ok">✓ /why-us/</td><td class="ok">✓ Variant B</td><td>structure A/B toggle live as of 7/9</td></tr>
+<tr><td><b>About / Our Story</b></td><td class="ok">✓ /about-us/</td><td class="ok">✓</td><td>original story restored verbatim 7/8; &ldquo;why the name&rdquo; filled 7/9</td></tr>
+<tr><td><b>Reviews &amp; Awards</b></td><td class="ok">✓ /about-us/reviews/</td><td class="ok">✓</td><td>merged awards + review wall page</td></tr>
+<tr><td><b>FAQ</b></td><td class="ok">✓ /frequently-asked-questions/</td><td class="ok">✓ NEW 7/8</td><td>47 Q&amp;As verbatim — <b>not in the mockup nav yet (the gap that sparked this page)</b></td></tr>
+<tr><td><b>Our Team / Meet Your Movers</b></td><td class="ok">✓ /about-us/our-team/</td><td class="gap">✗</td><td>/meet-your-movers/ redirects here; homepage MYM section covers the concept, the PAGE is unmocked</td></tr>
+<tr><td><b>Employment / Careers</b></td><td class="ok">✓ /about-us/employment/</td><td class="gap">✗</td><td>recruiting-facing; likely carries over w/ light reskin</td></tr>
+<tr><td><b>Resources (blog)</b></td><td class="ok">✓ /resources/</td><td class="gap">✗</td><td>SEO asset — template reskin, not a redesign target</td></tr>
+<tr><td><b>Contact</b></td><td class="ok">✓ /contact/</td><td class="gap">✗</td><td>simple page; carries over</td></tr>
+<tr><td><b>Smart Move Checklist</b></td><td class="ok">✓ /smart-move-checklist/</td><td class="gap">✗</td><td>lead-magnet artifact; decide keep/kill w/ KP</td></tr>
+<tr><td><b>Quote form</b></td><td class="ok">✓ /get-quote/</td><td>n/a</td><td>the design north star — Jeff&rsquo;s build, wrapped not rebuilt</td></tr>
+</tbody>
+</table>
+<p class="hint" style="margin:10px 0 0">Read: the mockup set covers every <b>persuasion</b> page. The gaps are all <b>infrastructure</b> pages (team, careers, blog, contact) — reskin targets for KP&rsquo;s template pass, not workshop material. Nothing missing changes the Monday conversation except nav placement.</p>
+</div>
+
+<h2>2 · Navigation — two proposals</h2>
+<p class="hint">Current mockup nav (7 links + CTA) has no FAQ and no dropdowns. The live site solves discovery with dropdowns; the mockups haven&rsquo;t needed them until now. Both proposals below add FAQ and give Locations Cameron&rsquo;s all-cities-visible dropdown. Ballot on the <a href="cut-list.html">cut list</a>.</p>
+
+<div class="card">
+<b>N1 — &ldquo;About absorbs the company pages&rdquo;</b> <span class="tag">Albert rec</span>
+<div class="navbar"><span class="logo">🧠 Einstein</span><span>Pricing</span><span>Coverage</span><span>Services <span class="dd">▾ 6 services</span></span><span>Locations <span class="dd">▾ all 10 cities</span></span><span>Why Us</span><span>Reviews</span><span>FAQ</span><span>About <span class="dd">▾ story · team · careers · blog · contact</span></span><span class="cta">See My Price</span></div>
+<p class="hint">8 links + CTA. FAQ earns top-level (it&rsquo;s a pre-booking objection-killer, not company trivia). Reviews stays top-level — it&rsquo;s the trust page and likely an SEO keeper. About becomes the drawer for company/infrastructure pages (story, our team, employment, resources, contact) — which matches how the live site already clusters them under /about-us/. Trade-off: 8 links is one more than the mockups carry today; fine on desktop, and mobile collapses to the hamburger anyway.</p>
+</div>
+
+<div class="card">
+<b>N2 — &ldquo;Trust cluster&rdquo;</b>
+<div class="navbar"><span class="logo">🧠 Einstein</span><span>Pricing</span><span>Coverage</span><span>Services <span class="dd">▾</span></span><span>Locations <span class="dd">▾ all 10</span></span><span>Why Us <span class="dd">▾ why us · reviews &amp; awards · our story · our team</span></span><span>FAQ</span><span class="cta">See My Price</span></div>
+<p class="hint">6 links + CTA — tighter than today&rsquo;s mockup nav. All trust/company pages cluster under a Why Us dropdown. Trade-off: Reviews and About lose top-level visibility, which may fight Elizabeth&rsquo;s SEO guidance and buries the awards page that KP wants as a reusable pattern. Cleaner bar, weaker scent trail.</p>
+</div>
+
+<div class="q"><b>⚑ For Elizabeth before locking either:</b> which of these pages need top-level nav placement for SEO (internal-link equity), and do the live URLs (/frequently-asked-questions/, /about-us/reviews/) keep their paths in the rebuild?</div>
+
+<h2>3 · Footer (both proposals)</h2>
+<div class="card"><p class="hint" style="margin:0">Footer stays the full sitemap — every page including the ones the nav demotes: Pricing · Coverage · Claims · Services (+6 children) · all 10 cities · Why Us · Reviews &amp; Awards · About · Our Team · FAQ · Careers · Resources · Contact · legal/DOT lines. The mockup footers already do a compact version of this; the KP build extends it. Claims deliberately lives footer-only + linked from Coverage (nobody shops for a mover by claims page — it&rsquo;s a post-booking reassurance page).</p></div>
+
+<h2>4 · Open questions for Laura (Monday)</h2>
+<div class="card">
+<div class="q">1 · <b>Nav pick:</b> N1 vs N2 (or her third way) — plus Elizabeth&rsquo;s SEO read on top-level placement.</div>
+<div class="q">2 · <b>Our Team / MYM page:</b> reskin the existing /about-us/our-team/ or redesign it as a proper Meet-Your-Movers page in the new system? (The homepage MYM section sets the pattern; the page could be its expansion.)</div>
+<div class="q">3 · <b>Resources/blog:</b> confirm it's a template-reskin (new header/footer/type on existing posts), not a content project.</div>
+<div class="q">4 · <b>Smart Move Checklist:</b> keep as a lead magnet in the new design, or retire?</div>
+<div class="q">5 · <b>URL strategy:</b> new pages (pricing, coverage, claims, FAQ-if-moved) — paths + redirects plan lives with KP/Elizabeth.</div>
+</div>
+
+<p class="foot">Einstein Website Workshop · IA v1 drafted 7/9/2026 · inventory verified against einsteinmoving.com same day · decisions live on the <a href="cut-list.html">Cut List</a></p>
+</div>
+</body></html>
