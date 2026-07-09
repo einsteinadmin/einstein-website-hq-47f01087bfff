@@ -207,8 +207,9 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 <!-- SUPPORTING PILLARS — compressed, never co-equal -->
 <section class="pillar-band" id="supporting-pillars" style="background:var(--grey-50)"><div class="wrap">
   <!-- 7/5 Cameron's remix (over street-test fix "Parts four and five…") — names the System (Miller's plan-naming note satisfied). Still on his iterate list: "we're down to <10 pieces of copy to iterate — this is one." -->
-  <!-- 7/9 Cameron fix: old "guarantees with money behind them" implied both cards are money-backed; only the On-Time Guarantee is. Reframed so On-Time = the money-backed guarantee, Smart Results = the receipts. Confirm wording. -->
-  <h2 class="sec" style="font-size:24px">The last two parts of the Smart Move System: <span class="a">a guarantee with money behind it — and the receipts to back it up.</span></h2>
+  <!-- 7/9 Cameron: this section's two cards = Smart Scheduling (On-Time Guarantee, money-backed) + Smart Results (reviews/awards, proof). They're PARALLEL (a guarantee + a reputation), NOT one backing the other. The "receipts back the guarantee" reading was wrong. 3 iterations cycle via the ⇄ pill (bottom-left); confirm the winner.
+       NOTE: the "guarantees with money behind them" (plural) framing belongs on the section that pairs On-Time + Smart Move Damage Coverage (both money-backed) — NOT here. -->
+  <h2 class="sec" style="font-size:24px">The last two parts of the Smart Move System: <span class="a" id="guarH2a">a guarantee, and a reputation.</span></h2>
   <div class="support">
     <div class="scard"><h4>📅 Smart Scheduling</h4><p>Book in minutes — and the On-Time Guarantee has teeth: late means your move is discounted, and the longer we&rsquo;re late, the bigger the discount.</p></div>
     <div class="scard"><h4>🏆 Smart Results</h4><p>4.9/5 across 8,100+ reviews · 10× Best of Austin · 5× Best in DFW · 4× Best of San Antonio · 3× Best of the Best Houston · 7× Inc. 5000 · featured in Forbes Home. Seriously — we&rsquo;re running out of shelf space. <a href="awards-reviews-page.html">The full year-by-year, every trophy with its name tag on →</a></p></div>
@@ -342,6 +343,26 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
     fab.setAttribute('aria-expanded', open?'true':'false');
   });
   render();
+})();
+</script>
+<script>
+/* 7/9 Cameron: guarantees-headline iterations — the accent span cycles 3 ways (persisted emc-whyus-guarh).
+   All three fix the same bug: On-Time = the guarantee, Smart Results = proof of the WHOLE system, framed as
+   its own thing (never "receipts backing the guarantee"). */
+(function(){
+  var el = document.getElementById('guarH2a'); if(!el) return;
+  var V = [
+    { id:'g1', html:'a guarantee, and a reputation.' },
+    { id:'g2', html:'the on-time guarantee, and the track record behind the whole system.' },
+    { id:'g3', html:'we guarantee your move day &mdash; and let 8,100+ reviews speak for the rest.' }
+  ];
+  var idx = 0;
+  try{ var st=localStorage.getItem('emc-whyus-guarh'); var i=V.map(function(v){return v.id;}).indexOf(st); if(i>=0) idx=i; }catch(e){}
+  var btn = document.createElement('button'); btn.type='button';
+  btn.style.cssText='position:fixed;left:14px;bottom:14px;z-index:400;background:#fff;border:1px solid #E2E3E4;border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:#53575A;cursor:pointer;box-shadow:0 1px 2px rgba(39,52,61,.08)';
+  function apply(){ el.innerHTML=V[idx].html; btn.textContent='⇄ Guarantees H2 · '+V[idx].id.toUpperCase(); }
+  btn.addEventListener('click', function(){ idx=(idx+1)%V.length; try{localStorage.setItem('emc-whyus-guarh',V[idx].id);}catch(e){} apply(); });
+  document.body.appendChild(btn); apply();
 })();
 </script>
 </body></html>
