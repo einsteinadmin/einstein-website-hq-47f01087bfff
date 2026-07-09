@@ -140,6 +140,10 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .r2-inc{color:var(--success-text);font-weight:700}
 .r2-tot{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--navy-500);margin-top:8px;padding-top:14px;font-weight:700}
 .r2-big{font-size:26px;color:var(--blue-500);font-family:Lora,serif}
+/* 7/9 Claude Design port — extras-moment variant toggle (dxv-) */
+.dxv-extras-toggle{position:fixed;left:14px;bottom:136px;z-index:400;background:#fff;border:1px solid var(--grey-100);border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:var(--grey-500);cursor:pointer;box-shadow:var(--shadow-sm)}
+.dxv-extras-toggle:hover{border-color:var(--blue-500);color:var(--blue-500)}
+@media(max-width:480px){.dxv-extras-toggle{display:none!important}}
 
 .how{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:880px;margin:0 auto}
 .hstep{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:22px 20px;text-align:center}
@@ -370,6 +374,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <!-- 7/8: extras strip re-homed here when the comparison table moved to Why Us — carries the only
          items the receipts don't already name (TV boxes, disassembly/reassembly, on-time guarantee). -->
     <div id="pb-extras-block">
+    <div id="extrasCurrent">
       <div class="p2-headrow">
         <h3>And the extras? <span class="b">Already on the receipt — at $0.</span></h3>
         <div class="stamp">No<br>add-ons</div>
@@ -384,6 +389,61 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
         <div class="r2-line"><span>On-time guarantee <span class="r2-note">· late = your move is discounted</span></span><span class="r2-dots"></span><span class="r2-inc">Included</span></div>
         <div class="r2-tot"><span>Everything most movers bill extra for</span><span class="r2-big">$0</span></div>
       </div>
+    </div>
+    <!-- 7/9 Claude Design port — two additional extras-moment variants (thermal receipt / bill continuation),
+         toggled via dxv-extras-toggle pill. #extrasCurrent above is byte-identical to the pre-port block. -->
+    <div id="extrasThermal" hidden>
+      <h3 style="font-size:22px;font-weight:700;color:#27343D;text-align:center;margin:0 0 28px">And the extras? <span class="b" style="color:var(--blue-500)">Already on the receipt &mdash; at $0.</span></h3>
+      <div class="dxv-thermal-wrap" style="position:relative;max-width:440px;margin:28px auto 0;transform:rotate(-1deg)">
+        <div class="dxv-thermal-stamp" style="position:absolute;top:-20px;right:-22px;width:88px;height:88px;border:2.5px solid #CC5500;border-radius:50%;transform:rotate(-12deg);display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#CC5500;line-height:1.25;background:rgba(254,246,236,.92)">No<br>add-ons</div>
+        <div class="dxv-thermal-paper" style="background:#fff;box-shadow:0 4px 12px rgba(39,52,61,.10);padding:76px 28px 22px">
+          <div class="dxv-thermal-line" style="display:flex;align-items:baseline;gap:10px;margin-bottom:14px">
+            <span style="font-size:14px;color:#27343D">Furniture disassembly &amp; reassembly</span>
+            <span style="flex:1;border-bottom:2px dotted #C0C2C4;transform:translateY(-3px)"></span>
+            <span style="font-size:14px;font-weight:700;color:#27343D">$0</span>
+          </div>
+          <div class="dxv-thermal-line" style="display:flex;align-items:baseline;gap:10px;margin-bottom:14px">
+            <span style="font-size:14px;color:#27343D">TV boxes (&times;2), shrink wrap &amp; tape</span>
+            <span style="flex:1;border-bottom:2px dotted #C0C2C4;transform:translateY(-3px)"></span>
+            <span style="font-size:14px;font-weight:700;color:#27343D">$0</span>
+          </div>
+          <div class="dxv-thermal-line" style="display:flex;align-items:baseline;gap:10px;margin-bottom:14px">
+            <span style="font-size:14px;color:#27343D">On-time guarantee <span style="font-size:12px;color:#53575A">&middot; late = your move is discounted</span></span>
+            <span style="flex:1;border-bottom:2px dotted #C0C2C4;transform:translateY(-3px)"></span>
+            <span style="font-size:13px;font-weight:700;color:#69995D">Included</span>
+          </div>
+          <div class="dxv-thermal-total" style="display:flex;justify-content:space-between;align-items:baseline;border-top:1.5px dashed #C0C2C4;padding-top:16px">
+            <span style="font-size:14.5px;font-weight:700;color:#27343D">Everything most movers bill extra for</span>
+            <span style="font-family:Lora,serif;font-weight:700;font-size:26px;color:#0979C3">$0</span>
+          </div>
+        </div>
+        <div style="height:10px;background:conic-gradient(from 135deg at 50% 0,#fff 90deg,rgba(0,0,0,0) 0) 0 0 / 14px 10px repeat-x"></div>
+      </div>
+    </div>
+    <div id="extrasCont" hidden>
+      <h3 style="font-size:22px;font-weight:700;color:#27343D;text-align:center;margin:0 0 28px">And the extras? <span class="b" style="color:var(--blue-500)">Already on the receipt &mdash; at $0.</span></h3>
+      <div class="dxv-cont-wrap" style="position:relative">
+        <div class="dxv-cont-scroll" style="overflow-x:auto">
+          <div class="dxv-cont-grid" style="min-width:640px;display:grid;grid-template-columns:1.3fr 1fr 1.15fr;border:1px solid #E2E3E4;border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(39,52,61,.08)">
+            <div style="padding:14px 18px;font-size:14.5px;font-weight:700;color:#27343D;display:flex;align-items:center">Furniture disassembly &amp; reassembly</div>
+            <div style="padding:14px 18px;display:flex;align-items:center"><span style="flex:1;border-bottom:2px dotted #C0C2C4"></span></div>
+            <div style="padding:14px 18px;background:#FEF6EC;border-left:1px solid #FDE3C2;font-size:14.5px;font-weight:700;color:#27343D;display:flex;align-items:center"><span style="color:#69995D;font-weight:700;margin-right:7px">&#10003;</span>$0</div>
+
+            <div style="padding:14px 18px;font-size:14.5px;font-weight:700;color:#27343D;display:flex;align-items:center;border-top:1px solid #E2E3E4">TV boxes (&times;2), shrink wrap &amp; tape</div>
+            <div style="padding:14px 18px;display:flex;align-items:center;border-top:1px solid #E2E3E4"><span style="flex:1;border-bottom:2px dotted #C0C2C4"></span></div>
+            <div style="padding:14px 18px;background:#FEF6EC;border-left:1px solid #FDE3C2;font-size:14.5px;font-weight:700;color:#27343D;display:flex;align-items:center;border-top:1px solid #FDE3C2"><span style="color:#69995D;font-weight:700;margin-right:7px">&#10003;</span>$0</div>
+
+            <div style="padding:14px 18px;font-size:14.5px;font-weight:700;color:#27343D;display:flex;align-items:center;border-top:1px solid #E2E3E4">On-time guarantee<span style="font-size:12px;font-weight:400;color:#53575A;margin-left:6px">&middot; late = your move is discounted</span></div>
+            <div style="padding:14px 18px;display:flex;align-items:center;border-top:1px solid #E2E3E4"><span style="flex:1;border-bottom:2px dotted #C0C2C4"></span></div>
+            <div style="padding:14px 18px;background:#FEF6EC;border-left:1px solid #FDE3C2;font-size:14px;font-weight:700;color:#69995D;display:flex;align-items:center;border-top:1px solid #FDE3C2"><span style="color:#69995D;font-weight:700;margin-right:7px">&#10003;</span>Included</div>
+
+            <div style="grid-column:1 / 3;padding:18px;border-top:2px solid #27343D;font-size:14.5px;font-weight:700;color:#27343D">Everything most movers bill extra for</div>
+            <div style="padding:14px 18px;border-top:2px solid #27343D;background:#FDE3C2;border-left:1px solid #FDE3C2;display:flex;align-items:center"><span style="font-family:Lora,serif;font-weight:700;font-size:26px;color:#023B63">$0</span></div>
+          </div>
+        </div>
+        <div class="dxv-cont-stamp" style="position:absolute;bottom:-30px;right:-16px;width:88px;height:88px;border:2.5px solid #CC5500;border-radius:50%;transform:rotate(-10deg);display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#CC5500;line-height:1.25;background:rgba(254,246,236,.92)">No<br>add-ons</div>
+      </div>
+    </div>
     </div>
   </div>
 </section>
@@ -791,6 +851,21 @@ window.__sparksMotionOn = function(){
   else if(mql.addListener) mql.addListener(function(e){ handleWidthChange(e.matches); }); // Safari <14 fallback
 
   handleWidthChange(mql.matches);
+})();
+</script>
+<script>
+/* 7/9 Claude Design port — pricing extras frame toggle (3-way). Additive; #extrasCurrent untouched. */
+(function(){
+  var MODES=['current','thermal','cont'];
+  var LABELS={current:'Extras · current strip',thermal:'Extras · thermal receipt',cont:'Extras · bill continuation'};
+  var els={current:document.getElementById('extrasCurrent'),thermal:document.getElementById('extrasThermal'),cont:document.getElementById('extrasCont')};
+  if(!els.current||!els.thermal||!els.cont) return;
+  var mode='current';
+  try{var st=localStorage.getItem('emc-pricing-extras-v'); if(MODES.indexOf(st)>=0) mode=st;}catch(e){}
+  var btn=document.createElement('button'); btn.type='button'; btn.className='dxv-extras-toggle';
+  function apply(){ MODES.forEach(function(m){ els[m].hidden=(m!==mode); }); btn.textContent='⇄ '+LABELS[mode]; }
+  btn.addEventListener('click',function(){ mode=MODES[(MODES.indexOf(mode)+1)%3]; try{localStorage.setItem('emc-pricing-extras-v',mode);}catch(e){} apply(); });
+  document.body.appendChild(btn); apply();
 })();
 </script>
 </body></html>

@@ -343,6 +343,23 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
 footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .sitemap a:hover{color:#fff}
 @media(max-width:360px){html{scroll-padding-top:150px}}
 /* 7/8 Cameron: periodic attention jiggle on the primary CTA (like the live site). Motion-safe. */
+/* 7/9 K5 "To scale" — Claude Design round, locked concept 1a. Bar lengths ARE the joke. Scoped to k5. */
+.killer .k5-head{display:flex;align-items:center;gap:24px;margin-bottom:26px;text-align:left}
+.killer .k5-head .q5{flex:1;font-size:23px;font-weight:700;color:var(--navy-500);line-height:1.3;margin:0}
+.killer .k5-head .q5 .a5{color:var(--orange-900)}
+.killer .k5-vis{flex:none;width:170px;height:112px;border-radius:10px;overflow:hidden;background:var(--orange-50)}
+.killer .k5-vis img{width:100%;height:100%;object-fit:contain;display:block}
+.killer .k5-row{margin-bottom:22px;text-align:left}
+.killer .k5-lblrow{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:8px}
+.killer .k5-lbl{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;color:var(--grey-500)}
+.killer .k5-num{font-family:Lora,serif;font-weight:700;font-size:40px;line-height:1;color:var(--navy-500)}
+.killer .k5-num.bad{color:var(--error)}
+.killer .k5-track{height:36px;background:var(--grey-50);border:1px solid var(--grey-100);border-radius:6px;overflow:hidden;position:relative}
+.killer .k5-track.warm{background:var(--orange-50);border-color:var(--orange-100)}
+.killer .k5-fill-sliver{position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--error)}
+.killer .k5-fill-full{position:absolute;left:0;top:0;bottom:0;width:100%;background:var(--orange-500);border-radius:5px}
+.killer .k5-cap{font-size:13px;color:var(--grey-500);margin-top:7px;text-align:left}
+@media(max-width:560px){.killer .k5-head{flex-direction:column;align-items:flex-start}.killer .k5-vis{width:100%;height:auto;aspect-ratio:170/112}}
 /* 7/8 badge-wall MARQUEE mode (Cameron spitball: infinite looping tile wall — now feelable) */
 .mqwrap{overflow:hidden;position:relative;margin-top:26px}
 .mqtrack{display:flex;gap:14px;width:max-content;animation:mqScroll 32s linear infinite}
@@ -497,6 +514,26 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
         <div class="q">A laptop weighs 5 pounds. By law, that&rsquo;s what a mover owes you for breaking it:</div>
         <div class="kmath"><span class="dead">$3</span><span class="arrow">&rarr;</span><span class="live">$1,500 at Einstein</span></div>
         <div class="klaw">60&#162; a pound is the industry standard. We pay actual value instead — included free on every move.</div>
+      </div>
+
+      <!-- K5 · "To scale" — Claude Design 7/9 (locked concept 1a): the payout gap drawn literally as bar lengths.
+           Detailed captions (DC default); minimal set available. laptop-scale.svg = placeholder-grade double-layer art. -->
+      <div class="killer" data-kv="k5" hidden>
+        <div class="k5-head">
+          <div class="q5">If a mover drops your <span class="a5">$1,500 laptop&hellip;</span></div>
+          <div class="k5-vis"><img src="assets/laptop-scale.svg" alt="Laptop on a comically small scale — placeholder art"></div>
+        </div>
+        <div class="k5-row">
+          <div class="k5-lblrow"><div class="k5-lbl">Most movers owe you</div><div class="k5-num bad">$3</div></div>
+          <div class="k5-track"><div class="k5-fill-sliver"></div></div>
+          <div class="k5-cap">5 lb &times; 60&#162; a pound. <i>(No, that&rsquo;s not a typo.)</i> Pay ~$200 for a typical upgrade and it&rsquo;s ~$15.</div>
+        </div>
+        <div class="k5-row" style="margin-bottom:0">
+          <div class="k5-lblrow"><div class="k5-lbl">Einstein pays</div><div class="k5-num">$1,500</div></div>
+          <div class="k5-track warm"><div class="k5-fill-full"></div></div>
+          <div class="k5-cap">Actual value. Free. No per-pound math.</div>
+        </div>
+        <div class="strip"><span><b>65&Prime; TV:</b> $30 &rarr; $1,200</span><span><b>Sofa:</b> $90 &rarr; $1,800</span><span><b>Your floors &amp; walls:</b> not in their valuation coverage &rarr; covered, handled by us</span></div>
       </div>
 
       <!-- K4 · pick your item: the old strip's richness, as interaction instead of clutter -->
@@ -885,7 +922,7 @@ safe('sanitizeState', function(){
   if(state.exit!=='dept' && state.exit!=='easiest') state.exit = 'dept'; /* classic cut 7/8 */
   if(state.wall!=='on' && state.wall!=='off') state.wall = 'on';
   state.tone = 'auto'; /* tone retired 7/8 — hero locked, H2s locked */
-    if(['k1','k2','k3','k4'].indexOf(state.kv)<0) state.kv='k1';
+    if(['k1','k2','k3','k4','k5'].indexOf(state.kv)<0) state.kv='k1';
     if(state.bw!=='grid' && state.bw!=='marquee') state.bw='grid';
   var t = tone();
   ['ph','ch','mh'].forEach(function(key){
@@ -943,7 +980,7 @@ function renderDisplays(){
   /* 7/8 killer-stat versions */
   document.querySelectorAll('#covKiller .killer[data-kv]').forEach(function(el){ el.hidden = (el.dataset.kv !== state.kv); });
   var kvBtn = document.getElementById('wsKv');
-  if(kvBtn){ var KVL={k1:'K1 · current',k2:'K2 · KP single+visual',k3:'K3 · math out loud',k4:'K4 · pick your item'}; kvBtn.textContent = '↻ '+KVL[state.kv]+' ('+(['k1','k2','k3','k4'].indexOf(state.kv)+1)+'/4)'; }
+  if(kvBtn){ var KVL={k1:'K1 · current',k2:'K2 · KP single+visual',k3:'K3 · math out loud',k4:'K4 · pick your item',k5:'K5 · to scale (Claude Design)'}; kvBtn.textContent = '↻ '+KVL[state.kv]+' ('+(['k1','k2','k3','k4','k5'].indexOf(state.kv)+1)+'/5)'; }
   if(k) k.hidden = state.cov!=='killer';
   if(tb) tb.hidden = state.cov!=='table';
   var bd = document.getElementById('price2bd'), cards = document.getElementById('price2cards');
@@ -1014,7 +1051,7 @@ safe('killerVersions', function(){
   /* 7/8 killer-stat iterate rd 1 — ONE-TIME wiring (never inside renderPanel: that runs per render and stacks listeners) */
   var kvB = document.getElementById('wsKv');
   if(kvB) kvB.addEventListener('click', function(){
-    var KVS=['k1','k2','k3','k4']; state.kv = KVS[(KVS.indexOf(state.kv)+1)%4]; renderAll();
+    var KVS=['k1','k2','k3','k4','k5']; state.kv = KVS[(KVS.indexOf(state.kv)+1)%5]; renderAll();
   });
   var D = { laptop:{them:'$3', cap:'5 lb \u00d7 60\u00a2 a pound', us:'$1,500'}, tv:{them:'$30', cap:'~50 lb \u00d7 60\u00a2 a pound', us:'$1,200'}, sofa:{them:'$90', cap:'~150 lb \u00d7 60\u00a2 a pound', us:'$1,800'} };
   var wrap = document.getElementById('kvPicks');
