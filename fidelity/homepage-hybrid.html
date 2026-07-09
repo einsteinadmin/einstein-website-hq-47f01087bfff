@@ -343,6 +343,9 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
 footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .sitemap a:hover{color:#fff}
 @media(max-width:360px){html{scroll-padding-top:150px}}
 /* 7/8 Cameron: periodic attention jiggle on the primary CTA (like the live site). Motion-safe. */
+/* 7/8 asset-wiring: real badge art + logo (live-site pulls; Chronicle + Forbes badges don't exist as assets — KP pull) */
+.badge .logo-img{height:48px;max-width:130px;object-fit:contain;display:block;margin:0 auto 8px}
+.brain img{height:30px;vertical-align:-7px}
 /* 7/8 badge-wall MARQUEE mode (Cameron spitball: infinite looping tile wall — now feelable) */
 .mqwrap{overflow:hidden;position:relative;margin-top:26px}
 .mqtrack{display:flex;gap:14px;width:max-content;animation:mqScroll 32s linear infinite}
@@ -372,7 +375,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 <!-- ============ NAV ============ -->
 <nav>
   <div class="nav-in">
-    <div class="logo"><span class="head">🧠</span> Einstein Moving Co.</div>
+    <div class="logo"><img class="logo-img" src="assets/einstein-logo.svg" alt="Einstein Moving Company" style="height:36px;display:block"></div>
     <button class="ham" id="ham" aria-expanded="false" aria-controls="navLinks" type="button">☰</button>
     <div class="nav-links" id="navLinks">
       <a href="pricing-page.html">Pricing</a>
@@ -565,7 +568,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
   <div class="wrap">
     <!-- 7/5 Cameron pick B2: kicker/headline flip — the NAMED system is the headline; the pill (eye skipped it) retired -->
     <div style="text-align:center;margin-bottom:10px" class="rv"><span style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey-500)">It all runs on one system</span></div>
-    <h2 class="sec rv" id="smsH2"><span class="brain" style="font-size:26px">🧠</span> The Smart Move System&trade;</h2>
+    <h2 class="sec rv" id="smsH2"><span class="brain"><img src="assets/einstein-icon.svg" alt=""></span> The Smart Move System&trade;</h2>
     <p class="sub rv">Honest pricing, real coverage, and crews you meet aren&rsquo;t lucky features &mdash; they&rsquo;re three of the five connected parts we&rsquo;ve refined over 100,000 moves.</p>
     <div class="pillars rv">
       <div class="pillar"><div class="pfear" hidden>&ldquo;Will they even show up?&rdquo;</div><div class="ic">📅</div><h4>Smart Scheduling</h4><p>Book in minutes — backed by our <b>On-Time Guarantee</b>: late = your move is discounted.</p></div>
@@ -626,15 +629,15 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <p class="sub rv">The most awarded moving company EVER — seriously, we&rsquo;re running out of shelf space.</p>
     <!-- Award counts verified against the awards sheet 7/1/2026. More 2026 wins incoming across markets. -->
     <div class="badges rv">
-      <div class="badge"><div class="logo-ph">logo</div><div class="n">10&times;</div><div class="t">Best of Austin</div><div class="y">Austin Chronicle · 2016–2026</div></div>
-      <div class="badge"><div class="logo-ph">logo</div><div class="n">5&times;</div><div class="t">Best in DFW</div><div class="y">The Dallas Morning News</div></div>
-      <div class="badge"><div class="logo-ph">logo</div><div class="n">4&times;</div><div class="t">Best of San Antonio</div><div class="y">San Antonio Current · 2022–2025</div></div>
-      <div class="badge"><div class="logo-ph">logo</div><div class="n">3&times;</div><div class="t">Best of the Best, Houston</div><div class="y">Houston Chronicle · 2022–2024</div></div>
-      <div class="badge"><div class="logo-ph">logo</div><div class="n">7&times;</div><div class="t">Inc. 5000</div><div class="y">Inc. Magazine · 2018–2024</div></div>
-      <div class="badge"><div class="logo-ph">logo</div><div class="n">★</div><div class="t">Featured in Forbes Home</div><div class="y">2025</div></div>
+      <div class="badge"><div class="logo-ph">Chronicle badge<br>— KP asset pull</div><div class="n">10&times;</div><div class="t">Best of Austin</div><div class="y">Austin Chronicle · 2016–2026</div></div>
+      <div class="badge"><img class="logo-img" src="assets/badge-dfw.jpg" alt="Best in DFW"><div class="n">5&times;</div><div class="t">Best in DFW</div><div class="y">The Dallas Morning News</div></div>
+      <div class="badge"><img class="logo-img" src="assets/badge-sanantonio.jpg" alt="Best of San Antonio"><div class="n">4&times;</div><div class="t">Best of San Antonio</div><div class="y">San Antonio Current · 2022–2025</div></div>
+      <div class="badge"><img class="logo-img" src="assets/badge-houston.jpg" alt="Best of the Best Houston"><div class="n">3&times;</div><div class="t">Best of the Best, Houston</div><div class="y">Houston Chronicle · 2022–2024</div></div>
+      <div class="badge"><img class="logo-img" src="assets/badge-inc5000.jpg" alt="Inc. 5000"><div class="n">7&times;</div><div class="t">Inc. 5000</div><div class="y">Inc. Magazine · 2018–2024</div></div>
+      <div class="badge"><div class="logo-ph">Forbes badge<br>— KP asset pull</div><div class="n">★</div><div class="t">Featured in Forbes Home</div><div class="y">2025</div></div>
       <!-- 7/8 Cameron: two more shelf items (counts per Cameron — [VERIFY years on the awards sheet]) -->
-      <div class="badge"><div class="logo-ph">logo</div><div class="n">3&times;</div><div class="t">Aggie 100</div><div class="y">Texas A&amp;M · fastest-growing Aggie companies</div></div>
-      <div class="badge"><div class="logo-ph">logo</div><div class="n">★</div><div class="t">Austin Fast 50</div><div class="y">Austin Business Journal</div></div>
+      <div class="badge"><img class="logo-img" src="assets/badge-aggie.jpg" alt="Aggie 100"><div class="n">3&times;</div><div class="t">Aggie 100</div><div class="y">Texas A&amp;M · fastest-growing Aggie companies</div></div>
+      <div class="badge"><img class="logo-img" src="assets/badge-fast50.jpg" alt="Austin Fast 50"><div class="n">★</div><div class="t">Austin Fast 50</div><div class="y">Austin Business Journal</div></div>
     </div>
 
     <!-- review wall (workshop toggle: on/off) -->

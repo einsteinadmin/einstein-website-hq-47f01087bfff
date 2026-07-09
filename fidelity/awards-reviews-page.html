@@ -71,6 +71,7 @@ nav{position:sticky;top:0;z-index:300;background:rgba(255,255,255,.96);backdrop-
 
 .badges{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:26px auto 0}
 .badge{background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:20px 18px;text-align:center;box-shadow:var(--shadow-sm)}
+.badge .logo-img{height:74px;max-width:100%;object-fit:contain;display:block;margin:0 auto 12px}
 .badge .logo-ph{height:74px;border:2px dashed var(--grey-100);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--grey-500);font-size:11px;line-height:1.4;padding:6px;margin-bottom:12px;background:var(--grey-50)}
 .badge .count{font-family:Lora,serif;font-size:30px;font-weight:700;color:var(--orange-900);line-height:1}
 .badge h4{margin:6px 0 3px;font-size:15.5px;color:var(--navy-500)}
@@ -144,7 +145,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
 
 <nav>
   <div class="nav-in">
-    <div class="logo"><a href="homepage-hybrid.html"><span class="head">🧠</span> Einstein Moving Co.</a></div>
+    <div class="logo"><a href="homepage-hybrid.html"><img class="logo-img" src="assets/einstein-logo.svg" alt="Einstein Moving Company" style="height:36px;display:block"></a></div>
     <button class="ham" id="ham" aria-expanded="false" aria-controls="navLinks" type="button">☰</button>
   <div class="nav-links" id="navLinks">
       <a href="pricing-page.html">Pricing</a>
@@ -194,32 +195,32 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <p class="sub">Yes, this is bragging. <b>We earned it</b> — and every line below says who gave it, how many times, and when.</p>
     <div class="badges">
       <div class="badge">
-        <div class="logo-ph">[ASSET-GATED: real Best of Austin badge tile]</div>
+        <div class="logo-ph">[Chronicle badge — KP asset pull; not on the live site]</div>
         <div class="count">10×</div><h4>Best of Austin</h4>
         <div class="issuer"><b>Austin Chronicle</b> readers&rsquo; poll · 2016&ndash;2026</div>
       </div>
       <div class="badge">
-        <div class="logo-ph">[ASSET-GATED: real Best in DFW badge tile]</div>
+        <img class="logo-img" src="assets/badge-dfw.jpg" alt="Best in DFW">
         <div class="count">5×</div><h4>Best in DFW</h4>
         <div class="issuer"><b>Dallas Morning News</b> · <span class="verify">[VERIFY years]</span></div>
       </div>
       <div class="badge">
-        <div class="logo-ph">[ASSET-GATED: real Best of San Antonio badge tile]</div>
+        <img class="logo-img" src="assets/badge-sanantonio.jpg" alt="Best of San Antonio">
         <div class="count">4×</div><h4>Best of San Antonio</h4>
         <div class="issuer"><b>San Antonio Current</b> · 2022&ndash;2025</div>
       </div>
       <div class="badge">
-        <div class="logo-ph">[ASSET-GATED: real Best of the Best badge tile]</div>
+        <img class="logo-img" src="assets/badge-houston.jpg" alt="Best of the Best, Houston">
         <div class="count">3×</div><h4>Best of the Best, Houston</h4>
         <div class="issuer"><b>Houston Chronicle</b> · 2022&ndash;2024</div>
       </div>
       <div class="badge">
-        <div class="logo-ph">[ASSET-GATED: real Inc. 5000 badge tile]</div>
+        <img class="logo-img" src="assets/badge-inc5000.jpg" alt="Inc. 5000">
         <div class="count">7×</div><h4>Inc. 5000</h4>
         <div class="issuer"><b>America&rsquo;s fastest-growing companies</b> · 2018&ndash;2024</div>
       </div>
       <div class="badge">
-        <div class="logo-ph">[ASSET-GATED: real Forbes Home feature tile]</div>
+        <div class="logo-ph">[Forbes badge — KP asset pull; not on the live site]</div>
         <div class="count">📰</div><h4>Featured in Forbes Home</h4>
         <div class="issuer"><b>Featured — not first.</b> We only put claims on this page we can show you.</div>
       </div>
