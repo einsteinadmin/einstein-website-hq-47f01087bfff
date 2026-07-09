@@ -343,6 +343,13 @@ footer .devnote{margin-top:22px;font-size:11px;color:#5C7280;border-top:1px soli
 footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .sitemap a:hover{color:#fff}
 @media(max-width:360px){html{scroll-padding-top:150px}}
 /* 7/8 Cameron: periodic attention jiggle on the primary CTA (like the live site). Motion-safe. */
+/* 7/8 badge-wall MARQUEE mode (Cameron spitball: infinite looping tile wall — now feelable) */
+.mqwrap{overflow:hidden;position:relative;margin-top:26px}
+.mqtrack{display:flex;gap:14px;width:max-content;animation:mqScroll 32s linear infinite}
+.mqwrap:hover .mqtrack{animation-play-state:paused}
+.mqtrack .badge{min-width:200px;flex:0 0 auto}
+@keyframes mqScroll{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.mqtrack{animation:none}}
 /* 7/8 Killer-stat iterate round 1 — K1 current · K2 KP single-example+visual · K3 strikethrough math · K4 pick-your-item.
    KP 7/7: "a single example (such as the laptop) gets the point across quickly… visual TBD (laptop+scale photo or Einstein animation)."
    Cameron 7/8: KP's idea = first candidate, not yet proven best. */
@@ -436,7 +443,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     </div>
     <!-- second part alt: icon cards (toggle) -->
     <div id="price2cards" hidden>
-      <div class="p2-headrow"><h3>All included. <span class="b">No add-ons.</span></h3></div>
+      <!-- 7/8 Cameron (from KP round 2): reworded so the stamp reads as the punchline — icon cards + motion coexist -->
+      <div class="p2-headrow"><h3>And the extras? <span class="b">All included &mdash; for free.</span></h3><div class="stamp">No<br>add-ons</div></div>
       <div class="cards2">
         <div class="card2"><div class="ic">⏱️</div><div><h4>On-Time Guarantee</h4><p>We show up in your window. If we&rsquo;re late, your move is discounted &mdash; the longer we&rsquo;re late, the bigger the discount.</p></div></div>
         <div class="card2"><div class="ic">🛡️</div><div><h4>$2,000 Damage Coverage</h4><p>Included free, paid on what your things are actually worth &mdash; not 60&#162; a pound.</p></div></div>
@@ -567,6 +575,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
       <div class="pillar"><div class="pfear" hidden>&ldquo;Can I trust any of this?&rdquo;</div><div class="ic">🏆</div><h4>Smart Results</h4><p>100,000+ moves · 4.9/5 stars · 55+ awards.</p><a href="#proof">See the proof ↓</a></div>
     </div>
     <p class="sms-close rv">Every fear has an answer. <span class="smart">That&rsquo;s the Smart Move.</span></p>
+    <!-- 7/8 Cameron ask (invited pushback; none warranted): every other proof section has a nav-away — this was the one section without a door. Why Us B IS this section expanded. -->
+    <a class="offramp rv" style="display:block;text-align:center" href="why-us-page-b.html">Learn more about the Smart Move System →</a>
   </div>
 </section>
 
@@ -599,7 +609,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
       <!-- Downsizing CTA stays PLAIN by design (Cameron 7/2): often empty-nest/divorce/estate — cute labels are off-register here. Echo carries the warmth; the button stays clear. Keep "Just making a change" LAST — it's the dignity catch-all.
            Pills are about the RESIDENCE, never the relationship (Cameron 7/2): "Moving in together" cut — only pill that discloses love-life, no operational payoff (two-origin logistics live in the quote form). Also rejected: divorce/retirement/college. -->
       <button class="chapter-chip" type="button" data-echo="Less stuff, more life. We'll carry the part you're keeping." data-cta="See my price →" aria-pressed="false">Downsizing</button>
-      <button class="chapter-chip" type="button" data-echo="Sometimes a change is the whole point. Good for you." data-cta="See my price for the fresh start →" aria-pressed="false">Just making a change</button>
+      <button class="chapter-chip" type="button" data-echo="You don't need a reason. You need a crew." data-cta="See my price for the fresh start →" aria-pressed="false">Just making a change</button>
     </div>
     <div class="chapter-echo" id="chapterEcho" aria-live="polite">Which one&rsquo;s yours? (Tap it — this page is about you.)</div>
     <!-- personalized CTA: hidden until a chip is picked, then fades in with the chip's cta text (the far bookCta personalizes too) -->
@@ -622,6 +632,9 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
       <div class="badge"><div class="logo-ph">logo</div><div class="n">3&times;</div><div class="t">Best of the Best, Houston</div><div class="y">Houston Chronicle · 2022–2024</div></div>
       <div class="badge"><div class="logo-ph">logo</div><div class="n">7&times;</div><div class="t">Inc. 5000</div><div class="y">Inc. Magazine · 2018–2024</div></div>
       <div class="badge"><div class="logo-ph">logo</div><div class="n">★</div><div class="t">Featured in Forbes Home</div><div class="y">2025</div></div>
+      <!-- 7/8 Cameron: two more shelf items (counts per Cameron — [VERIFY years on the awards sheet]) -->
+      <div class="badge"><div class="logo-ph">logo</div><div class="n">3&times;</div><div class="t">Aggie 100</div><div class="y">Texas A&amp;M · fastest-growing Aggie companies</div></div>
+      <div class="badge"><div class="logo-ph">logo</div><div class="n">★</div><div class="t">Austin Fast 50</div><div class="y">Austin Business Journal</div></div>
     </div>
 
     <!-- review wall (workshop toggle: on/off) -->
@@ -643,7 +656,8 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <a class="offramp rv" href="awards-reviews-page.html">See every award, year by year &mdash; plus the review wall →</a>
 
     <div style="text-align:center;margin-top:24px" class="rv">
-      <a class="offramp" style="margin-top:0" href="https://www.einsteinmoving.com/quote/">See my price →</a>
+      <!-- 7/8 Cameron: was a text link — every other section's conversion CTA is a button; now consistent -->
+      <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my price →</a>
       <div class="microproof">Join 100,000+ moves.</div>
     </div>
   </div>
@@ -658,7 +672,7 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
         <!-- DROP SLOT: save the founders childhood photo as fidelity/assets/founders-kids.jpg and it appears automatically -->
         <img src="assets/founders-kids.jpg" alt="The two founders as kids, in cowboy hats" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="drop">Drop the real photo at<br><b>fidelity/assets/<br>founders-kids.jpg</b><br>— the cowboy-hats one 🤠</div>
-        <figcaption class="cap">The founders, already dressed for hard work.</figcaption>
+        <figcaption class="cap">Paul (left) and Cameron (right) — already dressed for hard work.</figcaption>
       </figure>
       <div>
         <!-- 7/5 Cameron pick D1: live-site self-aware classic restored -->
@@ -695,6 +709,10 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
         <div class="acc-answer" hidden><p>All major credit cards — with no processing fees, ever. We don&rsquo;t accept cash or checks in Texas (Florida takes cards and cash). Office moves paying by check can confirm with us ahead of time.</p></div>
       </div>
     </div>
+    <!-- 7/8 Cameron: full FAQ page now exists in the mockup set (faq-page.html, 47 Qs verbatim from the live site).
+         Homepage keeps the 4 pre-booking objections (lead time / cancel / expiry / payment) — chosen because they're
+         the hesitations that stall the CTA right below this section. -->
+    <a class="offramp rv" style="display:block;text-align:center" href="faq-page.html">Browse all 47 FAQs →</a>
   </div>
 </section>
 
@@ -786,6 +804,10 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <button class="opt" data-v="full" type="button">Pills + tailored CTA</button>
     <button class="opt" data-v="off" type="button" title="Cameron's lean 7/5">No pills ★</button>
   </div></div>
+  <div class="grp"><div class="lab">Badge wall display <a href="#proof" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsBw">
+    <button class="opt" data-v="grid" type="button">Tile grid (8)</button>
+    <button class="opt" data-v="marquee" type="button">Looping marquee</button>
+  </div></div>
   <div class="grp"><div class="lab">Review wall <a href="#proof" style="color:#8CA0AC;text-decoration:none;font-weight:400" title="Jump to this section">↓</a></div><div class="opts" id="wsWall">
     <button class="opt" data-v="on" type="button">On</button>
     <button class="opt" data-v="off" type="button" title="Cameron's lean 7/5">Off ★</button>
@@ -843,7 +865,7 @@ var HEADLINES = {
 
 /* ---------- STATE ---------- */
 /* 7/5 Cameron leans set as defaults (toggles stay live for the KP workshop): wall off · matters proposed · chips off; tone back to AUTO (his read: contrast flows with contrast, barely) */
-var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', kv:'k1', p2:'bd', wall:'off', matters:'prop', fears:'off', exit:'dept', chips:'off' };
+var state = { hero:'a', tone:'auto', ph:0, ch:0, mh:0, cov:'killer', kv:'k1', bw:'grid', p2:'bd', wall:'off', matters:'prop', fears:'off', exit:'dept', chips:'off' };
 safe('loadState', function(){
   var saved = localStorage.getItem('ws-state-v2');
   if(saved){ var s = JSON.parse(saved); for(var k in state){ if(s[k]!==undefined) state[k]=s[k]; } }
@@ -864,6 +886,7 @@ safe('sanitizeState', function(){
   if(state.wall!=='on' && state.wall!=='off') state.wall = 'on';
   state.tone = 'auto'; /* tone retired 7/8 — hero locked, H2s locked */
     if(['k1','k2','k3','k4'].indexOf(state.kv)<0) state.kv='k1';
+    if(state.bw!=='grid' && state.bw!=='marquee') state.bw='grid';
   var t = tone();
   ['ph','ch','mh'].forEach(function(key){
     var arrKey = (key==='ph') ? 'price' : (key==='ch') ? 'cov' : 'mym';
@@ -900,6 +923,23 @@ function renderHeadlines(){
 }
 function renderDisplays(){
   var k = document.getElementById('covKiller'), tb = document.getElementById('covTable');
+  /* 7/8 badge-wall display mode */
+  (function(){
+    var grid = document.querySelector('#proof .badges'); if(!grid) return;
+    var mq = document.getElementById('badgeMq');
+    if(state.bw === 'marquee'){
+      if(!mq){
+        mq = document.createElement('div'); mq.id='badgeMq'; mq.className='mqwrap';
+        var track = document.createElement('div'); track.className='mqtrack';
+        for(var i=0;i<2;i++) grid.querySelectorAll('.badge').forEach(function(b){ track.appendChild(b.cloneNode(true)); });
+        mq.appendChild(track); grid.parentNode.insertBefore(mq, grid.nextSibling);
+      }
+      grid.style.display='none'; mq.style.display='';
+    } else {
+      grid.style.display='';
+      if(mq) mq.style.display='none';
+    }
+  })();
   /* 7/8 killer-stat versions */
   document.querySelectorAll('#covKiller .killer[data-kv]').forEach(function(el){ el.hidden = (el.dataset.kv !== state.kv); });
   var kvBtn = document.getElementById('wsKv');
@@ -938,7 +978,7 @@ function renderPanel(){
     var box = document.getElementById(id); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.v===state.hero ? 'true':'false'); });
   });
-  [['wsTone','tone'],['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsExit','exit'],['wsChips','chips']].forEach(function(m){
+  [['wsTone','tone'],['wsCov','cov'],['wsBw','bw'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsExit','exit'],['wsChips','chips']].forEach(function(m){
     var box = document.getElementById(m[0]); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.v===String(state[m[1]]) ? 'true':'false'); });
   });
@@ -1016,7 +1056,7 @@ safe('cycleButtons', function(){
   });
 });
 safe('displayButtons', function(){
-  [['wsCov','cov'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsExit','exit'],['wsChips','chips']].forEach(function(m){
+  [['wsCov','cov'],['wsBw','bw'],['wsP2','p2'],['wsWall','wall'],['wsMatters','matters'],['wsExit','exit'],['wsChips','chips']].forEach(function(m){
     var box = document.getElementById(m[0]); if(!box) return;
     box.querySelectorAll('.opt').forEach(function(b){
       b.addEventListener('click', function(){ state[m[1]]=b.dataset.v; renderAll(); });
@@ -1187,14 +1227,17 @@ safe('strikeDraw', function(){
 });
 /* ---------- STAMP THUNK: the "No add-ons" stamp thunks in once when its headrow scrolls in ---------- */
 safe('stampThunk', function(){
-  var row = document.querySelector('#price2bd .p2-headrow'); if(!row) return;
-  var stamp = row.querySelector('.stamp'); if(!stamp) return;
-  if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; /* reduced-motion: final state, no animation */
-  stamp.classList.add('pre');
-  var io = new IntersectionObserver(function(en){
-    if(en[0].isIntersecting){ stamp.classList.remove('pre'); stamp.classList.add('thunk'); io.disconnect(); }
-  },{threshold:.6});
-  io.observe(row);
+  /* 7/8: both layout modes carry the stamp now (bd + icon cards) — observe each headrow independently */
+  if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  ['#price2bd .p2-headrow','#price2cards .p2-headrow'].forEach(function(sel){
+    var row = document.querySelector(sel); if(!row) return;
+    var stamp = row.querySelector('.stamp'); if(!stamp) return;
+    stamp.classList.add('pre');
+    var io = new IntersectionObserver(function(en){
+      if(en[0].isIntersecting){ stamp.classList.remove('pre'); stamp.classList.add('thunk'); io.disconnect(); }
+    },{threshold:.6});
+    io.observe(row);
+  });
 });
 
 safe('reveal', function(){
