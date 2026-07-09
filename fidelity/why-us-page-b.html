@@ -128,72 +128,6 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 .strike{text-decoration:line-through;text-decoration-color:rgba(204,1,0,.55);text-decoration-thickness:2px}
 .fb{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--navy-500);background:var(--orange-100);border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
 .cmp-fineprint{font-size:12px;opacity:.75;margin:10px auto 0;max-width:720px}
-/* 7/9 Claude Design port — table treatment variants (dtv- = "design table variant"). Scoped, additive only. */
-.dtv-grid{display:grid;grid-template-columns:1.3fr 1fr 1.15fr}
-.dtv-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:18px}
-.dtv-scroll .dtv-grid{min-width:640px}
-.dtv-cell{display:flex;align-items:center}
-.dtv-fee{padding:13px 18px;font-size:14.5px;font-weight:700;color:#27343D}
-.dtv-them{font-size:14px;color:#53575A}
-.dtv-them .dtv-xmark{color:#CC0100;font-weight:700;margin-right:7px}
-.dtv-strike{color:#CC0100;font-weight:700;text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:rgba(204,1,0,.55)}
-.dtv-us{font-size:14px;font-weight:600;color:#27343D}
-.dtv-us .dtv-check{color:#69995D;font-weight:700;margin-right:7px}
-.dtv-free-pill{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#27343D;background:#FDE3C2;border-radius:999px;padding:2px 8px;margin-left:8px}
-.dtv-sep-12{border-top:1px solid #E2E3E4}
-/* Variant A — Elevated column */
-#tblElevated .dtv-grid{position:relative}
-.dtv-elev-hd-fee,.dtv-elev-hd-them{padding:16px 18px 12px;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:#787C7F;display:flex;align-items:flex-end}
-.dtv-elev-hd-us{margin-top:-16px;padding:20px 18px 12px;background:#FEF6EC;border:1px solid #FDE3C2;border-bottom:none;border-radius:12px 12px 0 0;font-size:14px;font-weight:700;color:#27343D;box-shadow:0 -2px 8px rgba(39,52,61,.06);display:flex;align-items:flex-end}
-.dtv-elev-us-cell{background:#FEF6EC;border-left:1px solid #FDE3C2;border-right:1px solid #FDE3C2}
-.dtv-elev-sep{border-top:1px solid #FDE3C2}
-.dtv-elev-bottom-fee,.dtv-elev-bottom-them{border-top:2px solid #27343D}
-.dtv-elev-bottom-us{border-top:2px solid #27343D;background:#FDE3C2;border-radius:0 0 12px 12px;box-shadow:0 4px 12px rgba(39,52,61,.10);padding:18px}
-.dtv-elev-bottom-label{font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:#CC5500;font-weight:700}
-.dtv-elev-bottom-them-val{font-size:14.5px;font-weight:700;color:#CC0100}
-.dtv-elev-bottom-us-val{font-size:15px;font-weight:700;color:#27343D}
-/* Variant B — Calm ledger */
-#tblLedger .dtv-ledger-wrap{border:1px solid #E2E3E4;border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(39,52,61,.08)}
-.dtv-ledger-hd-fee,.dtv-ledger-hd-them{padding:14px 20px;border-bottom:2px solid #27343D;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:#787C7F}
-.dtv-ledger-hd-us{padding:14px 20px;border-bottom:2px solid #27343D;font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:#27343D;background:#EEF1F4;box-shadow:inset 0 3px 0 #EF8B22}
-.dtv-ledger-cell{padding:12px 20px}
-.dtv-ledger-us-cell{background:#EEF1F4}
-.dtv-ledger-sep{border-top:1px solid #CDD5DA}
-.dtv-ledger-bottom-fee,.dtv-ledger-bottom-them,.dtv-ledger-bottom-us{border-top:2px solid #27343D;padding:16px 20px}
-.dtv-ledger-bottom-us{background:#EEF1F4}
-.dtv-ledger-bottom-label{font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:#CC5500;font-weight:700}
-.dtv-ledger-bottom-them-val{font-size:14.5px;font-weight:700;color:#CC0100}
-.dtv-ledger-bottom-us-val{font-size:15px;font-weight:700;color:#27343D}
-/* 7/9 Claude Design port — guarantees section variants (dgv- = "design guarantee variant"). Scoped, additive only. */
-.dgv-cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:860px;margin:0 auto}
-.dgv-card{background:#fff;border:1px solid #E2E3E4;border-radius:12px;padding:26px 28px;box-shadow:0 1px 2px rgba(39,52,61,.08)}
-.dgv-card-hd{display:flex;align-items:center;gap:14px;margin-bottom:10px}
-.dgv-card-hd h4{margin:0;font-size:17px;color:#CC5500;font-weight:700}
-.dgv-card p{margin:0;font-size:14.5px;color:#53575A;line-height:1.6}
-@media(max-width:640px){.dgv-cards{grid-template-columns:1fr}}
-.dgv-comm-p{max-width:640px;margin:36px auto 0;font-size:16px}
-.dgv-axis{max-width:920px;margin:44px auto 0;position:relative}
-.dgv-axis-line{position:absolute;left:30px;right:30px;top:21px;height:2px;background:#C0C2C4}
-.dgv-axis-nodes{display:flex;justify-content:space-between;position:relative}
-.dgv-axis-node{width:140px;display:flex;flex-direction:column;align-items:center;text-align:center}
-.dgv-axis-circle{width:44px;height:44px;background:#fff;border:2px solid #EF8B22;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.dgv-axis-circle.dgv-axis-alt{background:#FEF6EC}
-.dgv-axis-label{font-size:13px;font-weight:600;color:#27343D;margin-top:10px}
-.dgv-axis-note{font-size:11.5px;color:#787C7F}
-@media(max-width:720px){.dgv-axis-line{display:none}.dgv-axis-nodes{flex-wrap:wrap;gap:18px;justify-content:center}}
-.dgv-trees{display:flex;justify-content:center;align-items:center;gap:8px;margin:36px auto 0;font-size:14px}
-/* Variant B (rail) */
-.dgv-rail-row{display:flex;gap:24px;max-width:640px;margin:0 auto}
-.dgv-rail-hairline{max-width:640px;margin:30px auto;border-top:1px solid #E2E3E4}
-.dgv-rail-comm-p{max-width:640px;margin:48px auto 0;font-size:16px;line-height:1.55;text-align:left}
-.dgv-rail{max-width:640px;margin:28px auto 0;padding-left:76px;position:relative}
-.dgv-rail-line{position:absolute;left:97px;top:10px;bottom:10px;width:2px;background:#FDE3C2}
-.dgv-rail-item{display:flex;flex-direction:column;gap:20px}
-.dgv-rail-item-row{display:flex;align-items:center}
-.dgv-rail-dot{width:12px;height:12px;background:#EF8B22;border-radius:50%;margin-left:16px;position:relative;z-index:1;box-shadow:0 0 0 3px #F4F5F5;flex:none}
-.dgv-rail-label{font-size:14.5px;font-weight:600;color:#27343D;margin-left:16px}
-.dgv-rail-note{font-weight:400;color:#787C7F}
-.dgv-rail-trees{display:flex;align-items:center;gap:8px;max-width:640px;margin:44px auto 0;font-size:14px}
 </style></head>
 <body>
 <nav><div class="nav-in">
@@ -222,7 +156,6 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
   <p class="sub" style="margin-bottom:0">One all-inclusive hourly rate — movers, truck, supplies, taxes, coverage, even appliance hookups — all in it. The industry&rsquo;s usual add-ons, at Einstein:</p>
   <!-- 7/8: teaser replaced by the FULL us-vs-them table, moved here from the pricing page
        (beat decision: receipts own pricing, the table owns this pillar — KP + Cameron). -->
-  <div id="tblCurrent">
   <div class="tblscroll">
   <table class="cmp" aria-label="What typical movers charge extra for vs Einstein">
     <thead><tr><th class="item">The fee</th><th class="them">Typical mover</th><th class="us">Einstein</th></tr></thead>
@@ -238,43 +171,6 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
       <tr class="bottom"><td class="item">Bottom line</td><td class="them">25–50% more than quoted*</td><td class="us">Nothing added at the bottom</td></tr>
     </tbody>
   </table>
-  </div>
-  </div>
-  <!-- 7/9 Claude Design port — Variant A: Elevated column table treatment (hidden by default) -->
-  <div id="tblElevated" hidden>
-  <div class="dtv-scroll">
-  <div class="dtv-grid">
-    <div class="dtv-elev-hd-fee">The fee</div><div class="dtv-elev-hd-them">Typical mover</div><div class="dtv-elev-hd-us">Einstein</div>
-    <div class="dtv-cell dtv-fee">When the clock starts</div><div class="dtv-cell dtv-them"><span class="dtv-xmark">✕</span>At their warehouse</div><div class="dtv-cell dtv-us dtv-elev-us-cell"><span class="dtv-check">✓</span>At your door</div>
-    <div class="dtv-cell dtv-fee dtv-sep-12">Booking deposit</div><div class="dtv-cell dtv-them dtv-sep-12"><span class="dtv-xmark">✕</span>Required — often forfeited</div><div class="dtv-cell dtv-us dtv-elev-us-cell dtv-elev-sep"><span class="dtv-check">✓</span>$0 · free cancellation</div>
-    <div class="dtv-cell dtv-fee dtv-sep-12">Fuel / trip surcharge</div><div class="dtv-cell dtv-them dtv-sep-12"><span class="dtv-xmark">✕</span><span class="dtv-strike">+$50–250</span></div><div class="dtv-cell dtv-us dtv-elev-us-cell dtv-elev-sep"><span class="dtv-check">✓</span>$0 · in your service area</div>
-    <div class="dtv-cell dtv-fee dtv-sep-12">Credit-card fee</div><div class="dtv-cell dtv-them dtv-sep-12"><span class="dtv-xmark">✕</span><span class="dtv-strike">+2.5–3.5%</span></div><div class="dtv-cell dtv-us dtv-elev-us-cell dtv-elev-sep"><span class="dtv-check">✓</span>$0 · included</div>
-    <div class="dtv-cell dtv-fee dtv-sep-12">Blankets, wrap &amp; supplies</div><div class="dtv-cell dtv-them dtv-sep-12"><span class="dtv-xmark">✕</span><span class="dtv-strike">+$65–135</span></div><div class="dtv-cell dtv-us dtv-elev-us-cell dtv-elev-sep"><span class="dtv-check">✓</span>$0 · included</div>
-    <div class="dtv-cell dtv-fee dtv-sep-12">Stair / long-carry / heavy-item fees</div><div class="dtv-cell dtv-them dtv-sep-12"><span class="dtv-xmark">✕</span><span class="dtv-strike">+$100–250</span></div><div class="dtv-cell dtv-us dtv-elev-us-cell dtv-elev-sep"><span class="dtv-check">✓</span>$0 · included</div>
-    <div class="dtv-cell dtv-fee dtv-sep-12">Appliance disconnect &amp; reconnect</div><div class="dtv-cell dtv-them dtv-sep-12"><span class="dtv-xmark">✕</span>Won&rsquo;t touch them — call a handyman</div><div class="dtv-cell dtv-us dtv-elev-us-cell dtv-elev-sep"><span class="dtv-check">✓</span>$0 · included</div>
-    <div class="dtv-cell dtv-fee dtv-sep-12">Damage coverage</div><div class="dtv-cell dtv-them dtv-sep-12"><span class="dtv-xmark">✕</span>60&#162;/lb — or pay to upgrade</div><div class="dtv-cell dtv-us dtv-elev-us-cell dtv-elev-sep"><span class="dtv-check">✓</span>$2,000 · actual value<span class="dtv-free-pill">Free</span></div>
-    <div class="dtv-cell dtv-elev-bottom-fee dtv-elev-bottom-label">Bottom line</div><div class="dtv-cell dtv-elev-bottom-them dtv-elev-bottom-them-val">25–50% more than quoted*</div><div class="dtv-cell dtv-elev-bottom-us dtv-elev-bottom-us-val">Nothing added at the bottom</div>
-  </div>
-  </div>
-  </div>
-  <!-- 7/9 Claude Design port — Variant B: Calm ledger table treatment (hidden by default) -->
-  <div id="tblLedger" hidden>
-  <div class="dtv-scroll">
-  <div class="dtv-ledger-wrap">
-  <div class="dtv-grid">
-    <div class="dtv-ledger-hd-fee">The fee</div><div class="dtv-ledger-hd-them">Typical mover</div><div class="dtv-ledger-hd-us">Einstein</div>
-    <div class="dtv-cell dtv-fee dtv-ledger-cell">When the clock starts</div><div class="dtv-cell dtv-them dtv-ledger-cell"><span class="dtv-xmark">✕</span>At their warehouse</div><div class="dtv-cell dtv-us dtv-ledger-cell dtv-ledger-us-cell"><span class="dtv-check">✓</span>At your door</div>
-    <div class="dtv-cell dtv-fee dtv-ledger-cell dtv-sep-12">Booking deposit</div><div class="dtv-cell dtv-them dtv-ledger-cell dtv-sep-12"><span class="dtv-xmark">✕</span>Required — often forfeited</div><div class="dtv-cell dtv-us dtv-ledger-cell dtv-ledger-us-cell dtv-ledger-sep"><span class="dtv-check">✓</span>$0 · free cancellation</div>
-    <div class="dtv-cell dtv-fee dtv-ledger-cell dtv-sep-12">Fuel / trip surcharge</div><div class="dtv-cell dtv-them dtv-ledger-cell dtv-sep-12"><span class="dtv-xmark">✕</span><span class="dtv-strike">+$50–250</span></div><div class="dtv-cell dtv-us dtv-ledger-cell dtv-ledger-us-cell dtv-ledger-sep"><span class="dtv-check">✓</span>$0 · in your service area</div>
-    <div class="dtv-cell dtv-fee dtv-ledger-cell dtv-sep-12">Credit-card fee</div><div class="dtv-cell dtv-them dtv-ledger-cell dtv-sep-12"><span class="dtv-xmark">✕</span><span class="dtv-strike">+2.5–3.5%</span></div><div class="dtv-cell dtv-us dtv-ledger-cell dtv-ledger-us-cell dtv-ledger-sep"><span class="dtv-check">✓</span>$0 · included</div>
-    <div class="dtv-cell dtv-fee dtv-ledger-cell dtv-sep-12">Blankets, wrap &amp; supplies</div><div class="dtv-cell dtv-them dtv-ledger-cell dtv-sep-12"><span class="dtv-xmark">✕</span><span class="dtv-strike">+$65–135</span></div><div class="dtv-cell dtv-us dtv-ledger-cell dtv-ledger-us-cell dtv-ledger-sep"><span class="dtv-check">✓</span>$0 · included</div>
-    <div class="dtv-cell dtv-fee dtv-ledger-cell dtv-sep-12">Stair / long-carry / heavy-item fees</div><div class="dtv-cell dtv-them dtv-ledger-cell dtv-sep-12"><span class="dtv-xmark">✕</span><span class="dtv-strike">+$100–250</span></div><div class="dtv-cell dtv-us dtv-ledger-cell dtv-ledger-us-cell dtv-ledger-sep"><span class="dtv-check">✓</span>$0 · included</div>
-    <div class="dtv-cell dtv-fee dtv-ledger-cell dtv-sep-12">Appliance disconnect &amp; reconnect</div><div class="dtv-cell dtv-them dtv-ledger-cell dtv-sep-12"><span class="dtv-xmark">✕</span>Won&rsquo;t touch them — call a handyman</div><div class="dtv-cell dtv-us dtv-ledger-cell dtv-ledger-us-cell dtv-ledger-sep"><span class="dtv-check">✓</span>$0 · included</div>
-    <div class="dtv-cell dtv-fee dtv-ledger-cell dtv-sep-12">Damage coverage</div><div class="dtv-cell dtv-them dtv-ledger-cell dtv-sep-12"><span class="dtv-xmark">✕</span>60&#162;/lb — or pay to upgrade</div><div class="dtv-cell dtv-us dtv-ledger-cell dtv-ledger-us-cell dtv-ledger-sep"><span class="dtv-check">✓</span>$2,000 · actual value<span class="dtv-free-pill">Free</span></div>
-    <div class="dtv-cell dtv-ledger-bottom-fee dtv-ledger-bottom-label">Bottom line</div><div class="dtv-cell dtv-ledger-bottom-them dtv-ledger-bottom-them-val">25–50% more than quoted*</div><div class="dtv-cell dtv-ledger-bottom-us dtv-ledger-bottom-us-val">Nothing added at the bottom</div>
-  </div>
-  </div>
-  </div>
   </div>
   <p class="cmp-fineprint">Typical-mover fees shown are common industry ranges, not any one company — your Einstein rate varies by market, but the $0 columns never do. *Range based on published industry fee data, verified against our mystery-shop numbers.</p>
   <!-- 7/4 Cameron pick (Liana pass): boring-invoices aside — smirk lands AFTER the table, never inside it -->
@@ -311,7 +207,6 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
 <!-- SUPPORTING PILLARS — compressed, never co-equal -->
 <section class="pillar-band" id="supporting-pillars" style="background:var(--grey-50)"><div class="wrap">
   <!-- 7/5 Cameron's remix (over street-test fix "Parts four and five…") — names the System (Miller's plan-naming note satisfied). Still on his iterate list: "we're down to <10 pieces of copy to iterate — this is one." -->
-  <div id="guarCurrent">
   <h2 class="sec" style="font-size:24px">The last two parts of the Smart Move System: <span class="a">guarantees with money behind them.</span></h2>
   <div class="support">
     <div class="scard"><h4>📅 Smart Scheduling</h4><p>Book in minutes — and the On-Time Guarantee has teeth: late means your move is discounted, and the longer we&rsquo;re late, the bigger the discount.</p></div>
@@ -335,61 +230,6 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
     <div class="comm-step"><div class="ic">💬</div><div class="lb">Post-move check-in <span style="font-weight:400">· ~a week after</span></div></div>
   </div>
   <p class="sub" style="margin:18px auto 0">Plus we&rsquo;re going carbon neutral — four trees planted per move. 🌳 <a href="about-page.html">That story&rsquo;s on About →</a></p>
-  </div>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<g id="w-cal"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path><path d="M9 15.5l2 2 4-4"></path></g>
-<g id="w-trophy"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></g>
-<g id="w-check"><path d="M20 6L9 17l-5-5"></path></g>
-<g id="w-mail"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M22 6l-10 7L2 6"></path></g>
-<g id="w-daycheck"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path><circle cx="12" cy="16" r="2.5"></circle></g>
-<g id="w-truck"><rect x="1" y="3" width="15" height="13"></rect><path d="M16 8h4l3 3v5h-7V8z"></path><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></g>
-<g id="w-flag"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><path d="M4 22v-7"></path></g>
-<g id="w-msg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></g>
-<g id="w-tree"><path d="M12 3l4.5 6h-9z"></path><path d="M12 8.5l5.5 7h-11z"></path><path d="M12 15.5V21"></path></g>
-</defs></svg>
-
-<!-- 7/9 Claude Design port — Variant A: Certificates + time axis (hidden by default) -->
-<div id="guarCerts" hidden>
-  <h2 class="sec" style="font-size:24px">The last two parts of the Smart Move System: <span class="a">guarantees with money behind them.</span></h2>
-  <div class="dgv-cards">
-    <div class="dgv-card"><div class="dgv-card-hd"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none;width:44px;height:44px" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#w-cal" stroke="#EF8B22" stroke-width="0.9" transform="translate(0.6,0.6)"></use><use href="#w-cal" stroke="#53575A" stroke-width="0.9"></use></svg><h4>Smart Scheduling</h4></div><p>Book in minutes — and the On-Time Guarantee has teeth: <b style="color:#27343D">late means your move is discounted, and the longer we&rsquo;re late, the bigger the discount.</b></p></div>
-    <div class="dgv-card"><div class="dgv-card-hd"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none;width:44px;height:44px" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#w-trophy" stroke="#EF8B22" stroke-width="0.9" transform="translate(0.6,0.6)"></use><use href="#w-trophy" stroke="#53575A" stroke-width="0.9"></use></svg><h4>Smart Results</h4></div><p><b style="color:#27343D">4.9/5 across 8,100+ reviews</b> · 10× Best of Austin · 5× Best in DFW · 4× Best of San Antonio · 3× Best of the Best Houston · 7× Inc. 5000 · featured in Forbes Home. Seriously — we&rsquo;re running out of shelf space. <a href="awards-reviews-page.html">The full year-by-year, every trophy with its name tag on →</a></p></div>
-  </div>
-  <p class="sub dgv-comm-p"><b>And the part no pillar covers:</b> constant communication — we check in so regularly you&rsquo;ll never wonder what&rsquo;s next. You might wonder about other things. Life, the universe. Not your move.</p>
-  <div class="dgv-axis">
-    <div class="dgv-axis-line"></div>
-    <div class="dgv-axis-nodes">
-      <div class="dgv-axis-node"><div class="dgv-axis-circle"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none;width:20px;height:20px" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#w-check" stroke="#53575A" stroke-width="2"></use></svg></div><div class="dgv-axis-label">Booked</div></div>
-      <div class="dgv-axis-node"><div class="dgv-axis-circle"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none;width:20px;height:20px" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#w-mail" stroke="#53575A" stroke-width="2"></use></svg></div><div class="dgv-axis-label">&ldquo;Meet your movers&rdquo; email</div><div class="dgv-axis-note">· days before</div></div>
-      <div class="dgv-axis-node"><div class="dgv-axis-circle"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none;width:20px;height:20px" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#w-daycheck" stroke="#53575A" stroke-width="2"></use></svg></div><div class="dgv-axis-label">Day-before check-in</div></div>
-      <div class="dgv-axis-node"><div class="dgv-axis-circle dgv-axis-alt"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none;width:20px;height:20px" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#w-truck" stroke="#53575A" stroke-width="2"></use></svg></div><div class="dgv-axis-label">&ldquo;On the way&rdquo; text</div></div>
-      <div class="dgv-axis-node"><div class="dgv-axis-circle dgv-axis-alt"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none;width:20px;height:20px" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#w-flag" stroke="#53575A" stroke-width="2"></use></svg></div><div class="dgv-axis-label">Final walkthrough</div></div>
-      <div class="dgv-axis-node"><div class="dgv-axis-circle"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none;width:20px;height:20px" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#w-msg" stroke="#53575A" stroke-width="2"></use></svg></div><div class="dgv-axis-label">Post-move check-in</div><div class="dgv-axis-note">· ~a week after</div></div>
-    </div>
-  </div>
-  <p class="sub dgv-trees">Plus we&rsquo;re going carbon neutral — four trees planted per move. <svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none;width:20px;height:20px" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#w-tree" stroke="#EF8B22" stroke-width="1.6" transform="translate(1.2,1.2)"></use><use href="#w-tree" stroke="#53575A" stroke-width="1.6"></use></svg> <a href="about-page.html">That story&rsquo;s on About →</a></p>
-</div>
-
-<!-- 7/9 Claude Design port — Variant B: Air + hierarchy (hidden by default) -->
-<div id="guarRail" hidden>
-  <h2 class="sec" style="font-size:24px;margin-bottom:44px">The last two parts of the Smart Move System: <span class="a">guarantees with money behind them.</span></h2>
-  <div class="dgv-rail-row"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none;width:56px;height:56px" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#w-cal" stroke="#EF8B22" stroke-width="0.86" transform="translate(0.6,0.6)"></use><use href="#w-cal" stroke="#53575A" stroke-width="0.86"></use></svg><div><h4 style="margin:0 0 6px;font-size:15.5px;color:var(--orange-900)">Smart Scheduling</h4><p style="margin:0;font-size:15px;line-height:1.65;color:var(--grey-500)">Book in minutes — and the On-Time Guarantee has teeth: <b style="color:#27343D">late means your move is discounted, and the longer we&rsquo;re late, the bigger the discount.</b></p></div></div>
-  <div class="dgv-rail-hairline"></div>
-  <div class="dgv-rail-row"><svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none;width:56px;height:56px" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#w-trophy" stroke="#EF8B22" stroke-width="0.86" transform="translate(0.6,0.6)"></use><use href="#w-trophy" stroke="#53575A" stroke-width="0.86"></use></svg><div><h4 style="margin:0 0 6px;font-size:15.5px;color:var(--orange-900)">Smart Results</h4><p style="margin:0;font-size:15px;line-height:1.65;color:var(--grey-500)"><b style="color:#27343D">4.9/5 across 8,100+ reviews</b> · 10× Best of Austin · 5× Best in DFW · 4× Best of San Antonio · 3× Best of the Best Houston · 7× Inc. 5000 · featured in Forbes Home. Seriously — we&rsquo;re running out of shelf space. <a href="awards-reviews-page.html">The full year-by-year, every trophy with its name tag on →</a></p></div></div>
-  <p class="sub dgv-rail-comm-p"><b>And the part no pillar covers:</b> constant communication — we check in so regularly you&rsquo;ll never wonder what&rsquo;s next. You might wonder about other things. Life, the universe. Not your move.</p>
-  <div class="dgv-rail">
-    <div class="dgv-rail-line"></div>
-    <div class="dgv-rail-item">
-      <div class="dgv-rail-item-row"><div class="dgv-rail-dot"></div><div class="dgv-rail-label">Booked</div></div>
-      <div class="dgv-rail-item-row"><div class="dgv-rail-dot"></div><div class="dgv-rail-label">&ldquo;Meet your movers&rdquo; email <span class="dgv-rail-note">· days before</span></div></div>
-      <div class="dgv-rail-item-row"><div class="dgv-rail-dot"></div><div class="dgv-rail-label">Day-before check-in</div></div>
-      <div class="dgv-rail-item-row"><div class="dgv-rail-dot"></div><div class="dgv-rail-label">&ldquo;On the way&rdquo; text</div></div>
-      <div class="dgv-rail-item-row"><div class="dgv-rail-dot"></div><div class="dgv-rail-label">Final walkthrough</div></div>
-      <div class="dgv-rail-item-row"><div class="dgv-rail-dot"></div><div class="dgv-rail-label">Post-move check-in <span class="dgv-rail-note">· ~a week after</span></div></div>
-    </div>
-  </div>
-  <p class="sub dgv-rail-trees">Plus we&rsquo;re going carbon neutral — four trees planted per move. <svg viewBox="0 0 24 24" aria-hidden="true" style="flex:none;width:20px;height:20px" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#w-tree" stroke="#EF8B22" stroke-width="1.6" transform="translate(1.2,1.2)"></use><use href="#w-tree" stroke="#53575A" stroke-width="1.6"></use></svg> <a href="about-page.html">That story&rsquo;s on About →</a></p>
-</div>
 </div></section>
 
 
@@ -501,40 +341,6 @@ table.cmp{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;b
     fab.setAttribute('aria-expanded', open?'true':'false');
   });
   render();
-})();
-</script>
-
-<script>
-/* 7/9 Claude Design port — Why Us table treatment toggle (3-way). Additive; #tblCurrent untouched. */
-(function(){
-  var MODES=['current','elevated','ledger'];
-  var LABELS={current:'Table · current',elevated:'Table · elevated column',ledger:'Table · calm ledger'};
-  var els={current:document.getElementById('tblCurrent'),elevated:document.getElementById('tblElevated'),ledger:document.getElementById('tblLedger')};
-  if(!els.current||!els.elevated||!els.ledger) return;
-  var mode='current';
-  try{var st=localStorage.getItem('emc-whyus-table-v'); if(MODES.indexOf(st)>=0) mode=st;}catch(e){}
-  var btn=document.createElement('button'); btn.type='button';
-  btn.style.cssText='position:fixed;left:14px;bottom:14px;z-index:400;background:#fff;border:1px solid #E2E3E4;border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:#53575A;cursor:pointer;box-shadow:0 1px 2px rgba(39,52,61,.08)';
-  function apply(){ MODES.forEach(function(m){ els[m].hidden=(m!==mode); }); btn.textContent='⇄ '+LABELS[mode]; }
-  btn.addEventListener('click',function(){ mode=MODES[(MODES.indexOf(mode)+1)%3]; try{localStorage.setItem('emc-whyus-table-v',mode);}catch(e){} apply(); });
-  document.body.appendChild(btn); apply();
-})();
-</script>
-
-<script>
-/* 7/9 Claude Design port — Why Us guarantees section treatment toggle (3-way). Additive; #guarCurrent untouched. */
-(function(){
-  var MODES=['current','certs','rail'];
-  var LABELS={current:'Guarantees · current',certs:'Guarantees · certificates+axis',rail:'Guarantees · air+rail'};
-  var els={current:document.getElementById('guarCurrent'),certs:document.getElementById('guarCerts'),rail:document.getElementById('guarRail')};
-  if(!els.current||!els.certs||!els.rail) return;
-  var mode='current';
-  try{var st=localStorage.getItem('emc-whyus-guar-v'); if(MODES.indexOf(st)>=0) mode=st;}catch(e){}
-  var btn=document.createElement('button'); btn.type='button';
-  btn.style.cssText='position:fixed;left:14px;bottom:56px;z-index:400;background:#fff;border:1px solid #E2E3E4;border-radius:999px;padding:8px 14px;font:600 12px/1 Roboto,sans-serif;color:#53575A;cursor:pointer;box-shadow:0 1px 2px rgba(39,52,61,.08)';
-  function apply(){ MODES.forEach(function(m){ els[m].hidden=(m!==mode); }); btn.textContent='⇄ '+LABELS[mode]; }
-  btn.addEventListener('click',function(){ mode=MODES[(MODES.indexOf(mode)+1)%3]; try{localStorage.setItem('emc-whyus-guar-v',mode);}catch(e){} apply(); });
-  document.body.appendChild(btn); apply();
 })();
 </script>
 </body></html>
