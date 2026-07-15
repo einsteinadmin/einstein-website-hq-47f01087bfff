@@ -146,6 +146,21 @@ footer a{color:var(--blue-100)}
 footer .devnote{margin-top:16px;font-size:11px;color:#5C7280}
 footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .sitemap a:hover{color:#fff}
 @media(max-width:360px){html{scroll-padding-top:150px}}
+/* 7/14 Cameron ask: care-inventory component (competitor pattern studied — sticky headline + scrolling
+   category groups; content 100% Einstein-verified: locked workshop copy + live-site equipment/FAQ lists).
+   The ledger above argues MONEY; this section argues CARE — different fear, no duplicated beat. */
+.smt-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:34px;align-items:start;max-width:1020px;margin:0 auto}
+.smt-left{position:sticky;top:96px;text-align:left}
+.smt-left .kick{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--grey-500);margin-bottom:8px}
+.smt-left h2{text-align:left;margin-bottom:12px}
+.smt-left .lead{font-size:15.5px;color:var(--grey-500);line-height:1.6;margin:0 0 18px}
+.smt-card{background:#fff;border:1px solid var(--grey-100);border-radius:12px;padding:20px 22px;margin-bottom:14px;box-shadow:0 1px 2px rgba(39,52,61,.06);text-align:left}
+.smt-card h3{font-size:16px;color:var(--orange-900);margin:0 0 10px;font-weight:700}
+.smt-items{display:flex;flex-wrap:wrap;gap:7px;margin:0;padding:0;list-style:none}
+.smt-items li{font-size:13px;color:var(--navy-500);background:var(--grey-50);border:1px solid var(--grey-100);border-radius:999px;padding:5px 12px}
+.smt-items li b{color:var(--orange-900)}
+.smt-foot{font-size:13px;color:var(--grey-500);margin:16px 0 0;text-align:left;font-style:italic}
+@media(max-width:760px){.smt-grid{grid-template-columns:1fr}.smt-left{position:static}.smt-left h2{text-align:center}.smt-left .kick,.smt-left .lead{text-align:center}}
 </style></head>
 <body>
 
@@ -259,6 +274,64 @@ footer .sitemap a{color:#B9C4CC;text-decoration:none;font-weight:600} footer .si
     <div class="honest">
       <span class="t">The honest fine print — what we can&rsquo;t move</span>
       A few things we&rsquo;ll turn down, and we&rsquo;d rather tell you here than on your driveway: anything over <b>400 pounds</b> (with rare exceptions — <i>[VERIFY: name the exceptions before a child page ships]</i>), <b>grand and baby grand pianos</b> (uprights are fine, as long as there are no stairwells involved), <b>pool tables</b> that haven&rsquo;t been disassembled with the slates removed, and <b>vehicles of any kind</b> — cars, golf carts, dirt bikes, riding mowers. Nothing hazardous, perishable, or illegal, either. Not sure whether your item makes the cut? Text or call us at <b>737-555-0100</b> and we&rsquo;ll tell you straight — we&rsquo;d rather lose a booking than fake the fit.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5B. THE CARE INVENTORY (NEW 7/14 — Cameron ask) ============
+     Pattern: sticky headline left, category groups right. The ledger above = what the RATE includes (money);
+     this = what the CREW does to your stuff (care). Every item verified: locked workshop copy, or the live
+     site's truck-equipment + FAQ lists. Tip line ≈ verbatim from the live FAQ. -->
+<section class="block" id="care-standard">
+  <div class="wrap">
+    <div class="smt-grid">
+      <div class="smt-left">
+        <div class="kick">Standard on every truck, every crew, every move</div>
+        <h2 class="sec">How we treat your stuff — <span class="a">every single time.</span></h2>
+        <p class="lead">None of this is an upgrade, an add-on, or a request you have to remember to make. It&rsquo;s just how the truck shows up.</p>
+        <a class="btn-primary" href="https://www.einsteinmoving.com/quote/">See my price →</a>
+        <div class="microproof" style="text-align:left">All of it included in the hourly rate.</div>
+      </div>
+      <div>
+        <div class="smt-card">
+          <h3>Wrapped &amp; protected</h3>
+          <ul class="smt-items">
+            <li>Professional moving pads on furniture</li>
+            <li>Shrink wrap &amp; tape</li>
+            <li>Mattress bags</li>
+            <li>TV boxes <b>(&times;2)</b></li>
+            <li>Tie-downs in the truck</li>
+          </ul>
+        </div>
+        <div class="smt-card">
+          <h3>Your home, protected too</h3>
+          <ul class="smt-items">
+            <li>Floor protection</li>
+            <li>Wall protection</li>
+            <li>Door-frame guards</li>
+            <li>Floors &amp; walls covered — <b>handled by us</b>, not an insurance runaround</li>
+          </ul>
+        </div>
+        <div class="smt-card">
+          <h3>Taken apart, put back together</h3>
+          <ul class="smt-items">
+            <li>Beds, tables &amp; shelving</li>
+            <li>Appliance disconnect &amp; reconnect <b>· everything but gas</b></li>
+            <li>Every truck stocked: dollies, tool kits, loading ramp</li>
+          </ul>
+        </div>
+        <div class="smt-card">
+          <h3>The people carrying it</h3>
+          <ul class="smt-items">
+            <li>Background-checked, W-2 crews</li>
+            <li>Trained to wrap, pack &amp; lift — before they touch a customer&rsquo;s home</li>
+            <li>$2,000 damage coverage · <b>actual value</b></li>
+            <li>On-Time Guarantee · late = discounted</li>
+            <li>Cones, first-aid kit &amp; fire extinguisher on every truck</li>
+          </ul>
+        </div>
+        <p class="smt-foot">One thing that isn&rsquo;t included: the tip. Never expected — but if your crew was super duper awesome, it&rsquo;s certainly appreciated.</p>
+      </div>
     </div>
   </div>
 </section>
