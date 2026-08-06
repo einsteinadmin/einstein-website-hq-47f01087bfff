@@ -19,7 +19,11 @@ h2{font-family:Lora,serif;font-size:21px;margin:36px 0 10px}
 .rail{background:var(--orange-50);border:1px solid var(--orange-100);border-radius:var(--radius);padding:16px 20px;font-size:14px;margin:14px 0}
 .rail b{color:var(--orange-900)}
 .howto{background:#EFF6FF;border:1px solid #BFD9F2;border-radius:var(--radius);padding:16px 20px;font-size:14.5px;margin:14px 0}
-.tile{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:18px 20px;margin:12px 0}
+.tile{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--grey-100);border-radius:var(--radius);padding:18px 20px;margin:12px 0;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s}
+a.tile:hover{border-color:var(--blue-500);box-shadow:0 6px 18px rgba(9,121,195,.14)}
+.tile h3 .t{color:var(--blue-500)}
+a.tile:hover h3 .t{text-decoration:underline}
+.tile .go{color:var(--blue-500);font-weight:900;margin-left:6px}
 .tile .n{font-family:Lora,serif;font-weight:700;font-size:22px;color:var(--orange-900);min-width:30px;text-align:center;line-height:1.2}
 .tile h3{margin:0 0 6px;font-size:16.5px}
 .tile h3 a{color:var(--blue-500);text-decoration:none}
@@ -44,50 +48,50 @@ li{margin:5px 0;font-size:14.5px}
 <section id="the-queue">
 <h2>The queue (in order — start at 1, stop whenever the tank runs dry)</h2>
 
-<div class="tile">
+<a class="tile" href="emails/index.html">
   <span class="n">1</span>
   <div>
-    <h3><a href="emails/index.html">The email suite</a> <span class="chip">~¾ day</span> <span class="chip blue">HIGHEST VALUE</span></h3>
+    <h3><span class="t">The email suite</span> <span class="chip">~¾ day</span> <span class="chip blue">HIGHEST VALUE</span> <span class="go">&rarr;</span></h3>
     <p>Eight lifecycle emails run 24/7 to every lead and every booked customer — and our conversion KPI lives inside them. The redesigned quote email is the approved style target; your job is condensing the rest of the suite into that skeleton. Copy first, design pours in after.</p>
     <p class="meta">All 8 current sends captured (copy + layout) · style target + your old drafts linked on the page</p>
   </div>
-</div>
+</a>
 
-<div class="tile">
+<a class="tile" href="choices-review/index.html">
   <span class="n">2</span>
   <div>
-    <h3><a href="choices-review/index.html">The CHOICES module</a> <span class="chip">~2–3 hrs</span> <span class="chip blue">CLICK-TO-EDIT</span></h3>
+    <h3><span class="t">The CHOICES module</span> <span class="chip">~2–3 hrs</span> <span class="chip blue">CLICK-TO-EDIT</span> <span class="go">&rarr;</span></h3>
     <p>Our core-values training game — one of the first things a new mover ever sees from us, so the fun has to be real. This is a live copy of the actual module with an edit layer bolted on: play it like a new hire, click any line to punch it up, leave notes, hit export when you're done. Cameron folds your export into the real thing.</p>
     <p class="meta">~300 editable text objects: 17 scenarios, 15 quiz questions, badges, all the framing copy</p>
   </div>
-</div>
+</a>
 
-<div class="tile">
+<a class="tile" href="job-posting.html">
   <span class="n">3</span>
   <div>
-    <h3><a href="job-posting.html">The job posting</a> <span class="chip">~1 hr</span></h3>
+    <h3><span class="t">The job posting</span> <span class="chip">~1 hr</span> <span class="go">&rarr;</span></h3>
     <p>Your old friend — you rewrote this in 2022 and it's drifted since. This one's a <b>punch-up, not a rewrite</b>: a quick gloss-over to sharpen what's gone soft. Our cost per mover hire is north of $450 with a leaky applicant funnel, and conversion copy is the cheapest attack on that. There's a click-to-edit fake-Indeed editor so you work inside the exact frame candidates see.</p>
     <p class="meta">Current posting + your 2022 version + the editor, all linked on the page</p>
   </div>
-</div>
+</a>
 
-<div class="tile">
+<a class="tile" href="billboards.html">
   <span class="n">4</span>
   <div>
-    <h3><a href="billboards.html">Billboards</a> <span class="chip">~1 hr</span> <span class="chip blue">REAL DEADLINE</span></h3>
+    <h3><span class="t">Billboards</span> <span class="chip">~1 hr</span> <span class="chip blue">REAL DEADLINE</span> <span class="go">&rarr;</span></h3>
     <p>A fall campaign goes up on 5 DFW panels Aug 31 and artwork locks around Aug 25 — so punchy new headline concepts have an actual bus to catch. Seven words or fewer, over-commit-then-deadpan welcome. The approved copy bank and the rules are on the page; your concepts compete with the bank, they don't replace it.</p>
     <p class="meta">6–10 headline options is the perfect deliverable</p>
   </div>
-</div>
+</a>
 
-<div class="tile">
+<a class="tile" href="mailers.html">
   <span class="n">5</span>
   <div>
-    <h3><a href="mailers.html">Direct mailers</a> <span class="chip">STRETCH</span></h3>
+    <h3><span class="t">Direct mailers</span> <span class="chip">STRETCH</span> <span class="go">&rarr;</span></h3>
     <p>Printed postcards are mailing in four markets right now, and a small reprint is already in flight — so fresh mailer copy targets the <i>next</i> print cycle. No deadline. Grab this only if everything above is done and you're still having fun. React to what's printed or start clean on either version; both welcome.</p>
     <p class="meta">Production files, current copy verbatim, and the already-ruled tweaks are on the page</p>
   </div>
-</div>
+</a>
 </section>
 
 <section id="guardrails">
