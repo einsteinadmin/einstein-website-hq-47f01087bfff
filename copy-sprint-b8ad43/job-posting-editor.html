@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Internal Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indeed-blue: #2557a7;
+    --indeed-blue-dark: #164081;
+    --indeed-bg: #f3f2f1;
+    --indeed-border: #d4d2d0;
+    --indeed-text: #2d2d2d;
+    --indeed-muted: #595959;
+    --indeed-green: #0b7e34;
+    --indeed-star: #ffb400;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: var(--indeed-bg);
+    color: var(--indeed-text);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  /* ---------- Fake Indeed Nav ---------- */
+  .indeed-nav {
+    background: white;
+    border-bottom: 1px solid var(--indeed-border);
+    padding: 0 24px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .indeed-logo {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--indeed-blue);
+    letter-spacing: -0.5px;
+  }
+  .indeed-logo::after {
+    content: "•";
+    color: var(--indeed-blue);
+    margin-left: 2px;
+  }
+  .indeed-search {
+    flex: 1;
+    max-width: 760px;
+    display: flex;
+    border: 1px solid var(--indeed-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .indeed-search input {
+    flex: 1;
+    border: none;
+    padding: 10px 12px;
+    font-size: 14px;
+    outline: none;
+    background: #fafafa;
+    color: var(--indeed-muted);
+  }
+  .indeed-search input:first-of-type {
+    border-right: 1px solid var(--indeed-border);
+  }
+  .indeed-search button {
+    background: var(--indeed-blue);
+    color: white;
+    border: none;
+    padding: 0 20px;
+    font-weight: 500;
+    cursor: not-allowed;
+  }
+  .indeed-nav-right {
+    display: flex;
+    gap: 20px;
+    color: var(--indeed-muted);
+    font-size: 14px;
+  }
+  .indeed-nav-right span { cursor: not-allowed; }
+
+  /* ---------- Editor Toolbar ---------- */
+  .editor-toolbar {
+    background: #2d2d2d;
+    color: white;
+    padding: 10px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 13px;
+  }
+  .toolbar-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .toolbar-row + .toolbar-row {
+    padding-top: 8px;
+    border-top: 1px solid #4a4a4a;
+  }
+  .editor-toolbar select {
+    background: #4a4a4a;
+    color: white;
+    border: 1px solid #555;
+    padding: 6px 10px;
+    border-radius: 3px;
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    min-width: 200px;
+  }
+  .editor-toolbar select:focus { outline: 2px solid var(--indeed-blue); }
+  .toolbar-divider {
+    width: 1px;
+    height: 24px;
+    background: #4a4a4a;
+    margin: 0 4px;
+  }
+  .editor-toolbar .label {
+    color: #a0a0a0;
+    font-weight: 500;
+    margin-right: 8px;
+  }
+  .editor-toolbar button {
+    background: #4a4a4a;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: inherit;
+  }
+  .editor-toolbar button:hover { background: #5a5a5a; }
+  .editor-toolbar button.primary {
+    background: #EF8B22;
+  }
+  .editor-toolbar button.primary:hover { background: #d97a18; }
+  .editor-toolbar .spacer { flex: 1; }
+  .editor-toolbar .stat {
+    color: #d0d0d0;
+    font-variant-numeric: tabular-nums;
+  }
+  .editor-toolbar .stat b { color: white; }
+  .save-indicator {
+    color: #6ec88e;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .save-indicator.show { opacity: 1; }
+
+  /* ---------- Page Layout ---------- */
+  .page {
+    max-width: 1200px;
+    margin: 16px auto;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 16px;
+  }
+  @media (max-width: 980px) {
+    .page { grid-template-columns: 1fr; }
+    .right-col { display: none; }
+  }
+
+  /* ---------- Job Card ---------- */
+  .job-card {
+    background: white;
+    border: 1px solid var(--indeed-border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .job-header {
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid var(--indeed-border);
+  }
+  .job-title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    color: #2d2d2d;
+  }
+  .job-title[contenteditable]:focus { outline: 2px solid var(--indeed-blue); outline-offset: 2px; }
+
+  .company-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .company-name {
+    color: var(--indeed-blue);
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .company-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--indeed-muted);
+    font-size: 14px;
+  }
+  .star { color: var(--indeed-star); }
+  .company-location {
+    color: var(--indeed-muted);
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .job-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .meta-chip {
+    background: #e4ebf5;
+    color: #1f3a6e;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .meta-chip.salary {
+    background: #d4ebd9;
+    color: var(--indeed-green);
+  }
+
+  .easily-apply {
+    color: var(--indeed-green);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .easily-apply::before {
+    content: "✓ ";
+    font-weight: 700;
+  }
+
+  .apply-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .apply-btn {
+    background: var(--indeed-blue);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .apply-btn:hover { background: var(--indeed-blue-dark); }
+  .save-job-btn {
+    background: white;
+    border: 1px solid var(--indeed-blue);
+    color: var(--indeed-blue);
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-family: inherit;
+    font-size: 14px;
+  }
+  .icon-btn {
+    background: white;
+    border: 1px solid var(--indeed-border);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--indeed-muted);
+  }
+
+  /* ---------- Job Body (editable) ---------- */
+  .job-body-section {
+    padding: 24px 28px 32px;
+  }
+  .job-body-section h2 {
+    font-size: 18px;
+    margin: 0 0 16px;
+    color: #2d2d2d;
+  }
+  .edit-banner {
+    background: #fff8e6;
+    border: 1px dashed #d4a72c;
+    color: #6e4e0f;
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+  .edit-banner b { color: #4a3608; }
+
+  .editable {
+    min-height: 200px;
+    outline: none;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #2d2d2d;
+    padding: 6px;
+    border-radius: 4px;
+    transition: background 0.15s;
+  }
+  .editable:focus {
+    background: #fffef5;
+    box-shadow: inset 0 0 0 2px var(--indeed-blue);
+  }
+  .editable:hover:not(:focus) {
+    background: #fafafa;
+  }
+  .editable h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin: 24px 0 10px;
+    color: #1d1d1d;
+    letter-spacing: 0.2px;
+  }
+  .editable h3:first-child { margin-top: 0; }
+  .editable p {
+    margin: 0 0 12px;
+  }
+  .editable ul {
+    margin: 0 0 14px;
+    padding-left: 22px;
+  }
+  .editable li {
+    margin-bottom: 6px;
+  }
+  .editable hr {
+    border: none;
+    border-top: 1px solid #e4e4e4;
+    margin: 22px 0;
+  }
+  .editable em { color: #595959; }
+  .editable a { color: var(--indeed-blue); }
+
+  /* ---------- Preview mode (hides editor affordances) ---------- */
+  body.preview-mode .edit-banner,
+  body.preview-mode .editor-toolbar { display: none; }
+  body.preview-mode [contenteditable] {
+    background: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    cursor: default;
+  }
+  body.preview-mode [contenteditable]:hover { background: transparent !important; }
+
+  /* ---------- Right rail ---------- */
+  .right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .rail-card {
+    background: white;
+    border: 1px solid var(--indeed-border);
+    border-radius: 6px;
+    padding: 20px;
+  }
+  .rail-card h3 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .rail-card p {
+    margin: 0 0 8px;
+    color: var(--indeed-muted);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .rail-stat {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+  }
+  .rail-stat:last-child { border: none; }
+  .rail-stat .v { font-weight: 600; }
+
+  /* ---------- Modal ---------- */
+  .modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .modal-backdrop.show { display: flex; }
+  .modal {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 720px;
+    width: 90%;
+    max-height: 80vh;
+    overflow: auto;
+  }
+  .modal h3 { margin: 0 0 14px; }
+  .modal textarea {
+    width: 100%;
+    min-height: 360px;
+    font-family: Menlo, Monaco, monospace;
+    font-size: 12px;
+    padding: 10px;
+    border: 1px solid var(--indeed-border);
+    border-radius: 4px;
+  }
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .modal-actions button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: 1px solid var(--indeed-border);
+    background: white;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+  }
+  .modal-actions button.primary {
+    background: var(--indeed-blue);
+    color: white;
+    border-color: var(--indeed-blue);
+  }
+</style>
+</head>
+<body>
+
+<!-- Fake Indeed Nav -->
+<div class="indeed-nav">
+  <div class="indeed-logo">indeed</div>
+  <div class="indeed-search">
+    <input type="text" value="Lead Mover & Driver" disabled>
+    <input type="text" id="navLocation" value="North Austin, TX" disabled>
+    <button>Find jobs</button>
+  </div>
+  <div class="indeed-nav-right">
+    <span>My jobs</span>
+    <span>Messages</span>
+    <span>Profile</span>
+  </div>
+</div>
+
+<!-- Editor Toolbar (real, working) -->
+<div class="editor-toolbar">
+  <div class="toolbar-row">
+    <span class="label">EDITOR</span>
+    <button class="primary" onclick="copyForIndeed()" title="Paste straight into Indeed's job description field, ClearCo, or any rich-text editor — formatting preserved">📥 Copy for Indeed / ClearCo</button>
+    <button onclick="copyPlain()" title="Paste anywhere plain (Slack, email, ATS that strips formatting)">📋 Plain text</button>
+    <button onclick="copyHtml()" title="Raw HTML source (for ClearCo / Rippling / API fields)">📄 HTML source</button>
+    <button onclick="togglePreview()" id="previewBtn" title="Hide editor chrome to see exactly what Indeed will show">👁 Preview</button>
+    <button onclick="showHtml()">{ } View HTML</button>
+    <button onclick="resetToDefault()">↺ Reset</button>
+    <span class="save-indicator" id="saveIndicator">✓ saved</span>
+    <span class="spacer"></span>
+    <span class="stat">Words: <b id="wordCount">0</b></span>
+    <span class="stat">Chars: <b id="charCount">0</b></span>
+  </div>
+  <div class="toolbar-row">
+    <span class="label">BRANCH</span>
+    <select id="branchDropdown"></select>
+    <button onclick="applyBranchPreset()" title="Replace the entire posting with this branch's preset (pay numbers, branch name, location)">⟳ Apply branch preset</button>
+    <div class="toolbar-divider"></div>
+    <span class="label">SAVES</span>
+    <select id="savesDropdown"></select>
+    <button onclick="loadSave()" title="Load the selected saved version">📂 Load</button>
+    <button onclick="saveCurrent()" title="Save current state as a named version">💾 Save current as…</button>
+    <button onclick="deleteSave()" title="Delete the selected saved version">🗑 Delete</button>
+  </div>
+</div>
+
+<div class="page">
+  <!-- Main Column -->
+  <div>
+    <div class="job-card">
+      <div class="job-header">
+        <h1 class="job-title" contenteditable="true" id="jobTitle">Lead Mover &amp; Driver — College Students, Veterans, Skilled Trades encouraged to apply!</h1>
+        <div class="company-row">
+          <span class="company-name">Einstein Moving Company</span>
+          <span class="company-rating"><span class="star">★</span> <b>4.4</b> · 230 reviews</span>
+        </div>
+        <div class="company-location" id="companyLocation">North Austin, TX</div>
+
+        <div class="job-meta">
+          <span class="meta-chip salary" contenteditable="true" id="paySalary">$26 – $33+ an hour</span>
+          <span class="meta-chip" contenteditable="true" id="jobType">Full-time</span>
+          <span class="meta-chip" contenteditable="true" id="jobShift">Day shift</span>
+          <span class="meta-chip" contenteditable="true" id="jobWeekend">Weekends as needed</span>
+        </div>
+
+        <div class="easily-apply">Easily apply to this job</div>
+
+        <div class="apply-row">
+          <button class="apply-btn">Apply now</button>
+          <button class="save-job-btn">♡ Save</button>
+          <button class="icon-btn" title="Share">↗</button>
+        </div>
+      </div>
+
+      <div class="job-body-section">
+        <div class="edit-banner">
+          <b>Editor mode:</b> Click any text below to edit. Changes auto-save to your browser. When you're ready, hit <b>📥 Copy for Indeed / ClearCo</b> and paste into either platform's job description field — formatting preserved.
+        </div>
+        <h2>Full job description</h2>
+        <div class="editable" contenteditable="true" id="jobBody">
+          <!-- BODY GETS LOADED HERE BY JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right Rail -->
+  <div class="right-col">
+    <div class="rail-card">
+      <h3>Job details</h3>
+      <div class="rail-stat"><span>Pay</span><span class="v" id="rail-pay">$26 – $33+/hr</span></div>
+      <div class="rail-stat"><span>Job type</span><span class="v">Full-time</span></div>
+      <div class="rail-stat"><span>Shift</span><span class="v">Day shift</span></div>
+      <div class="rail-stat"><span>Schedule</span><span class="v">Thu–Sun preferred</span></div>
+      <div class="rail-stat"><span>Location</span><span class="v" id="railLocation">North Austin, TX</span></div>
+    </div>
+
+    <div class="rail-card">
+      <h3>Benefits</h3>
+      <p>Pulled from the full job description</p>
+      <ul style="margin: 8px 0 0; padding-left: 20px; color: var(--indeed-muted); font-size: 14px; line-height: 1.6;">
+        <li>401(k) matching</li>
+        <li>Dental insurance</li>
+        <li>Flexible schedule</li>
+        <li>Health insurance</li>
+        <li>Paid parental leave</li>
+        <li>Paid time off</li>
+        <li>Short-term disability</li>
+        <li>Vision insurance</li>
+      </ul>
+    </div>
+
+    <div class="rail-card">
+      <h3>About Einstein Moving Company</h3>
+      <p><b>★ 4.4</b> · 230 Indeed reviews</p>
+      <p>Founded in Austin, Texas. We operate 10 branches across Texas and Florida and are an 8x Inc. 5000 winner.</p>
+    </div>
+  </div>
+</div>
+
+<!-- HTML Modal -->
+<div class="modal-backdrop" id="htmlModal">
+  <div class="modal">
+    <h3>HTML Source</h3>
+    <textarea id="htmlOutput" readonly></textarea>
+    <div class="modal-actions">
+      <button onclick="copyFromModal()">Copy</button>
+      <button class="primary" onclick="document.getElementById('htmlModal').classList.remove('show')">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'einstein-job-posting-editor-v2';
+const SAVES_KEY = 'einstein-job-posting-saves-v1';
+const ACTIVE_BRANCH_KEY = 'einstein-job-posting-active-branch';
+
+// ------- Branch + Tier data -------
+const BRANCHES = {
+  'n-austin':    { name: 'North Austin',  city: 'Austin, TX',      tier: 'premium' },
+  's-austin':    { name: 'South Austin',  city: 'Austin, TX',      tier: 'premium' },
+  'leander':     { name: 'Leander',       city: 'Leander, TX',     tier: 'premium' },
+  'dallas':      { name: 'Dallas',        city: 'Dallas, TX',      tier: 'premium' },
+  'fort-worth':  { name: 'Fort Worth',    city: 'Fort Worth, TX',  tier: 'premium' },
+  'garland':     { name: 'Garland',       city: 'Garland, TX',     tier: 'premium' },
+  'mckinney':    { name: 'McKinney',      city: 'McKinney, TX',    tier: 'premium' },
+  'tampa':       { name: 'Tampa',         city: 'Tampa, FL',       tier: 'premium' },
+  'houston':     { name: 'Houston',       city: 'Houston, TX',     tier: 'standard' },
+  'san-antonio': { name: 'San Antonio',   city: 'San Antonio, TX', tier: 'standard' }
+};
+
+const TIERS = {
+  premium:  { baseTrain: 20, baseLead: 21, takeTrainLow: '26',    takeTrainHigh: '28.50', takeLeadLow: '28.50', takeLeadHigh: '33.25', chipPay: '$26 – $33+ an hour' },
+  standard: { baseTrain: 19, baseLead: 20, takeTrainLow: '25',    takeTrainHigh: '27.50', takeLeadLow: '27.50', takeLeadHigh: '32.25', chipPay: '$25 – $32+ an hour' }
+};
+
+function buildBody(branchKey) {
+  const b = BRANCHES[branchKey];
+  const t = TIERS[b.tier];
+  return `<h3>WARNING: This will be the best job post you read all day.</h3>
+<p>Actually, just go ahead and make it the only job post you read all day, mkaaaayy?</p>
+<p><em>*sips coffee*</em></p>
+<p>Here's the deal: we're a moving company. We pick up people's stuff and carry it from one place to a different place.</p>
+<p>Sounds simple enough… but it turns out that to be REALLY GOOD movers (the only kind worth being, in our opinion) we need REALLY GOOD people for our ${b.name} branch.</p>
+<p>People like you. ;)</p>
+<p>And because really good people like you deserve to be paid well and treated with respect, we put together this pretty kickass compensation package.</p>
+
+<hr>
+
+<h3>FIRST, A WORD ABOUT "HOURLY PAY" IN THE MOVING INDUSTRY</h3>
+<p>Some moving companies advertise $25/hr but only pay you for "billable" time — meaning the hours you spend driving to jobs, loading trucks, and waiting between moves don't count.</p>
+<p>Quick math: if you work an 8-hour day but only 6 hours are "billable," that "$25/hour" is actually <b>$18.75</b>. And it gets worse when overtime kicks in.</p>
+<p>At Einstein, you're paid from clock-in to clock-out.</p>
+<p><b>Every. Single. Hour.</b></p>
+<p>No asterisks. No funny math. When we tell you what you'll earn, we mean it.</p>
+<p>Here's what that actually looks like:</p>
+
+<hr>
+
+<h3>YOUR MONEY (THE FUN PART)</h3>
+<p>We'll be straight with you. Here's every dollar:</p>
+<ul>
+  <li><b>$${t.baseTrain}/hr base in training. $${t.baseLead}/hr base once you're a Lead.</b> That's the guaranteed floor — paid for every hour you're on the clock, not just "billable" ones.</li>
+  <li><b>Plus tips.</b> Typically $5–$8/hr. (Movers who actually give a damn make more.)</li>
+  <li><b>Plus performance bonuses</b> once you're out of training. Up to $3/hr.</li>
+  <li><b>Plus $5/hr</b> any time we call you in last-minute.</li>
+  <li><b>Plus overtime</b> on hours over 40.</li>
+</ul>
+<p>Stack it all up and a typical week looks like:</p>
+<p><b>Lead in Training: $${t.takeTrainLow}–$${t.takeTrainHigh}/hr. Lead: $${t.takeLeadLow}–$${t.takeLeadHigh}/hr.</b> Top performers earn more.</p>
+<p>And Leads aren't a dead-end. <b>4 promotion tiers</b> ahead of you. Your pay grows with you.</p>
+
+<hr>
+
+<h3>THE REST OF THE PACKAGE</h3>
+<ul>
+  <li><b>W2 Status (Not 1099)</b> — Full employee benefits including Workers' Comp, overtime protections, and the warm fuzzy feeling of being a real employee. Plus, Einstein covers half of employment taxes (as a 1099 you'd be on the hook for 100%).</li>
+  <li><b>Affordable Health Insurance</b> including vision and dental, because your eyes and teeth are important.</li>
+  <li><b>Short-Term Disability</b> — because sometimes life happens and your bills keep coming even when you can't.</li>
+  <li><b>401(k) with 4% Match</b> — it's cheesy, but we love helping you plan for your future.</li>
+  <li><b>Flexible Vacation</b> — you're a grown-up. Tell us when you'll be gone and enjoy yourself.</li>
+  <li><b>Paid Parental & Bereavement Leave</b> — because your family and community matter. 5 days paid parental leave to start, expanding to 10 after one year. 2 days bereavement.</li>
+</ul>
+<p>In case you don't feel like doing the math, that all adds up to a Hell Yeah.</p>
+
+<hr>
+
+<h3>FOUR MORE REASONS TO JOIN OUR FUN-LOVING CREW</h3>
+<ul>
+  <li><b>Flexible Schedule</b> — Great for musicians, students, entrepreneurs, athletes, and anyone else who likes mixing it up.</li>
+  <li><b>Ditch the Desk Job</b> — Spend more time outside, and stay in shape (or casually get ripped) with a job where every day is different.</li>
+  <li><b>Advance Within the Company</b> — 96% of our managers started as movers, walking the same ladder you'd walk. Not to brag, but we're an 8x Inc. 5000 winner. People tell us that's a big deal.</li>
+  <li><b>Good People & Great Culture</b> — There's a reason folks don't want to leave once they start. Branch competitions, Legend of the Week shoutouts, company trips — we take recognizing great work seriously.</li>
+</ul>
+
+<hr>
+
+<h3>WHAT A TYPICAL DAY LOOKS LIKE</h3>
+<p>You'll show up, meet your crew, grab your truck, and head to the job.</p>
+<p>Some days you're loading up a studio apartment in 2 hours. Other days you're wrapping a 5-bedroom house with a massive book collection and a sculpture garden. You'll problem-solve on the fly, work with your team, talk to customers, and yeah — you'll sweat. A lot.</p>
+<p>But you'll also laugh, build real friendships, and go home knowing you actually helped someone through one of the most stressful days of their life.</p>
+<p>It's more rewarding than you'd expect.</p>
+
+<hr>
+
+<h3>YOUR MUST-HAVES</h3>
+<ul>
+  <li>Ability to lift, carry, push and/or pull heavy objects (up to 125 lbs overhead, 200 lbs independently, and 500 lbs in coordination with teammates) frequently throughout an 8+ hour day</li>
+  <li>21 years of being alive on this planet (so we can put you on our insurance)</li>
+  <li>At least two years of personal driving experience with an acceptable driving record (no major violations in the last 3 years)</li>
+  <li>Ability to pass a criminal background check, physical, and drug screen</li>
+  <li>Excellent customer service skills, interest in learning new things, and motivation to be genuinely helpful</li>
+  <li>Availability to work 3+ days a week — even better if you can work <b>Thursday–Sunday</b> (our busiest days = more hours & tips)</li>
+  <li>Your own reliable transportation (a car, motorcycle, or scooter — not a bike, not a bus pass)</li>
+</ul>
+
+<h3>YOUR NICE-TO-HAVES</h3>
+<ul>
+  <li>College degree or current enrollment (a bonus, definitely not required)</li>
+  <li>Moving experience (more than just "exited the womb once")</li>
+  <li>A friendly pet (so we can pet them at our next company picnic)</li>
+</ul>
+
+<hr>
+
+<h3>WHEN YOU'D START</h3>
+<p>Like, right now. We're growing fast (but mindfully), and looking to fill open positions with great people.</p>
+
+<hr>
+
+<h3>ONE LAST THING</h3>
+<p>This is a physically demanding job that requires hard work. No bones about it: you'll break a sweat every day. (On the plus side, you can go ahead and cancel your gym membership.)</p>
+<p>If you love working with teammates who always have each other's backs, for a company that actually cares about treating its people well — you'll love working at Einstein.</p>
+<p>Rated <b>4.9 stars across 8,000+ reviews</b>. You can't fake that.</p>
+<p>Hear it from team members we definitely did <em>not</em> bribe with donuts: <a href="https://www.youtube.com/watch?v=kQBUNJbbhQM">https://www.youtube.com/watch?v=kQBUNJbbhQM</a></p>
+<p>Wanna do some light stalking? <a href="https://www.einsteinmoving.com">www.einsteinmoving.com</a></p>
+<p>Ready? Smash that <b>Apply</b> button. We'll be here biting our nails.</p>
+
+<hr>
+
+<p><em>For a formal job description including physical, mental, and sensory requirements, email hr@einsteinmoving.com.</em></p>`;
+}
+
+const DEFAULT_BRANCH = 'n-austin';
+const FIELDS = ['jobTitle', 'paySalary', 'jobType', 'jobShift', 'jobWeekend', 'jobBody'];
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch (e) { return null; }
+}
+
+function saveState() {
+  const state = {};
+  FIELDS.forEach(id => {
+    state[id] = document.getElementById(id).innerHTML;
+  });
+  state.navLocation     = document.getElementById('navLocation').value;
+  state.companyLocation = document.getElementById('companyLocation').innerHTML;
+  state.railLocation    = document.getElementById('railLocation').innerHTML;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  flashSaved();
+  updateCounts();
+  syncRail();
+}
+
+function flashSaved() {
+  const el = document.getElementById('saveIndicator');
+  el.classList.add('show');
+  clearTimeout(flashSaved._t);
+  flashSaved._t = setTimeout(() => el.classList.remove('show'), 1500);
+}
+
+function getActiveBranch() {
+  return localStorage.getItem(ACTIVE_BRANCH_KEY) || DEFAULT_BRANCH;
+}
+function setActiveBranch(key) {
+  localStorage.setItem(ACTIVE_BRANCH_KEY, key);
+}
+
+function populateBranchDropdown() {
+  const dd = document.getElementById('branchDropdown');
+  const active = getActiveBranch();
+  const premiumOpts = [];
+  const standardOpts = [];
+  Object.entries(BRANCHES).forEach(([key, b]) => {
+    const opt = `<option value="${key}" ${key === active ? 'selected' : ''}>${b.name}</option>`;
+    if (b.tier === 'premium') premiumOpts.push(opt);
+    else standardOpts.push(opt);
+  });
+  dd.innerHTML = `
+    <optgroup label="Premium markets ($20 base)">${premiumOpts.join('')}</optgroup>
+    <optgroup label="Standard markets ($19 base)">${standardOpts.join('')}</optgroup>
+  `;
+}
+
+function applyBranchTo(targetEls, branchKey) {
+  const b = BRANCHES[branchKey];
+  const t = TIERS[b.tier];
+  if (targetEls.body)       targetEls.body.innerHTML = buildBody(branchKey);
+  if (targetEls.paySalary)  targetEls.paySalary.textContent = t.chipPay;
+  if (targetEls.navLoc)     targetEls.navLoc.value = b.city;
+  if (targetEls.coLoc)      targetEls.coLoc.textContent = b.city;
+  if (targetEls.railLoc)    targetEls.railLoc.textContent = b.city;
+}
+
+function applyBranchPreset() {
+  const key = document.getElementById('branchDropdown').value;
+  const b = BRANCHES[key];
+  if (!confirm(`Replace the entire posting with the ${b.name} preset?\n\nThis will reset the body, pay range, and location. Any current edits will be lost.\n\nTip: hit "💾 Save current as…" first if you want to keep your edits.`)) return;
+  applyBranchTo({
+    body: document.getElementById('jobBody'),
+    paySalary: document.getElementById('paySalary'),
+    navLoc: document.getElementById('navLocation'),
+    coLoc: document.getElementById('companyLocation'),
+    railLoc: document.getElementById('railLocation')
+  }, key);
+  setActiveBranch(key);
+  saveState();
+  toast(`Applied ${b.name} preset`);
+}
+
+// ------- Saved Versions -------
+function loadSaves() {
+  try { return JSON.parse(localStorage.getItem(SAVES_KEY)) || {}; } catch { return {}; }
+}
+function setSaves(saves) {
+  localStorage.setItem(SAVES_KEY, JSON.stringify(saves));
+}
+function refreshSavesDropdown() {
+  const saves = loadSaves();
+  const dd = document.getElementById('savesDropdown');
+  const names = Object.keys(saves).sort();
+  if (names.length === 0) {
+    dd.innerHTML = '<option value="">— No saved versions yet —</option>';
+  } else {
+    dd.innerHTML = '<option value="">— Pick a saved version —</option>' +
+      names.map(n => {
+        const branch = saves[n].activeBranch ? ` (${BRANCHES[saves[n].activeBranch]?.name || '?'})` : '';
+        return `<option value="${n}">${n}${branch}</option>`;
+      }).join('');
+  }
+}
+function saveCurrent() {
+  const defaultName = BRANCHES[getActiveBranch()]?.name || 'Untitled';
+  const name = prompt('Save current version as:', defaultName);
+  if (!name || !name.trim()) return;
+  const trimmed = name.trim();
+  const saves = loadSaves();
+  if (saves[trimmed] && !confirm(`"${trimmed}" already exists. Overwrite?`)) return;
+  saves[trimmed] = {
+    jobTitle:   document.getElementById('jobTitle').innerHTML,
+    paySalary:  document.getElementById('paySalary').innerHTML,
+    jobType:    document.getElementById('jobType').innerHTML,
+    jobShift:   document.getElementById('jobShift').innerHTML,
+    jobWeekend: document.getElementById('jobWeekend').innerHTML,
+    jobBody:    document.getElementById('jobBody').innerHTML,
+    navLocation:     document.getElementById('navLocation').value,
+    companyLocation: document.getElementById('companyLocation').innerHTML,
+    railLocation:    document.getElementById('railLocation').innerHTML,
+    activeBranch: getActiveBranch(),
+    savedAt: new Date().toISOString()
+  };
+  setSaves(saves);
+  refreshSavesDropdown();
+  // Select the freshly saved item
+  document.getElementById('savesDropdown').value = trimmed;
+  toast(`Saved as "${trimmed}"`);
+}
+function loadSave() {
+  const name = document.getElementById('savesDropdown').value;
+  if (!name) { alert('Pick a saved version from the dropdown first.'); return; }
+  if (!confirm(`Load "${name}"? Your current edits will be replaced.`)) return;
+  const saves = loadSaves();
+  const v = saves[name];
+  if (!v) return;
+  document.getElementById('jobTitle').innerHTML   = v.jobTitle;
+  document.getElementById('paySalary').innerHTML  = v.paySalary;
+  document.getElementById('jobType').innerHTML    = v.jobType;
+  document.getElementById('jobShift').innerHTML   = v.jobShift;
+  document.getElementById('jobWeekend').innerHTML = v.jobWeekend;
+  document.getElementById('jobBody').innerHTML    = v.jobBody;
+  if (v.navLocation)     document.getElementById('navLocation').value      = v.navLocation;
+  if (v.companyLocation) document.getElementById('companyLocation').innerHTML = v.companyLocation;
+  if (v.railLocation)    document.getElementById('railLocation').innerHTML = v.railLocation;
+  if (v.activeBranch) {
+    setActiveBranch(v.activeBranch);
+    populateBranchDropdown();
+  }
+  saveState();
+  updateCounts();
+  syncRail();
+  toast(`Loaded "${name}"`);
+}
+function deleteSave() {
+  const name = document.getElementById('savesDropdown').value;
+  if (!name) { alert('Pick a saved version from the dropdown first.'); return; }
+  if (!confirm(`Delete saved version "${name}"? This cannot be undone.`)) return;
+  const saves = loadSaves();
+  delete saves[name];
+  setSaves(saves);
+  refreshSavesDropdown();
+  toast(`Deleted "${name}"`);
+}
+
+function init() {
+  populateBranchDropdown();
+  refreshSavesDropdown();
+
+  const state = loadState();
+  if (state) {
+    FIELDS.forEach(id => {
+      if (state[id] != null) document.getElementById(id).innerHTML = state[id];
+    });
+    if (state.navLocation)     document.getElementById('navLocation').value      = state.navLocation;
+    if (state.companyLocation) document.getElementById('companyLocation').innerHTML = state.companyLocation;
+    if (state.railLocation)    document.getElementById('railLocation').innerHTML = state.railLocation;
+  } else {
+    // First load — apply default branch preset
+    applyBranchTo({
+      body: document.getElementById('jobBody'),
+      paySalary: document.getElementById('paySalary'),
+      navLoc: document.getElementById('navLocation'),
+      coLoc: document.getElementById('companyLocation'),
+      railLoc: document.getElementById('railLocation')
+    }, DEFAULT_BRANCH);
+  }
+  FIELDS.forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener('input', debounce(saveState, 400));
+  });
+  ['companyLocation', 'railLocation'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', debounce(saveState, 400));
+  });
+  updateCounts();
+  syncRail();
+}
+
+function debounce(fn, ms) {
+  let t;
+  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+}
+
+function updateCounts() {
+  const text = document.getElementById('jobBody').innerText || '';
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  document.getElementById('wordCount').textContent = words.toLocaleString();
+  document.getElementById('charCount').textContent = text.length.toLocaleString();
+}
+
+function syncRail() {
+  document.getElementById('rail-pay').textContent =
+    document.getElementById('paySalary').innerText;
+}
+
+function copyPlain() {
+  const text = document.getElementById('jobBody').innerText;
+  navigator.clipboard.writeText(text);
+  toast('Copied plain text');
+}
+
+function copyHtml() {
+  const html = document.getElementById('jobBody').innerHTML;
+  navigator.clipboard.writeText(html);
+  toast('Copied HTML source');
+}
+
+// THE BIG ONE — copies BOTH text/html and text/plain to clipboard
+// so Indeed's rich text editor receives formatted content on paste
+async function copyForIndeed() {
+  const bodyEl = document.getElementById('jobBody');
+  // Clone and strip editor chrome (banner, etc) just in case
+  const clone = bodyEl.cloneNode(true);
+  clone.querySelectorAll('[contenteditable]').forEach(n => n.removeAttribute('contenteditable'));
+  const html = clone.innerHTML;
+  const text = bodyEl.innerText;
+
+  try {
+    if (window.ClipboardItem && navigator.clipboard.write) {
+      const item = new ClipboardItem({
+        'text/html': new Blob([html], { type: 'text/html' }),
+        'text/plain': new Blob([text], { type: 'text/plain' })
+      });
+      await navigator.clipboard.write([item]);
+      toast('Copied for Indeed — paste into the job description field');
+    } else {
+      // Fallback for older browsers — use execCommand on a selection
+      const range = document.createRange();
+      range.selectNodeContents(bodyEl);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      document.execCommand('copy');
+      sel.removeAllRanges();
+      toast('Copied (legacy mode) — paste into Indeed');
+    }
+  } catch (e) {
+    console.error(e);
+    // Last-resort fallback
+    const range = document.createRange();
+    range.selectNodeContents(bodyEl);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    document.execCommand('copy');
+    sel.removeAllRanges();
+    toast('Copied — paste into Indeed');
+  }
+}
+
+let previewMode = false;
+function togglePreview() {
+  previewMode = !previewMode;
+  document.body.classList.toggle('preview-mode', previewMode);
+  document.getElementById('previewBtn').textContent = previewMode ? '✏️ Edit mode' : '👁 Preview mode';
+}
+
+function showHtml() {
+  document.getElementById('htmlOutput').value = document.getElementById('jobBody').innerHTML;
+  document.getElementById('htmlModal').classList.add('show');
+}
+
+function copyFromModal() {
+  const ta = document.getElementById('htmlOutput');
+  ta.select();
+  navigator.clipboard.writeText(ta.value);
+  toast('Copied HTML');
+}
+
+function resetToDefault() {
+  if (!confirm('Reset to the active branch preset? Your edits will be lost.\n\n(This re-applies the currently selected branch from the BRANCH dropdown. Use "💾 Save current as…" first if you want to keep your edits.)')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  document.getElementById('jobTitle').textContent = 'Lead Mover & Driver — College Students, Veterans, Skilled Trades encouraged to apply!';
+  document.getElementById('jobType').textContent = 'Full-time';
+  document.getElementById('jobShift').textContent = 'Day shift';
+  document.getElementById('jobWeekend').textContent = 'Weekends as needed';
+  const activeBranch = getActiveBranch();
+  applyBranchTo({
+    body: document.getElementById('jobBody'),
+    paySalary: document.getElementById('paySalary'),
+    navLoc: document.getElementById('navLocation'),
+    coLoc: document.getElementById('companyLocation'),
+    railLoc: document.getElementById('railLocation')
+  }, activeBranch);
+  saveState();
+  toast('Reset to ' + BRANCHES[activeBranch].name + ' preset');
+}
+
+function toast(msg) {
+  const el = document.getElementById('saveIndicator');
+  el.textContent = '✓ ' + msg;
+  el.classList.add('show');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => {
+    el.classList.remove('show');
+    setTimeout(() => { el.textContent = '✓ saved'; }, 300);
+  }, 1800);
+}
+
+document.getElementById('htmlModal').addEventListener('click', (e) => {
+  if (e.target.id === 'htmlModal') {
+    document.getElementById('htmlModal').classList.remove('show');
+  }
+});
+
+init();
+</script>
+</body>
+</html>

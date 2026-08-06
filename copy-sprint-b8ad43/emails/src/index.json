@@ -1,0 +1,58 @@
+[
+  {
+    "file": "01-rfq-quote-request.html",
+    "subject": "Your Einstein Moving quote request 👀 📦",
+    "sender": "northdallas@einsteinmoving.com",
+    "date": "2026-08-06T16:55:33Z",
+    "category": "rfq"
+  },
+  {
+    "file": "02-no-availability.html",
+    "subject": "Any flexibility? [Your Einstein Moving quote]",
+    "sender": "northdallas@einsteinmoving.com",
+    "date": "2026-08-06T16:57:08Z",
+    "category": "no-availability"
+  },
+  {
+    "file": "03-booking-confirmation-full.html",
+    "subject": "Your Move Is Confirmed - Yay! 🥳 [Einstein Moving Company]",
+    "sender": "northdallas@einsteinmoving.com",
+    "date": "2026-08-06T16:56:42Z",
+    "category": "booking-confirmation"
+  },
+  {
+    "file": "04-auto-confirm.html",
+    "subject": "Your Move Is Confirmed (Yessss!) [Einstein Moving Company]",
+    "sender": "northdallas@einsteinmoving.com",
+    "date": "2026-08-06T16:56:49Z",
+    "category": "auto-confirm"
+  },
+  {
+    "file": "05-final-move-confirmation-post-kickoff.html",
+    "subject": "Your Final Move Confirmation [Einstein Moving Company]",
+    "sender": "northdallas@einsteinmoving.com",
+    "date": "2026-08-06T16:56:56Z",
+    "category": "post-kickoff-confirmation"
+  },
+  {
+    "file": "06-meet-your-movers.html",
+    "subject": "Knock Knock! Meet Your Movers 👋",
+    "sender": "northdallas@einsteinmoving.com",
+    "date": "2026-08-06T16:55:52Z",
+    "category": "meet-your-movers"
+  },
+  {
+    "file": "07-second-call-attempt.html",
+    "subject": "Call us back? 😅",
+    "sender": "northdallas@einsteinmoving.com",
+    "date": "2026-08-06T16:57:03Z",
+    "category": "second-call-attempt"
+  },
+  {
+    "file": "08-post-move-followup-review.html",
+    "subject": "Soooo, how was it? 🙊",
+    "sender": "northdallas@einsteinmoving.com",
+    "date": "2026-08-06T16:56:04Z",
+    "category": "post-move-review"
+  }
+]

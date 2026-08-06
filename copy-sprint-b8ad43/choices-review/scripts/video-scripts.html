@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHOICES Training - Video Scripts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .doc-header {
+            background: linear-gradient(135deg, #0979C3, #043C61);
+            color: white;
+            padding: 48px 40px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doc-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 50%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .doc-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .doc-header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        .doc-header .meta {
+            margin-top: 24px;
+            display: flex;
+            gap: 32px;
+            font-size: 0.9rem;
+            opacity: 0.85;
+            position: relative;
+        }
+
+        .doc-header .meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Overview */
+        .overview {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .overview h2 {
+            color: #0979C3;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .overview table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .overview th, .overview td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .overview th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .overview td:first-child {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .overview .duration {
+            color: #EF8B22;
+            font-weight: 600;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* Script Section */
+        .script-section {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .script-header {
+            background: #EF8B22;
+            color: white;
+            padding: 20px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .script-header h2 {
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .script-header .video-num {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .script-header .duration-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .script-body {
+            padding: 32px;
+        }
+
+        .script-goal {
+            background: #e8f4fc;
+            border-left: 4px solid #0979C3;
+            padding: 16px 20px;
+            margin-bottom: 28px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .script-goal strong {
+            color: #0979C3;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        /* Script Content */
+        .script-content {
+            margin-bottom: 28px;
+        }
+
+        .script-content h3 {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #EF8B22;
+            display: inline-block;
+        }
+
+        .script-block {
+            margin-bottom: 24px;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .script-block.dialogue {
+            background: #fffdf5;
+            border-color: #f0e6c8;
+        }
+
+        .script-block.visual {
+            background: #f5f9ff;
+            border-color: #d4e5f7;
+        }
+
+        .block-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .block-label.dialogue-label {
+            color: #b8860b;
+        }
+
+        .block-label.visual-label {
+            color: #0979C3;
+        }
+
+        .block-label.audio-label {
+            color: #6b5b95;
+        }
+
+        .dialogue-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .dialogue-text em {
+            color: #666;
+            font-style: italic;
+        }
+
+        .visual-text, .audio-text {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .visual-text ul, .audio-text ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .visual-text li, .audio-text li {
+            margin-bottom: 6px;
+        }
+
+        /* Timing markers */
+        .timing {
+            display: inline-block;
+            background: #EF8B22;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Roboto Mono', monospace;
+            margin-right: 8px;
+        }
+
+        /* Scene divider */
+        .scene-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 32px 0;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .scene-divider::before,
+        .scene-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+        }
+
+        /* Notes */
+        .production-notes {
+            background: #fff8e6;
+            border: 1px solid #ffe0a3;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 24px;
+        }
+
+        .production-notes h4 {
+            color: #b8860b;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .production-notes ul {
+            margin-left: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .production-notes li {
+            margin-bottom: 6px;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .doc-header {
+                background: #0979C3 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .script-header {
+                background: #EF8B22 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .script-section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+
+        /* Copy button */
+        .copy-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0979C3;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: #0868a8;
+            transform: translateY(-2px);
+        }
+
+        .action-buttons {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .action-btn {
+            background: #0979C3;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .action-btn:hover {
+            background: #0868a8;
+            transform: translateY(-2px);
+        }
+
+        .action-btn.secondary {
+            background: #EF8B22;
+        }
+
+        .action-btn.secondary:hover {
+            background: #d97a1e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Document Header -->
+        <header class="doc-header">
+            <h1>CHOICES Training Videos</h1>
+            <p class="subtitle">Scripts & Storyboards for the Hybrid Training Portal</p>
+            <div class="meta">
+                <span>📅 Created: February 2026</span>
+                <span>⏱️ Total Runtime: ~5-6 minutes</span>
+                <span>🎬 4 Video Segments</span>
+            </div>
+        </header>
+
+        <!-- Overview -->
+        <section class="overview">
+            <h2>Video Overview</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Video</th>
+                        <th>Title</th>
+                        <th>Duration</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Video 1</td>
+                        <td>Welcome</td>
+                        <td class="duration">1:30 - 2:00</td>
+                        <td>Personal intro, set expectations, build connection</td>
+                    </tr>
+                    <tr>
+                        <td>Video 2</td>
+                        <td>Why Culture Wins</td>
+                        <td class="duration">2:30 - 3:00</td>
+                        <td>Luling story, Einstein's track record, "culture can't be copied"</td>
+                    </tr>
+                    <tr>
+                        <td>Video 3</td>
+                        <td>CHOICES Intro</td>
+                        <td class="duration">0:45 - 1:00</td>
+                        <td>Quick acronym reveal, hand off to interactive scenarios</td>
+                    </tr>
+                    <tr>
+                        <td>Video 4</td>
+                        <td>Congratulations</td>
+                        <td class="duration">0:30</td>
+                        <td>Welcome to the team, next steps (optional)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- VIDEO 1: WELCOME -->
+        <section class="script-section">
+            <div class="script-header">
+                <h2><span class="video-num">Video 1</span> Welcome</h2>
+                <span class="duration-badge">1:30 - 2:00</span>
+            </div>
+            <div class="script-body">
+                <div class="script-goal">
+                    <strong>Goal</strong>
+                    Build personal connection. Make them feel welcomed, not processed. Set up why this training matters without being preachy.
+                </div>
+
+                <div class="script-content">
+                    <h3>Opening Shot</h3>
+
+                    <div class="script-block visual">
+                        <div class="block-label visual-label">📹 VISUAL</div>
+                        <div class="visual-text">
+                            Cameron on camera, casual setting (office or warehouse background with Einstein branding visible). Relaxed, conversational energy—like talking to a new team member, not presenting to a boardroom.
+                        </div>
+                    </div>
+
+                    <div class="script-block dialogue">
+                        <div class="block-label dialogue-label">🎤 CAMERON (ON CAMERA)</div>
+                        <div class="dialogue-text">
+                            <span class="timing">0:00</span>
+                            Hey! Welcome to Einstein Moving Company. I'm Cameron, and I'm genuinely excited you're here.
+                            <br><br>
+                            <span class="timing">0:08</span>
+                            Look, I know what you're probably thinking: <em>"Great, another corporate training video."</em> I get it. But this one's different—I promise.
+                            <br><br>
+                            <span class="timing">0:18</span>
+                            See, at Einstein, we've figured something out. We're not the only moving company with trucks. We're not the only ones with strong people and good equipment. So how do we keep winning Best of Austin, Best of Texas, year after year?
+                            <br><br>
+                            <span class="timing">0:32</span>
+                            <em>(slight pause, leaning in)</em>
+                            <br><br>
+                            It's not <em>what</em> we do. It's <em>how</em> we do it. And that's what this training is really about.
+                        </div>
+                    </div>
+
+                    <div class="scene-divider">Setting Expectations</div>
+
+                    <div class="script-block dialogue">
+                        <div class="block-label dialogue-label">🎤 CAMERON (ON CAMERA)</div>
+                        <div class="dialogue-text">
+                            <span class="timing">0:45</span>
+                            Here's the deal: the next 20 minutes or so, you're going to learn the 7 values that define how we work. But you're not going to learn them by watching me talk—you're going to learn them by experiencing real scenarios that our movers face every single day.
+                            <br><br>
+                            <span class="timing">1:00</span>
+                            You'll make choices. You'll see what happens. Some of it might even make you laugh. <em>(smile)</em>
+                            <br><br>
+                            <span class="timing">1:08</span>
+                            By the end, you'll understand exactly what separates an Einstein mover from everyone else. And honestly? If you made it through our hiring process, I already know you've got what it takes.
+                            <br><br>
+                            <span class="timing">1:20</span>
+                            So let's get into it. First up: why culture matters more than anything else we do.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="production-notes">
+                    <h4>📝 Production Notes</h4>
+                    <ul>
+                        <li>Keep energy warm and conversational—not salesy or corporate</li>
+                        <li>The "another corporate training video" line should feel self-aware and genuine</li>
+                        <li>Consider a subtle smile or eyebrow raise at "make you laugh"</li>
+                        <li>End with forward momentum—they should be curious about what's next</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEO 2: WHY CULTURE WINS -->
+        <section class="script-section">
+            <div class="script-header">
+                <h2><span class="video-num">Video 2</span> Why Culture Wins</h2>
+                <span class="duration-badge">2:30 - 3:00</span>
+            </div>
+            <div class="script-body">
+                <div class="script-goal">
+                    <strong>Goal</strong>
+                    Convince them that culture is THE thing. Use the Luling story to make it memorable. Show (don't just tell) Einstein's results. Land the "culture can't be copied" insight.
+                </div>
+
+                <div class="script-content">
+                    <h3>The Luling Story</h3>
+
+                    <div class="script-block visual">
+                        <div class="block-label visual-label">📹 VISUAL</div>
+                        <div class="visual-text">
+                            Cameron on camera. Consider cutting to photos/footage of small-town Texas, cross-country runners, or simple graphics showing the population number.
+                        </div>
+                    </div>
+
+                    <div class="script-block dialogue">
+                        <div class="block-label dialogue-label">🎤 CAMERON (ON CAMERA)</div>
+                        <div class="dialogue-text">
+                            <span class="timing">0:00</span>
+                            Let me tell you about a tiny town called Luling, Texas. Population: about 5,500 people. That's it. One high school. Nothing special on paper.
+                            <br><br>
+                            <span class="timing">0:12</span>
+                            But here's the thing: their cross-country team has won multiple state championships. Year after year, they beat schools that are ten times their size.
+                            <br><br>
+                            <span class="timing">0:24</span>
+                            Now, can they recruit the best runners from across the state? No—kids are born there or they're not. Do they have better facilities? Nope. Special coaching secrets? Not really.
+                            <br><br>
+                            <span class="timing">0:38</span>
+                            So how do they keep winning?
+                            <br><br>
+                            <em>(beat)</em>
+                            <br><br>
+                            Culture. That's it. They've built a championship culture where excellence is just... what you do. It's the expectation. It's contagious.
+                        </div>
+                    </div>
+
+                    <div class="scene-divider">Einstein's Results</div>
+
+                    <div class="script-block visual">
+                        <div class="block-label visual-label">📹 VISUAL</div>
+                        <div class="visual-text">
+                            <ul>
+                                <li>Cut to B-roll: Einstein trucks, crews loading/unloading, real moves in progress</li>
+                                <li>Show award badges animating on screen: Best of Austin (8x), Best of Texas (3x)</li>
+                                <li>Flash Yelp/Google 5-star ratings</li>
+                                <li>Show real review quotes if available</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="script-block dialogue">
+                        <div class="block-label dialogue-label">🎤 CAMERON (VOICEOVER / ON CAMERA)</div>
+                        <div class="dialogue-text">
+                            <span class="timing">0:55</span>
+                            That's exactly what we've built at Einstein.
+                            <br><br>
+                            Eight-time Best of Austin. Three-time Best of Texas. 5-star ratings across the board. Over 100,000 moves and counting.
+                            <br><br>
+                            <span class="timing">1:10</span>
+                            And look—I'm proud of those numbers. But what I'm really proud of is <em>how</em> we got there.
+                        </div>
+                    </div>
+
+                    <div class="scene-divider">Culture Can't Be Copied</div>
+
+                    <div class="script-block visual">
+                        <div class="block-label visual-label">📹 VISUAL</div>
+                        <div class="visual-text">
+                            Cameron back on camera. This is the key insight—delivery should be direct and confident.
+                        </div>
+                    </div>
+
+                    <div class="script-block dialogue">
+                        <div class="block-label dialogue-label">🎤 CAMERON (ON CAMERA)</div>
+                        <div class="dialogue-text">
+                            <span class="timing">1:20</span>
+                            Here's something I want you to really get:
+                            <br><br>
+                            Our competitors can buy the same trucks we have. They can match our pricing. They can copy our website, our marketing, even license the same technology.
+                            <br><br>
+                            <span class="timing">1:35</span>
+                            But there's one thing they absolutely cannot copy: our culture. The way our people show up. The choices they make when no one's watching.
+                            <br><br>
+                            <span class="timing">1:48</span>
+                            <em>That's</em> our competitive advantage. And <em>that's</em> what you're about to learn.
+                            <br><br>
+                            <span class="timing">1:58</span>
+                            We call it CHOICES.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="production-notes">
+                    <h4>📝 Production Notes</h4>
+                    <ul>
+                        <li>The Luling story should feel like you're letting them in on something—not lecturing</li>
+                        <li>B-roll during the "Einstein's Results" section keeps energy up and provides visual proof</li>
+                        <li>The "culture can't be copied" section should feel like a genuine insight, not a corporate slogan</li>
+                        <li>"CHOICES" at the end is a cliffhanger—leave them wanting to know more</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEO 3: CHOICES INTRO -->
+        <section class="script-section">
+            <div class="script-header">
+                <h2><span class="video-num">Video 3</span> CHOICES Intro</h2>
+                <span class="duration-badge">0:45 - 1:00</span>
+            </div>
+            <div class="script-body">
+                <div class="script-goal">
+                    <strong>Goal</strong>
+                    Quickly reveal the CHOICES acronym. DON'T explain each value in detail—that's what the scenarios are for. Build excitement for the interactive portion.
+                </div>
+
+                <div class="script-content">
+                    <h3>The Reveal</h3>
+
+                    <div class="script-block visual">
+                        <div class="block-label visual-label">📹 VISUAL</div>
+                        <div class="visual-text">
+                            <ul>
+                                <li>Cameron on camera briefly</li>
+                                <li>Cut to animated CHOICES graphic (the one with icons for each value)</li>
+                                <li>Each letter/value can highlight briefly as he says the acronym, but don't linger</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="script-block dialogue">
+                        <div class="block-label dialogue-label">🎤 CAMERON (ON CAMERA → VOICEOVER)</div>
+                        <div class="dialogue-text">
+                            <span class="timing">0:00</span>
+                            CHOICES. Seven values that define how we work.
+                            <br><br>
+                            <span class="timing">0:05</span>
+                            <em>(as graphic displays)</em>
+                            <br>
+                            Communicate clearly. Hustle but don't rush. Ownership over results. Improve every day. Conscientious attention to detail. Elevate attitudes. Support one another.
+                            <br><br>
+                            <span class="timing">0:22</span>
+                            <em>(back on camera)</em>
+                            <br>
+                            Now, I could spend the next hour explaining each one of these. But honestly? That's not how you learn.
+                            <br><br>
+                            <span class="timing">0:30</span>
+                            You learn by doing. So here's what's about to happen: you're going to face seven real scenarios that Einstein movers deal with all the time. You'll make a choice, and you'll see exactly what happens—good or bad.
+                            <br><br>
+                            <span class="timing">0:45</span>
+                            Ready to see what you're made of? Let's go.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="production-notes">
+                    <h4>📝 Production Notes</h4>
+                    <ul>
+                        <li>This video should be QUICK. Resist the urge to explain each value.</li>
+                        <li>The acronym read-through can be fast—they'll see the graphic and can reference it later</li>
+                        <li>"See what you're made of" should feel like a fun challenge, not a test</li>
+                        <li>End with energy and momentum—they're about to click into the interactive portion</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIDEO 4: CONGRATULATIONS -->
+        <section class="script-section">
+            <div class="script-header">
+                <h2><span class="video-num">Video 4</span> Congratulations</h2>
+                <span class="duration-badge">0:30</span>
+            </div>
+            <div class="script-body">
+                <div class="script-goal">
+                    <strong>Goal</strong>
+                    Celebrate their completion. Make them feel like part of the team. Point to next steps. Keep it short and genuine. <em>(This video is optional—the portal has a completion screen regardless.)</em>
+                </div>
+
+                <div class="script-content">
+                    <h3>Welcome to the Team</h3>
+
+                    <div class="script-block visual">
+                        <div class="block-label visual-label">📹 VISUAL</div>
+                        <div class="visual-text">
+                            Cameron on camera. Warm, celebratory energy. Maybe Einstein mascot or branding visible.
+                        </div>
+                    </div>
+
+                    <div class="script-block dialogue">
+                        <div class="block-label dialogue-label">🎤 CAMERON (ON CAMERA)</div>
+                        <div class="dialogue-text">
+                            <span class="timing">0:00</span>
+                            Hey—you made it! Seriously, well done.
+                            <br><br>
+                            <span class="timing">0:05</span>
+                            You now know the seven values that make Einstein movers different. But here's the real question: which one is your superpower? And which one is your growth edge?
+                            <br><br>
+                            <span class="timing">0:16</span>
+                            Talk to your manager about your People Analyzer worksheet. Be honest with yourself. That's how you get better.
+                            <br><br>
+                            <span class="timing">0:24</span>
+                            Welcome to Einstein. Let's get to work.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="production-notes">
+                    <h4>📝 Production Notes</h4>
+                    <ul>
+                        <li>Keep this genuinely brief—they just finished 20+ minutes of training</li>
+                        <li>"Let's get to work" should feel energizing, not exhausting</li>
+                        <li>This video is optional—consider whether it adds value or if the on-screen completion is enough</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- B-Roll Checklist -->
+        <section class="overview">
+            <h2>B-Roll Shot List</h2>
+            <p style="margin-bottom: 20px; color: #666;">Footage to capture for Video 2 (Why Culture Wins) and general branding:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Shot</th>
+                        <th>Description</th>
+                        <th>Used In</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Truck Fleet</td>
+                        <td>Einstein trucks lined up or in motion, logos visible</td>
+                        <td>Video 2</td>
+                    </tr>
+                    <tr>
+                        <td>Crew Loading</td>
+                        <td>Movers carefully loading furniture, wrapping items</td>
+                        <td>Video 2</td>
+                    </tr>
+                    <tr>
+                        <td>Crew Interaction</td>
+                        <td>Team members helping each other, positive energy</td>
+                        <td>Video 2</td>
+                    </tr>
+                    <tr>
+                        <td>Customer Handshake</td>
+                        <td>Mover shaking hands with happy customer</td>
+                        <td>Video 2</td>
+                    </tr>
+                    <tr>
+                        <td>Warehouse/HQ</td>
+                        <td>Einstein facility, organized equipment, clean space</td>
+                        <td>Video 1 background</td>
+                    </tr>
+                    <tr>
+                        <td>Award Display</td>
+                        <td>Physical awards on shelf or wall if available</td>
+                        <td>Video 2</td>
+                    </tr>
+                    <tr>
+                        <td>Hustle Shots</td>
+                        <td>Movers jogging back to truck (not walking, not sprinting)</td>
+                        <td>Video 2 / Future use</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons no-print">
+        <button class="action-btn secondary" onclick="window.print()">🖨️ Print</button>
+        <button class="action-btn" onclick="copyToClipboard()">📋 Copy All Text</button>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            // Get all dialogue text
+            const dialogues = document.querySelectorAll('.dialogue-text');
+            let text = "EINSTEIN CHOICES TRAINING - VIDEO SCRIPTS\n\n";
+
+            document.querySelectorAll('.script-section').forEach(section => {
+                const title = section.querySelector('.script-header h2').textContent;
+                text += "═".repeat(50) + "\n";
+                text += title.toUpperCase() + "\n";
+                text += "═".repeat(50) + "\n\n";
+
+                section.querySelectorAll('.script-block').forEach(block => {
+                    const label = block.querySelector('.block-label')?.textContent || '';
+                    const content = block.querySelector('.dialogue-text, .visual-text, .audio-text')?.textContent || '';
+                    text += label + "\n";
+                    text += content.trim() + "\n\n";
+                });
+                text += "\n";
+            });
+
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector('.action-btn:last-child');
+                btn.textContent = '✓ Copied!';
+                setTimeout(() => btn.textContent = '📋 Copy All Text', 2000);
+            });
+        }
+    </script>
+</body>
+</html>
