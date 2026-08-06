@@ -3,10 +3,11 @@
    ----------------------------------------------------------------------------
    Bolt-on only. Loaded after data/scenarios.js and app.js; touches ZERO game
    logic. It overlays saved copy edits directly onto the SCENARIOS /
-   QUIZ_QUESTIONS / ACHIEVEMENTS / CHOICES_VALUES objects before the game
-   renders them (grading, XP, correctChoice are never touched), stamps stable
-   data-edit-key attributes onto dynamically rendered scenario/quiz DOM via a
-   MutationObserver, and provides a click-to-edit side panel + export HUD.
+   QUIZ_QUESTIONS objects before the game renders them (grading, XP,
+   correctChoice are never touched), stamps stable data-edit-key attributes
+   onto dynamically rendered scenario/quiz DOM via a MutationObserver, and
+   provides a click-to-edit side panel + export HUD. Badges (ACHIEVEMENTS)
+   and CHOICES_VALUES are OUT of the editable set (Cameron's 8/6 ruling).
 
    Persistence: localStorage 'choices-review-edits' only.
    The game's own 'einstein-hybrid-progress' key is NEVER read or written here.
@@ -81,22 +82,11 @@
         });
     }
 
-    // ---- data layer: ACHIEVEMENTS (shown in unlock toasts) ----
-    if (typeof ACHIEVEMENTS !== 'undefined') {
-        Object.keys(ACHIEVEMENTS).forEach(function (k) {
-            var a = ACHIEVEMENTS[k];
-            reg('badge.' + k + '.name', { kind: 'data', label: 'Badge "' + a.name + '" — name', get: function () { return a.name; }, set: function (v) { a.name = v; } });
-            reg('badge.' + k + '.description', { kind: 'data', label: 'Badge "' + a.name + '" — description', get: function () { return a.description; }, set: function (v) { a.description = v; } });
-        });
-    }
-
-    // ---- data layer: CHOICES_VALUES ----
-    if (typeof CHOICES_VALUES !== 'undefined') {
-        CHOICES_VALUES.forEach(function (v) {
-            reg('value.' + v.letter + '.value', { kind: 'data', label: 'Value ' + v.letter + ' — name', get: function () { return v.value; }, set: function (x) { v.value = x; } });
-            reg('value.' + v.letter + '.description', { kind: 'data', label: 'Value ' + v.letter + ' (' + v.value + ') — tagline', get: function () { return v.description; }, set: function (x) { v.description = x; } });
-        });
-    }
+    // NOTE (Cameron's ruling 8/6): ACHIEVEMENTS (badge.*) and CHOICES_VALUES
+    // (value.*) are OUT of the editable set. They are not registered, never
+    // stamped, and any stale badge.*/value.* entries in localStorage are
+    // silently ignored on load and excluded from the export (the registry
+    // check in each of those paths handles it).
 
     // ---- static layer: elements stamped in index.html ----
     $all('[data-edit-key]').forEach(function (el) {
@@ -146,11 +136,30 @@
         '.rvw-banner strong { color: var(--rvw-orange); }',
         '.rvw-banner button { flex: none; background: var(--rvw-orange); color: #fff; border: 0; border-radius: 6px; padding: 8px 16px; font-weight: 700; font-family: inherit; font-size: 14px; cursor: pointer; }',
         '.rvw-banner button:hover { background: var(--rvw-orange-deep); }',
+        /* Bottom clearance: the game content always scrolls clear of the pill,
+           so the Continue/next buttons and choice boxes are never covered. */
+        '.main-content { padding-bottom: 120px !important; }',
         /* HUD pill */
-        '.rvw-hud { position: fixed; left: 16px; bottom: 16px; z-index: 9500; background: #27343D; color: #fff; border: 2px solid var(--rvw-orange); border-radius: 999px; padding: 8px 14px; display: flex; gap: 10px; align-items: center; font-family: Roboto, sans-serif; font-size: 13px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); flex-wrap: wrap; max-width: calc(100vw - 32px); }',
+        '.rvw-hud { position: fixed; left: 16px; bottom: 16px; z-index: 9500; background: #27343D; color: #fff; border: 2px solid var(--rvw-orange); border-radius: 999px; padding: 8px 14px; font-family: Roboto, sans-serif; font-size: 13px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); max-width: calc(100vw - 32px); transition: transform 160ms ease, left 160ms ease, opacity 160ms ease; }',
+        /* Dodge state: whenever the pill would sit on top of a clickable game
+           element (tall screens, scrolled up), it slides to a slim left-edge
+           tab. Hover or tap brings it back, so export stays reachable. */
+        '.rvw-hud.rvw-dodge { left: 0; transform: translateX(calc(10px - 100%)); opacity: 0.8; border-radius: 0 999px 999px 0; }',
+        '.rvw-hud.rvw-dodge:hover { transform: translateX(0); opacity: 1; }',
+        '.rvw-hud-content { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }',
         '.rvw-hud-count { font-weight: 700; white-space: nowrap; }',
         '.rvw-hud button { background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.35); border-radius: 999px; padding: 5px 11px; font-family: inherit; font-size: 12.5px; cursor: pointer; white-space: nowrap; }',
         '.rvw-hud button:hover { background: var(--rvw-orange); border-color: var(--rvw-orange); }',
+        '#rvwHudToggle { display: none; }',
+        /* Narrow viewports: collapse to a 46px dot; tap to expand upward */
+        '@media (max-width: 719px) {',
+        '  .rvw-hud { background: transparent; border: 0; box-shadow: none; padding: 0; border-radius: 0; }',
+        '  #rvwHudToggle { display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; background: #27343D; border: 2px solid var(--rvw-orange); color: #fff; font-size: 18px; cursor: pointer; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.3); padding: 0; }',
+        '  .rvw-dot-count { position: absolute; top: -5px; right: -5px; background: var(--rvw-orange); color: #fff; border-radius: 999px; font-size: 10px; line-height: 1; padding: 3px 6px; font-weight: 700; }',
+        '  .rvw-hud-content { display: none; }',
+        '  .rvw-hud.expanded .rvw-hud-content { display: flex; flex-direction: column; align-items: stretch; gap: 8px; position: absolute; bottom: 56px; left: 0; background: #27343D; border: 2px solid var(--rvw-orange); border-radius: 14px; padding: 12px 14px; box-shadow: 0 6px 18px rgba(0,0,0,0.35); width: max-content; max-width: calc(100vw - 32px); }',
+        '  .rvw-hud.expanded .rvw-hud-content button { padding: 9px 13px; font-size: 13.5px; }',
+        '}',
         /* floating edit chip for buttons/inputs */
         '.rvw-floater { position: fixed; z-index: 9600; background: var(--rvw-orange); color: #fff; border: 0; border-radius: 999px; padding: 4px 12px; font-family: Roboto, sans-serif; font-size: 12.5px; font-weight: 700; cursor: pointer; box-shadow: 0 3px 8px rgba(0,0,0,0.3); display: none; }',
         '.rvw-floater:hover { background: var(--rvw-orange-deep); }',
@@ -177,12 +186,6 @@
         '.rvw-save:hover { background: var(--rvw-orange-deep); }',
         '.rvw-revert { background: #fff; color: #CC0100; border-color: #CC0100 !important; }',
         '.rvw-cancel { background: #fff; color: #53575A; border-color: #D4D6D8 !important; }',
-        /* browse list (badges & values — copy with no clickable home on the page) */
-        '.rvw-list-item { border: 1.5px solid #e5e5e5; border-radius: 8px; padding: 9px 11px; margin-bottom: 8px; cursor: pointer; }',
-        '.rvw-list-item:hover { border-color: var(--rvw-orange); background: var(--rvw-tint); }',
-        '.rvw-list-item .k { font-size: 12px; font-weight: 700; color: #53575A; display: block; }',
-        '.rvw-list-item .v { font-size: 13px; color: #27343D; }',
-        '.rvw-list-item.edited .k::after { content: " · edited"; color: var(--rvw-orange-deep); }',
         '@media print { .rvw-banner, .rvw-hud, .rvw-panel, .rvw-floater { display: none !important; } .rvw-edited { box-shadow: none; background-image: none; } }'
     ].join('\n');
     var styleEl = document.createElement('style');
@@ -211,15 +214,93 @@
     var hud = document.createElement('div');
     hud.className = 'rvw-hud';
     hud.innerHTML =
-        '<span class="rvw-hud-count" id="rvwCount">✏️ 0 edits · 0 notes</span>' +
-        '<button id="rvwBrowse" title="Badge and value copy that has no clickable spot on the page">Badges &amp; values</button>' +
-        '<button id="rvwExport">⬇ Export edits (JSON)</button>' +
-        '<button id="rvwReset">↺ Reset all</button>';
+        '<button id="rvwHudToggle" aria-label="Copy review tools" aria-expanded="false">✏️<span class="rvw-dot-count" id="rvwDotCount">0</span></button>' +
+        '<div class="rvw-hud-content">' +
+        '  <span class="rvw-hud-count" id="rvwCount">✏️ 0 edits · 0 notes</span>' +
+        '  <button id="rvwExport">⬇ Export edits (JSON)</button>' +
+        '  <button id="rvwReset">↺ Reset all</button>' +
+        '</div>';
     document.body.appendChild(hud);
+
+    // Narrow viewports: the pill collapses to a small dot; tapping it opens
+    // the full controls (stacked upward), so export stays reachable.
+    $('#rvwHudToggle').addEventListener('click', function () {
+        var open = hud.classList.toggle('expanded');
+        this.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // ---- overlap dodge ----
+    // The pill must never cover the module's own interactive elements. On any
+    // scroll/resize/screen change, check its box against every visible
+    // clickable; if it intersects one, slide it into the left-edge tab.
+    var dodgePin = 0; // timestamp until which dodging is suppressed (user pulled it out)
+    function restRect() {
+        // The pill's RESTING box (left 16, bottom 16), computed from offset
+        // sizes — transform-independent, so measuring never fights the 160ms
+        // dodge transition (reading getBoundingClientRect mid-transition made
+        // the state oscillate).
+        var w = hud.offsetWidth, h = hud.offsetHeight;
+        return { left: 16, right: 16 + w, top: window.innerHeight - 16 - h, bottom: window.innerHeight - 16 };
+    }
+    function rectHitsClickable(h) {
+        var els = document.querySelectorAll('button, input, textarea, select, a');
+        for (var i = 0; i < els.length; i++) {
+            var el = els[i];
+            if (el.closest('.rvw-hud, .rvw-panel, .rvw-floater, .rvw-banner')) continue;
+            var cs = getComputedStyle(el);
+            if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+            var r = el.getBoundingClientRect();
+            if (!r.width || !r.height) continue;
+            if (r.left < h.right && h.left < r.right && r.top < h.bottom && h.top < r.bottom) return true;
+        }
+        return false;
+    }
+    var dodgeQueued = false;
+    function updateDodge() {
+        dodgeQueued = false;
+        if (hud.classList.contains('expanded') || Date.now() < dodgePin) {
+            hud.classList.remove('rvw-dodge');
+            return;
+        }
+        // decide from the resting position — deterministic per scroll state
+        hud.classList.toggle('rvw-dodge', rectHitsClickable(restRect()));
+    }
+    function queueDodge() {
+        if (dodgeQueued) return;
+        dodgeQueued = true;
+        requestAnimationFrame(updateDodge);
+    }
+    window.addEventListener('scroll', queueDodge, { passive: true });
+    window.addEventListener('resize', queueDodge);
+    document.addEventListener('click', function () { setTimeout(queueDodge, 60); }, true);
+    setInterval(queueDodge, 800); // safety net
+    // Screen switches (showModule) toggle .hidden on the module sections —
+    // watch their class attribute so the dodge check runs on every navigation.
+    var modDodgeMo = new MutationObserver(queueDodge);
+    $all('.module').forEach(function (sec) {
+        modDodgeMo.observe(sec, { attributes: true, attributeFilter: ['class'] });
+    });
+    // Pulling the tab back out: first tap on a dodged pill just restores it
+    // (and expands the dot on phones) instead of triggering a button.
+    hud.addEventListener('click', function (e) {
+        if (!hud.classList.contains('rvw-dodge')) return;
+        e.stopPropagation();
+        e.preventDefault();
+        hud.classList.remove('rvw-dodge');
+        dodgePin = Date.now() + 4000;
+        if (getComputedStyle($('#rvwHudToggle')).display !== 'none' && !hud.classList.contains('expanded')) {
+            hud.classList.add('expanded');
+            $('#rvwHudToggle').setAttribute('aria-expanded', 'true');
+        }
+    }, true);
+    hud.addEventListener('mouseenter', function () {
+        if (hud.classList.contains('rvw-dodge')) dodgePin = Date.now() + 2500;
+    });
 
     function counts() {
         var ne = 0, nn = 0;
         Object.keys(store).forEach(function (k) {
+            if (!registry[k]) return; // stale keys (e.g. retired badge.*/value.*) don't count
             if (isEdited(k)) ne++;
             if (store[k] && store[k].note) nn++;
         });
@@ -228,13 +309,14 @@
     function updateHud() {
         var c = counts();
         $('#rvwCount').textContent = '✏️ ' + c.edits + ' edit' + (c.edits === 1 ? '' : 's') + ' · ' + c.notes + ' note' + (c.notes === 1 ? '' : 's');
+        $('#rvwDotCount').textContent = c.edits;
     }
 
     $('#rvwExport').addEventListener('click', function () {
         var edits = {};
         Object.keys(store).forEach(function (k) {
             var e = store[k];
-            if (!e) return;
+            if (!e || !registry[k]) return; // registry filter: badge.*/value.* never export
             if (isEdited(k) || e.note) edits[k] = e;
         });
         var payload = {
@@ -277,7 +359,6 @@
         '    <label for="rvwNote">Note for Cameron (optional)</label>' +
         '    <textarea id="rvwNote" placeholder="Why the change, an alt take, a question…"></textarea>' +
         '  </div>' +
-        '  <div id="rvwListView" style="display:none"></div>' +
         '</div>' +
         '<div class="rvw-actions" id="rvwEditActions">' +
         '  <button class="rvw-save" id="rvwSave">Save</button>' +
@@ -292,9 +373,6 @@
         var r = registry[key];
         if (!r) return;
         current = { key: key, el: el || r.el || null };
-        $('#rvwEditView').style.display = '';
-        $('#rvwListView').style.display = 'none';
-        $('#rvwEditActions').style.display = '';
         $('#rvwPanelTitle').textContent = '✏️ Edit this line';
         $('#rvwLocLabel').textContent = r.label;
         $('#rvwLocKey').textContent = key;
@@ -382,7 +460,7 @@
         });
     }
 
-    // ---------------- dynamic stamping (scenario / quiz / assessment DOM) ----------------
+    // ---------------- dynamic stamping (scenario / quiz DOM) ----------------
     var lastChoiceId = null;
 
     function markEl(el, key) {
@@ -422,17 +500,15 @@
             }
         }
 
-        var ag = $('#assessmentGrid');
-        if (ag) {
-            $all('.assessment-item', ag).forEach(function (item) {
-                var span = $('.assessment-value-name', item);
-                if (span && item.dataset.value) markEl(span, 'value.' + item.dataset.value + '.value');
-            });
-        }
+        // (assessment grid deliberately NOT stamped — value.* is out of the
+        // editable set per Cameron's 8/6 ruling)
+
+        // freshly rendered scenario/quiz content can land under the pill
+        if (typeof queueDodge === 'function') queueDodge();
     }
 
     var mo = new MutationObserver(function () { stampDynamic(); });
-    ['scenarioContainer', 'quizContainer', 'assessmentGrid', 'proTipModal'].forEach(function (id) {
+    ['scenarioContainer', 'quizContainer', 'proTipModal'].forEach(function (id) {
         var node = document.getElementById(id);
         if (node) mo.observe(node, { childList: true, subtree: true });
     });
@@ -497,31 +573,6 @@
         e.stopPropagation();
         if (floatKey) openEditor(floatKey, floatEl);
         floater.style.display = 'none';
-    });
-
-    // ---------------- browse list: badges & values ----------------
-    // Badge names/descriptions and value taglines have no persistent clickable
-    // home in the UI (badges only flash in toasts), so they get a list.
-    $('#rvwBrowse').addEventListener('click', function () {
-        var list = $('#rvwListView');
-        $('#rvwEditView').style.display = 'none';
-        $('#rvwEditActions').style.display = 'none';
-        list.style.display = '';
-        $('#rvwPanelTitle').textContent = '🏆 Badges & values copy';
-        list.innerHTML = '';
-        Object.keys(registry).filter(function (k) {
-            return k.indexOf('badge.') === 0 || k.indexOf('value.') === 0;
-        }).forEach(function (k) {
-            var r = registry[k];
-            var row = document.createElement('div');
-            row.className = 'rvw-list-item' + (isEdited(k) ? ' edited' : '');
-            var kEl = document.createElement('span'); kEl.className = 'k'; kEl.textContent = r.label;
-            var vEl = document.createElement('span'); vEl.className = 'v'; vEl.textContent = r.get();
-            row.appendChild(kEl); row.appendChild(vEl);
-            row.addEventListener('click', function () { openEditor(k, null); });
-            list.appendChild(row);
-        });
-        panel.classList.add('open');
     });
 
     // ---------------- boot ----------------
