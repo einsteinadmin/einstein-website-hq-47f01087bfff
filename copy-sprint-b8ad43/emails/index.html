@@ -45,7 +45,7 @@ li{margin:5px 0;font-size:14.5px}
 <h2>The play: copy first, design after</h2>
 <div class="card">
   <p>The quote email has already been redesigned — a slimmed-down skeleton with 18 approved changes, sitting with Kickpoint for the build. That skeleton is the style target for the whole suite. <b>Your job is condensing each remaining email into that shape</b>: shorter, warmer, scannable, one job per email. When the copy defines what survives, design pours in behind it — nobody pays for a second design pass.</p>
-  <p><b>The style target:</b> <a href="https://docs.google.com/document/d/1ckEwgjGglO432Q5RtpmAnWSSfpDYEy-n5kFWT1ctzTg" target="_blank">the redesigned Quote Email doc</a> (the approved direction) · <a href="https://einsteinadmin.github.io/einstein-rfq-workshop-f2e97dd045ec/" target="_blank">the RFQ workshop</a> (all 26 proposed changes with the 18 keepers marked — the "why" behind the skeleton) · <a href="https://docs.google.com/document/d/121JVCxizJ6R5WyaAPPORsBOJouftuhe5GZWnOtkPcJc" target="_blank">your own 2022 drafts</a> of Auto Confirm, Meet Your Movers, and Post-Move (yes, we kept them).</p>
+  <p><b>The style target:</b> <a href="https://docs.google.com/document/d/1ckEwgjGglO432Q5RtpmAnWSSfpDYEy-n5kFWT1ctzTg" target="_blank">the redesigned Quote Email doc</a> (the approved direction) · <a href="https://einsteinadmin.github.io/einstein-rfq-workshop-f2e97dd045ec/" target="_blank">the RFQ workshop</a> (all 26 proposed changes with the 18 keepers marked — the "why" behind the skeleton) · <a href="https://docs.google.com/document/d/121JVCxizJ6R5WyaAPPORsBOJouftuhe5GZWnOtkPcJc" target="_blank">your own 2022 drafts</a> of Auto Confirm, Meet Your Movers, and Post-Move (yes, we kept them). And the <b>old quote email the redesign replaces</b> is here purely as a what-we-cut reference — you're not working off it: <a href="src/01-rfq-quote-request.html" target="_blank">rendered</a> · <a href="src/01-rfq-quote-request.txt" target="_blank">plain text</a>.</p>
 </div>
 <div class="rail">
   <b>Placeholders, not numbers:</b> rates, dates, names, and counts in these emails are merge fields in production — and some of the hard-coded ones have gone stale (the quote email still says "4,500 reviews"; the real count is north of 8,000). Treat every specific number as <i>{{a_variable}}</i> and write around it. Restamping is our job.
@@ -62,64 +62,57 @@ li{margin:5px 0;font-size:14.5px}
     <li><b>The post-move review ask</b> — short, high-volume, and it feeds the review engine everything else brags about. We also need a <b>text-message version</b> (2–3 sentence options) — the current SMS lives in a third-party tool and honestly needs a fresh start anyway.</li>
     <li><b>The lead-rescue pair</b> — "no availability" and "we tried calling you" are where warm leads go to die. Punchy beats polite here.</li>
   </ul>
-  <p style="margin:8px 0 0">The quote email itself is furthest along — give the approved doc a final conversion pass rather than a rewrite. The post-kickoff confirmation is the caboose: worth a trim if there's time, fine as-is if not.</p>
+  <p style="margin:8px 0 0">The quote email itself is furthest along — work from the approved redesign doc (linked above) with a final conversion pass; the old version it replaces is linked up there only so you can see what we cut. The post-kickoff confirmation is the caboose: worth a trim if there's time, fine as-is if not.</p>
 </div>
 </section>
 
 <section id="the-suite">
-<h2>The current suite (as sent today — open each, layout and all)</h2>
+<h2>The current suite (as sent today — open each, layout and all; the old quote email lives up in the style-target card, reference only)</h2>
 
 <div class="em">
-  <h3>1 · The quote email (RFQ) <span class="chip">FINAL PASS ONLY</span></h3>
-  <p class="subj">Subject: Your Einstein Moving quote request 👀 📦</p>
-  <p>Sent minutes after a quote request. Why Einstein → your estimate → how to book. It's long by design (it does the selling), but the redesigned doc above already slimmed it — polish that, don't resurrect this.</p>
-  <p class="links"><a href="src/01-rfq-quote-request.html" target="_blank">Rendered original</a> <a href="src/01-rfq-quote-request.txt" target="_blank">Plain text</a></p>
-</div>
-
-<div class="em">
-  <h3>2 · No availability <span class="chip">LEAD RESCUE</span></h3>
+  <h3>1 · No availability <span class="chip">LEAD RESCUE</span></h3>
   <p class="subj">Subject: Any flexibility? [Your Einstein Moving quote]</p>
   <p>Their requested date is booked. The one email where we have to deliver bad news and keep the lead alive in the same breath.</p>
   <p class="links"><a href="src/02-no-availability.html" target="_blank">Rendered original</a> <a href="src/02-no-availability.txt" target="_blank">Plain text</a></p>
 </div>
 
 <div class="em">
-  <h3>3 · Booking confirmation (full) <span class="chip">BIG FOUR</span></h3>
+  <h3>2 · Booking confirmation (full) <span class="chip">BIG FOUR</span></h3>
   <p class="subj">Subject: Your Move Is Confirmed - Yay! 🥳</p>
   <p>The celebration email: confirmation → move details → the money stuff → the packing stuff → the legal stuff → the fun stuff. Currently our longest send after the RFQ.</p>
   <p class="links"><a href="src/03-booking-confirmation-full.html" target="_blank">Rendered original</a> <a href="src/03-booking-confirmation-full.txt" target="_blank">Plain text</a></p>
 </div>
 
 <div class="em">
-  <h3>4 · Auto-confirm (short variant) <span class="chip">BIG FOUR</span></h3>
+  <h3>3 · Auto-confirm (short variant) <span class="chip">BIG FOUR</span></h3>
   <p class="subj">Subject: Your Move Is Confirmed (Yessss!)</p>
-  <p>The shorter sibling of #3, sent when a booking confirms without the full ceremony. Ruling requested: should these be one email?</p>
+  <p>The shorter sibling of #2, sent when a booking confirms without the full ceremony. Ruling requested: should these be one email?</p>
   <p class="links"><a href="src/04-auto-confirm.html" target="_blank">Rendered original</a> <a href="src/04-auto-confirm.txt" target="_blank">Plain text</a></p>
 </div>
 
 <div class="em">
-  <h3>5 · Final move confirmation (post-kickoff) <span class="chip grey">IF TIME</span></h3>
+  <h3>4 · Final move confirmation (post-kickoff) <span class="chip grey">IF TIME</span></h3>
   <p class="subj">Subject: Your Final Move Confirmation [Einstein Moving Company]</p>
   <p>Sent after the kickoff call locks the details. Mostly logistics; a trim pass is plenty.</p>
   <p class="links"><a href="src/05-final-move-confirmation-post-kickoff.html" target="_blank">Rendered original</a> <a href="src/05-final-move-confirmation-post-kickoff.txt" target="_blank">Plain text</a></p>
 </div>
 
 <div class="em">
-  <h3>6 · Meet Your Movers <span class="chip">BIG FOUR</span></h3>
+  <h3>5 · Meet Your Movers <span class="chip">BIG FOUR</span></h3>
   <p class="subj">Subject: Knock Knock! Meet Your Movers 👋</p>
   <p>A few days before the move: who's coming, when, and payment details. The anti-"strangers at your door" email — the whole brand promise in miniature.</p>
   <p class="links"><a href="src/06-meet-your-movers.html" target="_blank">Rendered original</a> <a href="src/06-meet-your-movers.txt" target="_blank">Plain text</a></p>
 </div>
 
 <div class="em">
-  <h3>7 · Second call attempt <span class="chip">LEAD RESCUE</span></h3>
+  <h3>6 · Second call attempt <span class="chip">LEAD RESCUE</span></h3>
   <p class="subj">Subject: Call us back? 😅</p>
   <p>We missed them twice for the kickoff call. Reassures the move is still confirmed, asks for 5–10 minutes.</p>
   <p class="links"><a href="src/07-second-call-attempt.html" target="_blank">Rendered original</a> <a href="src/07-second-call-attempt.txt" target="_blank">Plain text</a></p>
 </div>
 
 <div class="em">
-  <h3>8 · The post-move review ask <span class="chip">BIG FOUR</span></h3>
+  <h3>7 · The post-move review ask <span class="chip">BIG FOUR</span></h3>
   <p class="subj">Subject: Soooo, how was it? 🙊</p>
   <p>One week after moving day. Short, warm, asks for the Google review. Also needs the fresh <b>SMS sibling</b> (see above) — that one's a blank page, 2–3 options welcome.</p>
   <p class="links"><a href="src/08-post-move-followup-review.html" target="_blank">Rendered original</a> <a href="src/08-post-move-followup-review.txt" target="_blank">Plain text</a></p>
