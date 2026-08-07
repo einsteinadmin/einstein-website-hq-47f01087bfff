@@ -35,8 +35,8 @@ a{color:var(--blue-500)}
 
 <header id="hd"><div class="wrap">
   <p class="crumb"><a href="./index.html">&larr; Copy sprint hub</a></p>
-  <h1>The other nine cities: <span class="a">local color, nine ways.</span></h1>
-  <p>The Locations template is built. What it can't fake is knowing the neighborhood — that part gets written once per city, by you.</p>
+  <h1>The other <span class="a">nine cities.</span></h1>
+  <p>The Locations template is built. The local writing — the part that can't be templated — is this assignment.</p>
 </div></header>
 
 <div class="wrap">
@@ -44,21 +44,20 @@ a{color:var(--blue-500)}
 <section id="sec-context">
 <h2>The setup</h2>
 <div class="card">
-  <p>The <a href="../fidelity/locations-model-naustin.html">North Austin Locations page</a> is the model for all ten city pages, and its best trick is the local flavor: "first homes in Pflugerville," the "third-floor walk-up in Hyde Park," schools filling the summer calendar because of Round Rock ISD. That's the part that makes the page read like it was written by someone who lives there — because the copy sweats the details only a local would.</p>
-  <p>The template handles everything else. But <b>each of the other nine cities needs its own version of those localized components</b>, and a find-and-replace on "Austin" would be exactly the generic mush the model was built to kill.</p>
+  <p>The <a href="../fidelity/locations-model-naustin.html">North Austin Locations page</a> is the model for all ten city pages. What makes it work is local: "first homes in Pflugerville," the "third-floor walk-up in Hyde Park," Round Rock ISD in the moving tips. The template handles everything else, but each of the other nine cities needs its own version of those pieces — a find-and-replace on "Austin" defeats the point.</p>
 </div>
 </section>
 
 <section id="sec-ask">
-<h2>The ask — per city, roughly six slots</h2>
+<h2>Six components per city</h2>
 <div class="card">
-  <p>Read the North Austin model once, then write these for each city. Every one has a marked slot in the template, so "short and specific" beats "long and flowing":</p>
+  <p>Read the North Austin model once, then write these for each city. Each has a marked slot in the template, so short and specific beats long:</p>
   <ol>
-    <li><b>Hero localities line</b> — the "Pflugerville to The Domain" span. Two endpoints locals would nod at.</li>
-    <li><b>Service-card local flavor</b> — the residential + apartment blurbs ("first homes in Pflugerville," "third-floor walk-up in Hyde Park"). One real detail each.</li>
-    <li><b>Neighborhood one-liners</b> — a sentence per neighborhood in the coverage grid ("fast-growing, family-heavy, full of our repeat customers").</li>
-    <li><b>Local tips</b> — 2–4 bullets: schools, traffic quirks, the thing everyone racing a move-in date needs to know.</li>
-    <li><b>The wink</b> — one Bird-Bird-Biscuit-grade local joke or reference per city. Just one; it has to be real.</li>
+    <li><b>Hero localities line</b> — the "Pflugerville to The Domain" span. Two endpoints locals recognize.</li>
+    <li><b>Service-card details</b> — the residential and apartment blurbs. One real local detail each.</li>
+    <li><b>Neighborhood one-liners</b> — a sentence per neighborhood in the coverage grid.</li>
+    <li><b>Local tips</b> — 2–4 bullets: schools, traffic, whatever someone racing a move-in date needs to know.</li>
+    <li><b>One local reference</b> — the North Austin page uses the Bird Bird Biscuit line. One per city, and it has to be real.</li>
     <li><b>Long-distance geography</b> — where people in that city actually move to and from. Tampa's card can't say "anywhere in the Lone Star State."</li>
   </ol>
 </div>
@@ -69,13 +68,13 @@ a{color:var(--blue-500)}
 
 <section id="sec-rails">
 <div class="rail">
-  <b>Division of labor, so numbers stay honest:</b> we supply the locked per-city facts — award names and counts, review numbers, since-years, manager names, neighborhood lists. You supply the color. Never both from the same pen. If a fact slot is empty when you get there, write around it with a <i>{{placeholder}}</i> and keep moving. And if a city stumps you — you've never set foot in Garland, fair — write what research gives you and flag the gaps; the branch teams can feed you local intel.</div>
+  <b>Division of labor:</b> we provide the per-city facts — award names and counts, review numbers, since-years, manager names, neighborhood lists. You write the color. If a fact is missing, use a <i>{{placeholder}}</i> and keep moving. If you don't know a city, write what research gives you and flag the gaps; the branch teams can fill in local detail.</div>
 </section>
 
 <section id="sec-sendback">
 <h2>Sending it back</h2>
 <div class="howto">
-  <p style="margin-top:0">One Google Doc with nine sections (or nine short docs — dealer's choice), slots labeled 1–6 per city, to <a href="mailto:cameron@einsteinmoving.com">cameron@einsteinmoving.com</a>. Cities can trickle in as they finish — no need to hold for the full set.</p>
+  <p style="margin-top:0">One Google Doc with nine sections (or nine short docs), components labeled 1–6 per city, to <a href="mailto:cameron@einsteinmoving.com">cameron@einsteinmoving.com</a>. Send cities as they finish — no need to hold for the full set.</p>
 </div>
 <a class="toolcta" href="../fidelity/locations-model-naustin.html">Open the North Austin model &rarr;</a>
 </section>
